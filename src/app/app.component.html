@@ -1,0 +1,166 @@
+<!-- Principal Page -->
+<div class="wrapper">
+   
+   <!-- header -->
+   <header class="topnavbar-wrapper">
+      <nav class="navbar topnavbar" role="navigation">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+               <div class="brand-logo-collapsed">
+               </div>
+            </a>
+         </div>
+         <div class="nav-wrapper">
+            <ul class="nav navbar-nav">
+               <li>
+                  <a class="hidden-xs" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                     <em class="fa fa-navicon"></em>
+                  </a>
+                  <a class="visible-xs sidebar-toggle" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                     <em class="fa fa-navicon"></em>
+                  </a>
+               </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+                  <a href="#" data-search-open="">
+                     <em class="fa fa-search"></em>
+                  </a>
+               </li>
+               <li class="visible-lg">
+                  <a href="#" data-toggle-fullscreen="">
+                     <em class="fa fa-power-off"></em>
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <form class="navbar-form" role="search" action="search.html">
+            <div class="form-group has-feedback">
+               <input class="form-control" type="text" placeholder="Type and hit enter ...">
+               <div class="fa fa-times form-control-feedback" data-search-dismiss=""></div>
+            </div>
+            <button class="hidden btn btn-default" type="submit">Submit</button>
+         </form>
+      </nav>
+   </header>
+   
+   <!-- sidebar-->
+   <aside class="aside">
+      <div class="aside-inner">
+         <nav class="sidebar" data-sidebar-anyclick-close="">
+            <ul class="nav">
+              <div class="item user-block">
+                <div class="user-block-picture">
+                   <div class="user-block-status">
+                      <img class="img-thumbnail img-circle" src="assets/img/user/body.jpg" alt="Avatar" width="60" height="60">
+                      <div class="circle circle-success circle-lg"></div>
+                   </div>
+                </div>
+                <div class="user-block-info">
+                   <span class="user-block-name">Edgar Felipe Fuentes Perea (EFP)</span>
+                   <span class="user-block-role">Especialista de Práctica</span>
+                </div>
+              </div>
+               <li class="nav-heading ">
+                  <span data-localize="sidebar.heading.HEADER">Principal</span>
+               </li>
+               <li class=" ">
+               
+               	  <a href="#inicio" title="Dashboard" data-toggle="collapse">
+                     <em class="fa fa-dashboard"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">Inicio</span>
+                  </a>
+
+				  <a href="#tipopension" title="Tipopension" data-toggle="collapse">
+                     <em class="fa fa-briefcase"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">Tipopensions</span>
+                  </a>
+
+                  <ul class="nav sidebar-subnav collapse" id="tipopension">
+                     <li class="sidebar-subnav-header">Tipopensions</li>
+                     <li class="">
+                        <a href="/" routerLink="tipopension_mgmnt" title="Administrar Tipopension">
+                           <span>Administrar Tipopension</span>
+                        </a>
+                     </li>
+                     <li class="">
+                        <a href="/"  routerLink="tipopension" title="Agregar Tipopension" onclick="">
+                           <span>Agregar Tipopension</span>
+                        </a>
+                     </li>
+                  </ul>
+				  <a href="#solicitudpension" title="Solicitudpension" data-toggle="collapse">
+                     <em class="fa fa-briefcase"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">Solicitudpensions</span>
+                  </a>
+
+                  <ul class="nav sidebar-subnav collapse" id="solicitudpension">
+                     <li class="sidebar-subnav-header">Solicitudpensions</li>
+                     <li class="">
+                        <a href="/" routerLink="solicitudpension_mgmnt" title="Administrar Solicitudpension">
+                           <span>Administrar Solicitudpension</span>
+                        </a>
+                     </li>
+                     <li class="">
+                        <a href="/"  routerLink="solicitudpension" title="Agregar Solicitudpension" onclick="">
+                           <span>Agregar Solicitudpension</span>
+                        </a>
+                     </li>
+                  </ul>
+				  <a href="#afiliado" title="Afiliado" data-toggle="collapse">
+                     <em class="fa fa-briefcase"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">Afiliados</span>
+                  </a>
+
+                  <ul class="nav sidebar-subnav collapse" id="afiliado">
+                     <li class="sidebar-subnav-header">Afiliados</li>
+                     <li class="">
+                        <a href="/" routerLink="afiliado_mgmnt" title="Administrar Afiliado">
+                           <span>Administrar Afiliado</span>
+                        </a>
+                     </li>
+                     <li class="">
+                        <a href="/"  routerLink="afiliado" title="Agregar Afiliado" onclick="">
+                           <span>Agregar Afiliado</span>
+                        </a>
+                     </li>
+                  </ul>
+				  <a href="#beneficiario" title="Beneficiario" data-toggle="collapse">
+                     <em class="fa fa-briefcase"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">Beneficiarios</span>
+                  </a>
+
+                  <ul class="nav sidebar-subnav collapse" id="beneficiario">
+                     <li class="sidebar-subnav-header">Beneficiarios</li>
+                     <li class="">
+                        <a href="/" routerLink="beneficiario_mgmnt" title="Administrar Beneficiario">
+                           <span>Administrar Beneficiario</span>
+                        </a>
+                     </li>
+                     <li class="">
+                        <a href="/"  routerLink="beneficiario" title="Agregar Beneficiario" onclick="">
+                           <span>Agregar Beneficiario</span>
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </aside>
+
+   <!-- Main section-->
+   <section>
+     <div class="container">
+         <div class="board">
+             <router-outlet></router-outlet>
+         </div>
+     </div>
+   </section>
+
+   <!-- Footer section-->
+   <footer>
+      <span>&copy; Softtek - 2018</span>
+   </footer>
+   
+</div>

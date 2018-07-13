@@ -1,0 +1,40 @@
+{
+    "afiliados": [
+      {
+          "id": 1,
+          "acta": "123123123123",
+          "fecha_afiliacion": "12-04-2018",
+          "email": "asdasdasd@gob.mx",
+          "nss": "123123123123",
+          "nombre": "Alejandro",
+          "apellido_materno": "Martinez",
+        	"apellido_paterno": "Harnandez",
+        	"foto": "123456",
+        	"observaciones": ""
+      },
+      {
+          "id": 2,
+          "acta": "1231231232313",
+          "fecha_afiliacion": "12-04-2018",
+          "email": "asdasdasd@gob.mx",
+          "nss": "123123123123",
+          "nombre": "Laura",
+          "apellido_materno": "Lopez",
+          "apellido_paterno": "Dominguez",
+          "foto": "123456",
+          "observaciones": ""
+      },
+      {
+          "id": 3,
+          "acta": "1231231231",
+          "fecha_afiliacion": "12-04-2018",
+          "email": "asdasdasd@gob.mx",
+          "nss": "123123123123",
+          "nombre": "Adriana",
+          "apellido_materno": "Chacon",
+          "apellido_paterno": "Perez",
+          "foto": "123456",
+          "observaciones": ""
+      }
+    ]
+  }

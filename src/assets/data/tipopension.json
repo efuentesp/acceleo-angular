@@ -1,0 +1,15 @@
+{
+    "tipopensions": [
+     
+      {
+          "id":1,
+          "valor": "2",
+          "nombre": "Alejandra Hernandez"
+      },
+      {
+          "id":2,
+          "valor": "2",
+          "nombre": "Javier Gonzalez"
+      }
+    ]
+  }

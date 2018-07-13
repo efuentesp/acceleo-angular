@@ -1,0 +1,70 @@
+<section>
+	<div class="content-wrapper">
+	    <div class="content-heading">
+	        <div class="pull-right">
+	           <div class="btn-group">
+	           </div>
+	        </div>
+	        Agregar Tipopension
+	        <small data-localize="dashboard.WELCOME"></small>
+	     </div>
+     
+		 <div class="row">
+         	<div class="col-lg-12">
+        		<div class="panel panel-default" id="panelChart9">
+		            <!-- body -->
+		            <div class="panel-body"> 
+						<div class="panel-body">
+							<span class="section">Datos del Tipopension</span>
+			              <section>
+			                <div class="container">
+			                    <div class="board">
+			                          <form #tipopensionForm="ngForm" class="editForm" novalidate>
+											<!-- input -->
+		                                    <div class='row'>
+												<input class="form-control input-md" #tipopensionId="ngModel" tipopensionId="tipopensionId" name="tipopensionId" type="hidden" placeholder="tipopensionId" [(ngModel)]="tipopension.tipopensionId">		
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="nombre">Nombre:</label>
+                                                        <input class="form-control input-md" #nombre="ngModel" required id="nombre" name="nombre" type="text" placeholder="Nombre" [(ngModel)]="tipopension.nombre">
+                                                        <div class="alert alert-danger" [hidden]="nombre.valid">Nombre is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="clave">Clave:</label>
+                                                        <input class="form-control input-md" #clave="ngModel" required id="clave" name="clave" type="text" placeholder="Clave" [(ngModel)]="tipopension.clave">
+                                                        <div class="alert alert-danger" [hidden]="clave.valid">Clave is required</div>
+                                                    </div>
+                                                </div> 
+											</div>
+
+	
+
+
+
+
+
+										<div class="row">
+												<div class="form-group">
+													<div class="text-left">
+																<br/>
+																<button class="btn btn-primary" [disabled]="!tipopensionForm.valid" (click)="save(tipopensionForm)"> <span style="margin-right:10px;"  class="fa fa-save"></span> Agregar</button>
+																<button class="btn btn-default" (click)="return(tipopensionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span> Regresar</button>
+														</div>
+												</div>
+										</div>
+
+			                          </form>
+			                    </div>
+			                </div>
+			              </section>
+			            </div>
+					</div>
+					<!-- /body -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

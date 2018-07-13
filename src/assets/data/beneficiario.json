@@ -1,0 +1,28 @@
+{
+    "beneficiarios": [
+      {
+          "id": 1,
+          "apellido_materno": "Martinez",
+          "fecha_nacimiento": "12-04-2018",
+          "curp": "123123123123",
+          "nombre": "Alejandro",
+          "apellido_paterno": "Harnandez"
+      },
+      {
+          "id": 2,
+          "apellido_materno": "Lopez",
+          "fecha_nacimiento": "12-04-2018",
+          "curp": "123123123123",
+          "nombre": "Laura",
+          "apellido_paterno": "Dominguez"
+      },
+      {
+          "id": 3,
+          "apellido_materno": "Chacon",
+          "fecha_nacimiento": "12-04-2018",
+          "curp": "asdasdasd@gob.mx",
+          "nombre": "Adriana",
+          "apellido_paterno": "Perez"
+      }
+    ]
+  }

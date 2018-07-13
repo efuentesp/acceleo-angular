@@ -1,0 +1,104 @@
+<section>
+	<div class="content-wrapper">
+	    <div class="content-heading">
+	        <div class="pull-right">
+	           <div class="btn-group">
+	           </div>
+	        </div>
+	        Agregar Beneficiario
+	        <small data-localize="dashboard.WELCOME"></small>
+	     </div>
+     
+		 <div class="row">
+         	<div class="col-lg-12">
+        		<div class="panel panel-default" id="panelChart9">
+		            <!-- body -->
+		            <div class="panel-body"> 
+						<div class="panel-body">
+							<span class="section">Datos del Beneficiario</span>
+			              <section>
+			                <div class="container">
+			                    <div class="board">
+			                          <form #beneficiarioForm="ngForm" class="editForm" novalidate>
+											<!-- input -->
+		                                    <div class='row'>
+												<input class="form-control input-md" #beneficiarioId="ngModel" beneficiarioId="beneficiarioId" name="beneficiarioId" type="hidden" placeholder="beneficiarioId" [(ngModel)]="beneficiario.beneficiarioId">		
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="apellido_materno">Apellido_materno:</label>
+                                                        <input class="form-control input-md" #apellido_materno="ngModel" required id="apellido_materno" name="apellido_materno" type="text" placeholder="Apellido_materno" [(ngModel)]="beneficiario.apellido_materno">
+                                                        <div class="alert alert-danger" [hidden]="apellido_materno.valid">Apellido_materno is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="curp">Curp:</label>
+                                                        <input class="form-control input-md" #curp="ngModel" required id="curp" name="curp" type="text" placeholder="Curp" [(ngModel)]="beneficiario.curp">
+                                                        <div class="alert alert-danger" [hidden]="curp.valid">Curp is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="fecha_nacimiento">Fecha_nacimiento:</label>
+                                                        <input class="form-control input-md" #fecha_nacimiento="ngModel" required id="fecha_nacimiento" name="fecha_nacimiento" type="text" placeholder="Fecha_nacimiento" [(ngModel)]="beneficiario.fecha_nacimiento">
+                                                        <div class="alert alert-danger" [hidden]="fecha_nacimiento.valid">Fecha_nacimiento is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="nombre">Nombre:</label>
+                                                        <input class="form-control input-md" #nombre="ngModel" required id="nombre" name="nombre" type="text" placeholder="Nombre" [(ngModel)]="beneficiario.nombre">
+                                                        <div class="alert alert-danger" [hidden]="nombre.valid">Nombre is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="apellido_paterno">Apellido_paterno:</label>
+                                                        <input class="form-control input-md" #apellido_paterno="ngModel" required id="apellido_paterno" name="apellido_paterno" type="text" placeholder="Apellido_paterno" [(ngModel)]="beneficiario.apellido_paterno">
+                                                        <div class="alert alert-danger" [hidden]="apellido_paterno.valid">Apellido_paterno is required</div>
+                                                    </div>
+                                                </div> 
+											</div>
+
+	
+	<div class='row'>
+		<label class="control-label" for="parentesco">Parentesco:</label> 
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="input-group">
+	<input type="radio" aria-label="Radio button for following text input" value="conyuge" name="conyuge" [(ngModel)]="beneficiario.parentescoId"> Conyuge		
+	<input type="radio" aria-label="Radio button for following text input" value="ascendiente" name="ascendiente" [(ngModel)]="beneficiario.parentescoId"> Ascendiente		
+	<input type="radio" aria-label="Radio button for following text input" value="hijo" name="hijo" [(ngModel)]="beneficiario.parentescoId"> Hijo		
+				</div>
+			</div>
+		</div>
+	   <br/>
+	</div>
+
+
+
+
+
+										<div class="row">
+												<div class="form-group">
+													<div class="text-left">
+																<br/>
+																<button class="btn btn-primary" [disabled]="!beneficiarioForm.valid" (click)="save(beneficiarioForm)"> <span style="margin-right:10px;"  class="fa fa-save"></span> Agregar</button>
+																<button class="btn btn-default" (click)="return(beneficiarioForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span> Regresar</button>
+														</div>
+												</div>
+										</div>
+
+			                          </form>
+			                    </div>
+			                </div>
+			              </section>
+			            </div>
+					</div>
+					<!-- /body -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

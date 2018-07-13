@@ -1,0 +1,255 @@
+<section>
+	<div class="content-wrapper">
+	    <div class="content-heading">
+	        <div class="pull-right">
+	           <div class="btn-group">
+	           </div>
+	        </div>
+	        Agregar Solicitudpension
+	        <small data-localize="dashboard.WELCOME"></small>
+	     </div>
+     
+		 <div class="row">
+         	<div class="col-lg-12">
+        		<div class="panel panel-default" id="panelChart9">
+		            <!-- body -->
+		            <div class="panel-body"> 
+						<div class="panel-body">
+							<span class="section">Datos del Solicitudpension</span>
+			              <section>
+			                <div class="container">
+			                    <div class="board">
+			                          <form #solicitudpensionForm="ngForm" class="editForm" novalidate>
+											<!-- input -->
+		                                    <div class='row'>
+												<input class="form-control input-md" #solicitudpensionId="ngModel" solicitudpensionId="solicitudpensionId" name="solicitudpensionId" type="hidden" placeholder="solicitudpensionId" [(ngModel)]="solicitudpension.solicitudpensionId">		
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="numero">Numero:</label>
+                                                        <input class="form-control input-md" #numero="ngModel" required id="numero" name="numero" type="text" placeholder="Numero" [(ngModel)]="solicitudpension.numero">
+                                                        <div class="alert alert-danger" [hidden]="numero.valid">Numero is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="observaciones">Observaciones:</label>
+                                                        <input class="form-control input-md" #observaciones="ngModel" required id="observaciones" name="observaciones" type="text" placeholder="Observaciones" [(ngModel)]="solicitudpension.observaciones">
+                                                        <div class="alert alert-danger" [hidden]="observaciones.valid">Observaciones is required</div>
+                                                    </div>
+                                                </div> 
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="fecha_solicitud">Fecha_solicitud:</label>
+                                                        <input class="form-control input-md" #fecha_solicitud="ngModel" required id="fecha_solicitud" name="fecha_solicitud" type="text" placeholder="Fecha_solicitud" [(ngModel)]="solicitudpension.fecha_solicitud">
+                                                        <div class="alert alert-danger" [hidden]="fecha_solicitud.valid">Fecha_solicitud is required</div>
+                                                    </div>
+                                                </div> 
+											</div>
+
+	
+
+
+
+								<div class="row">
+										<div class="form-group">
+											<label class="control-label" for="afiliado">Afiliado:</label>
+												<div class="form-group text-right">
+														<div class="col-lg-3">
+															<div class="input-group">
+																<input type="hidden" class="form-control input-md"  name="afiliadoId"  [(ngModel)]="solicitudpension.afiliadoId" #afiliadoId="ngModel">
+																<input type="text" class="form-control" placeholder="Afiliado...">
+																<span class="input-group-btn">
+																	<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalAfiliado">
+																		<em class="fa fa-search"></em>
+																	</button>
+																</span>
+															</div>
+														</div>
+												</div>
+										</div>
+								</div>
+
+
+<!-- Modal afiliado -->
+<div id="modalAfiliado" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+	<div class="modal-dialog" style="width:60%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Afiliado</h4>
+			</div>
+			<div class="modal-body">
+				<div class='row'>
+					<div class="col-lg-6">
+						<br/>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search for..." name="busquedaafiliado" [(ngModel)]="busquedaAfiliado">
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+				<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
+						<thead>
+							<tr>
+										<th>Beneficiario</th>
+										<th>Fecha_afiliacion</th>
+										<th>Foto</th>
+										<th>Correo</th>
+										<th>Apellido_materno</th>
+										<th>Acta_nacimiento</th>
+										<th>Monto_pension</th>
+										<th>Apellido_paterno</th>
+										<th>Observaciones</th>
+										<th>Nombre</th>
+										<th>Genero</th>
+										<th>Semanas_cotizadas</th>
+										<th>Nss</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let afiliado of afiliadoList | filterAfiliado: busquedaAfiliado | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRowafiliado(i, afiliado)" >
+												<td>{{afiliado.beneficiarioId}}</td>
+												<td>{{afiliado.fecha_afiliacion}}</td>
+												<td>{{afiliado.foto}}</td>
+												<td>{{afiliado.correo}}</td>
+												<td>{{afiliado.apellido_materno}}</td>
+												<td>{{afiliado.acta_nacimiento}}</td>
+												<td>{{afiliado.monto_pension}}</td>
+												<td>{{afiliado.apellido_paterno}}</td>
+												<td>{{afiliado.observaciones}}</td>
+												<td>{{afiliado.nombre}}</td>
+												<td>{{afiliado.generoId}}</td>
+												<td>{{afiliado.semanas_cotizadas}}</td>
+												<td>{{afiliado.nss}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+						<div align="center" style="margin-top:15px;">
+							<pagination-controls (pageChange)="page = $event" id="1" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+								nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+							</pagination-controls>
+						</div>
+
+					<div class="row">
+						<div class="text-right" style="padding-right:40px">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+            
+								<div class="row">
+										<div class="form-group">
+											<label class="control-label" for="tipopension">Tipopension:</label>
+												<div class="form-group text-right">
+														<div class="col-lg-3">
+															<div class="input-group">
+																<input type="hidden" class="form-control input-md"  name="tipopensionId"  [(ngModel)]="solicitudpension.tipopensionId" #tipopensionId="ngModel">
+																<input type="text" class="form-control" placeholder="Tipopension...">
+																<span class="input-group-btn">
+																	<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalTipopension">
+																		<em class="fa fa-search"></em>
+																	</button>
+																</span>
+															</div>
+														</div>
+												</div>
+										</div>
+								</div>
+
+
+<!-- Modal tipopension -->
+<div id="modalTipopension" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+	<div class="modal-dialog" style="width:60%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Tipopension</h4>
+			</div>
+			<div class="modal-body">
+				<div class='row'>
+					<div class="col-lg-6">
+						<br/>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search for..." name="busquedatipopension" [(ngModel)]="busquedaTipopension">
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+				<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
+						<thead>
+							<tr>
+										<th>Nombre</th>
+										<th>Clave</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let tipopension of tipopensionList | filterTipopension: busquedaTipopension | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRowtipopension(i, tipopension)" >
+												<td>{{tipopension.nombre}}</td>
+												<td>{{tipopension.clave}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+						<div align="center" style="margin-top:15px;">
+							<pagination-controls (pageChange)="page = $event" id="1" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+								nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+							</pagination-controls>
+						</div>
+
+					<div class="row">
+						<div class="text-right" style="padding-right:40px">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+            
+
+
+										<div class="row">
+												<div class="form-group">
+													<div class="text-left">
+																<br/>
+																<button class="btn btn-primary" [disabled]="!solicitudpensionForm.valid" (click)="save(solicitudpensionForm)"> <span style="margin-right:10px;"  class="fa fa-save"></span> Agregar</button>
+																<button class="btn btn-default" (click)="return(solicitudpensionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span> Regresar</button>
+														</div>
+												</div>
+										</div>
+
+			                          </form>
+			                    </div>
+			                </div>
+			              </section>
+			            </div>
+					</div>
+					<!-- /body -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

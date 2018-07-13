@@ -1,0 +1,14 @@
+{
+    "generos": [
+      {
+          "id":1,
+          "valor": "1",
+          "nombre": "Masculino"
+      },
+      {
+          "id":2,
+          "valor": "2",
+          "nombre": "Femenino"
+      }
+    ]
+  }
