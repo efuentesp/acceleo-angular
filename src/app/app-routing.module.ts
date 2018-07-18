@@ -1,35 +1,40 @@
-import { NgModule }                     from '@angular/core';
-import { Routes, RouterModule }         from '@angular/router';
-import { BaseComponent}                 from './base/base.component';
+import { NgModule }             from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { TipopensionMngComponent}       from './tipopension_mgmnt/tipopension_mgmnt.component';
-import { TipopensionComponent}       from './tipopension/tipopension.component';
-import { SolicitudpensionMngComponent}       from './solicitudpension_mgmnt/solicitudpension_mgmnt.component';
-import { SolicitudpensionComponent}       from './solicitudpension/solicitudpension.component';
-import { AfiliadoMngComponent}       from './afiliado_mgmnt/afiliado_mgmnt.component';
-import { AfiliadoComponent}       from './afiliado/afiliado.component';
-import { BeneficiarioMngComponent}       from './beneficiario_mgmnt/beneficiario_mgmnt.component';
-import { BeneficiarioComponent}       from './beneficiario/beneficiario.component';
-		
+import { ComposeMessageComponent }  from './compose-message.component';
+import { PageNotFoundComponent }    from './not-found.component';
 
-export const appRoutes: Routes = [
+import { CanDeactivateGuard }       from './can-deactivate-guard.service';
+import { AuthGuard }                from './auth-guard.service';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
-
-	{ path: 'tipopension_mgmnt',  component: TipopensionMngComponent},  
-	{ path: 'tipopension',  component: TipopensionComponent},  
-	{ path: 'solicitudpension_mgmnt',  component: SolicitudpensionMngComponent},  
-	{ path: 'solicitudpension',  component: SolicitudpensionComponent},  
-	{ path: 'afiliado_mgmnt',  component: AfiliadoMngComponent},  
-	{ path: 'afiliado',  component: AfiliadoComponent},  
-	{ path: 'beneficiario_mgmnt',  component: BeneficiarioMngComponent},  
-	{ path: 'beneficiario',  component: BeneficiarioComponent},  
-    { path: '**', component: BaseComponent }
+const appRoutes: Routes = [
+  {
+    path: 'admin',
+    loadChildren: 'app/admin/admin.module#AdminModule',
+    canLoad: [AuthGuard]
+  },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true} )],
-  exports: [RouterModule],
+  imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      {
+        enableTracing: true, // <-- debugging purposes only
+        preloadingStrategy: SelectivePreloadingStrategy,
+
+      }
+    )
+  ],
+  exports: [
+    RouterModule
+  ],
+  providers: [
+    CanDeactivateGuard,
+    SelectivePreloadingStrategy
+  ]
 })
-
-export class AppRoutingModule {}
-
+export class AppRoutingModule { }

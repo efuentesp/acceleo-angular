@@ -1,0 +1,33 @@
+@import "../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css";
+
+@import "../node_modules/gentelella/vendors/font-awesome/css/font-awesome.min.css";
+
+@import "../node_modules/gentelella/vendors/nprogress/nprogress.css";
+
+@import "../node_modules/gentelella/vendors/iCheck/skins/flat/green.css";
+
+@import "../node_modules/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css";
+
+@import "../node_modules/gentelella/vendors/jqvmap/dist/jqvmap.min.css";
+
+@import "../node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css";
+
+@import "../node_modules/gentelella/build/css/custom.min.css";
+
+@import "../node_modules/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css";
+
+@import "../node_modules/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css";
+
+@import "../node_modules/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css";
+
+@import "../node_modules/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css";
+
+@import "../node_modules/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css";
+
+@import "../node_modules/gentelella/vendors/google-code-prettify/bin/prettify.min.css";
+
+@import "../node_modules/gentelella/vendors/select2/dist/css/select2.min.css";
+
+@import "../node_modules/gentelella/vendors/switchery/dist/switchery.min.css";
+
+@import "../node_modules/gentelella/vendors/starrr/dist/starrr.css";

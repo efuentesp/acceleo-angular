@@ -1,0 +1,76 @@
+<div>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3>Administrar User</h3>
+			</div>
+		</div>
+
+		<div class="x_panel">
+			<div class="x_content">
+				<form #userMngForm="ngForm" class="editForm" novalidate>
+					<div class='row'>
+						<div class="col-lg-6">
+							<button *ngIf="createActive" class="btn btn-primary" (click)="add()"><span class="fa fa-plus"></span></button>
+						</div>
+						<div class="col-lg-6">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Criterios de busqueda..." name="busquedaUser" [(ngModel)]="busquedaUser">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default"><em class="fa fa-search"></em></button>
+									</span>
+							</div>
+
+						</div>
+					</div>
+
+					<br/>
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Resultados de la busqueda</h2>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content" style="width: 100%; overflow-x: scroll ;">
+									<br />
+									<table id="datatable" class="table table-striped">
+										<thead>
+												<tr>
+														<th>Username</th>
+														<th>Firstname</th>
+														<th>Lastname</th>
+														<th>Email</th>
+														<th>Activo</th>
+														<th class="col-md-2"> </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngFor="let user of userList | filterUser: busquedaUser | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableUser'}; let i = index" (click)="updateActive ? setClickedRowUser(i, user): false">
+														<td>{{user.userName}}</td>
+														<td>{{user.firstname}}</td>
+														<td>{{user.lastname}}</td>
+														<td>{{user.email}}</td>
+														<td>{{user.enabled ? 'Activo' : 'Inactivo'}}</td>
+														<td>
+															<button *ngIf="updateActive" class="btn btn-default" (click)="editar()"><span class="fa fa-pencil"></span></button>
+															<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar()"><span class="fa fa-trash"></span></button>
+														</td>
+												</tr>
+											</tbody>
+									</table>
+									<div class="row" align="right">
+										<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
+											<pagination-controls (pageChange)="page = $event" id="paginationTableUser" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+											</pagination-controls>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
+			   </form>
+			</div>
+		</div>
+	</div>

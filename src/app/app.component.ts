@@ -1,12 +1,10 @@
-import { Component, OnInit, Input }   from '@angular/core';
+import { Component } from '@angular/core';
 
-@Component ({
-    selector: 'app-root'
-    ,templateUrl: './app.component.html'
+@Component({
+  selector: 'app-root',
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
-
-export class AppComponent
-{
-    title = 'Angular';
+export class AppComponent {
 }
-
