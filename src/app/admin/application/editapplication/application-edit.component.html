@@ -1,0 +1,66 @@
+<div>
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3 *ngIf="flagDelete">Eliminar application</h3>
+			<h3 *ngIf="flag && !flagDelete">Actualizar application</h3>
+			<h3 *ngIf="!flag && !flagDelete">Agregar application</h3>
+		</div>
+	</div>
+
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>Datos del application</h2>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="x_content">
+			<!-- start form for validation -->
+			<form #applicationForm="ngForm" id="applicationForm" class="form-horizontal form-label-left" data-parsley-validate>
+				<input class="form-control" #applicationId="ngModel" applicationId="applicationId" name="applicationId" type="hidden" [(ngModel)]="application.applicationId">
+
+
+<div class="form-group">
+
+</div>
+<div class="form-group">
+
+		<label class="control-label" for="code">Clave<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #code="ngModel" id="code" name="code" type="text" [(ngModel)]="application.code" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #code="ngModel" id="code" name="code" type="text" [(ngModel)]="application.code" required>
+</div>
+<div class="form-group">
+
+</div>
+<div class="form-group">
+
+		<label class="control-label" for="name">Nombre<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #name="ngModel" id="name" name="name" type="text" [(ngModel)]="application.name" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #name="ngModel" id="name" name="name" type="text" [(ngModel)]="application.name" required>
+</div>
+
+
+
+
+				<div class="ln_solid"></div>
+
+				<div class="col-sm-12">
+					<div class="input-group">
+						<div *ngIf="flagDelete">
+							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+							<button class="btn btn-link" (click)="return(applicationForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="flag && !flagDelete">
+							<button class="btn btn-primary" [disabled]="!applicationForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-link" (click)="return(applicationForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="!flag && !flagDelete">
+							<button class="btn btn-primary" [disabled]="!applicationForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-link" (click)="return(applicationForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- end form for validation -->
+		</div>
+	</div>
+</div>

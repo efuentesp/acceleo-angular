@@ -22,6 +22,35 @@ import { AuthorityCreateComponent } from './authority/createAuthority/authority-
 import { AuthorityManageComponent } from './authority/manageAuthority/manage-authority.component';
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
+  
+import { MenuManageComponent } from './menu/managemenu/menu-manage.component';
+import { MenuCreateComponent } from './menu/createmenu/menu-create.component';
+import { MenuEditComponent } from './menu/editmenu/menu-edit.component';
+import { SearchMenuPipe } from './pipe/menu.filter.pipe';
+import { MenuService } from './menu/menu.component.service';
+
+  
+import { ApplicationManageComponent } from './application/manageapplication/application-manage.component';
+import { ApplicationCreateComponent } from './application/createapplication/application-create.component';
+import { ApplicationEditComponent } from './application/editapplication/application-edit.component';
+import { SearchApplicationPipe } from './pipe/application.filter.pipe';
+import { ApplicationService } from './application/application.component.service';
+
+  
+import { FunctionalserviceManageComponent } from './functionalservice/managefunctionalservice/functionalservice-manage.component';
+import { FunctionalserviceCreateComponent } from './functionalservice/createfunctionalservice/functionalservice-create.component';
+import { FunctionalserviceEditComponent } from './functionalservice/editfunctionalservice/functionalservice-edit.component';
+import { SearchFunctionalservicePipe } from './pipe/functionalservice.filter.pipe';
+import { FunctionalserviceService } from './functionalservice/functionalservice.component.service';
+
+  
+import { ModuleManageComponent } from './module/managemodule/module-manage.component';
+import { ModuleCreateComponent } from './module/createmodule/module-create.component';
+import { ModuleEditComponent } from './module/editmodule/module-edit.component';
+import { SearchModulePipe } from './pipe/module.filter.pipe';
+import { ModuleService } from './module/module.component.service';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -34,6 +63,22 @@ import { AuthorityEditComponent } from './authority/editAuthority/authority-edit
     HttpClientModule
   ],
   declarations: [
+    MenuCreateComponent,
+    MenuManageComponent,
+    MenuEditComponent,  
+	SearchMenuPipe,
+    ApplicationCreateComponent,
+    ApplicationManageComponent,
+    ApplicationEditComponent,  
+	SearchApplicationPipe,
+    FunctionalserviceCreateComponent,
+    FunctionalserviceManageComponent,
+    FunctionalserviceEditComponent,  
+	SearchFunctionalservicePipe,
+    ModuleCreateComponent,
+    ModuleManageComponent,
+    ModuleEditComponent,  
+	SearchModulePipe,
     AdminComponent,
     AdminDashboardComponent,
     ManagePrivilegeComponent,
@@ -47,9 +92,14 @@ import { AuthorityEditComponent } from './authority/editAuthority/authority-edit
     UserCreateComponent
   ],
   providers: [ 
+    MenuService,
+    ApplicationService,
+    FunctionalserviceService,
+    ModuleService,
     ManagePrivilegeService,
     UserService,
     AuthorityService
 ]
 })
 export class AdminModule {}
+

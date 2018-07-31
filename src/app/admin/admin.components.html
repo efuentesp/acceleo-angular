@@ -1,6 +1,5 @@
 
-
-  <div class="nav-md">
+<div class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -32,7 +31,32 @@
                 <h3>General</h3>
 
                 <ul class="nav side-menu">{{user.authority}}
-                  
+                <!-- entities -->
+				  <li *ngIf="menu_mgmnt"><a routerLink="./managemenu" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Menu </a>
+				  </li>
+                  <li *ngIf="menu"><a routerLink="./createmenu" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Menu </a>
+                  </li>
+				  <li *ngIf="application_mgmnt"><a routerLink="./manageapplication" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Application </a>
+				  </li>
+                  <li *ngIf="application"><a routerLink="./createapplication" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Application </a>
+                  </li>
+				  <li *ngIf="functionalservice_mgmnt"><a routerLink="./managefunctionalservice" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Functionalservice </a>
+				  </li>
+                  <li *ngIf="functionalservice"><a routerLink="./createfunctionalservice" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Functionalservice </a>
+                  </li>
+				  <li *ngIf="module_mgmnt"><a routerLink="./managemodule" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Module </a>
+				  </li>
+                  <li *ngIf="module"><a routerLink="./createmodule" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Module </a>
+                  </li>
+                <!-- /entities -->  
                 </ul>
 
                 <div *ngIf="manage">
@@ -95,83 +119,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <!-- <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li> -->
-                    <!-- <li><button (click) = logout()>LogOut</button></li> -->
-                    <!-- <a routerLink="../login" routerLinkActive="active">Log Out</a> -->
                     <li style="text-align: right"><button (click) = "logout()" style="background: none;" >LogOut</button></li>
-
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <!-- <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a> -->
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
                   </ul>
                 </li>
               </ul>
@@ -200,7 +148,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            @ Softtek 2018 <a href="http://www.softtek.com/es/">Colorlib</a>
+            <a href="http://www.softtek.com/es/">@ Softtek 2018</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -208,3 +156,4 @@
       </div>
     </div>
     </div>
+

@@ -15,6 +15,21 @@ export class AdminComponent {
   public authorityList: Authority [];
   public username: string;
 
+// Menu activation
+// Menu
+  private menu_mgmnt: boolean = false;
+  private menu: boolean = false;
+// Application
+  private application_mgmnt: boolean = false;
+  private application: boolean = false;
+// Functionalservice
+  private functionalservice_mgmnt: boolean = false;
+  private functionalservice: boolean = false;
+// Module
+  private module_mgmnt: boolean = false;
+  private module: boolean = false;
+
+
   // Admin
   private manage: boolean = false;
   // Authority
@@ -51,6 +66,35 @@ export class AdminComponent {
 
   buildMenu(authorities){
     authorities.forEach(element => {
+
+      if (element.authority == 'ROLE_MENUSEARCH'){
+        this.menu_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_MENUCREATE'){
+        this.menu = true;
+      }
+
+      if (element.authority == 'ROLE_APPLICATIONSEARCH'){
+        this.application_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_APPLICATIONCREATE'){
+        this.application = true;
+      }
+
+      if (element.authority == 'ROLE_FUNCTIONALSERVICESEARCH'){
+        this.functionalservice_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_FUNCTIONALSERVICECREATE'){
+        this.functionalservice = true;
+      }
+
+      if (element.authority == 'ROLE_MODULESEARCH'){
+        this.module_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_MODULECREATE'){
+        this.module = true;
+      }
+
  
       // Manage  --> (6)
       if (element.authority == 'ROLE_MANAGESEARCH'){
@@ -81,7 +125,7 @@ export class AdminComponent {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem('currentUser');
-    this.router.navigate(['login']); 
+    this.router.navigate( ['login' ]); 
 }
 
 
