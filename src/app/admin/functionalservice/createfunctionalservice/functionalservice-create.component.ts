@@ -90,6 +90,7 @@ save(){
 			this.functionalservice.menuId = null;
 		    this.functionalservice.menuItem = "";
 		}
+ }
 
   return(functionalservice){
       this.location.back();

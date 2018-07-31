@@ -90,6 +90,7 @@ save(){
 			this.menu.moduleId = null;
 		    this.menu.moduleItem = "";
 		}
+ }
 
   return(menu){
       this.location.back();

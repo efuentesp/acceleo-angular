@@ -90,6 +90,7 @@ save(){
 			this.module.applicationId = null;
 		    this.module.applicationItem = "";
 		}
+ }
 
   return(module){
       this.location.back();
