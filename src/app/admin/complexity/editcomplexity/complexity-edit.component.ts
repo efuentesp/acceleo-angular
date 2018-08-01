@@ -83,7 +83,12 @@ delete(){
         }else{
           swal('Error...', 'Complexity deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Complexity no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Complexity deleted unsuccessfully", "error");
     }

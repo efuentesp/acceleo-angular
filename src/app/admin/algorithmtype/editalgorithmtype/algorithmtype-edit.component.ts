@@ -83,7 +83,12 @@ delete(){
         }else{
           swal('Error...', 'Algorithmtype deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Algorithmtype no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Algorithmtype deleted unsuccessfully", "error");
     }

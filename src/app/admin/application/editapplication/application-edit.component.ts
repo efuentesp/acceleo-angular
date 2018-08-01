@@ -83,7 +83,12 @@ delete(){
         }else{
           swal('Error...', 'Application deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Application no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Application deleted unsuccessfully", "error");
     }

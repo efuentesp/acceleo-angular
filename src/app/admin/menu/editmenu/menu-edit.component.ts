@@ -95,7 +95,12 @@ delete(){
         }else{
           swal('Error...', 'Menu deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Menu no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Menu deleted unsuccessfully", "error");
     }

@@ -83,7 +83,12 @@ delete(){
         }else{
           swal('Error...', 'Repository deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Repository no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Repository deleted unsuccessfully", "error");
     }

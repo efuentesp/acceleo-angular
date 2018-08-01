@@ -77,16 +77,16 @@
 
 		<label class="control-label" for="complexity">Complejidad<span class="required">*</span></label>
 		
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="ms" name="ms" [(ngModel)]="functionalservice.radiocomplexityId"  disabled="true"> Muy Simple </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="ms" name="ms" [(ngModel)]="functionalservice.radiocomplexityId"> Muy Simple </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="s" name="s" [(ngModel)]="functionalservice.radiocomplexityId"  disabled="true"> Simple </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="s" name="s" [(ngModel)]="functionalservice.radiocomplexityId"> Simple </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="m" name="m" [(ngModel)]="functionalservice.radiocomplexityId"  disabled="true"> Mediano </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="m" name="m" [(ngModel)]="functionalservice.radiocomplexityId"> Mediano </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="functionalservice.radiocomplexityId"  disabled="true"> Complejo </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="functionalservice.radiocomplexityId"> Complejo </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="mc" name="mc" [(ngModel)]="functionalservice.radiocomplexityId"  disabled="true"> Muy Complejo </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="mc" name="mc" [(ngModel)]="functionalservice.radiocomplexityId"> Muy Complejo </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="ms" name="ms" [(ngModel)]="functionalservice.complexityId"  disabled="true"> Muy Simple </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="ms" name="ms" [(ngModel)]="functionalservice.complexityId"> Muy Simple </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="s" name="s" [(ngModel)]="functionalservice.complexityId"  disabled="true"> Simple </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="s" name="s" [(ngModel)]="functionalservice.complexityId"> Simple </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="m" name="m" [(ngModel)]="functionalservice.complexityId"  disabled="true"> Mediano </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="m" name="m" [(ngModel)]="functionalservice.complexityId"> Mediano </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="functionalservice.complexityId"  disabled="true"> Complejo </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="functionalservice.complexityId"> Complejo </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="mc" name="mc" [(ngModel)]="functionalservice.complexityId"  disabled="true"> Muy Complejo </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="mc" name="mc" [(ngModel)]="functionalservice.complexityId"> Muy Complejo </div>
 	
 </div>
 <div class="form-group">
@@ -99,48 +99,48 @@
 
 		<label class="control-label" for="repository">Entidades<span class="required">*</span></label>
 		
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e2_4" name="e2_4" [(ngModel)]="functionalservice.radiorepositoryId"  disabled="true"> De 2 a 4 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e2_4" name="e2_4" [(ngModel)]="functionalservice.radiorepositoryId"> De 2 a 4 </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e5_7" name="e5_7" [(ngModel)]="functionalservice.radiorepositoryId"  disabled="true"> De 5 a 7 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e5_7" name="e5_7" [(ngModel)]="functionalservice.radiorepositoryId"> De 5 a 7 </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e8_10" name="e8_10" [(ngModel)]="functionalservice.radiorepositoryId"  disabled="true"> De 8 a 10 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e8_10" name="e8_10" [(ngModel)]="functionalservice.radiorepositoryId"> De 8 a 10 </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e11_25" name="e11_25" [(ngModel)]="functionalservice.radiorepositoryId"  disabled="true"> De 11 a 25 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e11_25" name="e11_25" [(ngModel)]="functionalservice.radiorepositoryId"> De 11 a 25 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e2_4" name="e2_4" [(ngModel)]="functionalservice.repositoryId"  disabled="true"> De 2 a 4 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e2_4" name="e2_4" [(ngModel)]="functionalservice.repositoryId"> De 2 a 4 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e5_7" name="e5_7" [(ngModel)]="functionalservice.repositoryId"  disabled="true"> De 5 a 7 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e5_7" name="e5_7" [(ngModel)]="functionalservice.repositoryId"> De 5 a 7 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e8_10" name="e8_10" [(ngModel)]="functionalservice.repositoryId"  disabled="true"> De 8 a 10 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e8_10" name="e8_10" [(ngModel)]="functionalservice.repositoryId"> De 8 a 10 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e11_25" name="e11_25" [(ngModel)]="functionalservice.repositoryId"  disabled="true"> De 11 a 25 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e11_25" name="e11_25" [(ngModel)]="functionalservice.repositoryId"> De 11 a 25 </div>
 	
 </div>
 <div class="form-group">
 
 		<label class="control-label" for="data">Datos<span class="required">*</span></label>
 		
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d0_10" name="d0_10" [(ngModel)]="functionalservice.radiodataId"  disabled="true"> De 0 a 10 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d0_10" name="d0_10" [(ngModel)]="functionalservice.radiodataId"> De 0 a 10 </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d10_25" name="d10_25" [(ngModel)]="functionalservice.radiodataId"  disabled="true"> De 10 a 25 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d10_25" name="d10_25" [(ngModel)]="functionalservice.radiodataId"> De 10 a 25 </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d26_40" name="d26_40" [(ngModel)]="functionalservice.radiodataId"  disabled="true"> De 26 a 40 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d26_40" name="d26_40" [(ngModel)]="functionalservice.radiodataId"> De 26 a 40 </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d41_100" name="d41_100" [(ngModel)]="functionalservice.radiodataId"  disabled="true"> De 41 a 100 </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d41_100" name="d41_100" [(ngModel)]="functionalservice.radiodataId"> De 41 a 100 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d0_10" name="d0_10" [(ngModel)]="functionalservice.dataId"  disabled="true"> De 0 a 10 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d0_10" name="d0_10" [(ngModel)]="functionalservice.dataId"> De 0 a 10 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d10_25" name="d10_25" [(ngModel)]="functionalservice.dataId"  disabled="true"> De 10 a 25 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d10_25" name="d10_25" [(ngModel)]="functionalservice.dataId"> De 10 a 25 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d26_40" name="d26_40" [(ngModel)]="functionalservice.dataId"  disabled="true"> De 26 a 40 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d26_40" name="d26_40" [(ngModel)]="functionalservice.dataId"> De 26 a 40 </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d41_100" name="d41_100" [(ngModel)]="functionalservice.dataId"  disabled="true"> De 41 a 100 </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d41_100" name="d41_100" [(ngModel)]="functionalservice.dataId"> De 41 a 100 </div>
 	
 </div>
 <div class="form-group">
 
 		<label class="control-label" for="algorithmtype">Tipo de Algoritmo<span class="required">*</span></label>
 		
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="a1" name="a1" [(ngModel)]="functionalservice.radioalgorithmtypeId"  disabled="true"> Mover información </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a1" name="a1" [(ngModel)]="functionalservice.radioalgorithmtypeId"> Mover información </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="a2" name="a2" [(ngModel)]="functionalservice.radioalgorithmtypeId"  disabled="true"> Calculos Aritméticos </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a2" name="a2" [(ngModel)]="functionalservice.radioalgorithmtypeId"> Calculos Aritméticos </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="a1" name="a1" [(ngModel)]="functionalservice.algorithmtypeId"  disabled="true"> Mover información </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a1" name="a1" [(ngModel)]="functionalservice.algorithmtypeId"> Mover información </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="a2" name="a2" [(ngModel)]="functionalservice.algorithmtypeId"  disabled="true"> Calculos Aritméticos </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a2" name="a2" [(ngModel)]="functionalservice.algorithmtypeId"> Calculos Aritméticos </div>
 	
 </div>
 <div class="form-group">
 
 		<label class="control-label" for="reusability">Reusabilidad<span class="required">*</span></label>
 		
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="r1" name="r1" [(ngModel)]="functionalservice.radioreusabilityId"  disabled="true"> Lógica única </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="r1" name="r1" [(ngModel)]="functionalservice.radioreusabilityId"> Lógica única </div>
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="r2" name="r2" [(ngModel)]="functionalservice.radioreusabilityId"  disabled="true"> Reutiliza diseño </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="r2" name="r2" [(ngModel)]="functionalservice.radioreusabilityId"> Reutiliza diseño </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="r1" name="r1" [(ngModel)]="functionalservice.reusabilityId"  disabled="true"> Lógica única </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="r1" name="r1" [(ngModel)]="functionalservice.reusabilityId"> Lógica única </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="r2" name="r2" [(ngModel)]="functionalservice.reusabilityId"  disabled="true"> Reutiliza diseño </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="r2" name="r2" [(ngModel)]="functionalservice.reusabilityId"> Reutiliza diseño </div>
 	
 </div>
 <div class="form-group">

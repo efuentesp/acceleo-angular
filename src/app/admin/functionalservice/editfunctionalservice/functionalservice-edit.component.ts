@@ -95,7 +95,12 @@ delete(){
         }else{
           swal('Error...', 'Functionalservice deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Functionalservice no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Functionalservice deleted unsuccessfully", "error");
     }

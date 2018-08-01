@@ -83,7 +83,12 @@ delete(){
         }else{
           swal('Error...', 'Data deleted unsuccessfully.', 'error');
         }
-      });
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', 'Data no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
     } else {
       //swal("Cancelled", "Data deleted unsuccessfully", "error");
     }
