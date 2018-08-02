@@ -84,7 +84,8 @@ save(){
 		  if (application.checked){
 		  this.applicationService.setApplication(application);
 		  this.module.applicationId = application.applicationId;
-		  this.module.applicationItem = application.applicationId + "";
+		  this.module.applicationItem = application.
+						name+ "";
 	    	}else{
             this.applicationService.clear();
 			this.module.applicationId = null;

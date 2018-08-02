@@ -74,8 +74,6 @@ export class ModuleService {
 					
 					applicationId: this.module.applicationId,
 					applicationItem: this.module.applicationItem,
-					display_resultmoduleId: this.module.moduleId,
-					exposed_filtermoduleId: this.module.moduleId,
 					moduleId: this.module.moduleId	
 
         };
@@ -90,8 +88,6 @@ setModule(module: Module) {
 			this.module.code = module.code;    
 			this.module.applicationId = module.applicationId;
 			this.module.applicationItem = module.applicationItem;
-			this.module.display_resultmoduleId = module.display_resultmoduleId;
-			this.module.exposed_filtermoduleId = module.exposed_filtermoduleId;
 			this.module.moduleId        = module.moduleId;
         	this.validateModule();
     }
@@ -110,8 +106,6 @@ setModule(module: Module) {
 			this.module.code = '';    
 			this.module.applicationId = null;
 			this.module.applicationItem = null;
-			this.module.display_resultmoduleId = null;
-			this.module.exposed_filtermoduleId = null;
 			this.module.moduleId = null;
     }
 

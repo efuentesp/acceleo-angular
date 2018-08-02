@@ -32,17 +32,11 @@
 
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
-				  <li *ngIf="menu_mgmnt"><a routerLink="./managemenu" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Menu </a>
+				  <li *ngIf="module_mgmnt"><a routerLink="./managemodule" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Module </a>
 				  </li>
-                  <li *ngIf="menu"><a routerLink="./createmenu" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Menu </a>
-                  </li>
-				  <li *ngIf="application_mgmnt"><a routerLink="./manageapplication" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Application </a>
-				  </li>
-                  <li *ngIf="application"><a routerLink="./createapplication" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Application </a>
+                  <li *ngIf="module"><a routerLink="./createmodule" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Module </a>
                   </li>
 				  <li *ngIf="functionalservice_mgmnt"><a routerLink="./managefunctionalservice" routerLinkActive="active">
 				    <i class="fa fa-edit"></i> Administrar Functionalservice </a>
@@ -50,11 +44,17 @@
                   <li *ngIf="functionalservice"><a routerLink="./createfunctionalservice" routerLinkActive="active" >
                     <i class="fa fa-edit"></i> Agregar Functionalservice </a>
                   </li>
-				  <li *ngIf="module_mgmnt"><a routerLink="./managemodule" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Module </a>
+				  <li *ngIf="application_mgmnt"><a routerLink="./manageapplication" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Application </a>
 				  </li>
-                  <li *ngIf="module"><a routerLink="./createmodule" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Module </a>
+                  <li *ngIf="application"><a routerLink="./createapplication" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Application </a>
+                  </li>
+				  <li *ngIf="menu_mgmnt"><a routerLink="./managemenu" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Menu </a>
+				  </li>
+                  <li *ngIf="menu"><a routerLink="./createmenu" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Menu </a>
                   </li>
                 <!-- /entities -->  
                 </ul>

@@ -69,12 +69,12 @@ export class FunctionalserviceService {
 
     getFunctionalservice(): Functionalservice {
         var functionalservice: Functionalservice = {
-					comments: this.functionalservice.comments, 
-					description: this.functionalservice.description, 
-					repetitions: this.functionalservice.repetitions, 
 					code: this.functionalservice.code, 
 					size: this.functionalservice.size, 
+					description: this.functionalservice.description, 
 					name: this.functionalservice.name, 
+					comments: this.functionalservice.comments, 
+					repetitions: this.functionalservice.repetitions, 
 					
 					menuId: this.functionalservice.menuId,
 					menuItem: this.functionalservice.menuItem,
@@ -83,9 +83,6 @@ export class FunctionalserviceService {
 					dataId: this.functionalservice.dataId,
 					algorithmtypeId: this.functionalservice.algorithmtypeId,
 					reusabilityId: this.functionalservice.reusabilityId,
-					display_resultfunctionalserviceId: this.functionalservice.functionalserviceId,
-					exposed_filterfunctionalserviceId: this.functionalservice.functionalserviceId,
-					requiredfunctionalserviceId: this.functionalservice.functionalserviceId,
 					functionalserviceId: this.functionalservice.functionalserviceId	
 
         };
@@ -96,12 +93,12 @@ export class FunctionalserviceService {
 setFunctionalservice(functionalservice: Functionalservice) {
        
 	this.isFunctionalserviceFormValid = true;
-			this.functionalservice.comments = functionalservice.comments;    
-			this.functionalservice.description = functionalservice.description;    
-			this.functionalservice.repetitions = functionalservice.repetitions;    
 			this.functionalservice.code = functionalservice.code;    
 			this.functionalservice.size = functionalservice.size;    
+			this.functionalservice.description = functionalservice.description;    
 			this.functionalservice.name = functionalservice.name;    
+			this.functionalservice.comments = functionalservice.comments;    
+			this.functionalservice.repetitions = functionalservice.repetitions;    
 			this.functionalservice.menuId = functionalservice.menuId;
 			this.functionalservice.menuItem = functionalservice.menuItem;
 			this.functionalservice.complexityId = functionalservice.complexityId;
@@ -109,9 +106,6 @@ setFunctionalservice(functionalservice: Functionalservice) {
 			this.functionalservice.dataId = functionalservice.dataId;
 			this.functionalservice.algorithmtypeId = functionalservice.algorithmtypeId;
 			this.functionalservice.reusabilityId = functionalservice.reusabilityId;
-			this.functionalservice.display_resultfunctionalserviceId = functionalservice.display_resultfunctionalserviceId;
-			this.functionalservice.exposed_filterfunctionalserviceId = functionalservice.exposed_filterfunctionalserviceId;
-			this.functionalservice.requiredfunctionalserviceId = functionalservice.requiredfunctionalserviceId;
 			this.functionalservice.functionalserviceId        = functionalservice.functionalserviceId;
         	this.validateFunctionalservice();
     }
@@ -126,12 +120,12 @@ setFunctionalservice(functionalservice: Functionalservice) {
 
     clear() {
 
-			this.functionalservice.comments = '';    
-			this.functionalservice.description = '';    
-			this.functionalservice.repetitions = null;    
 			this.functionalservice.code = '';    
 			this.functionalservice.size = '';    
+			this.functionalservice.description = '';    
 			this.functionalservice.name = '';    
+			this.functionalservice.comments = '';    
+			this.functionalservice.repetitions = null;    
 			this.functionalservice.menuId = null;
 			this.functionalservice.menuItem = null;
 			this.functionalservice.complexityId = null;
@@ -139,9 +133,6 @@ setFunctionalservice(functionalservice: Functionalservice) {
 			this.functionalservice.dataId = null;
 			this.functionalservice.algorithmtypeId = null;
 			this.functionalservice.reusabilityId = null;
-			this.functionalservice.display_resultfunctionalserviceId = null;
-			this.functionalservice.exposed_filterfunctionalserviceId = null;
-			this.functionalservice.requiredfunctionalserviceId = null;
 			this.functionalservice.functionalserviceId = null;
     }
 

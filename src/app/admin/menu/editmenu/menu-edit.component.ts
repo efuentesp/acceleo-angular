@@ -124,7 +124,8 @@ delete(){
 		  if (module.checked){
 		  this.moduleService.setModule(module);
 		  this.menu.moduleId = module.moduleId;
-		  this.menu.moduleItem = module.moduleId + "";
+		  this.menu.moduleItem = module.
+						name+ "";
 	    	}else{
             this.moduleService.clear();
 			this.menu.moduleId = null;
@@ -136,7 +137,8 @@ loadItemModule(menu){
   this.moduleService.getModuleById(menu.moduleId).subscribe(data => {
     if (data) {
       this.module = data;
-      this.menu.moduleItem = this.module.moduleId +"";
+      this.menu.moduleItem = this.module.
+						name+ "";
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the modules.', 'error');

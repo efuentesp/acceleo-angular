@@ -71,9 +71,9 @@ export class ComplexityService {
         var complexity: Complexity = {
 					c: this.complexity.c, 
 					ms: this.complexity.ms, 
-					mc: this.complexity.mc, 
-					s: this.complexity.s, 
 					m: this.complexity.m, 
+					s: this.complexity.s, 
+					mc: this.complexity.mc, 
 					
 					complexityId: this.complexity.complexityId	
 
@@ -87,9 +87,9 @@ setComplexity(complexity: Complexity) {
 	this.isComplexityFormValid = true;
 			this.complexity.c = complexity.c;    
 			this.complexity.ms = complexity.ms;    
-			this.complexity.mc = complexity.mc;    
-			this.complexity.s = complexity.s;    
 			this.complexity.m = complexity.m;    
+			this.complexity.s = complexity.s;    
+			this.complexity.mc = complexity.mc;    
 			this.complexity.complexityId        = complexity.complexityId;
         	this.validateComplexity();
     }
@@ -106,9 +106,9 @@ setComplexity(complexity: Complexity) {
 
 			this.complexity.c = '';    
 			this.complexity.ms = '';    
-			this.complexity.mc = '';    
-			this.complexity.s = '';    
 			this.complexity.m = '';    
+			this.complexity.s = '';    
+			this.complexity.mc = '';    
 			this.complexity.complexityId = null;
     }
 

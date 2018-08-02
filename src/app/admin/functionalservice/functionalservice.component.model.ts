@@ -1,12 +1,12 @@
 export class Functionalservice {
 
 	functionalserviceId: number = null;
-	comments: string = '';
-	description: string = '';
-	repetitions: number = null;
 	code: string = '';
 	size: string = '';
+	description: string = '';
 	name: string = '';
+	comments: string = '';
+	repetitions: number = null;
 
 	menuId: number = null;
 	menuItem: string = '';
@@ -15,9 +15,6 @@ export class Functionalservice {
 	dataId: number = null;	
 	algorithmtypeId: number = null;	
 	reusabilityId: number = null;	
-	display_resultfunctionalserviceId: number = null;	
-	exposed_filterfunctionalserviceId: number = null;	
-	requiredfunctionalserviceId: number = null;	
 
 
 }

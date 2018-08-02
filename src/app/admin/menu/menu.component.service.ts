@@ -69,13 +69,11 @@ export class MenuService {
 
     getMenu(): Menu {
         var menu: Menu = {
-					path: this.menu.path, 
 					code: this.menu.code, 
+					path: this.menu.path, 
 					
 					moduleId: this.menu.moduleId,
 					moduleItem: this.menu.moduleItem,
-					display_resultmenuId: this.menu.menuId,
-					exposed_filtermenuId: this.menu.menuId,
 					menuId: this.menu.menuId	
 
         };
@@ -86,12 +84,10 @@ export class MenuService {
 setMenu(menu: Menu) {
        
 	this.isMenuFormValid = true;
-			this.menu.path = menu.path;    
 			this.menu.code = menu.code;    
+			this.menu.path = menu.path;    
 			this.menu.moduleId = menu.moduleId;
 			this.menu.moduleItem = menu.moduleItem;
-			this.menu.display_resultmenuId = menu.display_resultmenuId;
-			this.menu.exposed_filtermenuId = menu.exposed_filtermenuId;
 			this.menu.menuId        = menu.menuId;
         	this.validateMenu();
     }
@@ -106,12 +102,10 @@ setMenu(menu: Menu) {
 
     clear() {
 
-			this.menu.path = '';    
 			this.menu.code = '';    
+			this.menu.path = '';    
 			this.menu.moduleId = null;
 			this.menu.moduleItem = null;
-			this.menu.display_resultmenuId = null;
-			this.menu.exposed_filtermenuId = null;
 			this.menu.menuId = null;
     }
 

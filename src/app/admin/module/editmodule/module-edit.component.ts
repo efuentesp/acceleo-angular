@@ -124,7 +124,8 @@ delete(){
 		  if (application.checked){
 		  this.applicationService.setApplication(application);
 		  this.module.applicationId = application.applicationId;
-		  this.module.applicationItem = application.applicationId + "";
+		  this.module.applicationItem = application.
+						name+ "";
 	    	}else{
             this.applicationService.clear();
 			this.module.applicationId = null;
@@ -136,7 +137,8 @@ loadItemApplication(module){
   this.applicationService.getApplicationById(module.applicationId).subscribe(data => {
     if (data) {
       this.application = data;
-      this.module.applicationItem = this.application.applicationId +"";
+      this.module.applicationItem = this.application.
+						name+ "";
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the applications.', 'error');

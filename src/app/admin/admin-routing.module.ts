@@ -16,25 +16,25 @@ import { AuthorityManageComponent } from './authority/manageAuthority/manage-aut
 import { AuthorityCreateComponent } from './authority/createAuthority/authority-create.component';
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
-// Menu
-import { MenuManageComponent}       from './menu/managemenu/menu-manage.component';
-import { MenuCreateComponent}       from './menu/createmenu/menu-create.component';
-import { MenuEditComponent}         from './menu/editmenu/menu-edit.component';
-
-// Application
-import { ApplicationManageComponent}       from './application/manageapplication/application-manage.component';
-import { ApplicationCreateComponent}       from './application/createapplication/application-create.component';
-import { ApplicationEditComponent}         from './application/editapplication/application-edit.component';
+// Module
+import { ModuleManageComponent}       from './module/managemodule/module-manage.component';
+import { ModuleCreateComponent}       from './module/createmodule/module-create.component';
+import { ModuleEditComponent}         from './module/editmodule/module-edit.component';
 
 // Functionalservice
 import { FunctionalserviceManageComponent}       from './functionalservice/managefunctionalservice/functionalservice-manage.component';
 import { FunctionalserviceCreateComponent}       from './functionalservice/createfunctionalservice/functionalservice-create.component';
 import { FunctionalserviceEditComponent}         from './functionalservice/editfunctionalservice/functionalservice-edit.component';
 
-// Module
-import { ModuleManageComponent}       from './module/managemodule/module-manage.component';
-import { ModuleCreateComponent}       from './module/createmodule/module-create.component';
-import { ModuleEditComponent}         from './module/editmodule/module-edit.component';
+// Application
+import { ApplicationManageComponent}       from './application/manageapplication/application-manage.component';
+import { ApplicationCreateComponent}       from './application/createapplication/application-create.component';
+import { ApplicationEditComponent}         from './application/editapplication/application-edit.component';
+
+// Menu
+import { MenuManageComponent}       from './menu/managemenu/menu-manage.component';
+import { MenuCreateComponent}       from './menu/createmenu/menu-create.component';
+import { MenuEditComponent}         from './menu/editmenu/menu-edit.component';
 
 
 const adminRoutes: Routes = [
@@ -49,21 +49,21 @@ const adminRoutes: Routes = [
         children: [
         
 		// Com.softtek.acceleo.demo
-		{ path: 'createmenu',  component: MenuCreateComponent},  
-		{ path: 'managemenu',  component: MenuManageComponent},  
-		{ path: 'editmenu',  component: MenuEditComponent},  
-			
-		{ path: 'createapplication',  component: ApplicationCreateComponent},  
-		{ path: 'manageapplication',  component: ApplicationManageComponent},  
-		{ path: 'editapplication',  component: ApplicationEditComponent},  
+		{ path: 'createmodule',  component: ModuleCreateComponent},  
+		{ path: 'managemodule',  component: ModuleManageComponent},  
+		{ path: 'editmodule',  component: ModuleEditComponent},  
 			
 		{ path: 'createfunctionalservice',  component: FunctionalserviceCreateComponent},  
 		{ path: 'managefunctionalservice',  component: FunctionalserviceManageComponent},  
 		{ path: 'editfunctionalservice',  component: FunctionalserviceEditComponent},  
 			
-		{ path: 'createmodule',  component: ModuleCreateComponent},  
-		{ path: 'managemodule',  component: ModuleManageComponent},  
-		{ path: 'editmodule',  component: ModuleEditComponent},  
+		{ path: 'createapplication',  component: ApplicationCreateComponent},  
+		{ path: 'manageapplication',  component: ApplicationManageComponent},  
+		{ path: 'editapplication',  component: ApplicationEditComponent},  
+			
+		{ path: 'createmenu',  component: MenuCreateComponent},  
+		{ path: 'managemenu',  component: MenuManageComponent},  
+		{ path: 'editmenu',  component: MenuEditComponent},  
 			
 
 		  // Manage

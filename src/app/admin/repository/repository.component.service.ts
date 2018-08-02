@@ -71,8 +71,8 @@ export class RepositoryService {
         var repository: Repository = {
 					e2_4: this.repository.e2_4, 
 					e8_10: this.repository.e8_10, 
-					e11_25: this.repository.e11_25, 
 					e5_7: this.repository.e5_7, 
+					e11_25: this.repository.e11_25, 
 					
 					repositoryId: this.repository.repositoryId	
 
@@ -86,8 +86,8 @@ setRepository(repository: Repository) {
 	this.isRepositoryFormValid = true;
 			this.repository.e2_4 = repository.e2_4;    
 			this.repository.e8_10 = repository.e8_10;    
-			this.repository.e11_25 = repository.e11_25;    
 			this.repository.e5_7 = repository.e5_7;    
+			this.repository.e11_25 = repository.e11_25;    
 			this.repository.repositoryId        = repository.repositoryId;
         	this.validateRepository();
     }
@@ -104,8 +104,8 @@ setRepository(repository: Repository) {
 
 			this.repository.e2_4 = '';    
 			this.repository.e8_10 = '';    
-			this.repository.e11_25 = '';    
 			this.repository.e5_7 = '';    
+			this.repository.e11_25 = '';    
 			this.repository.repositoryId = null;
     }
 

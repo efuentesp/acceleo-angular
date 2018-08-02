@@ -16,18 +16,18 @@ export class AdminComponent {
   public username: string;
 
 // Menu activation
-// Menu
-  private menu_mgmnt: boolean = false;
-  private menu: boolean = false;
-// Application
-  private application_mgmnt: boolean = false;
-  private application: boolean = false;
-// Functionalservice
-  private functionalservice_mgmnt: boolean = false;
-  private functionalservice: boolean = false;
 // Module
   private module_mgmnt: boolean = false;
   private module: boolean = false;
+// Functionalservice
+  private functionalservice_mgmnt: boolean = false;
+  private functionalservice: boolean = false;
+// Application
+  private application_mgmnt: boolean = false;
+  private application: boolean = false;
+// Menu
+  private menu_mgmnt: boolean = false;
+  private menu: boolean = false;
 
 
   // Admin
@@ -67,18 +67,11 @@ export class AdminComponent {
   buildMenu(authorities){
     authorities.forEach(element => {
 
-      if (element.authority == 'ROLE_MENUSEARCH'){
-        this.menu_mgmnt = true;
+      if (element.authority == 'ROLE_MODULESEARCH'){
+        this.module_mgmnt = true;
       }
-      if (element.authority == 'ROLE_MENUCREATE'){
-        this.menu = true;
-      }
-
-      if (element.authority == 'ROLE_APPLICATIONSEARCH'){
-        this.application_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_APPLICATIONCREATE'){
-        this.application = true;
+      if (element.authority == 'ROLE_MODULECREATE'){
+        this.module = true;
       }
 
       if (element.authority == 'ROLE_FUNCTIONALSERVICESEARCH'){
@@ -88,11 +81,18 @@ export class AdminComponent {
         this.functionalservice = true;
       }
 
-      if (element.authority == 'ROLE_MODULESEARCH'){
-        this.module_mgmnt = true;
+      if (element.authority == 'ROLE_APPLICATIONSEARCH'){
+        this.application_mgmnt = true;
       }
-      if (element.authority == 'ROLE_MODULECREATE'){
-        this.module = true;
+      if (element.authority == 'ROLE_APPLICATIONCREATE'){
+        this.application = true;
+      }
+
+      if (element.authority == 'ROLE_MENUSEARCH'){
+        this.menu_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_MENUCREATE'){
+        this.menu = true;
       }
 
  

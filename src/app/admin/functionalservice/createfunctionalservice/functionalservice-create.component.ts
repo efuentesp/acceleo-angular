@@ -84,7 +84,8 @@ save(){
 		  if (menu.checked){
 		  this.menuService.setMenu(menu);
 		  this.functionalservice.menuId = menu.menuId;
-		  this.functionalservice.menuItem = menu.menuId + "";
+		  this.functionalservice.menuItem = menu.
+						path+ "";
 	    	}else{
             this.menuService.clear();
 			this.functionalservice.menuId = null;

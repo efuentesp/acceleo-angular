@@ -4,8 +4,6 @@ export class Application {
 	code: string = '';
 	name: string = '';
 
-	display_resultapplicationId: number = null;	
-	exposed_filterapplicationId: number = null;	
 
 
 }

@@ -6,8 +6,6 @@ export class Module {
 
 	applicationId: number = null;
 	applicationItem: string = '';
-	display_resultmoduleId: number = null;	
-	exposed_filtermoduleId: number = null;	
 
 
 }

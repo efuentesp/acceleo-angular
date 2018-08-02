@@ -124,7 +124,8 @@ delete(){
 		  if (menu.checked){
 		  this.menuService.setMenu(menu);
 		  this.functionalservice.menuId = menu.menuId;
-		  this.functionalservice.menuItem = menu.menuId + "";
+		  this.functionalservice.menuItem = menu.
+						path+ "";
 	    	}else{
             this.menuService.clear();
 			this.functionalservice.menuId = null;
@@ -136,7 +137,8 @@ loadItemMenu(functionalservice){
   this.menuService.getMenuById(functionalservice.menuId).subscribe(data => {
     if (data) {
       this.menu = data;
-      this.functionalservice.menuItem = this.menu.menuId +"";
+      this.functionalservice.menuItem = this.menu.
+						path+ "";
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the menus.', 'error');

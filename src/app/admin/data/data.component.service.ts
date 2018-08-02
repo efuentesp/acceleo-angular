@@ -69,10 +69,10 @@ export class DataService {
 
     getData(): Data {
         var data: Data = {
-					d0_10: this.data.d0_10, 
-					d41_100: this.data.d41_100, 
 					d10_25: this.data.d10_25, 
 					d26_40: this.data.d26_40, 
+					d0_10: this.data.d0_10, 
+					d41_100: this.data.d41_100, 
 					
 					dataId: this.data.dataId	
 
@@ -84,10 +84,10 @@ export class DataService {
 setData(data: Data) {
        
 	this.isDataFormValid = true;
-			this.data.d0_10 = data.d0_10;    
-			this.data.d41_100 = data.d41_100;    
 			this.data.d10_25 = data.d10_25;    
 			this.data.d26_40 = data.d26_40;    
+			this.data.d0_10 = data.d0_10;    
+			this.data.d41_100 = data.d41_100;    
 			this.data.dataId        = data.dataId;
         	this.validateData();
     }
@@ -102,10 +102,10 @@ setData(data: Data) {
 
     clear() {
 
-			this.data.d0_10 = '';    
-			this.data.d41_100 = '';    
 			this.data.d10_25 = '';    
 			this.data.d26_40 = '';    
+			this.data.d0_10 = '';    
+			this.data.d41_100 = '';    
 			this.data.dataId = null;
     }
 

@@ -84,7 +84,8 @@ save(){
 		  if (module.checked){
 		  this.moduleService.setModule(module);
 		  this.menu.moduleId = module.moduleId;
-		  this.menu.moduleItem = module.moduleId + "";
+		  this.menu.moduleItem = module.
+						name+ "";
 	    	}else{
             this.moduleService.clear();
 			this.menu.moduleId = null;

@@ -69,8 +69,8 @@ export class ReusabilityService {
 
     getReusability(): Reusability {
         var reusability: Reusability = {
-					r1: this.reusability.r1, 
 					r2: this.reusability.r2, 
+					r1: this.reusability.r1, 
 					
 					reusabilityId: this.reusability.reusabilityId	
 
@@ -82,8 +82,8 @@ export class ReusabilityService {
 setReusability(reusability: Reusability) {
        
 	this.isReusabilityFormValid = true;
-			this.reusability.r1 = reusability.r1;    
 			this.reusability.r2 = reusability.r2;    
+			this.reusability.r1 = reusability.r1;    
 			this.reusability.reusabilityId        = reusability.reusabilityId;
         	this.validateReusability();
     }
@@ -98,8 +98,8 @@ setReusability(reusability: Reusability) {
 
     clear() {
 
-			this.reusability.r1 = '';    
 			this.reusability.r2 = '';    
+			this.reusability.r1 = '';    
 			this.reusability.reusabilityId = null;
     }
 

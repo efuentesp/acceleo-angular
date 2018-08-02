@@ -72,8 +72,6 @@ export class ApplicationService {
 					code: this.application.code, 
 					name: this.application.name, 
 					
-					display_resultapplicationId: this.application.applicationId,
-					exposed_filterapplicationId: this.application.applicationId,
 					applicationId: this.application.applicationId	
 
         };
@@ -86,8 +84,6 @@ setApplication(application: Application) {
 	this.isApplicationFormValid = true;
 			this.application.code = application.code;    
 			this.application.name = application.name;    
-			this.application.display_resultapplicationId = application.display_resultapplicationId;
-			this.application.exposed_filterapplicationId = application.exposed_filterapplicationId;
 			this.application.applicationId        = application.applicationId;
         	this.validateApplication();
     }
@@ -104,8 +100,6 @@ setApplication(application: Application) {
 
 			this.application.code = '';    
 			this.application.name = '';    
-			this.application.display_resultapplicationId = null;
-			this.application.exposed_filterapplicationId = null;
 			this.application.applicationId = null;
     }
 
