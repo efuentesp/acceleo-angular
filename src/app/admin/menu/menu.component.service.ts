@@ -69,27 +69,26 @@ export class MenuService {
 
     getMenu(): Menu {
         var menu: Menu = {
-					code: this.menu.code, 
-					path: this.menu.path, 
-					
-					moduleId: this.menu.moduleId,
-					moduleItem: this.menu.moduleItem,
-					menuId: this.menu.menuId	
-
+		code: this.menu.code, 
+		path: this.menu.path, 
+		moduleId: this.menu.moduleId,
+		moduleItem: this.menu.moduleItem,
+		menuId: this.menu.menuId,
+		menuItem: this.menu.menuItem	
         };
         return menu;
     }
 
-
 setMenu(menu: Menu) {
        
-	this.isMenuFormValid = true;
-			this.menu.code = menu.code;    
-			this.menu.path = menu.path;    
-			this.menu.moduleId = menu.moduleId;
-			this.menu.moduleItem = menu.moduleItem;
-			this.menu.menuId        = menu.menuId;
-        	this.validateMenu();
+		this.isMenuFormValid = true;
+		this.menu.code = menu.code;    
+		this.menu.path = menu.path;    
+		this.menu.moduleId = menu.moduleId;
+		this.menu.moduleItem = menu.moduleItem;
+		this.menu.menuId = menu.menuId;
+		this.menu.menuItem = menu.menuItem;
+		this.validateMenu();
     }
 
     isFormValid() {
@@ -104,9 +103,11 @@ setMenu(menu: Menu) {
 
 			this.menu.code = '';    
 			this.menu.path = '';    
+
 			this.menu.moduleId = null;
 			this.menu.moduleItem = null;
 			this.menu.menuId = null;
+			this.menu.menuItem = null;
     }
 
     setEdit(flag){
@@ -124,5 +125,4 @@ setMenu(menu: Menu) {
     getDelete(){
       return this.flagDelete;
     }
-
 }

@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Functionalservice</h3>
+			<h3>Administrar Servicio Funcional</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,21 +47,25 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-											<th style="max-width:10%">Menú</th>
-											<th style="max-width:10%">Clave</th>
-											<th style="max-width:10%">Nombre</th>
-											<th style="max-width:10%">Tamaño</th>
-											<th style="max-width:10%">Complejidad</th>
+												<th style="max-width:10%" hidden="true">Menú</th>
+												<th style="max-width:10%">Menú</th>
+												<th style="max-width:10%">Clave</th>
+												<th style="max-width:10%">Nombre</th>
+												<th style="max-width:10%">Tamaño</th>
+												<th style="max-width:10%" hidden="true">Complejidad</th>
+												<th style="max-width:10%">Complejidad</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let functionalservice of functionalserviceList | filterFunctionalservice: busquedaFunctionalservice | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableFunctionalservice'}; let i = index" (click)="setClickedRowFunctionalservice(i, functionalservice)" >
-												<td  style="max-width: 10%">{{functionalservice.menuId}}</td>
+												<td  style="max-width: 10%" hidden="true">{{functionalservice.menuId}}</td>
+												<td  style="max-width: 10%">{{functionalservice.menuItem}}</td>
 												<td  style="max-width: 10%">{{functionalservice.code}}</td>
 												<td  style="max-width: 10%">{{functionalservice.name}}</td>
 												<td  style="max-width: 10%">{{functionalservice.size}}</td>
-												<td  style="max-width: 10%">{{functionalservice.complexityId}}</td>
+												<td  style="max-width: 10%" hidden="true">{{functionalservice.complexityId}}</td>
+												<td  style="max-width: 10%">{{functionalservice.complexityItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(functionalservice)"><span class="fa fa-pencil"></span></button>

@@ -47,15 +47,17 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-											<th style="max-width:10%">Módulo</th>
-											<th style="max-width:10%">Clave</th>
-											<th style="max-width:10%">Opción de Menú</th>
+												<th style="max-width:10%" hidden="true">Módulo</th>
+												<th style="max-width:10%">Módulo</th>
+												<th style="max-width:10%">Clave</th>
+												<th style="max-width:10%">Opción de Menú</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let menu of menuList | filterMenu: busquedaMenu | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableMenu'}; let i = index" (click)="setClickedRowMenu(i, menu)" >
-												<td  style="max-width: 10%">{{menu.moduleId}}</td>
+												<td  style="max-width: 10%" hidden="true">{{menu.moduleId}}</td>
+												<td  style="max-width: 10%">{{menu.moduleItem}}</td>
 												<td  style="max-width: 10%">{{menu.code}}</td>
 												<td  style="max-width: 10%">{{menu.path}}</td>
 											<td style="max-width: 20%">															

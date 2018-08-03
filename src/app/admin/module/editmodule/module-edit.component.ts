@@ -11,7 +11,6 @@ import { Module }                                         from '../../module/mod
 import { ApplicationService }                                  from '../../application/application.component.service';
 import { Application }                                         from '../../application/application.component.model';
 
-
 @Component ({
     selector: 'app-view',
     templateUrl: './module-edit.component.html',
@@ -52,7 +51,6 @@ export class ModuleEditComponent implements OnInit {
 
     ngOnInit() {
         
-
         this.flag = this.moduleService.getEdit();
         this.module = this.moduleService.getModule();
         this.flagDelete = this.moduleService.getDelete();

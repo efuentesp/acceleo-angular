@@ -26,14 +26,11 @@ export class ApplicationCreateComponent implements OnInit {
     public token: string;
 
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private applicationService: ApplicationService
 ){
-
-
 	}
 
     ngOnInit() {
@@ -60,6 +57,4 @@ save(){
   return(application){
       this.location.back();
   }
-
-  
 }

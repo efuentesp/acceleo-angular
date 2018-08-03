@@ -1,15 +1,14 @@
 <div>
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3 *ngIf="flagDelete">Eliminar module</h3>
-			<h3 *ngIf="flag && !flagDelete">Actualizar module</h3>
-			<h3 *ngIf="!flag && !flagDelete">Agregar module</h3>
+			<h3 *ngIf="flagDelete">Eliminar Módulo</h3>
+			<h3 *ngIf="flag && !flagDelete">Actualizar Módulo</h3>
 		</div>
 	</div>
 
 	<div class="x_panel">
 		<div class="x_title">
-			<h2>Datos del module</h2>
+			<h2>Datos del Módulo</h2>
 			<div class="clearfix"></div>
 		</div>
 
@@ -21,14 +20,18 @@
 
 <div class="form-group">
 
-</div>
-<div class="form-group">
 
 </div>
 <div class="form-group">
 
+
 </div>
 <div class="form-group">
+
+
+</div>
+<div class="form-group">
+
 
 </div>
 <div class="form-group">
@@ -38,7 +41,7 @@
 			<div class="col-lg-3">
 				<div class="input-group">
 					<input type="hidden" class="form-control input-md"  name="applicationId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="module.applicationId" #applicationId="ngModel">
-					<input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="module.applicationItem"  [ngModelOptions]="{standalone: true}" #applicationItem="ngModel" placeholder="Application..." readonly="true">
+					<input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="module.applicationItem"  [ngModelOptions]="{standalone: true}" #applicationItem="ngModel" placeholder="Application..." readonly="true" disabled>
 					<input *ngIf="!flagDelete" type="text" class="form-control" [(ngModel)]="module.applicationItem"  [ngModelOptions]="{standalone: true}" #applicationItem="ngModel" placeholder="Application...">
 					<span class="input-group-btn">
 						<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalApplication">
@@ -51,21 +54,22 @@
 				</div>
 			</div>
 		</div>
+
 </div>
 <div class="form-group">
 
 		<label class="control-label" for="code">Clave<span class="required">*</span></label>
-		<input *ngIf="flagDelete" class="form-control col-md-12" #code="ngModel" id="code" name="code" type="text" [(ngModel)]="module.code" readonly="true">
+		<input *ngIf="flagDelete" class="form-control col-md-12" #code="ngModel" id="code" name="code" type="text" [(ngModel)]="module.code" readonly="true" disabled>
 		<input *ngIf="!flagDelete" class="form-control col-md-12" #code="ngModel" id="code" name="code" type="text" [(ngModel)]="module.code" required>
+
 </div>
 <div class="form-group">
 
 		<label class="control-label" for="name">Nombre<span class="required">*</span></label>
-		<input *ngIf="flagDelete" class="form-control col-md-12" #name="ngModel" id="name" name="name" type="text" [(ngModel)]="module.name" readonly="true">
+		<input *ngIf="flagDelete" class="form-control col-md-12" #name="ngModel" id="name" name="name" type="text" [(ngModel)]="module.name" readonly="true" disabled>
 		<input *ngIf="!flagDelete" class="form-control col-md-12" #name="ngModel" id="name" name="name" type="text" [(ngModel)]="module.name" required>
+
 </div>
-
-
 
 <!-- Modal application -->
 <div id="modalApplication" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -125,9 +129,7 @@
 		</div>
 	</div>
 </div>
-
-
-            
+        
 
 				<div class="ln_solid"></div>
 

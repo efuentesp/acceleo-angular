@@ -26,7 +26,7 @@ export class MenuManageComponent implements OnInit {
     public token: string;
 
     public title = 'Manage Menu';
-    public menuList: Menu;
+    public menuList: Menu [];
     public menu: Menu;
 
   	public busquedamenu='';
@@ -40,13 +40,12 @@ export class MenuManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public moduleList: Module;
+	public moduleList: Module [];
     public module: Module;
-
+	public moduleAux: Module;
 
 	public busquedaModule='';
 	filterInputModule = new FormControl();
-
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -80,7 +79,33 @@ export class MenuManageComponent implements OnInit {
     loadMenus() {
       this.menuService.getAllMenu().subscribe(data => {
         if (data) {
+
           this.menuList = data;
+
+			this.menuList.forEach(element => {
+				this.moduleService.getModuleById(element.moduleId).subscribe(dataAux => {
+					if (dataAux) {
+						this.moduleAux = dataAux;
+						element.moduleItem = this.moduleAux.
+						name+ "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				}	
+			});	
+		});
+
         }
       }, error => {
         swal('Error...', 'An error occurred while calling the menus.', 'error');

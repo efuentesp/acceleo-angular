@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Module</h3>
+			<h3>Administrar Módulo</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,15 +47,17 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-											<th style="max-width:10%">Aplicación</th>
-											<th style="max-width:10%">Clave</th>
-											<th style="max-width:10%">Nombre</th>
+												<th style="max-width:10%" hidden="true">Aplicación</th>
+												<th style="max-width:10%">Aplicación</th>
+												<th style="max-width:10%">Clave</th>
+												<th style="max-width:10%">Nombre</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let module of moduleList | filterModule: busquedaModule | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableModule'}; let i = index" (click)="setClickedRowModule(i, module)" >
-												<td  style="max-width: 10%">{{module.applicationId}}</td>
+												<td  style="max-width: 10%" hidden="true">{{module.applicationId}}</td>
+												<td  style="max-width: 10%">{{module.applicationItem}}</td>
 												<td  style="max-width: 10%">{{module.code}}</td>
 												<td  style="max-width: 10%">{{module.name}}</td>
 											<td style="max-width: 20%">															

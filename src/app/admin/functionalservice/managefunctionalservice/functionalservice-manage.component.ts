@@ -26,7 +26,7 @@ export class FunctionalserviceManageComponent implements OnInit {
     public token: string;
 
     public title = 'Manage Functionalservice';
-    public functionalserviceList: Functionalservice;
+    public functionalserviceList: Functionalservice [];
     public functionalservice: Functionalservice;
 
   	public busquedafunctionalservice='';
@@ -40,13 +40,12 @@ export class FunctionalserviceManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public menuList: Menu;
+	public menuList: Menu [];
     public menu: Menu;
-
+	public menuAux: Menu;
 
 	public busquedaMenu='';
 	filterInputMenu = new FormControl();
-
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -80,7 +79,102 @@ export class FunctionalserviceManageComponent implements OnInit {
     loadFunctionalservices() {
       this.functionalserviceService.getAllFunctionalservice().subscribe(data => {
         if (data) {
+
           this.functionalserviceList = data;
+
+			this.functionalserviceList.forEach(element => {
+				this.menuService.getMenuById(element.menuId).subscribe(dataAux => {
+					if (dataAux) {
+						this.menuAux = dataAux;
+						element.menuItem = this.menuAux.
+						path+ "";
+
+
+
+
+
+
+
+
+
+
+
+	      if (element.complexityId == 'ms'){
+	          element.complexityItem = 'Muy Simple';
+	      }
+	      if (element.complexityId == 's'){
+	          element.complexityItem = 'Simple';
+	      }
+	      if (element.complexityId == 'm'){
+	          element.complexityItem = 'Mediano';
+	      }
+	      if (element.complexityId == 'c'){
+	          element.complexityItem = 'Complejo';
+	      }
+	      if (element.complexityId == 'mc'){
+	          element.complexityItem = 'Muy Complejo';
+	      }
+
+
+
+
+	      if (element.repositoryId == 'e2_4'){
+	          element.repositoryItem = 'De 2 a 4';
+	      }
+	      if (element.repositoryId == 'e5_7'){
+	          element.repositoryItem = 'De 5 a 7';
+	      }
+	      if (element.repositoryId == 'e8_10'){
+	          element.repositoryItem = 'De 8 a 10';
+	      }
+	      if (element.repositoryId == 'e11_25'){
+	          element.repositoryItem = 'De 11 a 25';
+	      }
+
+
+	      if (element.dataId == 'd0_10'){
+	          element.dataItem = 'De 0 a 10';
+	      }
+	      if (element.dataId == 'd10_25'){
+	          element.dataItem = 'De 10 a 25';
+	      }
+	      if (element.dataId == 'd26_40'){
+	          element.dataItem = 'De 26 a 40';
+	      }
+	      if (element.dataId == 'd41_100'){
+	          element.dataItem = 'De 41 a 100';
+	      }
+
+
+	      if (element.algorithmtypeId == 'a1'){
+	          element.algorithmtypeItem = 'Mover información';
+	      }
+	      if (element.algorithmtypeId == 'a2'){
+	          element.algorithmtypeItem = 'Calculos Aritméticos';
+	      }
+
+
+	      if (element.reusabilityId == 'r1'){
+	          element.reusabilityItem = 'Lógica única';
+	      }
+	      if (element.reusabilityId == 'r2'){
+	          element.reusabilityItem = 'Reutiliza diseño';
+	      }
+
+
+
+
+
+
+
+
+
+
+
+				}	
+			});	
+		});
+
         }
       }, error => {
         swal('Error...', 'An error occurred while calling the functionalservices.', 'error');

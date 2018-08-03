@@ -1,20 +1,25 @@
 export class Functionalservice {
 
 	functionalserviceId: number = null;
+	functionalserviceItem: string = '';
+
 	code: string = '';
 	size: string = '';
-	description: string = '';
 	name: string = '';
 	comments: string = '';
 	repetitions: number = null;
 
 	menuId: number = null;
 	menuItem: string = '';
-	complexityId: number = null;	
-	repositoryId: number = null;	
-	dataId: number = null;	
-	algorithmtypeId: number = null;	
-	reusabilityId: number = null;	
-
-
+	description: string = '';
+	complexityId: string = '';
+	complexityItem: string = '';	
+	repositoryId: string = '';
+	repositoryItem: string = '';	
+	dataId: string = '';
+	dataItem: string = '';	
+	algorithmtypeId: string = '';
+	algorithmtypeItem: string = '';	
+	reusabilityId: string = '';
+	reusabilityItem: string = '';	
 }

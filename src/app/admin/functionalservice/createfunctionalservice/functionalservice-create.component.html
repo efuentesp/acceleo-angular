@@ -1,15 +1,13 @@
 <div>
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3 *ngIf="flagDelete">Eliminar functionalservice</h3>
-			<h3 *ngIf="flag && !flagDelete">Actualizar functionalservice</h3>
-			<h3 *ngIf="!flag && !flagDelete">Agregar functionalservice</h3>
+			<h3 >Agregar Servicio Funcional</h3>
 		</div>
 	</div>
 
 	<div class="x_panel">
 		<div class="x_title">
-			<h2>Datos del functionalservice</h2>
+			<h2>Datos del Servicio Funcional</h2>
 			<div class="clearfix"></div>
 		</div>
 
@@ -17,7 +15,6 @@
 			<!-- start form for validation -->
 			<form #functionalserviceForm="ngForm" id="functionalserviceForm" class="form-horizontal form-label-left" data-parsley-validate>
 				<input class="form-control" #functionalserviceId="ngModel" functionalserviceId="functionalserviceId" name="functionalserviceId" type="hidden" [(ngModel)]="functionalservice.functionalserviceId">
-
 
 <div class="form-group">
 </div>
@@ -52,65 +49,53 @@
 		<input class="form-control col-md-12" #name="ngModel" id="name" name="name" maxlength="128" type="text" [(ngModel)]="functionalservice.name" required>
 </div>
 <div class="form-group">
-		<label class="control-label" for="description">Description<span class="required">*</span></label>
-		<input class="form-control col-md-12" #description="ngModel" id="description" name="description" maxlength="128" type="text" [(ngModel)]="functionalservice.description" required>
+		<label class="control-label" for="description">Description</label>
+		<input class="form-control col-md-12" #description="ngModel" id="description" name="description" maxlength="128" type="text" [(ngModel)]="functionalservice.description">
 </div>
 <div class="form-group">
 		<label class="control-label" for="size">Tamaño<span class="required">*</span></label>
 		<input class="form-control col-md-12" #size="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="size" name="size" maxlength="128" type="number" [(ngModel)]="functionalservice.size" required>
 </div>
 <div class="form-group">
-		<label class="control-label" for="complexity">Complejidad<span class="required">*</span></label>
-		
+		<label class="control-label" for="complexity">Complejidad<span class="required">*</span></label>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ms" name="ms" [(ngModel)]="functionalservice.complexityId"> Muy Simple</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="s" name="s" [(ngModel)]="functionalservice.complexityId"> Simple</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="m" name="m" [(ngModel)]="functionalservice.complexityId"> Mediano</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="functionalservice.complexityId"> Complejo</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="mc" name="mc" [(ngModel)]="functionalservice.complexityId"> Muy Complejo</div>		
-	
 </div>
 <div class="form-group">
 		<label class="control-label" for="repetitions">Repeticiones<span class="required">*</span></label>
 		<input class="form-control col-md-12" #repetitions="ngModel" id="repetitions" name="repetitions" maxlength="128" type="number" [(ngModel)]="functionalservice.repetitions" required>
 </div>
 <div class="form-group">
-		<label class="control-label" for="repository">Entidades<span class="required">*</span></label>
-		
+		<label class="control-label" for="repository">Entidades<span class="required">*</span></label>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2_4" name="e2_4" [(ngModel)]="functionalservice.repositoryId"> De 2 a 4</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e5_7" name="e5_7" [(ngModel)]="functionalservice.repositoryId"> De 5 a 7</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e8_10" name="e8_10" [(ngModel)]="functionalservice.repositoryId"> De 8 a 10</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e11_25" name="e11_25" [(ngModel)]="functionalservice.repositoryId"> De 11 a 25</div>		
-	
 </div>
 <div class="form-group">
-		<label class="control-label" for="data">Datos<span class="required">*</span></label>
-		
+		<label class="control-label" for="data">Datos<span class="required">*</span></label>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d0_10" name="d0_10" [(ngModel)]="functionalservice.dataId"> De 0 a 10</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d10_25" name="d10_25" [(ngModel)]="functionalservice.dataId"> De 10 a 25</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d26_40" name="d26_40" [(ngModel)]="functionalservice.dataId"> De 26 a 40</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d41_100" name="d41_100" [(ngModel)]="functionalservice.dataId"> De 41 a 100</div>		
-	
 </div>
 <div class="form-group">
-		<label class="control-label" for="algorithmtype">Tipo de Algoritmo<span class="required">*</span></label>
-		
+		<label class="control-label" for="algorithmtype">Tipo de Algoritmo<span class="required">*</span></label>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="a1" name="a1" [(ngModel)]="functionalservice.algorithmtypeId"> Mover información</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="a2" name="a2" [(ngModel)]="functionalservice.algorithmtypeId"> Calculos Aritméticos</div>		
-	
 </div>
 <div class="form-group">
-		<label class="control-label" for="reusability">Reusabilidad<span class="required">*</span></label>
-		
+		<label class="control-label" for="reusability">Reusabilidad<span class="required">*</span></label>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="r1" name="r1" [(ngModel)]="functionalservice.reusabilityId"> Lógica única</div>		
 		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="r2" name="r2" [(ngModel)]="functionalservice.reusabilityId"> Reutiliza diseño</div>		
-	
 </div>
 <div class="form-group">
 		<label class="control-label" for="comments">Comentarios<span class="required">*</span></label>
 		<textarea class="form-control col-md-12" #comments="ngModel" id="comments" name="comments" maxlength="128" type="text" [(ngModel)]="functionalservice.comments" required></textarea>	
 </div>
-
-
 
 <!-- Modal menu -->
 <div id="modalMenu" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -140,6 +125,7 @@
 						<thead>
 							<tr>
 								<th style="max-width:10%"></th>
+										<th style="max-width:10%" hidden="true">Módulo</th>
 										<th style="max-width:10%">Módulo</th>
 										<th style="max-width:10%">Clave</th>
 										<th style="max-width:10%">Opción de Menú</th>
@@ -148,7 +134,8 @@
 						<tbody>
 							<tr *ngFor="let menu of menuList | filterMenu: busquedaMenu | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
 								<td  style="max-width: 10%"><input type="checkbox" name="menuId" [checked]="menu.checked" value="{{menu.menuId}}" (click)="setClickedRowMenu(i, menu)"></td>
-										<td  style="max-width: 10%">{{menu.moduleId}}</td>
+										<td  style="max-width: 10%" hidden="true">{{menu.moduleId}}</td>
+										<td  style="max-width: 10%">{{menu.moduleItem}}</td>
 										<td  style="max-width: 10%">{{menu.code}}</td>
 										<td  style="max-width: 10%">{{menu.path}}</td>
 							</tr>

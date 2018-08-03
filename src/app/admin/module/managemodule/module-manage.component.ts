@@ -26,7 +26,7 @@ export class ModuleManageComponent implements OnInit {
     public token: string;
 
     public title = 'Manage Module';
-    public moduleList: Module;
+    public moduleList: Module [];
     public module: Module;
 
   	public busquedamodule='';
@@ -40,13 +40,12 @@ export class ModuleManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public applicationList: Application;
+	public applicationList: Application [];
     public application: Application;
-
+	public applicationAux: Application;
 
 	public busquedaApplication='';
 	filterInputApplication = new FormControl();
-
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -80,7 +79,33 @@ export class ModuleManageComponent implements OnInit {
     loadModules() {
       this.moduleService.getAllModule().subscribe(data => {
         if (data) {
+
           this.moduleList = data;
+
+			this.moduleList.forEach(element => {
+				this.applicationService.getApplicationById(element.applicationId).subscribe(dataAux => {
+					if (dataAux) {
+						this.applicationAux = dataAux;
+						element.applicationItem = this.applicationAux.
+						name+ "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				}	
+			});	
+		});
+
         }
       }, error => {
         swal('Error...', 'An error occurred while calling the modules.', 'error');

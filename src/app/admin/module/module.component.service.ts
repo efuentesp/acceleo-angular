@@ -69,27 +69,26 @@ export class ModuleService {
 
     getModule(): Module {
         var module: Module = {
-					name: this.module.name, 
-					code: this.module.code, 
-					
-					applicationId: this.module.applicationId,
-					applicationItem: this.module.applicationItem,
-					moduleId: this.module.moduleId	
-
+		name: this.module.name, 
+		code: this.module.code, 
+		applicationId: this.module.applicationId,
+		applicationItem: this.module.applicationItem,
+		moduleId: this.module.moduleId,
+		moduleItem: this.module.moduleItem	
         };
         return module;
     }
 
-
 setModule(module: Module) {
        
-	this.isModuleFormValid = true;
-			this.module.name = module.name;    
-			this.module.code = module.code;    
-			this.module.applicationId = module.applicationId;
-			this.module.applicationItem = module.applicationItem;
-			this.module.moduleId        = module.moduleId;
-        	this.validateModule();
+		this.isModuleFormValid = true;
+		this.module.name = module.name;    
+		this.module.code = module.code;    
+		this.module.applicationId = module.applicationId;
+		this.module.applicationItem = module.applicationItem;
+		this.module.moduleId = module.moduleId;
+		this.module.moduleItem = module.moduleItem;
+		this.validateModule();
     }
 
     isFormValid() {
@@ -104,9 +103,11 @@ setModule(module: Module) {
 
 			this.module.name = '';    
 			this.module.code = '';    
+
 			this.module.applicationId = null;
 			this.module.applicationItem = null;
 			this.module.moduleId = null;
+			this.module.moduleItem = null;
     }
 
     setEdit(flag){
@@ -124,5 +125,4 @@ setModule(module: Module) {
     getDelete(){
       return this.flagDelete;
     }
-
 }

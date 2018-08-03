@@ -69,23 +69,22 @@ export class ApplicationService {
 
     getApplication(): Application {
         var application: Application = {
-					code: this.application.code, 
-					name: this.application.name, 
-					
-					applicationId: this.application.applicationId	
-
+		code: this.application.code, 
+		name: this.application.name, 
+		applicationId: this.application.applicationId,
+		applicationItem: this.application.applicationItem	
         };
         return application;
     }
 
-
 setApplication(application: Application) {
        
-	this.isApplicationFormValid = true;
-			this.application.code = application.code;    
-			this.application.name = application.name;    
-			this.application.applicationId        = application.applicationId;
-        	this.validateApplication();
+		this.isApplicationFormValid = true;
+		this.application.code = application.code;    
+		this.application.name = application.name;    
+		this.application.applicationId = application.applicationId;
+		this.application.applicationItem = application.applicationItem;
+		this.validateApplication();
     }
 
     isFormValid() {
@@ -100,7 +99,9 @@ setApplication(application: Application) {
 
 			this.application.code = '';    
 			this.application.name = '';    
+
 			this.application.applicationId = null;
+			this.application.applicationItem = null;
     }
 
     setEdit(flag){
@@ -118,5 +119,4 @@ setApplication(application: Application) {
     getDelete(){
       return this.flagDelete;
     }
-
 }

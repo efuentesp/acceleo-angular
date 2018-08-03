@@ -33,17 +33,16 @@ export class ModuleCreateComponent implements OnInit {
 	public busquedaApplication='';
 	filterInputApplication = new FormControl();
 
+
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private moduleService: ModuleService
 	,private applicationService: ApplicationService
 ){
-
   	 this.filterInputApplication.valueChanges.subscribe(busquedaApplication => {
      this.busquedaApplication = busquedaApplication;
    });
-
 	}
 
     ngOnInit() {
@@ -80,7 +79,6 @@ save(){
  setClickedRowApplication(index,application){
 	      
 		  application.checked = !application.checked;
-
 		  if (application.checked){
 		  this.applicationService.setApplication(application);
 		  this.module.applicationId = application.applicationId;
@@ -96,6 +94,4 @@ save(){
   return(module){
       this.location.back();
   }
-
-  
 }

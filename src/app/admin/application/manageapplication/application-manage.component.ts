@@ -24,7 +24,7 @@ export class ApplicationManageComponent implements OnInit {
     public token: string;
 
     public title = 'Manage Application';
-    public applicationList: Application;
+    public applicationList: Application [];
     public application: Application;
 
   	public busquedaapplication='';
@@ -37,9 +37,6 @@ export class ApplicationManageComponent implements OnInit {
     private updateActive: boolean = false;
     private createActive: boolean = false;
     private deleteActive: boolean = false;
-
-
-
 
 
     constructor(private router: Router,  
@@ -70,7 +67,9 @@ export class ApplicationManageComponent implements OnInit {
     loadApplications() {
       this.applicationService.getAllApplication().subscribe(data => {
         if (data) {
+
           this.applicationList = data;
+
         }
       }, error => {
         swal('Error...', 'An error occurred while calling the applications.', 'error');

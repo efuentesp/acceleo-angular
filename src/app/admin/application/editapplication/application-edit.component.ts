@@ -9,7 +9,6 @@ import { ApplicationService }                                  from '../../appli
 import { Application }                                         from '../../application/application.component.model';
 
 
-
 @Component ({
     selector: 'app-view',
     templateUrl: './application-edit.component.html',
@@ -30,7 +29,6 @@ export class ApplicationEditComponent implements OnInit {
     public flagDelete: boolean;
 
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
@@ -42,7 +40,6 @@ export class ApplicationEditComponent implements OnInit {
 
     ngOnInit() {
         
-
         this.flag = this.applicationService.getEdit();
         this.application = this.applicationService.getApplication();
         this.flagDelete = this.applicationService.getDelete();

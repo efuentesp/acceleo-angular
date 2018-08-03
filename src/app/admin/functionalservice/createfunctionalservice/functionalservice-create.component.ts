@@ -11,6 +11,8 @@ import { Functionalservice }                                         from '../..
 
 import { MenuService }                                  from '../../menu/menu.component.service';
 import { Menu }                                         from '../../menu/menu.component.model';
+import { ModuleService } from '../../module/module.component.service';
+import { Module } from '../../module/module.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -27,23 +29,28 @@ export class FunctionalserviceCreateComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public menuList: Menu;
-    public menu: Menu;
+	public menuList: Menu [];
+	public menu: Menu;
+	public menuAux: Menu;
+
+	public moduleList: Module [];
+    public module: Module;
+    public moduleAux: Module;
 
 	public busquedaMenu='';
 	filterInputMenu = new FormControl();
+
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private functionalserviceService: FunctionalserviceService
 	,private menuService: MenuService
+	,private moduleService: ModuleService
 ){
-
   	 this.filterInputMenu.valueChanges.subscribe(busquedaMenu => {
      this.busquedaMenu = busquedaMenu;
    });
-
 	}
 
     ngOnInit() {
@@ -70,7 +77,19 @@ save(){
 	loadMenus(){
   		this.menuService.getAllMenu().subscribe(data => {
     	if (data) {
-      	this.menuList = data;
+		  this.menuList = data;
+		  
+		  this.menuList.forEach(element => {
+
+			this.moduleService.getModuleById(element.moduleId).subscribe(dataAux => {
+				if (dataAux) {
+				  this.moduleAux = dataAux;
+				  element.moduleItem = this.moduleAux.
+				  name+ "";
+	  
+			  }	
+			});	
+		  });
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Menus.', 'error');
@@ -80,7 +99,6 @@ save(){
  setClickedRowMenu(index,menu){
 	      
 		  menu.checked = !menu.checked;
-
 		  if (menu.checked){
 		  this.menuService.setMenu(menu);
 		  this.functionalservice.menuId = menu.menuId;
@@ -96,6 +114,4 @@ save(){
   return(functionalservice){
       this.location.back();
   }
-
-  
 }
