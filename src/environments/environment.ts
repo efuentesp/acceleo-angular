@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   //api: "http://localhost:8081/SADF"
   //api: "http://localhost:8080/SADF"
-  //JAAS El ip es el del servidor de CI
-  api: "http://localhost:8082/SADF"
+  //JAAS IP del server en cloud en azure
+  api: "http://dockerjaas.cloudapp.net:8082/SADF"
 };
 
 /*
