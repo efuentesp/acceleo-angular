@@ -1,0 +1,6 @@
+{
+  "pageLoadTimeout": 200000,
+  "chromeWebSecurity": false,
+  "projectId": "oc7awk",
+  "videoCompression": false
+}
