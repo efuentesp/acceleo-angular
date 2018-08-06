@@ -7,7 +7,7 @@ export const environment = {
   //api: "http://localhost:8081/SADF"
   //api: "http://localhost:8080/SADF"
   //JAAS El ip es el del servidor de CI
-  api: "http://172.16.70.91:8082/SADF"
+  api: "http://172.16.70.87:8082/SADF"
 };
 
 /*
