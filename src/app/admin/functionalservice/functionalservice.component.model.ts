@@ -4,14 +4,14 @@ export class Functionalservice {
 	functionalserviceItem: string = '';
 
 	code: string = '';
+	repetitions: number = null;
+	description: string = '';
+	comments: string = '';
 	size: string = '';
 	name: string = '';
-	comments: string = '';
-	repetitions: number = null;
 
 	menuId: number = null;
 	menuItem: string = '';
-	description: string = '';
 	complexityId: string = '';
 	complexityItem: string = '';	
 	repositoryId: string = '';

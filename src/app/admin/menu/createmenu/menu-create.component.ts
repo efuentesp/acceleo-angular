@@ -11,8 +11,6 @@ import { Menu }                                         from '../../menu/menu.co
 
 import { ModuleService }                                  from '../../module/module.component.service';
 import { Module }                                         from '../../module/module.component.model';
-import { ApplicationService } from '../../application/application.component.service';
-import { Application } from '../../application/application.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -29,13 +27,9 @@ export class MenuCreateComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public moduleList: Module[];
-	public module: Module;
-	public moduleAux: Module;
-
-	public applicationList: Application[];
-	public application: Application;
-	public applicationAux: Application;
+	public moduleList: Module [];
+    public module: Module;
+    public moduleAux: Module;
 
 	public busquedaModule='';
 	filterInputModule = new FormControl();
@@ -46,7 +40,6 @@ export class MenuCreateComponent implements OnInit {
 				private location: Location,
 				private menuService: MenuService
 	,private moduleService: ModuleService
-	,private applicationService: ApplicationService
 ){
   	 this.filterInputModule.valueChanges.subscribe(busquedaModule => {
      this.busquedaModule = busquedaModule;
@@ -74,27 +67,20 @@ save(){
    } );
 }
 
+
 	loadModules(){
   		this.moduleService.getAllModule().subscribe(data => {
     	if (data) {
-		  this.moduleList = data;
-		  
-		  this.moduleList.forEach(element => {
-
-			element.applicationId
-			this.applicationService.getApplicationById(element.applicationId).subscribe(dataAux => {
-				if (dataAux) {
-				  this.applicationAux = dataAux;
-				  element.applicationItem = this.applicationAux.
-				  name+ "";
-			  }	
-			});	
-		  });
-
+      	
+		this.moduleList = data;
+// Cambios por cada modal
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Modules.', 'error');
   	});
+
+
+
 }
 
  setClickedRowModule(index,module){

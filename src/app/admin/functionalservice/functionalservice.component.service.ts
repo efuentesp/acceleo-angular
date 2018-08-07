@@ -70,13 +70,13 @@ export class FunctionalserviceService {
     getFunctionalservice(): Functionalservice {
         var functionalservice: Functionalservice = {
 		code: this.functionalservice.code, 
+		repetitions: this.functionalservice.repetitions, 
+		description: this.functionalservice.description, 
+		comments: this.functionalservice.comments, 
 		size: this.functionalservice.size, 
 		name: this.functionalservice.name, 
-		comments: this.functionalservice.comments, 
-		repetitions: this.functionalservice.repetitions, 
 		menuId: this.functionalservice.menuId,
 		menuItem: this.functionalservice.menuItem,
-		description: this.functionalservice.description,
 		complexityId: this.functionalservice.complexityId,
 		complexityItem: this.functionalservice.complexityItem,
 		repositoryId: this.functionalservice.repositoryId,
@@ -97,13 +97,13 @@ setFunctionalservice(functionalservice: Functionalservice) {
        
 		this.isFunctionalserviceFormValid = true;
 		this.functionalservice.code = functionalservice.code;    
+		this.functionalservice.repetitions = functionalservice.repetitions;    
+		this.functionalservice.description = functionalservice.description;    
+		this.functionalservice.comments = functionalservice.comments;    
 		this.functionalservice.size = functionalservice.size;    
 		this.functionalservice.name = functionalservice.name;    
-		this.functionalservice.comments = functionalservice.comments;    
-		this.functionalservice.repetitions = functionalservice.repetitions;    
 		this.functionalservice.menuId = functionalservice.menuId;
 		this.functionalservice.menuItem = functionalservice.menuItem;
-		this.functionalservice.description = functionalservice.description;
 		this.functionalservice.complexityId = functionalservice.complexityId;
 		this.functionalservice.repositoryId = functionalservice.repositoryId;
 		this.functionalservice.dataId = functionalservice.dataId;
@@ -125,14 +125,14 @@ setFunctionalservice(functionalservice: Functionalservice) {
     clear() {
 
 			this.functionalservice.code = '';    
+			this.functionalservice.repetitions = null;    
+			this.functionalservice.description = '';    
+			this.functionalservice.comments = '';    
 			this.functionalservice.size = '';    
 			this.functionalservice.name = '';    
-			this.functionalservice.comments = '';    
-			this.functionalservice.repetitions = null;    
 
 			this.functionalservice.menuId = null;
 			this.functionalservice.menuItem = null;
-			this.functionalservice.description = '';
 			this.functionalservice.complexityId = null;
 			this.functionalservice.complexityItem = null;
 			this.functionalservice.repositoryId = null;

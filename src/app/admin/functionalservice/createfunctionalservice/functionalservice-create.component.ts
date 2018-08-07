@@ -11,8 +11,6 @@ import { Functionalservice }                                         from '../..
 
 import { MenuService }                                  from '../../menu/menu.component.service';
 import { Menu }                                         from '../../menu/menu.component.model';
-import { ModuleService } from '../../module/module.component.service';
-import { Module } from '../../module/module.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -30,12 +28,8 @@ export class FunctionalserviceCreateComponent implements OnInit {
     public token: string;
 
 	public menuList: Menu [];
-	public menu: Menu;
-	public menuAux: Menu;
-
-	public moduleList: Module [];
-    public module: Module;
-    public moduleAux: Module;
+    public menu: Menu;
+    public menuAux: Menu;
 
 	public busquedaMenu='';
 	filterInputMenu = new FormControl();
@@ -46,7 +40,6 @@ export class FunctionalserviceCreateComponent implements OnInit {
 				private location: Location,
 				private functionalserviceService: FunctionalserviceService
 	,private menuService: MenuService
-	,private moduleService: ModuleService
 ){
   	 this.filterInputMenu.valueChanges.subscribe(busquedaMenu => {
      this.busquedaMenu = busquedaMenu;
@@ -74,26 +67,20 @@ save(){
    } );
 }
 
+
 	loadMenus(){
   		this.menuService.getAllMenu().subscribe(data => {
     	if (data) {
-		  this.menuList = data;
-		  
-		  this.menuList.forEach(element => {
-
-			this.moduleService.getModuleById(element.moduleId).subscribe(dataAux => {
-				if (dataAux) {
-				  this.moduleAux = dataAux;
-				  element.moduleItem = this.moduleAux.
-				  name+ "";
-	  
-			  }	
-			});	
-		  });
+      	
+		this.menuList = data;
+// Cambios por cada modal
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Menus.', 'error');
   	});
+
+
+
 }
 
  setClickedRowMenu(index,menu){

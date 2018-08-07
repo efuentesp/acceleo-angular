@@ -147,18 +147,18 @@ export class FunctionalserviceManageComponent implements OnInit {
 
 
 	      if (element.algorithmtypeId == 'a1'){
-	          element.algorithmtypeItem = 'Mover información';
+	          element.algorithmtypeItem = 'Mover informaci�n';
 	      }
 	      if (element.algorithmtypeId == 'a2'){
-	          element.algorithmtypeItem = 'Calculos Aritméticos';
+	          element.algorithmtypeItem = 'Calculos Aritm�ticos';
 	      }
 
 
 	      if (element.reusabilityId == 'r1'){
-	          element.reusabilityItem = 'Lógica única';
+	          element.reusabilityItem = 'L�gica �nica';
 	      }
 	      if (element.reusabilityId == 'r2'){
-	          element.reusabilityItem = 'Reutiliza diseño';
+	          element.reusabilityItem = 'Reutiliza dise�o';
 	      }
 
 

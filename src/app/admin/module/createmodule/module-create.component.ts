@@ -27,8 +27,9 @@ export class ModuleCreateComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public applicationList: Application;
+	public applicationList: Application [];
     public application: Application;
+    public applicationAux: Application;
 
 	public busquedaApplication='';
 	filterInputApplication = new FormControl();
@@ -66,14 +67,20 @@ save(){
    } );
 }
 
+
 	loadApplications(){
   		this.applicationService.getAllApplication().subscribe(data => {
     	if (data) {
-      	this.applicationList = data;
+      	
+		this.applicationList = data;
+// Cambios por cada modal
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Applications.', 'error');
   	});
+
+
+
 }
 
  setClickedRowApplication(index,application){

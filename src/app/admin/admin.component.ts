@@ -19,15 +19,15 @@ export class AdminComponent {
 // Module
   private module_mgmnt: boolean = false;
   private module: boolean = false;
+// Menu
+  private menu_mgmnt: boolean = false;
+  private menu: boolean = false;
 // Functionalservice
   private functionalservice_mgmnt: boolean = false;
   private functionalservice: boolean = false;
 // Application
   private application_mgmnt: boolean = false;
   private application: boolean = false;
-// Menu
-  private menu_mgmnt: boolean = false;
-  private menu: boolean = false;
 
 
   // Admin
@@ -74,6 +74,13 @@ export class AdminComponent {
         this.module = true;
       }
 
+      if (element.authority == 'ROLE_MENUSEARCH'){
+        this.menu_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_MENUCREATE'){
+        this.menu = true;
+      }
+
       if (element.authority == 'ROLE_FUNCTIONALSERVICESEARCH'){
         this.functionalservice_mgmnt = true;
       }
@@ -86,13 +93,6 @@ export class AdminComponent {
       }
       if (element.authority == 'ROLE_APPLICATIONCREATE'){
         this.application = true;
-      }
-
-      if (element.authority == 'ROLE_MENUSEARCH'){
-        this.menu_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_MENUCREATE'){
-        this.menu = true;
       }
 
  

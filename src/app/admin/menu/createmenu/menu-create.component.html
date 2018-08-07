@@ -15,39 +15,27 @@
 			<!-- start form for validation -->
 			<form #menuForm="ngForm" id="menuForm" class="form-horizontal form-label-left" data-parsley-validate>
 				<input class="form-control" #menuId="ngModel" menuId="menuId" name="menuId" type="hidden" [(ngModel)]="menu.menuId">
-
-<div class="form-group">
-</div>
-<div class="form-group">
-		<label class="control-label" for="module">Módulo<span class="required">*</span></label>
-		<div class="form-group text-right">
-			<div class="col-lg-3">
-				<div class="input-group">
-					<input type="hidden" class="form-control input-md"  name="moduleId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="menu.moduleId" #moduleId="ngModel">
-					<input type="text" class="form-control" [(ngModel)]="menu.moduleItem"  [ngModelOptions]="{standalone: true}" #moduleItem="ngModel" placeholder="Module...">
-					<span class="input-group-btn">
-						<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalModule">
-							<em class="fa fa-search"></em>
-						</button>
-					</span>
-				</div>
-			</div>
-		</div>
-</div>
-<div class="form-group">
-</div>
-<div class="form-group">
-</div>
-<div class="form-group">
-</div>
-<div class="form-group">
-		<label class="control-label" for="code">Clave<span class="required">*</span></label>
-		<input class="form-control col-md-12" #code="ngModel" id="code" name="code" maxlength="128" type="text" [(ngModel)]="menu.code" required>
-</div>
-<div class="form-group">
-		<label class="control-label" for="path">Opción de Menú<span class="required">*</span></label>
-		<input class="form-control col-md-12" #path="ngModel" id="path" name="path" maxlength="128" type="text" [(ngModel)]="menu.path" required>
-</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="module">Modulo<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="moduleId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="menu.moduleId" #moduleId="ngModel">
+							<input type="text" class="form-control" [(ngModel)]="menu.moduleItem"  [ngModelOptions]="{standalone: true}" #moduleItem="ngModel" placeholder="Module...">
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalModule">
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="code">Clave<span class="required">*</span></label>
+						<input class="form-control col-md-12" #code="ngModel" id="code" name="code" maxlength="128" type="text" [(ngModel)]="menu.code" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="path">Opci�n de Men�<span class="required">*</span></label>
+						<input class="form-control col-md-12" #path="ngModel" id="path" name="path" maxlength="128" type="text" [(ngModel)]="menu.path" required>
+					</div>
 
 <!-- Modal module -->
 <div id="modalModule" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -77,8 +65,8 @@
 						<thead>
 							<tr>
 								<th style="max-width:10%"></th>
-										<th style="max-width:10%" hidden= "true">Aplicación</th>
-										<th style="max-width:10%">Aplicación</th>
+										<th style="max-width:10%" hidden="true">Aplicaci�n</th>
+										<th style="max-width:10%">Aplicaci�n</th>
 										<th style="max-width:10%">Clave</th>
 										<th style="max-width:10%">Nombre</th>
 							</tr>

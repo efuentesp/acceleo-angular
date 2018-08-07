@@ -30,6 +30,13 @@ import { SearchModulePipe } from './pipe/module.filter.pipe';
 import { ModuleService } from './module/module.component.service';
 
   
+import { MenuManageComponent } from './menu/managemenu/menu-manage.component';
+import { MenuCreateComponent } from './menu/createmenu/menu-create.component';
+import { MenuEditComponent } from './menu/editmenu/menu-edit.component';
+import { SearchMenuPipe } from './pipe/menu.filter.pipe';
+import { MenuService } from './menu/menu.component.service';
+
+  
 import { FunctionalserviceManageComponent } from './functionalservice/managefunctionalservice/functionalservice-manage.component';
 import { FunctionalserviceCreateComponent } from './functionalservice/createfunctionalservice/functionalservice-create.component';
 import { FunctionalserviceEditComponent } from './functionalservice/editfunctionalservice/functionalservice-edit.component';
@@ -42,13 +49,6 @@ import { ApplicationCreateComponent } from './application/createapplication/appl
 import { ApplicationEditComponent } from './application/editapplication/application-edit.component';
 import { SearchApplicationPipe } from './pipe/application.filter.pipe';
 import { ApplicationService } from './application/application.component.service';
-
-  
-import { MenuManageComponent } from './menu/managemenu/menu-manage.component';
-import { MenuCreateComponent } from './menu/createmenu/menu-create.component';
-import { MenuEditComponent } from './menu/editmenu/menu-edit.component';
-import { SearchMenuPipe } from './pipe/menu.filter.pipe';
-import { MenuService } from './menu/menu.component.service';
 
 
 @NgModule({
@@ -67,6 +67,10 @@ import { MenuService } from './menu/menu.component.service';
     ModuleManageComponent,
     ModuleEditComponent,  
 	SearchModulePipe,
+    MenuCreateComponent,
+    MenuManageComponent,
+    MenuEditComponent,  
+	SearchMenuPipe,
     FunctionalserviceCreateComponent,
     FunctionalserviceManageComponent,
     FunctionalserviceEditComponent,  
@@ -75,10 +79,6 @@ import { MenuService } from './menu/menu.component.service';
     ApplicationManageComponent,
     ApplicationEditComponent,  
 	SearchApplicationPipe,
-    MenuCreateComponent,
-    MenuManageComponent,
-    MenuEditComponent,  
-	SearchMenuPipe,
     AdminComponent,
     AdminDashboardComponent,
     ManagePrivilegeComponent,
@@ -93,9 +93,9 @@ import { MenuService } from './menu/menu.component.service';
   ],
   providers: [ 
     ModuleService,
+    MenuService,
     FunctionalserviceService,
     ApplicationService,
-    MenuService,
     ManagePrivilegeService,
     UserService,
     AuthorityService

@@ -10,8 +10,6 @@ import { Menu }                                         from '../../menu/menu.co
 
 import { ModuleService }                                  from '../../module/module.component.service';
 import { Module }                                         from '../../module/module.component.model';
-import { ApplicationService } from '../../application/application.component.service';
-import { Application } from '../../application/application.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -32,13 +30,8 @@ export class MenuEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-    public moduleList: Module[];
+	public moduleList: Module;
     public module: Module;
-    public moduleAux: Module;
-  
-    public applicationList: Application[];
-    public application: Application;
-    public applicationAux: Application;
 
 	public busquedaModule='';
 	filterInputModule = new FormControl();
@@ -47,8 +40,7 @@ export class MenuEditComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private menuService: MenuService
-  ,private moduleService: ModuleService
-  ,private applicationService:ApplicationService
+	,private moduleService: ModuleService
 ){
 
  	 this.filterInputModule.valueChanges.subscribe(busquedaModule => {
@@ -116,19 +108,7 @@ delete(){
 	loadModules(){
   		this.moduleService.getAllModule().subscribe(data => {
     	if (data) {
-        this.moduleList = data;
-        
-        this.moduleList.forEach(element => {
-
-          element.applicationId
-          this.applicationService.getApplicationById(element.applicationId).subscribe(dataAux => {
-            if (dataAux) {
-              this.applicationAux = dataAux;
-              element.applicationItem = this.applicationAux.
-              name+ "";
-            }	
-          });	
-          });
+      	this.moduleList = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Modules.', 'error');

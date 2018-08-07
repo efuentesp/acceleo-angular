@@ -69,8 +69,8 @@ export class ModuleService {
 
     getModule(): Module {
         var module: Module = {
-		name: this.module.name, 
 		code: this.module.code, 
+		name: this.module.name, 
 		applicationId: this.module.applicationId,
 		applicationItem: this.module.applicationItem,
 		moduleId: this.module.moduleId,
@@ -82,8 +82,8 @@ export class ModuleService {
 setModule(module: Module) {
        
 		this.isModuleFormValid = true;
-		this.module.name = module.name;    
 		this.module.code = module.code;    
+		this.module.name = module.name;    
 		this.module.applicationId = module.applicationId;
 		this.module.applicationItem = module.applicationItem;
 		this.module.moduleId = module.moduleId;
@@ -101,8 +101,8 @@ setModule(module: Module) {
 
     clear() {
 
-			this.module.name = '';    
 			this.module.code = '';    
+			this.module.name = '';    
 
 			this.module.applicationId = null;
 			this.module.applicationItem = null;
