@@ -33,7 +33,7 @@ $(npm bin)/cypress run
 
 > Note: This option is available if your command prompt accepts bash language.
 
-## Run and record tests and published it on Cypress Dashboard
+## Run, record tests and published them on Cypress Dashboard
 
 Option 1:
 ```
@@ -46,8 +46,7 @@ $(npm bin)/cypress run --record --key [key_value]
 ```
 > Note: This option is available if your command prompt accepts bash language.
 
-You cant get "key_value" from Cypress dashboard: https://dashboard.cypress.io
-Steps:
+You cant get "key_value" from Cypress dashboard: https://dashboard.cypress.io. Steps:
  1. Go to dashboard page and log in with your GitHub credentials.
  2. You will see your repo name on the dashboard and a table of running tests. Click on the botton "Settings"
  3. You will find a section called "Keys", copy "Record Key".
