@@ -1,3 +1,25 @@
+# Angular Application
+
+You can use this code with Angular 2/4 
+
+Requirements:
+
+NodeJs > v7.10.1
+> Note: Change enviroments file.
+
+Installation:
+
+```
+npm install
+```
+
+## Start Application:
+
+Option 1:
+```
+npm start
+```
+
 # Using Cypress
 
 Installation:
