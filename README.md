@@ -2,12 +2,12 @@
 
 You can use this code with Angular 2/4 
 
-Requirements:
+##Requirements:
 
 NodeJs > v7.10.1
 > Note: Change enviroments file.
 
-Installation:
+##Installation:
 
 ```
 npm install
@@ -15,7 +15,6 @@ npm install
 
 ## Start Application:
 
-Option 1:
 ```
 npm start
 ```
