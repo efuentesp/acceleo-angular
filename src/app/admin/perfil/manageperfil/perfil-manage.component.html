@@ -1,0 +1,93 @@
+<!-- principal -->
+<div>
+	<!-- page-title -->
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3>Administrar Perfil</h3>
+		</div>
+	</div>
+	<!-- ./page-title -->
+
+	<!-- x_panel -->
+	<div class="x_panel">
+		<div class="x_content">
+			<form #perfilMngForm="ngForm" class="editForm" novalidate>
+				
+				<!-- row -->
+				<div class='row'>
+					<div class="col-lg-6">
+						<button *ngIf="createActive" class="btn btn-primary" (click)="add()"><span class="fa fa-plus"></span></button>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Criterios de busqueda..." name="busquedaPerfil" [(ngModel)]="busquedaPerfil">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+
+				<br/>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							
+							<div class="x_title">
+								<h2>Resultados de la busqueda</h2>
+								<div class="clearfix"></div>
+							</div>
+						
+							<div class="x_content table-responsive">
+								<br/>
+
+								<!-- table -->
+								<table id="datatable" class="table table-striped" style="resizable = true;">
+									<thead>
+										<tr>
+												<th style="max-width:10%" hidden="true">Numero de socio</th>
+												<th style="max-width:10%">Numero de socio</th>
+												<th style="max-width:10%">Usuario</th>
+												<th style="max-width:10%">Contraseña</th>
+										<th style="max-width:20%">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!--<tr *ngFor="let perfil of perfilList | filterPerfil: busquedaPerfil | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePerfil'}; let i = index" (click)="setClickedRowPerfil(i, perfil)" >-->
+										<tr *ngFor="let perfil of perfilList | filterPerfil: paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePerfil'}; let i = index" (click)="setClickedRowPerfil(i, perfil)" >
+												<td  style="max-width: 10%" hidden="true">{{perfil.deId}}</td>
+												<td  style="max-width: 10%">{{perfil.deItem}}</td>
+												<td  style="max-width: 10%">{{perfil.usuario}}</td>
+												<td  style="max-width: 10%">{{perfil.nip}}</td>
+											<td style="max-width: 20%">															
+												<div class="container">
+												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(perfil)"><span class="fa fa-pencil"></span></button>
+												<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar(perfil)"><span class="fa fa-trash"></span></button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- ./table -->
+
+								<div align="row" align="right">
+									<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
+										<pagination-controls (pageChange)="page = $event" id="paginationTablePerfil" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+										</pagination-controls>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.row -->
+
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.x_panel -->
+</div>
+<!-- /.principal -->

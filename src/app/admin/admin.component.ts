@@ -16,18 +16,24 @@ export class AdminComponent {
   public username: string;
 
 // Menu activation
-// Module
-  private module_mgmnt: boolean = false;
-  private module: boolean = false;
-// Menu
-  private menu_mgmnt: boolean = false;
-  private menu: boolean = false;
-// Functionalservice
-  private functionalservice_mgmnt: boolean = false;
-  private functionalservice: boolean = false;
-// Application
-  private application_mgmnt: boolean = false;
-  private application: boolean = false;
+// Tasadeinteres
+  private tasadeinteres_mgmnt: boolean = false;
+  private tasadeinteres: boolean = false;
+// Planta
+  private planta_mgmnt: boolean = false;
+  private planta: boolean = false;
+// Cuentadeahorro
+  private cuentadeahorro_mgmnt: boolean = false;
+  private cuentadeahorro: boolean = false;
+// Empresa
+  private empresa_mgmnt: boolean = false;
+  private empresa: boolean = false;
+// Departamento
+  private departamento_mgmnt: boolean = false;
+  private departamento: boolean = false;
+// Aportacion
+  private aportacion_mgmnt: boolean = false;
+  private aportacion: boolean = false;
 
 
   // Admin
@@ -67,32 +73,46 @@ export class AdminComponent {
   buildMenu(authorities){
     authorities.forEach(element => {
 
-      if (element.authority == 'ROLE_MODULESEARCH'){
-        this.module_mgmnt = true;
+      if (element.authority == 'ROLE_TASADEINTERESSEARCH'){
+        this.tasadeinteres_mgmnt = true;
       }
-      if (element.authority == 'ROLE_MODULECREATE'){
-        this.module = true;
-      }
-
-      if (element.authority == 'ROLE_MENUSEARCH'){
-        this.menu_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_MENUCREATE'){
-        this.menu = true;
+      if (element.authority == 'ROLE_TASADEINTERESCREATE'){
+        this.tasadeinteres = true;
       }
 
-      if (element.authority == 'ROLE_FUNCTIONALSERVICESEARCH'){
-        this.functionalservice_mgmnt = true;
+      if (element.authority == 'ROLE_PLANTASEARCH'){
+        this.planta_mgmnt = true;
       }
-      if (element.authority == 'ROLE_FUNCTIONALSERVICECREATE'){
-        this.functionalservice = true;
+      if (element.authority == 'ROLE_PLANTACREATE'){
+        this.planta = true;
       }
 
-      if (element.authority == 'ROLE_APPLICATIONSEARCH'){
-        this.application_mgmnt = true;
+      if (element.authority == 'ROLE_CUENTADEAHORROSEARCH'){
+        this.cuentadeahorro_mgmnt = true;
       }
-      if (element.authority == 'ROLE_APPLICATIONCREATE'){
-        this.application = true;
+      if (element.authority == 'ROLE_CUENTADEAHORROCREATE'){
+        this.cuentadeahorro = true;
+      }
+
+      if (element.authority == 'ROLE_EMPRESASEARCH'){
+        this.empresa_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_EMPRESACREATE'){
+        this.empresa = true;
+      }
+
+      if (element.authority == 'ROLE_DEPARTAMENTOSEARCH'){
+        this.departamento_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_DEPARTAMENTOCREATE'){
+        this.departamento = true;
+      }
+
+      if (element.authority == 'ROLE_APORTACIONSEARCH'){
+        this.aportacion_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_APORTACIONCREATE'){
+        this.aportacion = true;
       }
 
  

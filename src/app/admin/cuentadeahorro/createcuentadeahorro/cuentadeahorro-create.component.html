@@ -1,0 +1,72 @@
+<div>
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3 >Agregar Cuenta de ahorro</h3>
+		</div>
+	</div>
+
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>Datos del Cuenta de ahorro</h2>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="x_content">
+			<!-- start form for validation -->
+			<form #cuentadeahorroForm="ngForm" id="cuentadeahorroForm" class="form-horizontal form-label-left" data-parsley-validate>
+				<input class="form-control" #cuentadeahorroId="ngModel" cuentadeahorroId="cuentadeahorroId" name="cuentadeahorroId" type="hidden" [(ngModel)]="cuentadeahorro.cuentadeahorroId">
+
+					<div class="form-group">
+						<label class="control-label" for="numero">Numero de cuenta<span class="required">*</span></label>
+						<input class="form-control col-md-12" #numero="ngModel" id="numero" name="numero" maxlength="128" type="number" [(ngModel)]="cuentadeahorro.numero" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="tipoahorro">Tipo<span class="required">*</span></label>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="v" name="v" [(ngModel)]="cuentadeahorro.tipoahorroId"> Ahorro a la vista</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="m1" name="m1" [(ngModel)]="cuentadeahorro.tipoahorroId"> Plazo fijo 1 mes</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="m3" name="m3" [(ngModel)]="cuentadeahorro.tipoahorroId"> Plazo fijo 3 meses</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="m6" name="m6" [(ngModel)]="cuentadeahorro.tipoahorroId"> Plazo fijo 6 meses</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fap" name="fap" [(ngModel)]="cuentadeahorro.tipoahorroId"> Patrimonial FAP</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="nov" name="nov" [(ngModel)]="cuentadeahorro.tipoahorroId"> Ahorro a noviembre</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="esp1" name="esp1" [(ngModel)]="cuentadeahorro.tipoahorroId"> Especial anual</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="esp2" name="esp2" [(ngModel)]="cuentadeahorro.tipoahorroId"> Especial educacion</div>		
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="fechacontratacion">Fecha de contratacion<span class="required">*</span></label>
+						<input class="form-control col-md-12" #fechacontratacion="ngModel" id="fechacontratacion" name="fechacontratacion" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechacontratacion" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="fechavencimiento">Fecha de vencimiento<span class="required">*</span></label>
+						<input class="form-control col-md-12" #fechavencimiento="ngModel" id="fechavencimiento" name="fechavencimiento" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechavencimiento" required>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="fechadisponibilidad">Fecha de disponibilidad<span class="required">*</span></label>
+						<input class="form-control col-md-12" #fechadisponibilidad="ngModel" id="fechadisponibilidad" name="fechadisponibilidad" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechadisponibilidad" required>
+					</div>
+
+
+
+				<div class="ln_solid"></div>
+
+				<div class="col-sm-12">
+					<div class="input-group">
+						<div *ngIf="flagDelete">
+							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+							<button class="btn btn-link" (click)="return(cuentadeahorroForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="flag && !flagDelete">
+							<button class="btn btn-primary" [disabled]="!cuentadeahorroForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-link" (click)="return(cuentadeahorroForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="!flag && !flagDelete">
+							<button class="btn btn-primary" [disabled]="!cuentadeahorroForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-link" (click)="return(cuentadeahorroForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- end form for validation -->
+		</div>
+	</div>
+</div>
+

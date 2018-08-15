@@ -23,32 +23,46 @@ import { AuthorityManageComponent } from './authority/manageAuthority/manage-aut
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
   
-import { ModuleManageComponent } from './module/managemodule/module-manage.component';
-import { ModuleCreateComponent } from './module/createmodule/module-create.component';
-import { ModuleEditComponent } from './module/editmodule/module-edit.component';
-import { SearchModulePipe } from './pipe/module.filter.pipe';
-import { ModuleService } from './module/module.component.service';
+import { TasadeinteresManageComponent } from './tasadeinteres/managetasadeinteres/tasadeinteres-manage.component';
+import { TasadeinteresCreateComponent } from './tasadeinteres/createtasadeinteres/tasadeinteres-create.component';
+import { TasadeinteresEditComponent } from './tasadeinteres/edittasadeinteres/tasadeinteres-edit.component';
+import { SearchTasadeinteresPipe } from './pipe/tasadeinteres.filter.pipe';
+import { TasadeinteresService } from './tasadeinteres/tasadeinteres.component.service';
 
   
-import { MenuManageComponent } from './menu/managemenu/menu-manage.component';
-import { MenuCreateComponent } from './menu/createmenu/menu-create.component';
-import { MenuEditComponent } from './menu/editmenu/menu-edit.component';
-import { SearchMenuPipe } from './pipe/menu.filter.pipe';
-import { MenuService } from './menu/menu.component.service';
+import { PlantaManageComponent } from './planta/manageplanta/planta-manage.component';
+import { PlantaCreateComponent } from './planta/createplanta/planta-create.component';
+import { PlantaEditComponent } from './planta/editplanta/planta-edit.component';
+import { SearchPlantaPipe } from './pipe/planta.filter.pipe';
+import { PlantaService } from './planta/planta.component.service';
 
   
-import { FunctionalserviceManageComponent } from './functionalservice/managefunctionalservice/functionalservice-manage.component';
-import { FunctionalserviceCreateComponent } from './functionalservice/createfunctionalservice/functionalservice-create.component';
-import { FunctionalserviceEditComponent } from './functionalservice/editfunctionalservice/functionalservice-edit.component';
-import { SearchFunctionalservicePipe } from './pipe/functionalservice.filter.pipe';
-import { FunctionalserviceService } from './functionalservice/functionalservice.component.service';
+import { CuentadeahorroManageComponent } from './cuentadeahorro/managecuentadeahorro/cuentadeahorro-manage.component';
+import { CuentadeahorroCreateComponent } from './cuentadeahorro/createcuentadeahorro/cuentadeahorro-create.component';
+import { CuentadeahorroEditComponent } from './cuentadeahorro/editcuentadeahorro/cuentadeahorro-edit.component';
+import { SearchCuentadeahorroPipe } from './pipe/cuentadeahorro.filter.pipe';
+import { CuentadeahorroService } from './cuentadeahorro/cuentadeahorro.component.service';
 
   
-import { ApplicationManageComponent } from './application/manageapplication/application-manage.component';
-import { ApplicationCreateComponent } from './application/createapplication/application-create.component';
-import { ApplicationEditComponent } from './application/editapplication/application-edit.component';
-import { SearchApplicationPipe } from './pipe/application.filter.pipe';
-import { ApplicationService } from './application/application.component.service';
+import { EmpresaManageComponent } from './empresa/manageempresa/empresa-manage.component';
+import { EmpresaCreateComponent } from './empresa/createempresa/empresa-create.component';
+import { EmpresaEditComponent } from './empresa/editempresa/empresa-edit.component';
+import { SearchEmpresaPipe } from './pipe/empresa.filter.pipe';
+import { EmpresaService } from './empresa/empresa.component.service';
+
+  
+import { DepartamentoManageComponent } from './departamento/managedepartamento/departamento-manage.component';
+import { DepartamentoCreateComponent } from './departamento/createdepartamento/departamento-create.component';
+import { DepartamentoEditComponent } from './departamento/editdepartamento/departamento-edit.component';
+import { SearchDepartamentoPipe } from './pipe/departamento.filter.pipe';
+import { DepartamentoService } from './departamento/departamento.component.service';
+
+  
+import { AportacionManageComponent } from './aportacion/manageaportacion/aportacion-manage.component';
+import { AportacionCreateComponent } from './aportacion/createaportacion/aportacion-create.component';
+import { AportacionEditComponent } from './aportacion/editaportacion/aportacion-edit.component';
+import { SearchAportacionPipe } from './pipe/aportacion.filter.pipe';
+import { AportacionService } from './aportacion/aportacion.component.service';
 
 
 @NgModule({
@@ -63,22 +77,30 @@ import { ApplicationService } from './application/application.component.service'
     HttpClientModule
   ],
   declarations: [
-    ModuleCreateComponent,
-    ModuleManageComponent,
-    ModuleEditComponent,  
-	SearchModulePipe,
-    MenuCreateComponent,
-    MenuManageComponent,
-    MenuEditComponent,  
-	SearchMenuPipe,
-    FunctionalserviceCreateComponent,
-    FunctionalserviceManageComponent,
-    FunctionalserviceEditComponent,  
-	SearchFunctionalservicePipe,
-    ApplicationCreateComponent,
-    ApplicationManageComponent,
-    ApplicationEditComponent,  
-	SearchApplicationPipe,
+    TasadeinteresCreateComponent,
+    TasadeinteresManageComponent,
+    TasadeinteresEditComponent,  
+	SearchTasadeinteresPipe,
+    PlantaCreateComponent,
+    PlantaManageComponent,
+    PlantaEditComponent,  
+	SearchPlantaPipe,
+    CuentadeahorroCreateComponent,
+    CuentadeahorroManageComponent,
+    CuentadeahorroEditComponent,  
+	SearchCuentadeahorroPipe,
+    EmpresaCreateComponent,
+    EmpresaManageComponent,
+    EmpresaEditComponent,  
+	SearchEmpresaPipe,
+    DepartamentoCreateComponent,
+    DepartamentoManageComponent,
+    DepartamentoEditComponent,  
+	SearchDepartamentoPipe,
+    AportacionCreateComponent,
+    AportacionManageComponent,
+    AportacionEditComponent,  
+	SearchAportacionPipe,
     AdminComponent,
     AdminDashboardComponent,
     ManagePrivilegeComponent,
@@ -92,10 +114,12 @@ import { ApplicationService } from './application/application.component.service'
     UserCreateComponent
   ],
   providers: [ 
-    ModuleService,
-    MenuService,
-    FunctionalserviceService,
-    ApplicationService,
+    TasadeinteresService,
+    PlantaService,
+    CuentadeahorroService,
+    EmpresaService,
+    DepartamentoService,
+    AportacionService,
     ManagePrivilegeService,
     UserService,
     AuthorityService

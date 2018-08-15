@@ -32,29 +32,41 @@
 
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
-				  <li *ngIf="application_mgmnt"><a routerLink="./manageapplication" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Aplicacion </a>
+				  <li *ngIf="planta_mgmnt"><a routerLink="./manageplanta" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Planta </a>
 				  </li>
-                  <li *ngIf="application"><a routerLink="./createapplication" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Aplicacion </a>
+                  <li *ngIf="planta"><a routerLink="./createplanta" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Planta </a>
                   </li>
-				  <li *ngIf="menu_mgmnt"><a routerLink="./managemenu" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Menu </a>
+				  <li *ngIf="tasadeinteres_mgmnt"><a routerLink="./managetasadeinteres" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Tasa de interes </a>
 				  </li>
-                  <li *ngIf="menu"><a routerLink="./createmenu" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Menu </a>
+                  <li *ngIf="tasadeinteres"><a routerLink="./createtasadeinteres" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Tasa de interes </a>
                   </li>
-				  <li *ngIf="functionalservice_mgmnt"><a routerLink="./managefunctionalservice" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Servicio Funcional </a>
+				  <li *ngIf="aportacion_mgmnt"><a routerLink="./manageaportacion" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Aportacion </a>
 				  </li>
-                  <li *ngIf="functionalservice"><a routerLink="./createfunctionalservice" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Servicio Funcional </a>
+                  <li *ngIf="aportacion"><a routerLink="./createaportacion" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Aportacion </a>
                   </li>
-				  <li *ngIf="module_mgmnt"><a routerLink="./managemodule" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Modulo </a>
+				  <li *ngIf="cuentadeahorro_mgmnt"><a routerLink="./managecuentadeahorro" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Cuenta de ahorro </a>
 				  </li>
-                  <li *ngIf="module"><a routerLink="./createmodule" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Modulo </a>
+                  <li *ngIf="cuentadeahorro"><a routerLink="./createcuentadeahorro" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Cuenta de ahorro </a>
+                  </li>
+				  <li *ngIf="departamento_mgmnt"><a routerLink="./managedepartamento" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Departamento </a>
+				  </li>
+                  <li *ngIf="departamento"><a routerLink="./createdepartamento" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Departamento </a>
+                  </li>
+				  <li *ngIf="empresa_mgmnt"><a routerLink="./manageempresa" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar Empresa </a>
+				  </li>
+                  <li *ngIf="empresa"><a routerLink="./createempresa" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar Empresa </a>
                   </li>
                 <!-- /entities -->  
                 </ul>

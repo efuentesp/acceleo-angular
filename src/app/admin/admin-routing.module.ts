@@ -16,25 +16,35 @@ import { AuthorityManageComponent } from './authority/manageAuthority/manage-aut
 import { AuthorityCreateComponent } from './authority/createAuthority/authority-create.component';
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
-// Module
-import { ModuleManageComponent}       from './module/managemodule/module-manage.component';
-import { ModuleCreateComponent}       from './module/createmodule/module-create.component';
-import { ModuleEditComponent}         from './module/editmodule/module-edit.component';
+// Tasadeinteres
+import { TasadeinteresManageComponent}       from './tasadeinteres/managetasadeinteres/tasadeinteres-manage.component';
+import { TasadeinteresCreateComponent}       from './tasadeinteres/createtasadeinteres/tasadeinteres-create.component';
+import { TasadeinteresEditComponent}         from './tasadeinteres/edittasadeinteres/tasadeinteres-edit.component';
 
-// Menu
-import { MenuManageComponent}       from './menu/managemenu/menu-manage.component';
-import { MenuCreateComponent}       from './menu/createmenu/menu-create.component';
-import { MenuEditComponent}         from './menu/editmenu/menu-edit.component';
+// Planta
+import { PlantaManageComponent}       from './planta/manageplanta/planta-manage.component';
+import { PlantaCreateComponent}       from './planta/createplanta/planta-create.component';
+import { PlantaEditComponent}         from './planta/editplanta/planta-edit.component';
 
-// Functionalservice
-import { FunctionalserviceManageComponent}       from './functionalservice/managefunctionalservice/functionalservice-manage.component';
-import { FunctionalserviceCreateComponent}       from './functionalservice/createfunctionalservice/functionalservice-create.component';
-import { FunctionalserviceEditComponent}         from './functionalservice/editfunctionalservice/functionalservice-edit.component';
+// Cuentadeahorro
+import { CuentadeahorroManageComponent}       from './cuentadeahorro/managecuentadeahorro/cuentadeahorro-manage.component';
+import { CuentadeahorroCreateComponent}       from './cuentadeahorro/createcuentadeahorro/cuentadeahorro-create.component';
+import { CuentadeahorroEditComponent}         from './cuentadeahorro/editcuentadeahorro/cuentadeahorro-edit.component';
 
-// Application
-import { ApplicationManageComponent}       from './application/manageapplication/application-manage.component';
-import { ApplicationCreateComponent}       from './application/createapplication/application-create.component';
-import { ApplicationEditComponent}         from './application/editapplication/application-edit.component';
+// Empresa
+import { EmpresaManageComponent}       from './empresa/manageempresa/empresa-manage.component';
+import { EmpresaCreateComponent}       from './empresa/createempresa/empresa-create.component';
+import { EmpresaEditComponent}         from './empresa/editempresa/empresa-edit.component';
+
+// Departamento
+import { DepartamentoManageComponent}       from './departamento/managedepartamento/departamento-manage.component';
+import { DepartamentoCreateComponent}       from './departamento/createdepartamento/departamento-create.component';
+import { DepartamentoEditComponent}         from './departamento/editdepartamento/departamento-edit.component';
+
+// Aportacion
+import { AportacionManageComponent}       from './aportacion/manageaportacion/aportacion-manage.component';
+import { AportacionCreateComponent}       from './aportacion/createaportacion/aportacion-create.component';
+import { AportacionEditComponent}         from './aportacion/editaportacion/aportacion-edit.component';
 
 
 const adminRoutes: Routes = [
@@ -49,21 +59,29 @@ const adminRoutes: Routes = [
         children: [
         
 		// Com.softtek.acceleo.demo
-		{ path: 'createmodule',  component: ModuleCreateComponent},  
-		{ path: 'managemodule',  component: ModuleManageComponent},  
-		{ path: 'editmodule',  component: ModuleEditComponent},  
+		{ path: 'createtasadeinteres',  component: TasadeinteresCreateComponent},  
+		{ path: 'managetasadeinteres',  component: TasadeinteresManageComponent},  
+		{ path: 'edittasadeinteres',  component: TasadeinteresEditComponent},  
 			
-		{ path: 'createmenu',  component: MenuCreateComponent},  
-		{ path: 'managemenu',  component: MenuManageComponent},  
-		{ path: 'editmenu',  component: MenuEditComponent},  
+		{ path: 'createplanta',  component: PlantaCreateComponent},  
+		{ path: 'manageplanta',  component: PlantaManageComponent},  
+		{ path: 'editplanta',  component: PlantaEditComponent},  
 			
-		{ path: 'createfunctionalservice',  component: FunctionalserviceCreateComponent},  
-		{ path: 'managefunctionalservice',  component: FunctionalserviceManageComponent},  
-		{ path: 'editfunctionalservice',  component: FunctionalserviceEditComponent},  
+		{ path: 'createcuentadeahorro',  component: CuentadeahorroCreateComponent},  
+		{ path: 'managecuentadeahorro',  component: CuentadeahorroManageComponent},  
+		{ path: 'editcuentadeahorro',  component: CuentadeahorroEditComponent},  
 			
-		{ path: 'createapplication',  component: ApplicationCreateComponent},  
-		{ path: 'manageapplication',  component: ApplicationManageComponent},  
-		{ path: 'editapplication',  component: ApplicationEditComponent},  
+		{ path: 'createempresa',  component: EmpresaCreateComponent},  
+		{ path: 'manageempresa',  component: EmpresaManageComponent},  
+		{ path: 'editempresa',  component: EmpresaEditComponent},  
+			
+		{ path: 'createdepartamento',  component: DepartamentoCreateComponent},  
+		{ path: 'managedepartamento',  component: DepartamentoManageComponent},  
+		{ path: 'editdepartamento',  component: DepartamentoEditComponent},  
+			
+		{ path: 'createaportacion',  component: AportacionCreateComponent},  
+		{ path: 'manageaportacion',  component: AportacionManageComponent},  
+		{ path: 'editaportacion',  component: AportacionEditComponent},  
 			
 
 		  // Manage
