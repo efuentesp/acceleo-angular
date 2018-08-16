@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { TasadeinteresService }                                  from '../../tasadeinteres/tasadeinteres.component.service';
 import { Tasadeinteres }                                         from '../../tasadeinteres/tasadeinteres.component.model';
@@ -37,7 +38,8 @@ export class TasadeinteresCreateComponent implements OnInit {
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
-				private location: Location,
+                private location: Location,
+                private parserFormatter: NgbDateParserFormatter,
 				private tasadeinteresService: TasadeinteresService
 	,private empresaService: EmpresaService
 ){
@@ -55,6 +57,10 @@ export class TasadeinteresCreateComponent implements OnInit {
     } 
 
 save(){
+
+    this.tasadeinteres.fechainicio = this.parserFormatter.format(this.tasadeinteres.fechainicioAux);
+    this.tasadeinteres.fechafin = this.parserFormatter.format(this.tasadeinteres.fechafinAux);
+    
    this.tasadeinteresService.saveTasadeinteres(this.tasadeinteres).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Tasadeinteres save successfully.', 'success');

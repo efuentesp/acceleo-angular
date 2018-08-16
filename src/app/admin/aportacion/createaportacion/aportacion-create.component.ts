@@ -3,7 +3,7 @@ import { Router, ActivatedRoute }                                          from 
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
 
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 
 import { AportacionService }                                  from '../../aportacion/aportacion.component.service';
@@ -11,6 +11,8 @@ import { Aportacion }                                         from '../../aporta
 
 import { CuentadeahorroService }                                  from '../../cuentadeahorro/cuentadeahorro.component.service';
 import { Cuentadeahorro }                                         from '../../cuentadeahorro/cuentadeahorro.component.model';
+
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
     selector: 'app-view',
@@ -34,12 +36,14 @@ export class AportacionCreateComponent implements OnInit {
 	public busquedaCuentadeahorro='';
 	filterInputCuentadeahorro = new FormControl();
 
+    public datePipe = new DatePipe('en-US');
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private aportacionService: AportacionService
-	,private cuentadeahorroService: CuentadeahorroService
+    ,private cuentadeahorroService: CuentadeahorroService
+    ,private parserFormatter: NgbDateParserFormatter
 ){
   	 this.filterInputCuentadeahorro.valueChanges.subscribe(busquedaCuentadeahorro => {
      this.busquedaCuentadeahorro = busquedaCuentadeahorro;
@@ -55,6 +59,10 @@ export class AportacionCreateComponent implements OnInit {
     } 
 
 save(){
+
+   // Dates 
+   this.aportacion.fecha = this.parserFormatter.format(this.aportacion.fechaAux);
+
    this.aportacionService.saveAportacion(this.aportacion).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Aportacion save successfully.', 'success');
@@ -66,7 +74,6 @@ save(){
      }
    } );
 }
-
 
 	loadCuentadeahorros(){
   		this.cuentadeahorroService.getAllCuentadeahorro().subscribe(data => {

@@ -73,6 +73,7 @@ export class BeneficiarioService {
 		apellidomaterno: this.beneficiario.apellidomaterno, 
 		apellidopaterno: this.beneficiario.apellidopaterno, 
 		fechanacimiento: this.beneficiario.fechanacimiento, 
+		fechanacimientoAux: this.beneficiario.fechanacimientoAux, 
 		cuentadeahorroId: this.beneficiario.cuentadeahorroId,
 		cuentadeahorroItem: this.beneficiario.cuentadeahorroItem,
 		generoId: this.beneficiario.generoId,
@@ -85,13 +86,14 @@ export class BeneficiarioService {
         return beneficiario;
     }
 
-setBeneficiario(beneficiario: Beneficiario) {
+    setBeneficiario(beneficiario: Beneficiario) {
        
 		this.isBeneficiarioFormValid = true;
-		this.beneficiario.nombre = beneficiario.nombre;    
-		this.beneficiario.apellidomaterno = beneficiario.apellidomaterno;    
-		this.beneficiario.apellidopaterno = beneficiario.apellidopaterno;    
-		this.beneficiario.fechanacimiento = beneficiario.fechanacimiento;    
+		this.beneficiario.nombre = beneficiario.nombre;  
+		this.beneficiario.apellidomaterno = beneficiario.apellidomaterno;  
+		this.beneficiario.apellidopaterno = beneficiario.apellidopaterno;  
+		this.beneficiario.fechanacimiento = beneficiario.fechanacimiento;  
+		this.beneficiario.fechanacimientoAux = beneficiario.fechanacimientoAux;  
 		this.beneficiario.cuentadeahorroId = beneficiario.cuentadeahorroId;
 		this.beneficiario.cuentadeahorroItem = beneficiario.cuentadeahorroItem;
 		this.beneficiario.generoId = beneficiario.generoId;
@@ -116,7 +118,8 @@ setBeneficiario(beneficiario: Beneficiario) {
 			this.beneficiario.nombre = '';    
 			this.beneficiario.apellidomaterno = '';    
 			this.beneficiario.apellidopaterno = '';    
-			this.beneficiario.fechanacimiento = '';    
+			this.beneficiario.fechanacimiento = '';  
+			this.beneficiario.fechanacimientoAux = null;     
 
 			this.beneficiario.cuentadeahorroId = null;
 			this.beneficiario.cuentadeahorroItem = null;

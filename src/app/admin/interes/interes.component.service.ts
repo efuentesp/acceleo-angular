@@ -70,6 +70,7 @@ export class InteresService {
     getInteres(): Interes {
         var interes: Interes = {
 		fecha: this.interes.fecha, 
+		fechaAux: this.interes.fechaAux, 
 		monto: this.interes.monto, 
 		cuentadeahorroId: this.interes.cuentadeahorroId,
 		cuentadeahorroItem: this.interes.cuentadeahorroItem,
@@ -82,8 +83,9 @@ export class InteresService {
 setInteres(interes: Interes) {
        
 		this.isInteresFormValid = true;
-		this.interes.fecha = interes.fecha;    
-		this.interes.monto = interes.monto;    
+		this.interes.fecha = interes.fecha;  
+		this.interes.fechaAux = interes.fechaAux;  
+		this.interes.monto = interes.monto;  
 		this.interes.cuentadeahorroId = interes.cuentadeahorroId;
 		this.interes.cuentadeahorroItem = interes.cuentadeahorroItem;
 		this.interes.interesId = interes.interesId;
@@ -101,14 +103,15 @@ setInteres(interes: Interes) {
 
     clear() {
 
-			this.interes.fecha = '';    
-			this.interes.monto = '';    
+        this.interes.fecha = '';  
+        this.interes.fechaAux = null;    
+        this.interes.monto = '';  
 
-			this.interes.cuentadeahorroId = null;
-			this.interes.cuentadeahorroItem = null;
-			this.interes.interesId = null;
-			this.interes.interesItem = null;
-    }
+        this.interes.cuentadeahorroId = null;
+        this.interes.cuentadeahorroItem = null;
+        this.interes.interesId = null;
+        this.interes.interesItem = null;
+}
 
     setEdit(flag){
         this.flag = flag;

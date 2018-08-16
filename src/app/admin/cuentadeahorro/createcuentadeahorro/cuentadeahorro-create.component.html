@@ -31,20 +31,39 @@
 						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="esp1" name="esp1" [(ngModel)]="cuentadeahorro.tipoahorroId"> Especial anual</div>		
 						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="esp2" name="esp2" [(ngModel)]="cuentadeahorro.tipoahorroId"> Especial educacion</div>		
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="fechacontratacion">Fecha de contratacion<span class="required">*</span></label>
-						<input class="form-control col-md-12" #fechacontratacion="ngModel" id="fechacontratacion" name="fechacontratacion" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechacontratacion" required>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="fechavencimiento">Fecha de vencimiento<span class="required">*</span></label>
-						<input class="form-control col-md-12" #fechavencimiento="ngModel" id="fechavencimiento" name="fechavencimiento" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechavencimiento" required>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="fechadisponibilidad">Fecha de disponibilidad<span class="required">*</span></label>
-						<input class="form-control col-md-12" #fechadisponibilidad="ngModel" id="fechadisponibilidad" name="fechadisponibilidad" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechadisponibilidad" required>
-					</div>
-
-
+					<div class="form-group ">
+							<label class="control-label" for="fechacontratacion">Fecha de contratacion<span class="required">*</span></label>
+							<div class="input-group col-md-12">	
+								<input class="form-control" placeholder="yyyy-mm-dd" name="fechacontratacionAux" [(ngModel)]="cuentadeahorro.fechacontratacionAux" ngbDatepicker #fechacontratacionAux="ngbDatepicker" required>
+								<span class="input-group-btn">
+									<button class="btn btn-outline-secondary" (click)="fechacontratacionAux.toggle()" type="button">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+							</div>
+						</div>
+						<div class="form-group ">
+							<label class="control-label" for="fechavencimiento">Fecha de vencimiento<span class="required">*</span></label>
+							<div class="input-group col-md-12">	
+								<input class="form-control" placeholder="yyyy-mm-dd" name="fechavencimientoAux" [(ngModel)]="cuentadeahorro.fechavencimientoAux" ngbDatepicker #fechavencimientoAux="ngbDatepicker" required>
+								<span class="input-group-btn">
+									<button class="btn btn-outline-secondary" (click)="fechavencimientoAux.toggle()" type="button">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+							</div>
+						</div>
+						<div class="form-group ">
+							<label class="control-label" for="fechadisponibilidad">Fecha de disponibilidad<span class="required">*</span></label>
+							<div class="input-group col-md-12">	
+								<input class="form-control" placeholder="yyyy-mm-dd" name="fechadisponibilidadAux" [(ngModel)]="cuentadeahorro.fechadisponibilidadAux" ngbDatepicker #fechadisponibilidadAux="ngbDatepicker" required>
+								<span class="input-group-btn">
+									<button class="btn btn-outline-secondary" (click)="fechadisponibilidadAux.toggle()" type="button">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+							</div>
+						</div>
 
 				<div class="ln_solid"></div>
 

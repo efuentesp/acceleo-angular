@@ -11,6 +11,8 @@ import { Aportacion }                                         from '../../aporta
 
 import { CuentadeahorroService }                                  from '../../cuentadeahorro/cuentadeahorro.component.service';
 import { Cuentadeahorro }                                         from '../../cuentadeahorro/cuentadeahorro.component.model';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+//import { isNumber, toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component ({
     selector: 'app-view',
@@ -79,20 +81,15 @@ export class AportacionManageComponent implements OnInit {
     loadAportacions() {
       this.aportacionService.getAllAportacion().subscribe(data => {
 
-        var datePipe = new DatePipe('en-US');
-
         if (data) {
 
           this.aportacionList = data;
+          this.aportacionList.forEach(element => {
 
-			this.aportacionList.forEach(element => {
-
-        
-
-        var fechaDate = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-    
-        element.fecha = fechaDate;
-
+          let datePipe     = new DatePipe('en-US');
+          let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
+          element.fecha    = fechaDate;
+          element.fechaAux = this.parse(fechaDate);
 
 				this.cuentadeahorroService.getCuentadeahorroById(element.cuentadeahorroId).subscribe(dataAux => {
 					if (dataAux) {
@@ -182,5 +179,28 @@ export class AportacionManageComponent implements OnInit {
       }
     });
   }
+
+  // Parse to NgbDateStruct
+  isNumber(value: any): boolean {
+      return !isNaN(this.toInteger(value));
+  }
+ 
+  toInteger(value: any): number {
+      return parseInt(`${value}`, 10);
+  }
+  parse(value: string): NgbDateStruct {
+    if (value) {
+        const dateParts = value.trim().split('-');
+        if (dateParts.length === 1 && this.isNumber(dateParts[0])) {
+            return {day: this.toInteger(dateParts[0]), month: null, year: null};
+        } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
+            return {day: this.toInteger(dateParts[1]), month: this.toInteger(dateParts[0]), year: null};
+        } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+            return {day: this.toInteger(dateParts[2]), month: this.toInteger(dateParts[1]), year: this.toInteger(dateParts[0])};
+        }
+    }
+    return null;
+  }
+
 
 }

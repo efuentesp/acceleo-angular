@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild}                     from '@angular/core';
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+
 import { User } from '../../user/user.component.model';
 
 import { AportacionService }                                  from '../../aportacion/aportacion.component.service';
@@ -40,7 +42,8 @@ export class AportacionEditComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private aportacionService: AportacionService
-	,private cuentadeahorroService: CuentadeahorroService
+  ,private cuentadeahorroService: CuentadeahorroService
+  ,private parserFormatter: NgbDateParserFormatter
 ){
 
  	 this.filterInputCuentadeahorro.valueChanges.subscribe(busquedaCuentadeahorro => {
@@ -61,6 +64,10 @@ export class AportacionEditComponent implements OnInit {
     }  
 
 save(){
+
+   console.log ("Fecha: ", this.aportacion.fechaAux);
+   this.aportacion.fecha = this.parserFormatter.format(this.aportacion.fechaAux);
+   console.log ("Fecha Paseada Edit: ", this.aportacion.fecha);
    this.aportacionService.saveAportacion(this.aportacion).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Aportacion save successfully.', 'success');
@@ -121,7 +128,7 @@ delete(){
 
 		  if (cuentadeahorro.checked){
 		  this.cuentadeahorroService.setCuentadeahorro(cuentadeahorro);
-		  this.aportacion.cuentadeahorroId = cuentadeahorro.paraId;
+		  this.aportacion.cuentadeahorroId = cuentadeahorro.cuentadeahorroId;
 		  this.aportacion.cuentadeahorroItem = cuentadeahorro.numero;
 
 	    	}else{
@@ -135,7 +142,7 @@ loadItemCuentadeahorro(aportacion){
   this.cuentadeahorroService.getCuentadeahorroById(aportacion.cuentadeahorroId).subscribe(data => {
     if (data) {
       this.cuentadeahorro = data;
-      this.aportacion.cuentadeahorroItem = this.cuentadeahorro.cuentadeahorroItem;
+      this.aportacion.cuentadeahorroItem = this.cuentadeahorro.numero+"";
 
     }
     }, error => {

@@ -70,9 +70,12 @@ export class CuentadeahorroService {
     getCuentadeahorro(): Cuentadeahorro {
         var cuentadeahorro: Cuentadeahorro = {
 		numero: this.cuentadeahorro.numero, 
-		fechacontratacion: this.cuentadeahorro.fechacontratacion, 
 		fechadisponibilidad: this.cuentadeahorro.fechadisponibilidad, 
+		fechadisponibilidadAux: this.cuentadeahorro.fechadisponibilidadAux, 
+		fechacontratacion: this.cuentadeahorro.fechacontratacion, 
+		fechacontratacionAux: this.cuentadeahorro.fechacontratacionAux, 
 		fechavencimiento: this.cuentadeahorro.fechavencimiento, 
+		fechavencimientoAux: this.cuentadeahorro.fechavencimientoAux,  
 		tipoahorroId: this.cuentadeahorro.tipoahorroId,
 		tipoahorroItem: this.cuentadeahorro.tipoahorroItem,
 		cuentadeahorroId: this.cuentadeahorro.cuentadeahorroId,
@@ -81,14 +84,18 @@ export class CuentadeahorroService {
         return cuentadeahorro;
     }
 
-setCuentadeahorro(cuentadeahorro: Cuentadeahorro) {
+    setCuentadeahorro(cuentadeahorro: Cuentadeahorro) {
        
 		this.isCuentadeahorroFormValid = true;
-		this.cuentadeahorro.numero = cuentadeahorro.numero;    
-		this.cuentadeahorro.fechacontratacion = cuentadeahorro.fechacontratacion;    
-		this.cuentadeahorro.fechadisponibilidad = cuentadeahorro.fechadisponibilidad;    
-		this.cuentadeahorro.fechavencimiento = cuentadeahorro.fechavencimiento;    
+		this.cuentadeahorro.fechadisponibilidad = cuentadeahorro.fechadisponibilidad;  
+		this.cuentadeahorro.fechadisponibilidadAux = cuentadeahorro.fechadisponibilidadAux;  
+		this.cuentadeahorro.fechacontratacion = cuentadeahorro.fechacontratacion;  
+		this.cuentadeahorro.fechacontratacionAux = cuentadeahorro.fechacontratacionAux;  
+		this.cuentadeahorro.numero = cuentadeahorro.numero;  
+		this.cuentadeahorro.fechavencimiento = cuentadeahorro.fechavencimiento;  
+		this.cuentadeahorro.fechavencimientoAux = cuentadeahorro.fechavencimientoAux;  
 		this.cuentadeahorro.tipoahorroId = cuentadeahorro.tipoahorroId;
+		this.cuentadeahorro.tipoahorroItem = cuentadeahorro.tipoahorroItem;
 		this.cuentadeahorro.cuentadeahorroId = cuentadeahorro.cuentadeahorroId;
 		this.cuentadeahorro.cuentadeahorroItem = cuentadeahorro.cuentadeahorroItem;
 		this.validateCuentadeahorro();
@@ -104,10 +111,13 @@ setCuentadeahorro(cuentadeahorro: Cuentadeahorro) {
 
     clear() {
 
-			this.cuentadeahorro.numero = null;    
-			this.cuentadeahorro.fechacontratacion = '';    
-			this.cuentadeahorro.fechadisponibilidad = '';    
-			this.cuentadeahorro.fechavencimiento = '';    
+            this.cuentadeahorro.fechadisponibilidad = '';  
+            this.cuentadeahorro.fechadisponibilidadAux = null;    
+            this.cuentadeahorro.fechacontratacion = '';  
+            this.cuentadeahorro.fechacontratacionAux = null;    
+            this.cuentadeahorro.numero = null;    
+            this.cuentadeahorro.fechavencimiento = '';  
+            this.cuentadeahorro.fechavencimientoAux = null;    
 
 			this.cuentadeahorro.tipoahorroId = null;
 			this.cuentadeahorro.tipoahorroItem = null;

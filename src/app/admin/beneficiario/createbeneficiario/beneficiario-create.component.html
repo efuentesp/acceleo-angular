@@ -40,9 +40,16 @@
 						<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
 						<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="beneficiario.apellidomaterno" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group ">
 						<label class="control-label" for="fechanacimiento">Fecha de nacimiento<span class="required">*</span></label>
-						<input class="form-control col-md-12" #fechanacimiento="ngModel" id="fechanacimiento" name="fechanacimiento" maxlength="128" type="text" [(ngModel)]="beneficiario.fechanacimiento" required>
+						<div class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechanacimientoAux" [(ngModel)]="beneficiario.fechanacimientoAux" ngbDatepicker #fechanacimientoAux="ngbDatepicker" required>
+							<span class="input-group-btn">
+								<button class="btn btn-outline-secondary" (click)="fechanacimientoAux.toggle()" type="button">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="es">Genero<span class="required">*</span></label>		

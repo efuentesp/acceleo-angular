@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild}                     from '@angular/core';
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 import { CuentadeahorroService }                                  from '../../cuentadeahorro/cuentadeahorro.component.service';
 import { Cuentadeahorro }                                         from '../../cuentadeahorro/cuentadeahorro.component.model';
@@ -31,7 +32,8 @@ export class CuentadeahorroEditComponent implements OnInit {
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
-				private location: Location,
+        private location: Location,
+        private parserFormatter: NgbDateParserFormatter,
 				private cuentadeahorroService: CuentadeahorroService
 ){
 
@@ -48,6 +50,11 @@ export class CuentadeahorroEditComponent implements OnInit {
     }  
 
 save(){
+  
+  this.cuentadeahorro.fechacontratacion = this.parserFormatter.format(this.cuentadeahorro.fechacontratacionAux);
+	this.cuentadeahorro.fechavencimiento = this.parserFormatter.format(this.cuentadeahorro.fechavencimientoAux);
+  this.cuentadeahorro.fechadisponibilidad = this.parserFormatter.format(this.cuentadeahorro.fechadisponibilidadAux);
+  
    this.cuentadeahorroService.saveCuentadeahorro(this.cuentadeahorro).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Cuentadeahorro save successfully.', 'success');

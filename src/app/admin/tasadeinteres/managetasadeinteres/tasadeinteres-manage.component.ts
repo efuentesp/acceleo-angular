@@ -11,6 +11,7 @@ import { Tasadeinteres }                                         from '../../tas
 
 import { EmpresaService }                                  from '../../empresa/empresa.component.service';
 import { Empresa }                                         from '../../empresa/empresa.component.model';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
     selector: 'app-view',
@@ -80,19 +81,17 @@ export class TasadeinteresManageComponent implements OnInit {
       this.tasadeinteresService.getAllTasadeinteres().subscribe(data => {
         if (data) {
 
-          this.tasadeinteresList = data;
-
-          var datePipe = new DatePipe('en-US');
-    
-
-
+      this.tasadeinteresList = data;
 			this.tasadeinteresList.forEach(element => {
 
-        var fechainicioDate = datePipe.transform(element.fechafin, 'yyyy-MM-dd');
-        var fechafinDate  = datePipe.transform(element.fechainicio, 'yyyy-MM-dd');
-    
-        element.fechainicio = fechainicioDate;
-        element.fechafin = fechafinDate;
+        let datePipe     = new DatePipe('en-US');
+        let fechafinDate       = datePipe.transform(element.fechafin,    'yyyy-MM-dd');
+        let fechainicioDate    = datePipe.transform(element.fechainicio,  'yyyy-MM-dd');
+        
+        element.fechainicio      = fechainicioDate;
+        element.fechainicioAux   = this.parse(fechainicioDate);
+        element.fechafin         = fechafinDate;
+        element.fechafinAux      = this.parse(fechafinDate);
        
 				this.empresaService.getEmpresaById(element.empresaId).subscribe(dataAux => {
 					if (dataAux) {
@@ -170,4 +169,25 @@ export class TasadeinteresManageComponent implements OnInit {
     });
   }
 
+  // Parse to NgbDateStruct
+    isNumber(value: any): boolean {
+      return !isNaN(this.toInteger(value));
+  }
+ 
+  toInteger(value: any): number {
+      return parseInt(`${value}`, 10);
+  }
+  parse(value: string): NgbDateStruct {
+    if (value) {
+        const dateParts = value.trim().split('-');
+        if (dateParts.length === 1 && this.isNumber(dateParts[0])) {
+            return {day: this.toInteger(dateParts[0]), month: null, year: null};
+        } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
+            return {day: this.toInteger(dateParts[1]), month: this.toInteger(dateParts[0]), year: null};
+        } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+            return {day: this.toInteger(dateParts[2]), month: this.toInteger(dateParts[1]), year: this.toInteger(dateParts[0])};
+        }
+    }
+    return null;
+  }
 }

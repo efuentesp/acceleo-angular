@@ -70,8 +70,10 @@ export class TasadeinteresService {
     getTasadeinteres(): Tasadeinteres {
         var tasadeinteres: Tasadeinteres = {
 		fechainicio: this.tasadeinteres.fechainicio, 
+		fechainicioAux: this.tasadeinteres.fechainicioAux, 
 		tasa: this.tasadeinteres.tasa, 
 		fechafin: this.tasadeinteres.fechafin, 
+		fechafinAux: this.tasadeinteres.fechafinAux, 
 		empresaId: this.tasadeinteres.empresaId,
 		empresaItem: this.tasadeinteres.empresaItem,
 		tasadeinteresId: this.tasadeinteres.tasadeinteresId,
@@ -80,12 +82,14 @@ export class TasadeinteresService {
         return tasadeinteres;
     }
 
-setTasadeinteres(tasadeinteres: Tasadeinteres) {
+    setTasadeinteres(tasadeinteres: Tasadeinteres) {
        
 		this.isTasadeinteresFormValid = true;
-		this.tasadeinteres.fechainicio = tasadeinteres.fechainicio;    
-		this.tasadeinteres.tasa = tasadeinteres.tasa;    
-		this.tasadeinteres.fechafin = tasadeinteres.fechafin;    
+		this.tasadeinteres.fechainicio = tasadeinteres.fechainicio;  
+		this.tasadeinteres.fechainicioAux = tasadeinteres.fechainicioAux;  
+		this.tasadeinteres.tasa = tasadeinteres.tasa;  
+		this.tasadeinteres.fechafin = tasadeinteres.fechafin;  
+		this.tasadeinteres.fechafinAux = tasadeinteres.fechafinAux;  
 		this.tasadeinteres.empresaId = tasadeinteres.empresaId;
 		this.tasadeinteres.empresaItem = tasadeinteres.empresaItem;
 		this.tasadeinteres.tasadeinteresId = tasadeinteres.tasadeinteresId;
@@ -103,9 +107,11 @@ setTasadeinteres(tasadeinteres: Tasadeinteres) {
 
     clear() {
 
-			this.tasadeinteres.fechainicio = '';    
-			this.tasadeinteres.tasa = '';    
-			this.tasadeinteres.fechafin = '';    
+			this.tasadeinteres.fechainicio = '';  
+			this.tasadeinteres.fechainicioAux = null;    
+			this.tasadeinteres.tasa = '';  
+			this.tasadeinteres.fechafin = '';  
+			this.tasadeinteres.fechafinAux = null;    
 
 			this.tasadeinteres.empresaId = null;
 			this.tasadeinteres.empresaItem = null;

@@ -34,13 +34,25 @@
 							</span>
 						</div>
 					</div>
-				
-					<div class="input-group col-md-12">
+					<div class="form-group ">
 						<label class="control-label" for="fecha">Fecha<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #fecha="ngModel" id="fecha" name="fecha" maxlength="128" type="text" [(ngModel)]="aportacion.fecha" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #fecha="ngModel" id="fecha" name="fecha" maxlength="128" type="text" [(ngModel)]="aportacion.fecha" required>
-					</div>	
-				
+						<div  *ngIf="!flagDelete" class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechaAux" [(ngModel)]="aportacion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+							<span class="input-group-btn">
+								<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="flagDelete" class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechaAux" [(ngModel)]="aportacion.fechaAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
+							<span class="input-group-btn">
+								<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
 					<div class="input-group col-md-12">
 						<label class="control-label" for="concepto">Concepto<span class="required">*</span></label>
 						

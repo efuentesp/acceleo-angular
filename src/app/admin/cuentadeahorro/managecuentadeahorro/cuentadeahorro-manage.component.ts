@@ -8,6 +8,7 @@ import { User } from '../../user/user.component.model';
 
 import { CuentadeahorroService }                                  from '../../cuentadeahorro/cuentadeahorro.component.service';
 import { Cuentadeahorro }                                         from '../../cuentadeahorro/cuentadeahorro.component.model';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component ({
@@ -70,24 +71,22 @@ export class CuentadeahorroManageComponent implements OnInit {
 
           this.cuentadeahorroList = data;
 
-          
-        var datePipe = new DatePipe('en-US');
-
           this.cuentadeahorroList.forEach(element => {
 
-
-            var fechacontratacionDate = datePipe.transform(element.fechacontratacion, 'yyyy-MM-dd');
-            var fechadisponibilidadDate = datePipe.transform(element.fechadisponibilidad, 'yyyy-MM-dd');
-            var fechavencimientoDate = datePipe.transform(element.fechavencimiento, 'yyyy-MM-dd');
-    
-            element.fechacontratacion = fechacontratacionDate;
-            element.fechadisponibilidad = fechadisponibilidadDate;
-            element.fechavencimiento = fechavencimientoDate;
-
+            let datePipe     = new DatePipe('en-US');
+            let fechacontratacionDate       = datePipe.transform(element.fechacontratacion,    'yyyy-MM-dd');
+            let fechadisponibilidadaDate    = datePipe.transform(element.fechadisponibilidad,  'yyyy-MM-dd');
+            let fechavencimientoDate        = datePipe.transform(element.fechavencimiento,     'yyyy-MM-dd');
+           
+            element.fechacontratacion      = fechacontratacionDate;
+            element.fechacontratacionAux   = this.parse(fechacontratacionDate);
+            element.fechadisponibilidad    = fechadisponibilidadaDate;
+            element.fechadisponibilidadAux = this.parse(fechadisponibilidadaDate);
+            element.fechavencimiento       = fechavencimientoDate;
+            element.fechavencimientoAux    = this.parse(fechavencimientoDate);
 
             this.cuentadeahorroService.getCuentadeahorroById(element.cuentadeahorroId).subscribe(dataAux => {
         
-    
                 if (element.tipoahorroId == 'v'){
                     element.tipoahorroItem = 'Ahorro a la vista';
                 }
@@ -175,6 +174,28 @@ export class CuentadeahorroManageComponent implements OnInit {
         this.searchActive = true;
       }
     });
+  }
+
+  // Parse to NgbDateStruct
+    isNumber(value: any): boolean {
+      return !isNaN(this.toInteger(value));
+  }
+ 
+  toInteger(value: any): number {
+      return parseInt(`${value}`, 10);
+  }
+  parse(value: string): NgbDateStruct {
+    if (value) {
+        const dateParts = value.trim().split('-');
+        if (dateParts.length === 1 && this.isNumber(dateParts[0])) {
+            return {day: this.toInteger(dateParts[0]), month: null, year: null};
+        } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
+            return {day: this.toInteger(dateParts[1]), month: this.toInteger(dateParts[0]), year: null};
+        } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+            return {day: this.toInteger(dateParts[2]), month: this.toInteger(dateParts[1]), year: this.toInteger(dateParts[0])};
+        }
+    }
+    return null;
   }
 
 }

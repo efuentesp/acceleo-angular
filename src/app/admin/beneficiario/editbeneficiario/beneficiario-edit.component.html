@@ -55,9 +55,23 @@
 				
 					<div class="input-group col-md-12">
 						<label class="control-label" for="fechanacimiento">Fecha de nacimiento<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #fechanacimiento="ngModel" id="fechanacimiento" name="fechanacimiento" type="text" [(ngModel)]="beneficiario.fechanacimiento" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #fechanacimiento="ngModel" id="fechanacimiento" name="fechanacimiento" type="text" [(ngModel)]="beneficiario.fechanacimiento" required>
-					</div>	
+						<div  *ngIf="!flagDelete" class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechanacimientoAux" [(ngModel)]="beneficiario.fechanacimientoAux" ngbDatepicker #fechanacimientoAux="ngbDatepicker" required>
+							<span class="input-group-btn">
+								<button class="btn btn-outline-secondary" (click)="fechanacimientoAux.toggle()" type="button">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="flagDelete" class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechanacimientoAux" [(ngModel)]="beneficiario.fechanacimientoAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
+							<span class="input-group-btn">
+								<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>		
 				
 					<div class="input-group col-md-12">
 						<label class="control-label" for="es">Genero<span class="required">*</span></label>

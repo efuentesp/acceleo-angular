@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { BeneficiarioService }                                  from '../../beneficiario/beneficiario.component.service';
 import { Beneficiario }                                         from '../../beneficiario/beneficiario.component.model';
@@ -37,7 +38,8 @@ export class BeneficiarioCreateComponent implements OnInit {
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
-				private location: Location,
+                private location: Location,
+                private parserFormatter: NgbDateParserFormatter,
 				private beneficiarioService: BeneficiarioService
 	,private cuentadeahorroService: CuentadeahorroService
 ){
@@ -55,6 +57,8 @@ export class BeneficiarioCreateComponent implements OnInit {
     } 
 
 save(){
+
+   this.beneficiario.fechanacimiento = this.parserFormatter.format(this.beneficiario.fechanacimientoAux);
    this.beneficiarioService.saveBeneficiario(this.beneficiario).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Beneficiario save successfully.', 'success');

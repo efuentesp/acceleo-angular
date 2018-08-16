@@ -38,6 +38,8 @@ export class AportacionService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Aportaciom', aportacion);
+
 		if (!aportacion.aportacionId){
             return this.http.post(this.env.api + "/aportacion", aportacion, opts).pipe(map(res => res));
         }else{
@@ -69,6 +71,7 @@ export class AportacionService {
 
     getAportacion(): Aportacion {
         var aportacion: Aportacion = {
+        fechaAux: this.aportacion.fechaAux,   
 		fecha: this.aportacion.fecha, 
 		monto: this.aportacion.monto, 
 		cuentadeahorroId: this.aportacion.cuentadeahorroId,
@@ -83,7 +86,8 @@ export class AportacionService {
 
 setAportacion(aportacion: Aportacion) {
        
-		this.isAportacionFormValid = true;
+        this.isAportacionFormValid = true;
+        this.aportacion.fechaAux = aportacion.fechaAux;
 		this.aportacion.fecha = aportacion.fecha;    
 		this.aportacion.monto = aportacion.monto;    
 		this.aportacion.cuentadeahorroId = aportacion.cuentadeahorroId;
@@ -103,7 +107,7 @@ setAportacion(aportacion: Aportacion) {
     }
 
     clear() {
-
+            this.aportacion.fechaAux = null;   
 			this.aportacion.fecha = '';    
 			this.aportacion.monto = '';    
 

@@ -1,8 +1,11 @@
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class Aportacion {
 
 	aportacionId: number = null;
 	aportacionItem: string = '';
 
+	fechaAux: NgbDateStruct = null;
 	fecha: string = '';
 	monto: string = '';
 

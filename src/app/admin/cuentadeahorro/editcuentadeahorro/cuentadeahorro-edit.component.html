@@ -24,7 +24,7 @@
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #numero="ngModel" id="numero" name="numero" maxlength="128" type="number" [(ngModel)]="cuentadeahorro.numero" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="tipo">Tipo<span class="required">*</span></label>
 						
 						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="v" name="v" [(ngModel)]="cuentadeahorro.tipoahorroId"  disabled="true" disabled> Ahorro a la vista </div>		
@@ -46,23 +46,64 @@
 					</div>
 				
 					<div class="input-group col-md-12">
-						<label class="control-label" for="fechacontratacion">Fecha de contratacion<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #fechacontratacion="ngModel" id="fechacontratacion" name="fechacontratacion" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechacontratacion" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #fechacontratacion="ngModel" id="fechacontratacion" name="fechacontratacion" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechacontratacion" required>
-					</div>	
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="fechavencimiento">Fecha de vencimiento<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #fechavencimiento="ngModel" id="fechavencimiento" name="fechavencimiento" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechavencimiento" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #fechavencimiento="ngModel" id="fechavencimiento" name="fechavencimiento" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechavencimiento" required>
-					</div>	
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="fechadisponibilidad">Fecha de disponibilidad<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #fechadisponibilidad="ngModel" id="fechadisponibilidad" name="fechadisponibilidad" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechadisponibilidad" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #fechadisponibilidad="ngModel" id="fechadisponibilidad" name="fechadisponibilidad" maxlength="128" type="text" [(ngModel)]="cuentadeahorro.fechadisponibilidad" required>
-					</div>	
-				
+					<label class="control-label" for="fechacontratacion">Fecha de contratacion<span class="required">*</span></label>
+					<div  *ngIf="!flagDelete" class="input-group col-md-12">	
+						<input class="form-control" placeholder="yyyy-mm-dd" name="fechacontratacionAux" [(ngModel)]="cuentadeahorro.fechacontratacionAux" ngbDatepicker #fechacontratacionAux="ngbDatepicker" required>
+						<span class="input-group-btn">
+							<button class="btn btn-outline-secondary" (click)="fechacontratacionAux.toggle()" type="button">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</div>
+					<div *ngIf="flagDelete" class="input-group col-md-12">	
+						<input class="form-control" placeholder="yyyy-mm-dd" name="fechacontratacionAux" [(ngModel)]="cuentadeahorro.fechacontratacionAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
+						<span class="input-group-btn">
+							<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</div>
+				</div>	
+			
+				<div class="input-group col-md-12">
+					<label class="control-label" for="fechavencimiento">Fecha de vencimiento<span class="required">*</span></label>
+					<div  *ngIf="!flagDelete" class="input-group col-md-12">	
+						<input class="form-control" placeholder="yyyy-mm-dd" name="fechavencimientoAux" [(ngModel)]="cuentadeahorro.fechavencimientoAux" ngbDatepicker #fechavencimientoAux="ngbDatepicker" required>
+						<span class="input-group-btn">
+							<button class="btn btn-outline-secondary" (click)="fechavencimientoAux.toggle()" type="button">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</div>
+					<div *ngIf="flagDelete" class="input-group col-md-12">	
+						<input class="form-control" placeholder="yyyy-mm-dd" name="fechavencimientoAux" [(ngModel)]="cuentadeahorro.fechavencimientoAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
+						<span class="input-group-btn">
+							<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</div>
+				</div>	
+			
+				<div class="input-group col-md-12">
+					<label class="control-label" for="fechadisponibilidad">Fecha de disponibilidad<span class="required">*</span></label>
+					<div  *ngIf="!flagDelete" class="input-group col-md-12">	
+						<input class="form-control" placeholder="yyyy-mm-dd" name="fechadisponibilidadAux" [(ngModel)]="cuentadeahorro.fechadisponibilidadAux" ngbDatepicker #fechadisponibilidadAux="ngbDatepicker" required>
+						<span class="input-group-btn">
+							<button class="btn btn-outline-secondary" (click)="fechadisponibilidadAux.toggle()" type="button">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</div>
+					<div *ngIf="flagDelete" class="input-group col-md-12">	
+						<input class="form-control" placeholder="yyyy-mm-dd" name="fechadisponibilidadAux" [(ngModel)]="cuentadeahorro.fechadisponibilidadAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
+						<span class="input-group-btn">
+							<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</div>
+				</div>
 
 
 

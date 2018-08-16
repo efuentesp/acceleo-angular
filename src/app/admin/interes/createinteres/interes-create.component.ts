@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { InteresService }                                  from '../../interes/interes.component.service';
 import { Interes }                                         from '../../interes/interes.component.model';
@@ -37,7 +38,8 @@ export class InteresCreateComponent implements OnInit {
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
-				private location: Location,
+                private location: Location,
+                private parserFormatter: NgbDateParserFormatter,
 				private interesService: InteresService
 	,private cuentadeahorroService: CuentadeahorroService
 ){
@@ -55,6 +57,8 @@ export class InteresCreateComponent implements OnInit {
     } 
 
 save(){
+
+   this.interes.fecha = this.parserFormatter.format(this.interes.fechaAux);
    this.interesService.saveInteres(this.interes).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Interes save successfully.', 'success');
