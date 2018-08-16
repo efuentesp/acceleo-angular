@@ -77,8 +77,6 @@ export class SocioService {
 		generoItem: this.socio.generoItem,
 		telefono: this.socio.telefono,
 		correo: this.socio.correo,
-		telefono: this.socio.telefono,
-		correo: this.socio.correo,
 		tipoempleadoId: this.socio.tipoempleadoId,
 		tipoempleadoItem: this.socio.tipoempleadoItem,
 		departamentoId: this.socio.departamentoId,
@@ -100,8 +98,6 @@ setSocio(socio: Socio) {
 		this.socio.apellidomaterno = socio.apellidomaterno;    
 		this.socio.generoId = socio.generoId;
 		this.socio.generoItem = socio.generoItem;
-		this.socio.telefono = socio.telefono;
-		this.socio.correo = socio.correo;
 		this.socio.telefono = socio.telefono;
 		this.socio.correo = socio.correo;
 		this.socio.tipoempleadoId = socio.tipoempleadoId;
@@ -132,8 +128,6 @@ setSocio(socio: Socio) {
 
 			this.socio.generoId = null;
 			this.socio.generoItem = null;
-			this.socio.telefono = '';
-			this.socio.correo = '';
 			this.socio.telefono = '';
 			this.socio.correo = '';
 			this.socio.tipoempleadoId = null;
