@@ -3,19 +3,19 @@ export class Socio {
 	socioId: number = null;
 	socioItem: string = '';
 
-	apellidomaterno: string = '';
+	apellidopaterno: string = '';
 	numero: number = null;
 	nombre: string = '';
-	telefono: string = '';
-	apellidopaterno: string = '';
-	correo: string = '';
+	apellidomaterno: string = '';
 
 	generoId: string = '';
 	generoItem: string = '';	
+	telefono: string = '';
+	correo: string = '';
 	tipoempleadoId: string = '';
 	tipoempleadoItem: string = '';	
-	perteneceId: number = null;
-	perteneceItem: string = '';
-	laboraId: number = null;
-	laboraItem: string = '';
+	departamentoId: number = null;
+	departamentoItem: string = '';
+	plantaId: number = null;
+	plantaItem: string = '';
 }

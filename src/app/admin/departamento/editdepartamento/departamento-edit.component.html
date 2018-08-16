@@ -35,13 +35,13 @@
 						</div>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="nombredepto">Departamento<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #nombredepto="ngModel" id="nombredepto" name="nombredepto" type="text" [(ngModel)]="departamento.nombredepto" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #nombredepto="ngModel" id="nombredepto" name="nombredepto" type="text" [(ngModel)]="departamento.nombredepto" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="representante">Respresentante<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #representante="ngModel" id="representante" name="representante" type="text" [(ngModel)]="departamento.representante" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #representante="ngModel" id="representante" name="representante" type="text" [(ngModel)]="departamento.representante" required>

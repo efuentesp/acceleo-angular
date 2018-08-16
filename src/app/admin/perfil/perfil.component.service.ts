@@ -71,9 +71,8 @@ export class PerfilService {
         var perfil: Perfil = {
 		nip: this.perfil.nip, 
 		usuario: this.perfil.usuario, 
-		// Modal
-		deId: this.perfil.deId,
-		deItem: this.perfil.deItem,
+		socioId: this.perfil.socioId,
+		socioItem: this.perfil.socioItem,
 		perfilId: this.perfil.perfilId,
 		perfilItem: this.perfil.perfilItem	
         };
@@ -85,8 +84,8 @@ setPerfil(perfil: Perfil) {
 		this.isPerfilFormValid = true;
 		this.perfil.nip = perfil.nip;    
 		this.perfil.usuario = perfil.usuario;    
-		this.perfil.deId = perfil.deId;
-		this.perfil.deItem = perfil.deItem;
+		this.perfil.socioId = perfil.socioId;
+		this.perfil.socioItem = perfil.socioItem;
 		this.perfil.perfilId = perfil.perfilId;
 		this.perfil.perfilItem = perfil.perfilItem;
 		this.validatePerfil();
@@ -105,8 +104,8 @@ setPerfil(perfil: Perfil) {
 			this.perfil.nip = '';    
 			this.perfil.usuario = '';    
 
-			this.perfil.deId = null;
-			this.perfil.deItem = null;
+			this.perfil.socioId = null;
+			this.perfil.socioItem = null;
 			this.perfil.perfilId = null;
 			this.perfil.perfilItem = null;
     }

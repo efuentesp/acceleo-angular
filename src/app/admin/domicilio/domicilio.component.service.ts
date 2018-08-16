@@ -69,13 +69,12 @@ export class DomicilioService {
 
     getDomicilio(): Domicilio {
         var domicilio: Domicilio = {
+		cp: this.domicilio.cp, 
+		ciudad: this.domicilio.ciudad, 
 		estado: this.domicilio.estado, 
 		calle: this.domicilio.calle, 
-		ciudad: this.domicilio.ciudad, 
-		cp: this.domicilio.cp, 
-		// Modal
-		deId: this.domicilio.deId,
-		deItem: this.domicilio.deItem,
+		socioId: this.domicilio.socioId,
+		socioItem: this.domicilio.socioItem,
 		domicilioId: this.domicilio.domicilioId,
 		domicilioItem: this.domicilio.domicilioItem	
         };
@@ -85,12 +84,12 @@ export class DomicilioService {
 setDomicilio(domicilio: Domicilio) {
        
 		this.isDomicilioFormValid = true;
+		this.domicilio.cp = domicilio.cp;    
+		this.domicilio.ciudad = domicilio.ciudad;    
 		this.domicilio.estado = domicilio.estado;    
 		this.domicilio.calle = domicilio.calle;    
-		this.domicilio.ciudad = domicilio.ciudad;    
-		this.domicilio.cp = domicilio.cp;    
-		this.domicilio.deId = domicilio.deId;
-		this.domicilio.deItem = domicilio.deItem;
+		this.domicilio.socioId = domicilio.socioId;
+		this.domicilio.socioItem = domicilio.socioItem;
 		this.domicilio.domicilioId = domicilio.domicilioId;
 		this.domicilio.domicilioItem = domicilio.domicilioItem;
 		this.validateDomicilio();
@@ -106,13 +105,13 @@ setDomicilio(domicilio: Domicilio) {
 
     clear() {
 
-			this.domicilio.estado = '';    
-			this.domicilio.calle = null;    
-			this.domicilio.ciudad = '';    
 			this.domicilio.cp = '';    
+			this.domicilio.ciudad = '';    
+			this.domicilio.estado = '';    
+			this.domicilio.calle = '';    
 
-			this.domicilio.deId = null;
-			this.domicilio.deItem = null;
+			this.domicilio.socioId = null;
+			this.domicilio.socioItem = null;
 			this.domicilio.domicilioId = null;
 			this.domicilio.domicilioItem = null;
     }

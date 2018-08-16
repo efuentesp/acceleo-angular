@@ -17,20 +17,20 @@
 			<form #empresaForm="ngForm" id="empresaForm" class="form-horizontal form-label-left" data-parsley-validate>
 				<input class="form-control" #empresaId="ngModel" empresaId="empresaId" name="empresaId" type="hidden" [(ngModel)]="empresa.empresaId">
 
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="clave">Clave<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #clave="ngModel" id="clave" name="clave" type="text" [(ngModel)]="empresa.clave" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #clave="ngModel" id="clave" name="clave" type="text" [(ngModel)]="empresa.clave" required>
 					</div>
 				
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="razonsocial">Razon Social<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #razonsocial="ngModel" id="razonsocial" name="razonsocial" type="text" [(ngModel)]="empresa.razonsocial" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #razonsocial="ngModel" id="razonsocial" name="razonsocial" type="text" [(ngModel)]="empresa.razonsocial" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="nombrecorto">Nombre Corto<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #nombrecorto="ngModel" id="nombrecorto" name="nombrecorto" type="text" [(ngModel)]="empresa.nombrecorto" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #nombrecorto="ngModel" id="nombrecorto" name="nombrecorto" type="text" [(ngModel)]="empresa.nombrecorto" required>

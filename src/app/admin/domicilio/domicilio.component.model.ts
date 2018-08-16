@@ -3,11 +3,11 @@ export class Domicilio {
 	domicilioId: number = null;
 	domicilioItem: string = '';
 
-	estado: string = '';
-	calle: number = null;
-	ciudad: string = '';
 	cp: string = '';
+	ciudad: string = '';
+	estado: string = '';
+	calle: string = '';
 
-	deId: number = null;
-	deItem: string = '';
+	socioId: number = null;
+	socioItem: string = '';
 }

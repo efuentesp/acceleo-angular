@@ -42,15 +42,16 @@ export class SocioManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public perteneceList: Departamento [];
-    public pertenece: Departamento;
-	public perteneceAux: Departamento;
-	public laboraList: Planta [];
-    public labora: Planta;
-	public laboraAux: Planta;
+	public departamentoList: Departamento [];
+    public departamento: Departamento;
+	public departamentoAux: Departamento;
 
 	public busquedaDepartamento='';
 	filterInputDepartamento = new FormControl();
+	public plantaList: Planta [];
+    public planta: Planta;
+	public plantaAux: Planta;
+
 	public busquedaPlanta='';
 	filterInputPlanta = new FormControl();
 
@@ -58,8 +59,8 @@ export class SocioManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private socioService: SocioService
-	,private perteneceService: DepartamentoService
-	,private laboraService: PlantaService
+	,private departamentoService: DepartamentoService
+	,private plantaService: PlantaService
 ){
 
 
@@ -94,20 +95,28 @@ export class SocioManageComponent implements OnInit {
           this.socioList = data;
 
 			this.socioList.forEach(element => {
-				this.perteneceService.getDepartamentoById(element.perteneceId).subscribe(dataAux => {
+				this.departamentoService.getDepartamentoById(element.departamentoId).subscribe(dataAux => {
 					if (dataAux) {
-						this.perteneceAux = dataAux;
-						
+						this.departamentoAux = dataAux;
+						element.departamentoItem = this.departamentoAux.nombredepto;
 
 
 
 
-	      if (element.generoId == 'm'){
+
+
+
+
+
+	      if (element.generoId == 'mas'){
 	          element.generoItem = 'Masculino';
 	      }
-	      if (element.generoId == 'f'){
+	      if (element.generoId == 'fem'){
 	          element.generoItem = 'Femenino';
 	      }
+
+
+
 
 
 
@@ -123,6 +132,14 @@ export class SocioManageComponent implements OnInit {
 	      if (element.tipoempleadoId == 'b'){
 	          element.tipoempleadoItem = 'Becario';
 	      }
+
+
+
+
+
+
+
+
 
 
 
@@ -135,20 +152,28 @@ export class SocioManageComponent implements OnInit {
 		});
 
 			this.socioList.forEach(element => {
-				this.laboraService.getPlantaById(element.laboraId).subscribe(dataAux => {
+				this.plantaService.getPlantaById(element.plantaId).subscribe(dataAux => {
 					if (dataAux) {
-						this.laboraAux = dataAux;
-						
+						this.plantaAux = dataAux;
+						element.plantaItem = this.plantaAux.nombreplanta;
 
 
 
 
-	      if (element.generoId == 'm'){
+
+
+
+
+
+	      if (element.generoId == 'mas'){
 	          element.generoItem = 'Masculino';
 	      }
-	      if (element.generoId == 'f'){
+	      if (element.generoId == 'fem'){
 	          element.generoItem = 'Femenino';
 	      }
+
+
+
 
 
 
@@ -164,6 +189,14 @@ export class SocioManageComponent implements OnInit {
 	      if (element.tipoempleadoId == 'b'){
 	          element.tipoempleadoItem = 'Becario';
 	      }
+
+
+
+
+
+
+
+
 
 
 

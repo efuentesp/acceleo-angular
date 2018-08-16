@@ -6,6 +6,6 @@ export class Perfil {
 	nip: string = '';
 	usuario: string = '';
 
-	deId: number = null;
-	deItem: string = '';
+	socioId: number = null;
+	socioItem: string = '';
 }

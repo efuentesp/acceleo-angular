@@ -47,15 +47,11 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%">Numero de socio</th>
-												<th style="max-width:10%">Nombre</th>
+												<th style="max-width:10%">Numero</th>
+												<th style="max-width:10%">Socio</th>
 												<th style="max-width:10%">Apellido Paterno</th>
 												<th style="max-width:10%">Apellido Materno</th>
-												<th style="max-width:10%" hidden="true">Género</th>
-												<th style="max-width:10%">Género</th>
-												<th style="max-width:10%">Número telefónico</th>
-												<th style="max-width:10%" hidden="true">Tipo empleado</th>
-												<th style="max-width:10%">Tipo empleado</th>
+												<th style="max-width:10%">Numero telefonico</th>
 												<th style="max-width:10%" hidden="true">Departamento</th>
 												<th style="max-width:10%">Departamento</th>
 												<th style="max-width:10%" hidden="true">Planta</th>
@@ -64,21 +60,16 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!--<tr *ngFor="let socio of socioList | filterSocio: busquedaSocio | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSocio'}; let i = index" (click)="setClickedRowSocio(i, socio)" >-->
-										<tr *ngFor="let socio of socioList | filterSocio: paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSocio'}; let i = index" (click)="setClickedRowSocio(i, socio)" >
+										<tr *ngFor="let socio of socioList | filterSocio: busquedaSocio | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSocio'}; let i = index" (click)="setClickedRowSocio(i, socio)" >
 												<td  style="max-width: 10%">{{socio.numero}}</td>
 												<td  style="max-width: 10%">{{socio.nombre}}</td>
 												<td  style="max-width: 10%">{{socio.apellidopaterno}}</td>
 												<td  style="max-width: 10%">{{socio.apellidomaterno}}</td>
-												<td  style="max-width: 10%" hidden="true">{{socio.esId}}</td>
-												<td  style="max-width: 10%">{{socio.esItem}}</td>
 												<td  style="max-width: 10%">{{socio.telefono}}</td>
-												<td  style="max-width: 10%" hidden="true">{{socio.tipoId}}</td>
-												<td  style="max-width: 10%">{{socio.tipoItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{socio.perteneceId}}</td>
-												<td  style="max-width: 10%">{{socio.perteneceItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{socio.laboraId}}</td>
-												<td  style="max-width: 10%">{{socio.laboraItem}}</td>
+												<td  style="max-width: 10%" hidden="true">{{socio.departamentoId}}</td>
+												<td  style="max-width: 10%">{{socio.departamentoItem}}</td>
+												<td  style="max-width: 10%" hidden="true">{{socio.plantaId}}</td>
+												<td  style="max-width: 10%">{{socio.plantaItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(socio)"><span class="fa fa-pencil"></span></button>

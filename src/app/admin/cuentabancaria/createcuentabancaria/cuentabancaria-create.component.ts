@@ -27,9 +27,9 @@ export class CuentabancariaCreateComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public deList: Socio [];
-    public de: Socio;
-    public deAux: Socio;
+	public socioList: Socio [];
+    public socio: Socio;
+    public socioAux: Socio;
 
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
@@ -39,7 +39,7 @@ export class CuentabancariaCreateComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private cuentabancariaService: CuentabancariaService
-	,private deService: SocioService
+	,private socioService: SocioService
 ){
   	 this.filterInputSocio.valueChanges.subscribe(busquedaSocio => {
      this.busquedaSocio = busquedaSocio;
@@ -50,7 +50,7 @@ export class CuentabancariaCreateComponent implements OnInit {
 		this.cuentabancariaService.clear();
         this.cuentabancaria = new Cuentabancaria;
 
-		this.loadDes();
+		this.loadSocios();
        
     } 
 
@@ -68,30 +68,32 @@ save(){
 }
 
 
-	loadDes(){
-  		this.deService.getAllSocio().subscribe(data => {
+	loadSocios(){
+  		this.socioService.getAllSocio().subscribe(data => {
     	if (data) {
       	
-		this.deList = data;
+		this.socioList = data;
 // Cambios por cada modal
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Socios.', 'error');
   	});
+
+
+
 }
 
- setClickedRowDe(index,de){
+ setClickedRowSocio(index,socio){
 	      
-		  de.checked = !de.checked;
-		  if (de.checked){
-		  this.deService.setSocio(de);
-		  this.cuentabancaria.deId = de.deId;
-		  //this.cuentabancaria.deItem = de.Item;
-
+		  socio.checked = !socio.checked;
+		  if (socio.checked){
+		  this.socioService.setSocio(socio);
+		  this.cuentabancaria.socioId = socio.socioId;
+		  this.cuentabancaria.socioItem = socio.numero;
 	    	}else{
-            this.deService.clear();
-			this.cuentabancaria.deId = null;
-		    this.cuentabancaria.deItem = "";
+            this.socioService.clear();
+			this.cuentabancaria.socioId = null;
+		    this.cuentabancaria.socioItem = "";
 		}
  }
 

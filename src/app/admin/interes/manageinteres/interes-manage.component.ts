@@ -3,7 +3,7 @@ import { Router, ActivatedRoute }                          from '@angular/router
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 
 import { InteresService }                                  from '../../interes/interes.component.service';
@@ -40,9 +40,9 @@ export class InteresManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public paraList: Cuentadeahorro [];
-    public para: Cuentadeahorro;
-	public paraAux: Cuentadeahorro;
+	public cuentadeahorroList: Cuentadeahorro [];
+    public cuentadeahorro: Cuentadeahorro;
+	public cuentadeahorroAux: Cuentadeahorro;
 
 	public busquedaCuentadeahorro='';
 	filterInputCuentadeahorro = new FormControl();
@@ -51,7 +51,7 @@ export class InteresManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private interesService: InteresService
-	,private paraService: CuentadeahorroService
+	,private cuentadeahorroService: CuentadeahorroService
 ){
 
 
@@ -80,19 +80,22 @@ export class InteresManageComponent implements OnInit {
       this.interesService.getAllInteres().subscribe(data => {
         if (data) {
 
+          var datePipe = new DatePipe('en-US');
           this.interesList = data;
 
 			this.interesList.forEach(element => {
-				this.paraService.getCuentadeahorroById(element.paraId).subscribe(dataAux => {
+        
+        var fechaDate = datePipe.transform(element.fecha, 'yyyy-MM-dd');
+    
+        element.fecha = fechaDate;
+
+
+				this.cuentadeahorroService.getCuentadeahorroById(element.cuentadeahorroId).subscribe(dataAux => {
 					if (dataAux) {
-						this.paraAux = dataAux;
-						
-
-
-
-
-
-
+            this.cuentadeahorroAux = dataAux;
+            
+            console.log ("Numero de Cuenta: ", this.cuentadeahorroAux.numero+"");
+						element.cuentadeahorroItem = this.cuentadeahorroAux.numero+"";
 
 				}	
 			});	
@@ -125,6 +128,7 @@ export class InteresManageComponent implements OnInit {
 
   // Select row
   setClickedRowInteres(index, interes){
+    console.log('El valor seleccionado: ', interes.cuentadeahorroItem);
     this.interesService.setInteres(interes);
     this.interesService.setEdit(true);
     this.interesService.setDelete(false);

@@ -3,9 +3,9 @@ export class Interes {
 	interesId: number = null;
 	interesItem: string = '';
 
-	monto: number = null;
 	fecha: string = '';
+	monto: string = '';
 
-	paraId: number = null;
-	paraItem: string = '';
+	cuentadeahorroId: number = null;
+	cuentadeahorroItem: string = '';
 }

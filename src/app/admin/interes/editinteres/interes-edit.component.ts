@@ -30,8 +30,8 @@ export class InteresEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public paraList: Cuentadeahorro;
-    public para: Cuentadeahorro;
+	public cuentadeahorroList: Cuentadeahorro;
+    public cuentadeahorro: Cuentadeahorro;
 
 	public busquedaCuentadeahorro='';
 	filterInputCuentadeahorro = new FormControl();
@@ -40,7 +40,7 @@ export class InteresEditComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private interesService: InteresService
-	,private paraService: CuentadeahorroService
+	,private cuentadeahorroService: CuentadeahorroService
 ){
 
  	 this.filterInputCuentadeahorro.valueChanges.subscribe(busquedaCuentadeahorro => {
@@ -55,8 +55,8 @@ export class InteresEditComponent implements OnInit {
         this.interes = this.interesService.getInteres();
         this.flagDelete = this.interesService.getDelete();
         
-		this.loadParas();
-		this.loadItemPara(this.interes);
+		this.loadCuentadeahorros();
+		this.loadItemCuentadeahorro(this.interes);
 
     }  
 
@@ -105,39 +105,39 @@ delete(){
   });
 }
 
-	loadParas(){
-  		this.paraService.getAllCuentadeahorro().subscribe(data => {
+	loadCuentadeahorros(){
+  		this.cuentadeahorroService.getAllCuentadeahorro().subscribe(data => {
     	if (data) {
-      	this.paraList = data;
+      	this.cuentadeahorroList = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Cuentadeahorros.', 'error');
   	});
 }
 
- setClickedRowPara(index,para){
+ setClickedRowCuentadeahorro(index,cuentadeahorro){
 	      
-		  para.checked = !para.checked;
+		  cuentadeahorro.checked = !cuentadeahorro.checked;
 
-		  if (para.checked){
-		  this.paraService.setCuentadeahorro(para);
-		  this.interes.paraId = para.paraId;
-		  //this.interes.paraItem = para.Iem;
+		  if (cuentadeahorro.checked){
+		  this.cuentadeahorroService.setCuentadeahorro(cuentadeahorro);
+		  this.interes.cuentadeahorroId = cuentadeahorro.cuentadeahorroId;
+		  this.interes.cuentadeahorroItem = cuentadeahorro.numero+"";
 	    	}else{
-            this.paraService.clear();
-			this.interes.paraId = null;
-		    this.interes.paraItem = "";
+            this.cuentadeahorroService.clear();
+			this.interes.cuentadeahorroId = null;
+		    this.interes.cuentadeahorroItem = "";
 		}
 }
 
-loadItemPara(interes){
-  this.paraService.getCuentadeahorroById(interes.paraId).subscribe(data => {
+loadItemCuentadeahorro(interes){
+  this.cuentadeahorroService.getCuentadeahorroById(interes.cuentadeahorroId).subscribe(data => {
     if (data) {
-      this.para = data;
-      //this.interes.paraItem = this.para.Item;
+      this.cuentadeahorro = data;
+      this.interes.cuentadeahorroItem = this.cuentadeahorro.numero+"";
     }
     }, error => {
-    swal('Error...', 'An error occurred while calling the paras.', 'error');
+    swal('Error...', 'An error occurred while calling the cuentadeahorros.', 'error');
   });
 
 }

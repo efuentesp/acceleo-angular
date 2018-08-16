@@ -6,8 +6,8 @@ export class Cuentabancaria {
 	cuenta: number = null;
 	clabe: number = null;
 
-	deId: number = null;
-	deItem: string = '';
+	socioId: number = null;
+	socioItem: string = '';
 	bancoId: string = '';
 	bancoItem: string = '';	
 }

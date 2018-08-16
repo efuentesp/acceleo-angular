@@ -71,10 +71,8 @@ export class CuentabancariaService {
         var cuentabancaria: Cuentabancaria = {
 		cuenta: this.cuentabancaria.cuenta, 
 		clabe: this.cuentabancaria.clabe, 
-		// Modal
-		deId: this.cuentabancaria.deId,
-		deItem: this.cuentabancaria.deItem,
-		// Radio
+		socioId: this.cuentabancaria.socioId,
+		socioItem: this.cuentabancaria.socioItem,
 		bancoId: this.cuentabancaria.bancoId,
 		bancoItem: this.cuentabancaria.bancoItem,
 		cuentabancariaId: this.cuentabancaria.cuentabancariaId,
@@ -88,9 +86,10 @@ setCuentabancaria(cuentabancaria: Cuentabancaria) {
 		this.isCuentabancariaFormValid = true;
 		this.cuentabancaria.cuenta = cuentabancaria.cuenta;    
 		this.cuentabancaria.clabe = cuentabancaria.clabe;    
-		this.cuentabancaria.deId = cuentabancaria.deId;
-		this.cuentabancaria.deItem = cuentabancaria.deItem;
+		this.cuentabancaria.socioId = cuentabancaria.socioId;
+		this.cuentabancaria.socioItem = cuentabancaria.socioItem;
 		this.cuentabancaria.bancoId = cuentabancaria.bancoId;
+		this.cuentabancaria.bancoItem = cuentabancaria.bancoItem;
 		this.cuentabancaria.cuentabancariaId = cuentabancaria.cuentabancariaId;
 		this.cuentabancaria.cuentabancariaItem = cuentabancaria.cuentabancariaItem;
 		this.validateCuentabancaria();
@@ -109,8 +108,8 @@ setCuentabancaria(cuentabancaria: Cuentabancaria) {
 			this.cuentabancaria.cuenta = null;    
 			this.cuentabancaria.clabe = null;    
 
-			this.cuentabancaria.deId = null;
-			this.cuentabancaria.deItem = null;
+			this.cuentabancaria.socioId = null;
+			this.cuentabancaria.socioItem = null;
 			this.cuentabancaria.bancoId = null;
 			this.cuentabancaria.bancoItem = null;
 			this.cuentabancaria.cuentabancariaId = null;

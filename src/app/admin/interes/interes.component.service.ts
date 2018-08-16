@@ -69,11 +69,10 @@ export class InteresService {
 
     getInteres(): Interes {
         var interes: Interes = {
-		monto: this.interes.monto, 
 		fecha: this.interes.fecha, 
-		// Modal
-		paraId: this.interes.paraId,
-		paraItem: this.interes.paraItem,
+		monto: this.interes.monto, 
+		cuentadeahorroId: this.interes.cuentadeahorroId,
+		cuentadeahorroItem: this.interes.cuentadeahorroItem,
 		interesId: this.interes.interesId,
 		interesItem: this.interes.interesItem	
         };
@@ -83,10 +82,10 @@ export class InteresService {
 setInteres(interes: Interes) {
        
 		this.isInteresFormValid = true;
-		this.interes.monto = interes.monto;    
 		this.interes.fecha = interes.fecha;    
-		this.interes.paraId = interes.paraId;
-		this.interes.paraItem = interes.paraItem;
+		this.interes.monto = interes.monto;    
+		this.interes.cuentadeahorroId = interes.cuentadeahorroId;
+		this.interes.cuentadeahorroItem = interes.cuentadeahorroItem;
 		this.interes.interesId = interes.interesId;
 		this.interes.interesItem = interes.interesItem;
 		this.validateInteres();
@@ -102,11 +101,11 @@ setInteres(interes: Interes) {
 
     clear() {
 
-			this.interes.monto = null;    
 			this.interes.fecha = '';    
+			this.interes.monto = '';    
 
-			this.interes.paraId = null;
-			this.interes.paraItem = null;
+			this.interes.cuentadeahorroId = null;
+			this.interes.cuentadeahorroItem = null;
 			this.interes.interesId = null;
 			this.interes.interesItem = null;
     }

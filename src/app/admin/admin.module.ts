@@ -23,13 +23,6 @@ import { AuthorityManageComponent } from './authority/manageAuthority/manage-aut
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
   
-import { TasadeinteresManageComponent } from './tasadeinteres/managetasadeinteres/tasadeinteres-manage.component';
-import { TasadeinteresCreateComponent } from './tasadeinteres/createtasadeinteres/tasadeinteres-create.component';
-import { TasadeinteresEditComponent } from './tasadeinteres/edittasadeinteres/tasadeinteres-edit.component';
-import { SearchTasadeinteresPipe } from './pipe/tasadeinteres.filter.pipe';
-import { TasadeinteresService } from './tasadeinteres/tasadeinteres.component.service';
-
-  
 import { PlantaManageComponent } from './planta/manageplanta/planta-manage.component';
 import { PlantaCreateComponent } from './planta/createplanta/planta-create.component';
 import { PlantaEditComponent } from './planta/editplanta/planta-edit.component';
@@ -37,11 +30,18 @@ import { SearchPlantaPipe } from './pipe/planta.filter.pipe';
 import { PlantaService } from './planta/planta.component.service';
 
   
-import { CuentadeahorroManageComponent } from './cuentadeahorro/managecuentadeahorro/cuentadeahorro-manage.component';
-import { CuentadeahorroCreateComponent } from './cuentadeahorro/createcuentadeahorro/cuentadeahorro-create.component';
-import { CuentadeahorroEditComponent } from './cuentadeahorro/editcuentadeahorro/cuentadeahorro-edit.component';
-import { SearchCuentadeahorroPipe } from './pipe/cuentadeahorro.filter.pipe';
-import { CuentadeahorroService } from './cuentadeahorro/cuentadeahorro.component.service';
+import { AportacionManageComponent } from './aportacion/manageaportacion/aportacion-manage.component';
+import { AportacionCreateComponent } from './aportacion/createaportacion/aportacion-create.component';
+import { AportacionEditComponent } from './aportacion/editaportacion/aportacion-edit.component';
+import { SearchAportacionPipe } from './pipe/aportacion.filter.pipe';
+import { AportacionService } from './aportacion/aportacion.component.service';
+
+  
+import { InteresManageComponent } from './interes/manageinteres/interes-manage.component';
+import { InteresCreateComponent } from './interes/createinteres/interes-create.component';
+import { InteresEditComponent } from './interes/editinteres/interes-edit.component';
+import { SearchInteresPipe } from './pipe/interes.filter.pipe';
+import { InteresService } from './interes/interes.component.service';
 
   
 import { EmpresaManageComponent } from './empresa/manageempresa/empresa-manage.component';
@@ -58,11 +58,53 @@ import { SearchDepartamentoPipe } from './pipe/departamento.filter.pipe';
 import { DepartamentoService } from './departamento/departamento.component.service';
 
   
-import { AportacionManageComponent } from './aportacion/manageaportacion/aportacion-manage.component';
-import { AportacionCreateComponent } from './aportacion/createaportacion/aportacion-create.component';
-import { AportacionEditComponent } from './aportacion/editaportacion/aportacion-edit.component';
-import { SearchAportacionPipe } from './pipe/aportacion.filter.pipe';
-import { AportacionService } from './aportacion/aportacion.component.service';
+import { CuentadeahorroManageComponent } from './cuentadeahorro/managecuentadeahorro/cuentadeahorro-manage.component';
+import { CuentadeahorroCreateComponent } from './cuentadeahorro/createcuentadeahorro/cuentadeahorro-create.component';
+import { CuentadeahorroEditComponent } from './cuentadeahorro/editcuentadeahorro/cuentadeahorro-edit.component';
+import { SearchCuentadeahorroPipe } from './pipe/cuentadeahorro.filter.pipe';
+import { CuentadeahorroService } from './cuentadeahorro/cuentadeahorro.component.service';
+
+  
+import { BeneficiarioManageComponent } from './beneficiario/managebeneficiario/beneficiario-manage.component';
+import { BeneficiarioCreateComponent } from './beneficiario/createbeneficiario/beneficiario-create.component';
+import { BeneficiarioEditComponent } from './beneficiario/editbeneficiario/beneficiario-edit.component';
+import { SearchBeneficiarioPipe } from './pipe/beneficiario.filter.pipe';
+import { BeneficiarioService } from './beneficiario/beneficiario.component.service';
+
+  
+import { TasadeinteresManageComponent } from './tasadeinteres/managetasadeinteres/tasadeinteres-manage.component';
+import { TasadeinteresCreateComponent } from './tasadeinteres/createtasadeinteres/tasadeinteres-create.component';
+import { TasadeinteresEditComponent } from './tasadeinteres/edittasadeinteres/tasadeinteres-edit.component';
+import { SearchTasadeinteresPipe } from './pipe/tasadeinteres.filter.pipe';
+import { TasadeinteresService } from './tasadeinteres/tasadeinteres.component.service';
+
+  
+import { SocioManageComponent } from './socio/managesocio/socio-manage.component';
+import { SocioCreateComponent } from './socio/createsocio/socio-create.component';
+import { SocioEditComponent } from './socio/editsocio/socio-edit.component';
+import { SearchSocioPipe } from './pipe/socio.filter.pipe';
+import { SocioService } from './socio/socio.component.service';
+
+  
+import { DomicilioManageComponent } from './domicilio/managedomicilio/domicilio-manage.component';
+import { DomicilioCreateComponent } from './domicilio/createdomicilio/domicilio-create.component';
+import { DomicilioEditComponent } from './domicilio/editdomicilio/domicilio-edit.component';
+import { SearchDomicilioPipe } from './pipe/domicilio.filter.pipe';
+import { DomicilioService } from './domicilio/domicilio.component.service';
+
+  
+import { PerfilManageComponent } from './perfil/manageperfil/perfil-manage.component';
+import { PerfilCreateComponent } from './perfil/createperfil/perfil-create.component';
+import { PerfilEditComponent } from './perfil/editperfil/perfil-edit.component';
+import { SearchPerfilPipe } from './pipe/perfil.filter.pipe';
+import { PerfilService } from './perfil/perfil.component.service';
+
+  
+import { CuentabancariaManageComponent } from './cuentabancaria/managecuentabancaria/cuentabancaria-manage.component';
+import { CuentabancariaCreateComponent } from './cuentabancaria/createcuentabancaria/cuentabancaria-create.component';
+import { CuentabancariaEditComponent } from './cuentabancaria/editcuentabancaria/cuentabancaria-edit.component';
+import { SearchCuentabancariaPipe } from './pipe/cuentabancaria.filter.pipe';
+import { CuentabancariaService } from './cuentabancaria/cuentabancaria.component.service';
 
 
 @NgModule({
@@ -77,18 +119,18 @@ import { AportacionService } from './aportacion/aportacion.component.service';
     HttpClientModule
   ],
   declarations: [
-    TasadeinteresCreateComponent,
-    TasadeinteresManageComponent,
-    TasadeinteresEditComponent,  
-	SearchTasadeinteresPipe,
     PlantaCreateComponent,
     PlantaManageComponent,
     PlantaEditComponent,  
 	SearchPlantaPipe,
-    CuentadeahorroCreateComponent,
-    CuentadeahorroManageComponent,
-    CuentadeahorroEditComponent,  
-	SearchCuentadeahorroPipe,
+    AportacionCreateComponent,
+    AportacionManageComponent,
+    AportacionEditComponent,  
+	SearchAportacionPipe,
+    InteresCreateComponent,
+    InteresManageComponent,
+    InteresEditComponent,  
+	SearchInteresPipe,
     EmpresaCreateComponent,
     EmpresaManageComponent,
     EmpresaEditComponent,  
@@ -97,10 +139,34 @@ import { AportacionService } from './aportacion/aportacion.component.service';
     DepartamentoManageComponent,
     DepartamentoEditComponent,  
 	SearchDepartamentoPipe,
-    AportacionCreateComponent,
-    AportacionManageComponent,
-    AportacionEditComponent,  
-	SearchAportacionPipe,
+    CuentadeahorroCreateComponent,
+    CuentadeahorroManageComponent,
+    CuentadeahorroEditComponent,  
+	SearchCuentadeahorroPipe,
+    BeneficiarioCreateComponent,
+    BeneficiarioManageComponent,
+    BeneficiarioEditComponent,  
+	SearchBeneficiarioPipe,
+    TasadeinteresCreateComponent,
+    TasadeinteresManageComponent,
+    TasadeinteresEditComponent,  
+	SearchTasadeinteresPipe,
+    SocioCreateComponent,
+    SocioManageComponent,
+    SocioEditComponent,  
+	SearchSocioPipe,
+    DomicilioCreateComponent,
+    DomicilioManageComponent,
+    DomicilioEditComponent,  
+	SearchDomicilioPipe,
+    PerfilCreateComponent,
+    PerfilManageComponent,
+    PerfilEditComponent,  
+	SearchPerfilPipe,
+    CuentabancariaCreateComponent,
+    CuentabancariaManageComponent,
+    CuentabancariaEditComponent,  
+	SearchCuentabancariaPipe,
     AdminComponent,
     AdminDashboardComponent,
     ManagePrivilegeComponent,
@@ -114,12 +180,18 @@ import { AportacionService } from './aportacion/aportacion.component.service';
     UserCreateComponent
   ],
   providers: [ 
-    TasadeinteresService,
     PlantaService,
-    CuentadeahorroService,
+    AportacionService,
+    InteresService,
     EmpresaService,
     DepartamentoService,
-    AportacionService,
+    CuentadeahorroService,
+    BeneficiarioService,
+    TasadeinteresService,
+    SocioService,
+    DomicilioService,
+    PerfilService,
+    CuentabancariaService,
     ManagePrivilegeService,
     UserService,
     AuthorityService

@@ -17,19 +17,19 @@
 				<input class="form-control" #cuentabancariaId="ngModel" cuentabancariaId="cuentabancariaId" name="cuentabancariaId" type="hidden" [(ngModel)]="cuentabancaria.cuentabancariaId">
 					
 					<div class="form-group">
-						<label class="control-label" for="de">Numero de socio<span class="required">*</span></label>
+						<label class="control-label" for="socio">Numero de socio<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="deId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="cuentabancaria.deId" #deId="ngModel">
-							<input type="text" class="form-control" [(ngModel)]="cuentabancaria.deItem"  [ngModelOptions]="{standalone: true}" #deItem="ngModel" placeholder="De...">
+							<input type="hidden" class="form-control input-md"  name="socioId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="cuentabancaria.socioId" #socioId="ngModel">
+							<input type="text" class="form-control" [(ngModel)]="cuentabancaria.socioItem"  [ngModelOptions]="{standalone: true}" #socioItem="ngModel" placeholder="Socio...">
 							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalDe">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalSocio">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label" for="cuenta">Número de cuenta<span class="required">*</span></label>
+						<label class="control-label" for="cuenta">Numero de cuenta<span class="required">*</span></label>
 						<input class="form-control col-md-12" #cuenta="ngModel" id="cuenta" name="cuenta" maxlength="128" type="number" [(ngModel)]="cuentabancaria.cuenta" required>
 					</div>
 					<div class="form-group">
@@ -45,13 +45,13 @@
 						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b5" name="b5" [(ngModel)]="cuentabancaria.bancoId"> BANORTE</div>		
 					</div>
 
-<!-- Modal de -->
-<div id="modalDe" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+<!-- Modal socio -->
+<div id="modalSocio" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close">&times;</button>
-				<h4 class="modal-title">De</h4>
+				<h4 class="modal-title">Socio</h4>
 			</div>
 			<div class="modal-body">
 				<div class='row'>
@@ -60,7 +60,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..." name="busquedade" [(ngModel)]="busquedaDe">
+							<input type="text" class="form-control" placeholder="Search for..." name="busquedasocio" [(ngModel)]="busquedaSocio">
 							<span class="input-group-btn">
 								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
 							</span>
@@ -73,12 +73,29 @@
 						<thead>
 							<tr>
 								<th style="max-width:10%"></th>
+								<th style="max-width:10%">Numero</th>
+								<th style="max-width:10%">Socio</th>
+								<th style="max-width:10%">Apellido Paterno</th>
+								<th style="max-width:10%">Apellido Materno</th>
+								<th style="max-width:10%">Numero telefonico</th>
+								<th style="max-width:10%" hidden="true">Departamento</th>
+								<th style="max-width:10%">Departamento</th>
+								<th style="max-width:10%" hidden="true">Planta</th>
+								<th style="max-width:10%">Planta</th>
 							</tr>
 						</thead>
 						<tbody>
-							<!--<tr *ngFor="let de of deList | filterDe: busquedaDe | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >-->
-							<tr *ngFor="let de of deList | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
-								<td  style="max-width: 10%"><input type="checkbox" name="deId" [checked]="de.checked" value="{{de.deId}}" (click)="setClickedRowDe(i, de)"></td>
+							<tr *ngFor="let socio of socioList | filterSocio: busquedaSocio | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
+								<td  style="max-width: 10%"><input type="checkbox" name="socioId" [checked]="socio.checked" value="{{socio.socioId}}" (click)="setClickedRowSocio(i, socio)"></td>
+								<td  style="max-width: 10%">{{socio.numero}}</td>
+								<td  style="max-width: 10%">{{socio.nombre}}</td>
+								<td  style="max-width: 10%">{{socio.apellidopaterno}}</td>
+								<td  style="max-width: 10%">{{socio.apellidomaterno}}</td>
+								<td  style="max-width: 10%">{{socio.telefono}}</td>
+								<td  style="max-width: 10%" hidden="true">{{socio.departamentoId}}</td>
+								<td  style="max-width: 10%">{{socio.departamentoItem}}</td>
+								<td  style="max-width: 10%" hidden="true">{{socio.plantaId}}</td>
+								<td  style="max-width: 10%">{{socio.plantaItem}}</td>
 							</tr>
 						</tbody>
 					</table>

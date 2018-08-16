@@ -27,9 +27,9 @@ export class DomicilioCreateComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public deList: Socio [];
-    public de: Socio;
-    public deAux: Socio;
+	public socioList: Socio [];
+    public socio: Socio;
+    public socioAux: Socio;
 
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
@@ -39,7 +39,7 @@ export class DomicilioCreateComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private domicilioService: DomicilioService
-	,private deService: SocioService
+	,private socioService: SocioService
 ){
   	 this.filterInputSocio.valueChanges.subscribe(busquedaSocio => {
      this.busquedaSocio = busquedaSocio;
@@ -50,7 +50,7 @@ export class DomicilioCreateComponent implements OnInit {
 		this.domicilioService.clear();
         this.domicilio = new Domicilio;
 
-		this.loadDes();
+		this.loadSocios();
        
     } 
 
@@ -68,30 +68,37 @@ save(){
 }
 
 
-	loadDes(){
-  		this.deService.getAllSocio().subscribe(data => {
+	loadSocios(){
+  		this.socioService.getAllSocio().subscribe(data => {
     	if (data) {
       	
-		this.deList = data;
-// Cambios por cada modal
+		this.socioList = data;
+
+
+
+        
+
+
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Socios.', 'error');
   	});
+
+
+
 }
 
- setClickedRowDe(index,de){
+ setClickedRowSocio(index,socio){
 	      
-		  de.checked = !de.checked;
-		  if (de.checked){
-		  this.deService.setSocio(de);
-		  this.domicilio.deId = de.deId;
-		  //this.domicilio.deItem = de.Item;
-
+		  socio.checked = !socio.checked;
+		  if (socio.checked){
+		  this.socioService.setSocio(socio);
+		  this.domicilio.socioId = socio.socioId;
+		  this.domicilio.socioItem = socio.numero+"";
 	    	}else{
-            this.deService.clear();
-			this.domicilio.deId = null;
-		    this.domicilio.deItem = "";
+            this.socioService.clear();
+			this.domicilio.socioId = null;
+		    this.domicilio.socioItem = "";
 		}
  }
 

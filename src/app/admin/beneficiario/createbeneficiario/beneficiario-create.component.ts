@@ -6,22 +6,22 @@ import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
 
-import { InteresService }                                  from '../../interes/interes.component.service';
-import { Interes }                                         from '../../interes/interes.component.model';
+import { BeneficiarioService }                                  from '../../beneficiario/beneficiario.component.service';
+import { Beneficiario }                                         from '../../beneficiario/beneficiario.component.model';
 
 import { CuentadeahorroService }                                  from '../../cuentadeahorro/cuentadeahorro.component.service';
 import { Cuentadeahorro }                                         from '../../cuentadeahorro/cuentadeahorro.component.model';
 
 @Component ({
     selector: 'app-view',
-    templateUrl: './interes-create.component.html',
-	styleUrls: ['./interes-create.component.css']
+    templateUrl: './beneficiario-create.component.html',
+	styleUrls: ['./beneficiario-create.component.css']
 })
 
-export class InteresCreateComponent implements OnInit {
+export class BeneficiarioCreateComponent implements OnInit {
 
-    public title = 'Nuevo Interes';
-    public interes: Interes;
+    public title = 'Nuevo Beneficiario';
+    public beneficiario: Beneficiario;
     public form: any;
     public user: User;
     public valueName: string;
@@ -38,7 +38,7 @@ export class InteresCreateComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private interesService: InteresService
+				private beneficiarioService: BeneficiarioService
 	,private cuentadeahorroService: CuentadeahorroService
 ){
   	 this.filterInputCuentadeahorro.valueChanges.subscribe(busquedaCuentadeahorro => {
@@ -47,22 +47,22 @@ export class InteresCreateComponent implements OnInit {
 	}
 
     ngOnInit() {
-		this.interesService.clear();
-        this.interes = new Interes;
+		this.beneficiarioService.clear();
+        this.beneficiario = new Beneficiario;
 
 		this.loadCuentadeahorros();
        
     } 
 
 save(){
-   this.interesService.saveInteres(this.interes).subscribe(res => {
+   this.beneficiarioService.saveBeneficiario(this.beneficiario).subscribe(res => {
      if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Interes save successfully.', 'success');
-        this.router.navigate([ '../manageinteres' ], { relativeTo: this.route })
+        swal('Success...', 'Beneficiario save successfully.', 'success');
+        this.router.navigate([ '../managebeneficiario' ], { relativeTo: this.route })
      }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Interes.', 'error');
+        swal('Error...', 'Usuario no tiene permiso para guardar Beneficiario.', 'error');
      }else{
-       swal('Error...', 'Interes save unsuccessfully.', 'error');
+       swal('Error...', 'Beneficiario save unsuccessfully.', 'error');
      }
    } );
 }
@@ -120,16 +120,16 @@ save(){
 		  cuentadeahorro.checked = !cuentadeahorro.checked;
 		  if (cuentadeahorro.checked){
 		  this.cuentadeahorroService.setCuentadeahorro(cuentadeahorro);
-		  this.interes.cuentadeahorroId = cuentadeahorro.cuentadeahorroId;
-		  this.interes.cuentadeahorroItem = cuentadeahorro.numero+"";
+		  this.beneficiario.cuentadeahorroId = cuentadeahorro.cuentadeahorroId;
+		  this.beneficiario.cuentadeahorroItem = cuentadeahorro.numero;
 	    	}else{
             this.cuentadeahorroService.clear();
-			this.interes.cuentadeahorroId = null;
-		    this.interes.cuentadeahorroItem = "";
+			this.beneficiario.cuentadeahorroId = null;
+		    this.beneficiario.cuentadeahorroItem = "";
 		}
  }
 
-  return(interes){
+  return(beneficiario){
       this.location.back();
   }
 }

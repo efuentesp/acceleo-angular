@@ -40,9 +40,9 @@ export class CuentabancariaManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public deList: Socio [];
-    public de: Socio;
-	public deAux: Socio;
+	public socioList: Socio [];
+    public socio: Socio;
+	public socioAux: Socio;
 
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
@@ -51,7 +51,7 @@ export class CuentabancariaManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private cuentabancariaService: CuentabancariaService
-	,private deService: SocioService
+	,private socioService: SocioService
 ){
 
 
@@ -83,10 +83,14 @@ export class CuentabancariaManageComponent implements OnInit {
           this.cuentabancariaList = data;
 
 			this.cuentabancariaList.forEach(element => {
-				this.deService.getSocioById(element.deId).subscribe(dataAux => {
+				this.socioService.getSocioById(element.socioId).subscribe(dataAux => {
 					if (dataAux) {
-						this.deAux = dataAux;
-						
+						this.socioAux = dataAux;
+						element.socioItem = this.socioAux.numero+"";
+
+
+
+
 
 
 
@@ -105,6 +109,12 @@ export class CuentabancariaManageComponent implements OnInit {
 	      if (element.bancoId == 'b5'){
 	          element.bancoItem = 'BANORTE';
 	      }
+
+
+
+
+
+
 
 
 

@@ -29,16 +29,16 @@ export class SocioCreateComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public perteneceList: Departamento [];
-    public pertenece: Departamento;
-    public perteneceAux: Departamento;
+	public departamentoList: Departamento [];
+    public departamento: Departamento;
+    public departamentoAux: Departamento;
 
 	public busquedaDepartamento='';
 	filterInputDepartamento = new FormControl();
 
-	public laboraList: Planta [];
-    public labora: Planta;
-    public laboraAux: Planta;
+	public plantaList: Planta [];
+    public planta: Planta;
+    public plantaAux: Planta;
 
 	public busquedaPlanta='';
 	filterInputPlanta = new FormControl();
@@ -48,8 +48,8 @@ export class SocioCreateComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private socioService: SocioService
-	,private perteneceService: DepartamentoService
-	,private laboraService: PlantaService
+	,private departamentoService: DepartamentoService
+	,private plantaService: PlantaService
 ){
   	 this.filterInputDepartamento.valueChanges.subscribe(busquedaDepartamento => {
      this.busquedaDepartamento = busquedaDepartamento;
@@ -63,8 +63,8 @@ export class SocioCreateComponent implements OnInit {
 		this.socioService.clear();
         this.socio = new Socio;
 
-		this.loadPerteneces();
-		this.loadLaboras();
+		this.loadDepartamentos();
+		this.loadPlantas();
        
     } 
 
@@ -82,57 +82,63 @@ save(){
 }
 
 
-	loadPerteneces(){
-  		this.perteneceService.getAllDepartamento().subscribe(data => {
+	loadDepartamentos(){
+  		this.departamentoService.getAllDepartamento().subscribe(data => {
     	if (data) {
       	
-		this.perteneceList = data;
-// Cambios por cada modal
+		this.departamentoList = data;
+
+
+
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Departamentos.', 'error');
   	});
+
+
+
 }
 
- setClickedRowPertenece(index,pertenece){
+ setClickedRowDepartamento(index,departamento){
 	      
-		  pertenece.checked = !pertenece.checked;
-		  if (pertenece.checked){
-		  this.perteneceService.setDepartamento(pertenece);
-		  this.socio.perteneceId = pertenece.perteneceId;
-		  //this.socio.perteneceItem = pertenece.Item;
-
+		  departamento.checked = !departamento.checked;
+		  if (departamento.checked){
+		  this.departamentoService.setDepartamento(departamento);
+		  this.socio.departamentoId = departamento.departamentoId;
+		  this.socio.departamentoItem = departamento.nombredepto;
 	    	}else{
-            this.perteneceService.clear();
-			this.socio.perteneceId = null;
-		    this.socio.perteneceItem = "";
+            this.departamentoService.clear();
+			this.socio.departamentoId = null;
+		    this.socio.departamentoItem = "";
 		}
  }
 
-	loadLaboras(){
-  		this.laboraService.getAllPlanta().subscribe(data => {
+	loadPlantas(){
+  		this.plantaService.getAllPlanta().subscribe(data => {
     	if (data) {
       	
-		this.laboraList = data;
-// Cambios por cada modal
+		this.plantaList = data;
+
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Plantas.', 'error');
   	});
+
+
+
 }
 
- setClickedRowLabora(index,labora){
+ setClickedRowPlanta(index,planta){
 	      
-		  labora.checked = !labora.checked;
-		  if (labora.checked){
-		  this.laboraService.setPlanta(labora);
-		  this.socio.laboraId = labora.laboraId;
-		  //this.socio.laboraItem = labora.Item;
-
+		  planta.checked = !planta.checked;
+		  if (planta.checked){
+		  this.plantaService.setPlanta(planta);
+		  this.socio.plantaId = planta.plantaId;
+		  this.socio.plantaItem = planta.nombreplanta;
 	    	}else{
-            this.laboraService.clear();
-			this.socio.laboraId = null;
-		    this.socio.laboraItem = "";
+            this.plantaService.clear();
+			this.socio.plantaId = null;
+		    this.socio.plantaItem = "";
 		}
  }
 

@@ -35,31 +35,31 @@
 						</div>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="nombreplanta">Planta<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #nombreplanta="ngModel" id="nombreplanta" name="nombreplanta" type="text" [(ngModel)]="planta.nombreplanta" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #nombreplanta="ngModel" id="nombreplanta" name="nombreplanta" type="text" [(ngModel)]="planta.nombreplanta" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="direccion">Direccion<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #direccion="ngModel" id="direccion" name="direccion" type="text" [(ngModel)]="planta.direccion" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #direccion="ngModel" id="direccion" name="direccion" type="text" [(ngModel)]="planta.direccion" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="diadepago">Dia de pago<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #diadepago="ngModel" id="diadepago" name="diadepago" maxlength="128" type="number" [(ngModel)]="planta.diadepago" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #diadepago="ngModel" id="diadepago" name="diadepago" maxlength="128" type="number" [(ngModel)]="planta.diadepago" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="maximo">Prestamo maximo<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #maximo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="maximo" name="maximo" maxlength="128" type="number" [(ngModel)]="planta.maximo" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #maximo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="maximo" name="maximo" maxlength="128" type="number" [(ngModel)]="planta.maximo" required>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="minimo">Prestamo minimo<span class="required">*</span></label>
 						<input *ngIf="flagDelete" class="form-control col-md-12" #minimo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="minimo" name="minimo" maxlength="128" type="number" [(ngModel)]="planta.minimo" readonly="true" disabled>
 						<input *ngIf="!flagDelete" class="form-control col-md-12" #minimo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="minimo" name="minimo" maxlength="128" type="number" [(ngModel)]="planta.minimo" required>

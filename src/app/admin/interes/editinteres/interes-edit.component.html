@@ -17,36 +17,39 @@
 			<form #interesForm="ngForm" id="interesForm" class="form-horizontal form-label-left" data-parsley-validate>
 				<input class="form-control" #interesId="ngModel" interesId="interesId" name="interesId" type="hidden" [(ngModel)]="interes.interesId">
 
+				
 					<div class="form-group">
-						<label class="control-label" for="para">Cuenta de ahorro<span class="required">*</span></label>						
+						<label class="control-label" for="cuentadeahorro">Cuenta de ahorro<span class="required">*</span></label>						
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="paraId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="interes.paraId" #paraId="ngModel">
-							<input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="interes.paraItem"  [ngModelOptions]="{standalone: true}" #paraItem="ngModel" placeholder="Para..." readonly="true" disabled>
-							<input *ngIf="!flagDelete" type="text" class="form-control" [(ngModel)]="interes.paraItem"  [ngModelOptions]="{standalone: true}" #paraItem="ngModel" placeholder="Para...">
+							<input type="hidden" class="form-control input-md"  name="cuentadeahorroId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="interes.cuentadeahorroId" #cuentadeahorroId="ngModel">
+							<input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="interes.cuentadeahorroItem"  [ngModelOptions]="{standalone: true}" #cuentadeahorroItem="ngModel" placeholder="Cuentadeahorro..." readonly="true" disabled>
+							<input *ngIf="!flagDelete" type="text" class="form-control" [(ngModel)]="interes.cuentadeahorroItem"  [ngModelOptions]="{standalone: true}" #cuentadeahorroItem="ngModel" placeholder="Cuentadeahorro...">
 							<span class="input-group-btn">
-								<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalPara">
+								<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCuentadeahorro">
 									<em class="fa fa-search"></em>
 								</button>
-								<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalPara">
+								<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCuentadeahorro">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
 					</div>
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="fecha">Fecha<span class="required">*</span></label>
+						<input *ngIf="flagDelete" class="form-control col-md-12" #fecha="ngModel" id="fecha" name="fecha" type="text" [(ngModel)]="interes.fecha" readonly="true" disabled>
+						<input *ngIf="!flagDelete" class="form-control col-md-12" #fecha="ngModel" id="fecha" name="fecha" type="text" [(ngModel)]="interes.fecha" required>
 					</div>	
 				
-					<div class="input-group">
+					<div class="input-group col-md-12">
 						<label class="control-label" for="monto">Monto<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #monto="ngModel" id="monto" name="monto" maxlength="128" type="number" [(ngModel)]="interes.monto" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #monto="ngModel" id="monto" name="monto" maxlength="128" type="number" [(ngModel)]="interes.monto" required>
+						<input *ngIf="flagDelete" class="form-control col-md-12" #monto="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="monto" name="monto" maxlength="128" type="number" [(ngModel)]="interes.monto" readonly="true" disabled>
+						<input *ngIf="!flagDelete" class="form-control col-md-12" #monto="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="monto" name="monto" maxlength="128" type="number" [(ngModel)]="interes.monto" required>
 					</div>
 				
 
-<!-- Modal para -->
-<div id="modalPara" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+<!-- Modal cuentadeahorro -->
+<div id="modalCuentadeahorro" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -60,7 +63,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..." name="busquedapara" [(ngModel)]="busquedaPara">
+							<input type="text" class="form-control" placeholder="Search for..." name="busquedacuentadeahorro" [(ngModel)]="busquedaCuentadeahorro">
 							<span class="input-group-btn">
 								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
 							</span>
@@ -76,9 +79,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!--<tr *ngFor="let para of paraList | filterPara: busquedaPara | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">-->
-							<tr *ngFor="let para of paraList | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
-								<td  style="max-width: 10%"><input type="checkbox" name="paraId" [checked]="para.checked" value="{{para.paraId}}" (click)="setClickedRowPara(i, para)"></td>
+							<tr *ngFor="let cuentadeahorro of cuentadeahorroList | filterCuentadeahorro: busquedaCuentadeahorro | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
+								<td  style="max-width: 10%"><input type="checkbox" name="paraId" [checked]="cuentadeahorro.checked" value="{{cuentadeahorro.cuentadeahorroId}}" (click)="setClickedRowCuentadeahorro(i, cuentadeahorro)"></td>
 							</tr>
 						</tbody>
 					</table>

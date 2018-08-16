@@ -30,8 +30,8 @@ export class CuentabancariaEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public deList: Socio;
-    public de: Socio;
+	public socioList: Socio;
+    public socio: Socio;
 
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
@@ -40,7 +40,7 @@ export class CuentabancariaEditComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private cuentabancariaService: CuentabancariaService
-	,private deService: SocioService
+	,private socioService: SocioService
 ){
 
  	 this.filterInputSocio.valueChanges.subscribe(busquedaSocio => {
@@ -55,8 +55,8 @@ export class CuentabancariaEditComponent implements OnInit {
         this.cuentabancaria = this.cuentabancariaService.getCuentabancaria();
         this.flagDelete = this.cuentabancariaService.getDelete();
         
-		this.loadDes();
-		this.loadItemDe(this.cuentabancaria);
+		this.loadSocios();
+		this.loadItemSocio(this.cuentabancaria);
 
     }  
 
@@ -105,39 +105,39 @@ delete(){
   });
 }
 
-	loadDes(){
-  		this.deService.getAllSocio().subscribe(data => {
+	loadSocios(){
+  		this.socioService.getAllSocio().subscribe(data => {
     	if (data) {
-      	this.deList = data;
+      	this.socioList = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Socios.', 'error');
   	});
 }
 
- setClickedRowDe(index,de){
+ setClickedRowSocio(index,socio){
 	      
-		  de.checked = !de.checked;
+		  socio.checked = !socio.checked;
 
-		  if (de.checked){
-		  this.deService.setSocio(de);
-		  this.cuentabancaria.deId = de.deId;
-		  //this.cuentabancaria.deItem = de.Iem;
+		  if (socio.checked){
+		  this.socioService.setSocio(socio);
+		  this.cuentabancaria.socioId = socio.socioId;
+		  this.cuentabancaria.socioItem = socio.numero+"";
 	    	}else{
-            this.deService.clear();
-			this.cuentabancaria.deId = null;
-		    this.cuentabancaria.deItem = "";
+            this.socioService.clear();
+			this.cuentabancaria.socioId = null;
+		    this.cuentabancaria.socioItem = "";
 		}
 }
 
-loadItemDe(cuentabancaria){
-  this.deService.getSocioById(cuentabancaria.deId).subscribe(data => {
+loadItemSocio(cuentabancaria){
+  this.socioService.getSocioById(cuentabancaria.socioId).subscribe(data => {
     if (data) {
-      this.de = data;
-      //this.cuentabancaria.deItem = this.de.Item;
+      this.socio = data;
+      this.cuentabancaria.socioItem = this.socio.numero+"";
     }
     }, error => {
-    swal('Error...', 'An error occurred while calling the des.', 'error');
+    swal('Error...', 'An error occurred while calling the socios.', 'error');
   });
 
 }

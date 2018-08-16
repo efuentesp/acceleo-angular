@@ -50,17 +50,16 @@
 												<th style="max-width:10%" hidden="true">Numero de socio</th>
 												<th style="max-width:10%">Numero de socio</th>
 												<th style="max-width:10%">Calle</th>
-												<th style="max-width:10%">Código Postal</th>
+												<th style="max-width:10%">Codigo Postal</th>
 												<th style="max-width:10%">Ciudad</th>
 												<th style="max-width:10%">Estado</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<!--<tr *ngFor="let domicilio of domicilioList | filterDomicilio: busquedaDomicilio | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDomicilio'}; let i = index" (click)="setClickedRowDomicilio(i, domicilio)" >-->
-										<tr *ngFor="let domicilio of domicilioList | filterDomicilio: paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDomicilio'}; let i = index" (click)="setClickedRowDomicilio(i, domicilio)" >
-												<td  style="max-width: 10%" hidden="true">{{domicilio.deId}}</td>
-												<td  style="max-width: 10%">{{domicilio.deItem}}</td>
+										<tr *ngFor="let domicilio of domicilioList | filterDomicilio: busquedaDomicilio | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDomicilio'}; let i = index" (click)="setClickedRowDomicilio(i, domicilio)" >
+												<td  style="max-width: 10%" hidden="true">{{domicilio.socioId}}</td>
+												<td  style="max-width: 10%">{{domicilio.socioItem}}</td>
 												<td  style="max-width: 10%">{{domicilio.calle}}</td>
 												<td  style="max-width: 10%">{{domicilio.cp}}</td>
 												<td  style="max-width: 10%">{{domicilio.ciudad}}</td>

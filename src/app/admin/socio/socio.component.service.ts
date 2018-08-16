@@ -69,24 +69,22 @@ export class SocioService {
 
     getSocio(): Socio {
         var socio: Socio = {
-		apellidomaterno: this.socio.apellidomaterno, 
+		apellidopaterno: this.socio.apellidopaterno, 
 		numero: this.socio.numero, 
 		nombre: this.socio.nombre, 
-		telefono: this.socio.telefono, 
-		apellidopaterno: this.socio.apellidopaterno, 
-		correo: this.socio.correo, 
-		// Radio
+		apellidomaterno: this.socio.apellidomaterno, 
 		generoId: this.socio.generoId,
 		generoItem: this.socio.generoItem,
-		// Radio
+		telefono: this.socio.telefono,
+		correo: this.socio.correo,
+		telefono: this.socio.telefono,
+		correo: this.socio.correo,
 		tipoempleadoId: this.socio.tipoempleadoId,
 		tipoempleadoItem: this.socio.tipoempleadoItem,
-		// Modal
-		perteneceId: this.socio.perteneceId,
-		perteneceItem: this.socio.perteneceItem,
-		// Modal
-		laboraId: this.socio.laboraId,
-		laboraItem: this.socio.laboraItem,
+		departamentoId: this.socio.departamentoId,
+		departamentoItem: this.socio.departamentoItem,
+		plantaId: this.socio.plantaId,
+		plantaItem: this.socio.plantaItem,
 		socioId: this.socio.socioId,
 		socioItem: this.socio.socioItem	
         };
@@ -96,18 +94,22 @@ export class SocioService {
 setSocio(socio: Socio) {
        
 		this.isSocioFormValid = true;
-		this.socio.apellidomaterno = socio.apellidomaterno;    
+		this.socio.apellidopaterno = socio.apellidopaterno;    
 		this.socio.numero = socio.numero;    
 		this.socio.nombre = socio.nombre;    
-		this.socio.telefono = socio.telefono;    
-		this.socio.apellidopaterno = socio.apellidopaterno;    
-		this.socio.correo = socio.correo;    
+		this.socio.apellidomaterno = socio.apellidomaterno;    
 		this.socio.generoId = socio.generoId;
+		this.socio.generoItem = socio.generoItem;
+		this.socio.telefono = socio.telefono;
+		this.socio.correo = socio.correo;
+		this.socio.telefono = socio.telefono;
+		this.socio.correo = socio.correo;
 		this.socio.tipoempleadoId = socio.tipoempleadoId;
-		this.socio.perteneceId = socio.perteneceId;
-		this.socio.perteneceItem = socio.perteneceItem;
-		this.socio.laboraId = socio.laboraId;
-		this.socio.laboraItem = socio.laboraItem;
+		this.socio.tipoempleadoItem = socio.tipoempleadoItem;
+		this.socio.departamentoId = socio.departamentoId;
+		this.socio.departamentoItem = socio.departamentoItem;
+		this.socio.plantaId = socio.plantaId;
+		this.socio.plantaItem = socio.plantaItem;
 		this.socio.socioId = socio.socioId;
 		this.socio.socioItem = socio.socioItem;
 		this.validateSocio();
@@ -123,21 +125,23 @@ setSocio(socio: Socio) {
 
     clear() {
 
-			this.socio.apellidomaterno = '';    
+			this.socio.apellidopaterno = '';    
 			this.socio.numero = null;    
 			this.socio.nombre = '';    
-			this.socio.telefono = '';    
-			this.socio.apellidopaterno = '';    
-			this.socio.correo = '';    
+			this.socio.apellidomaterno = '';    
 
 			this.socio.generoId = null;
 			this.socio.generoItem = null;
+			this.socio.telefono = '';
+			this.socio.correo = '';
+			this.socio.telefono = '';
+			this.socio.correo = '';
 			this.socio.tipoempleadoId = null;
 			this.socio.tipoempleadoItem = null;
-			this.socio.perteneceId = null;
-			this.socio.perteneceItem = null;
-			this.socio.laboraId = null;
-			this.socio.laboraItem = null;
+			this.socio.departamentoId = null;
+			this.socio.departamentoItem = null;
+			this.socio.plantaId = null;
+			this.socio.plantaItem = null;
 			this.socio.socioId = null;
 			this.socio.socioItem = null;
     }

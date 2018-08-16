@@ -55,10 +55,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!--<tr *ngFor="let perfil of perfilList | filterPerfil: busquedaPerfil | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePerfil'}; let i = index" (click)="setClickedRowPerfil(i, perfil)" >-->
-										<tr *ngFor="let perfil of perfilList | filterPerfil: paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePerfil'}; let i = index" (click)="setClickedRowPerfil(i, perfil)" >
-												<td  style="max-width: 10%" hidden="true">{{perfil.deId}}</td>
-												<td  style="max-width: 10%">{{perfil.deItem}}</td>
+										<tr *ngFor="let perfil of perfilList | filterPerfil: busquedaPerfil | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePerfil'}; let i = index" (click)="setClickedRowPerfil(i, perfil)" >
+												<td  style="max-width: 10%" hidden="true">{{perfil.socioId}}</td>
+												<td  style="max-width: 10%">{{perfil.socioItem}}</td>
 												<td  style="max-width: 10%">{{perfil.usuario}}</td>
 												<td  style="max-width: 10%">{{perfil.nip}}</td>
 											<td style="max-width: 20%">															

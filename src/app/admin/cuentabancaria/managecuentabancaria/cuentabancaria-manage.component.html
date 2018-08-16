@@ -49,7 +49,7 @@
 										<tr>
 												<th style="max-width:10%" hidden="true">Numero de socio</th>
 												<th style="max-width:10%">Numero de socio</th>
-												<th style="max-width:10%">Número de cuenta</th>
+												<th style="max-width:10%">Numero de cuenta</th>
 												<th style="max-width:10%">Cuenta clabe</th>
 												<th style="max-width:10%" hidden="true">Banco Emisor</th>
 												<th style="max-width:10%">Banco Emisor</th>
@@ -57,14 +57,13 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!--<tr *ngFor="let cuentabancaria of cuentabancariaList | filterCuentabancaria: busquedaCuentabancaria | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCuentabancaria'}; let i = index" (click)="setClickedRowCuentabancaria(i, cuentabancaria)" >-->
-										<tr *ngFor="let cuentabancaria of cuentabancariaList | filterCuentabancaria: paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCuentabancaria'}; let i = index" (click)="setClickedRowCuentabancaria(i, cuentabancaria)" >
-												<td  style="max-width: 10%" hidden="true">{{cuentabancaria.deId}}</td>
-												<td  style="max-width: 10%">{{cuentabancaria.deItem}}</td>
+										<tr *ngFor="let cuentabancaria of cuentabancariaList | filterCuentabancaria: busquedaCuentabancaria | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCuentabancaria'}; let i = index" (click)="setClickedRowCuentabancaria(i, cuentabancaria)" >
+												<td  style="max-width: 10%" hidden="true">{{cuentabancaria.socioId}}</td>
+												<td  style="max-width: 10%">{{cuentabancaria.socioItem}}</td>
 												<td  style="max-width: 10%">{{cuentabancaria.cuenta}}</td>
 												<td  style="max-width: 10%">{{cuentabancaria.clabe}}</td>
-												<td  style="max-width: 10%" hidden="true">{{cuentabancaria.emitidaporId}}</td>
-												<td  style="max-width: 10%">{{cuentabancaria.emitidaporItem}}</td>
+												<td  style="max-width: 10%" hidden="true">{{cuentabancaria.bancoId}}</td>
+												<td  style="max-width: 10%">{{cuentabancaria.bancoItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(cuentabancaria)"><span class="fa fa-pencil"></span></button>

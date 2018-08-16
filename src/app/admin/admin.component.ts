@@ -16,24 +16,42 @@ export class AdminComponent {
   public username: string;
 
 // Menu activation
-// Tasadeinteres
-  private tasadeinteres_mgmnt: boolean = false;
-  private tasadeinteres: boolean = false;
 // Planta
   private planta_mgmnt: boolean = false;
   private planta: boolean = false;
-// Cuentadeahorro
-  private cuentadeahorro_mgmnt: boolean = false;
-  private cuentadeahorro: boolean = false;
+// Aportacion
+  private aportacion_mgmnt: boolean = false;
+  private aportacion: boolean = false;
+// Interes
+  private interes_mgmnt: boolean = false;
+  private interes: boolean = false;
 // Empresa
   private empresa_mgmnt: boolean = false;
   private empresa: boolean = false;
 // Departamento
   private departamento_mgmnt: boolean = false;
   private departamento: boolean = false;
-// Aportacion
-  private aportacion_mgmnt: boolean = false;
-  private aportacion: boolean = false;
+// Cuentadeahorro
+  private cuentadeahorro_mgmnt: boolean = false;
+  private cuentadeahorro: boolean = false;
+// Beneficiario
+  private beneficiario_mgmnt: boolean = false;
+  private beneficiario: boolean = false;
+// Tasadeinteres
+  private tasadeinteres_mgmnt: boolean = false;
+  private tasadeinteres: boolean = false;
+// Socio
+  private socio_mgmnt: boolean = false;
+  private socio: boolean = false;
+// Domicilio
+  private domicilio_mgmnt: boolean = false;
+  private domicilio: boolean = false;
+// Perfil
+  private perfil_mgmnt: boolean = false;
+  private perfil: boolean = false;
+// Cuentabancaria
+  private cuentabancaria_mgmnt: boolean = false;
+  private cuentabancaria: boolean = false;
 
 
   // Admin
@@ -73,13 +91,6 @@ export class AdminComponent {
   buildMenu(authorities){
     authorities.forEach(element => {
 
-      if (element.authority == 'ROLE_TASADEINTERESSEARCH'){
-        this.tasadeinteres_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_TASADEINTERESCREATE'){
-        this.tasadeinteres = true;
-      }
-
       if (element.authority == 'ROLE_PLANTASEARCH'){
         this.planta_mgmnt = true;
       }
@@ -87,11 +98,18 @@ export class AdminComponent {
         this.planta = true;
       }
 
-      if (element.authority == 'ROLE_CUENTADEAHORROSEARCH'){
-        this.cuentadeahorro_mgmnt = true;
+      if (element.authority == 'ROLE_APORTACIONSEARCH'){
+        this.aportacion_mgmnt = true;
       }
-      if (element.authority == 'ROLE_CUENTADEAHORROCREATE'){
-        this.cuentadeahorro = true;
+      if (element.authority == 'ROLE_APORTACIONCREATE'){
+        this.aportacion = true;
+      }
+
+      if (element.authority == 'ROLE_INTERESSEARCH'){
+        this.interes_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_INTERESCREATE'){
+        this.interes = true;
       }
 
       if (element.authority == 'ROLE_EMPRESASEARCH'){
@@ -108,11 +126,53 @@ export class AdminComponent {
         this.departamento = true;
       }
 
-      if (element.authority == 'ROLE_APORTACIONSEARCH'){
-        this.aportacion_mgmnt = true;
+      if (element.authority == 'ROLE_CUENTADEAHORROSEARCH'){
+        this.cuentadeahorro_mgmnt = true;
       }
-      if (element.authority == 'ROLE_APORTACIONCREATE'){
-        this.aportacion = true;
+      if (element.authority == 'ROLE_CUENTADEAHORROCREATE'){
+        this.cuentadeahorro = true;
+      }
+
+      if (element.authority == 'ROLE_BENEFICIARIOSEARCH'){
+        this.beneficiario_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_BENEFICIARIOCREATE'){
+        this.beneficiario = true;
+      }
+
+      if (element.authority == 'ROLE_TASADEINTERESSEARCH'){
+        this.tasadeinteres_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_TASADEINTERESCREATE'){
+        this.tasadeinteres = true;
+      }
+
+      if (element.authority == 'ROLE_SOCIOSEARCH'){
+        this.socio_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_SOCIOCREATE'){
+        this.socio = true;
+      }
+
+      if (element.authority == 'ROLE_DOMICILIOSEARCH'){
+        this.domicilio_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_DOMICILIOCREATE'){
+        this.domicilio = true;
+      }
+
+      if (element.authority == 'ROLE_PERFILSEARCH'){
+        this.perfil_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_PERFILCREATE'){
+        this.perfil = true;
+      }
+
+      if (element.authority == 'ROLE_CUENTABANCARIASEARCH'){
+        this.cuentabancaria_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_CUENTABANCARIACREATE'){
+        this.cuentabancaria = true;
       }
 
  

@@ -30,8 +30,8 @@ export class PerfilEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public deList: Socio;
-    public de: Socio;
+	public socioList: Socio;
+    public socio: Socio;
 
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
@@ -40,7 +40,7 @@ export class PerfilEditComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private perfilService: PerfilService
-	,private deService: SocioService
+	,private socioService: SocioService
 ){
 
  	 this.filterInputSocio.valueChanges.subscribe(busquedaSocio => {
@@ -55,8 +55,8 @@ export class PerfilEditComponent implements OnInit {
         this.perfil = this.perfilService.getPerfil();
         this.flagDelete = this.perfilService.getDelete();
         
-		this.loadDes();
-		this.loadItemDe(this.perfil);
+		this.loadSocios();
+		this.loadItemSocio(this.perfil);
 
     }  
 
@@ -105,39 +105,39 @@ delete(){
   });
 }
 
-	loadDes(){
-  		this.deService.getAllSocio().subscribe(data => {
+	loadSocios(){
+  		this.socioService.getAllSocio().subscribe(data => {
     	if (data) {
-      	this.deList = data;
+      	this.socioList = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Socios.', 'error');
   	});
 }
 
- setClickedRowDe(index,de){
+ setClickedRowSocio(index,socio){
 	      
-		  de.checked = !de.checked;
+		  socio.checked = !socio.checked;
 
-		  if (de.checked){
-		  this.deService.setSocio(de);
-		  this.perfil.deId = de.deId;
-		  //this.perfil.deItem = de.Iem;
+		  if (socio.checked){
+		  this.socioService.setSocio(socio);
+		  this.perfil.socioId = socio.socioId;
+		  this.perfil.socioItem = socio.numero+"";
 	    	}else{
-            this.deService.clear();
-			this.perfil.deId = null;
-		    this.perfil.deItem = "";
+            this.socioService.clear();
+			this.perfil.socioId = null;
+		    this.perfil.socioItem = "";
 		}
 }
 
-loadItemDe(perfil){
-  this.deService.getSocioById(perfil.deId).subscribe(data => {
+loadItemSocio(perfil){
+  this.socioService.getSocioById(perfil.socioId).subscribe(data => {
     if (data) {
-      this.de = data;
-      //this.perfil.deItem = this.de.Item;
+      this.socio = data;
+      this.perfil.socioItem = this.socio.numero+"";
     }
     }, error => {
-    swal('Error...', 'An error occurred while calling the des.', 'error');
+    swal('Error...', 'An error occurred while calling the socios.', 'error');
   });
 
 }
