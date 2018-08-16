@@ -3,6 +3,7 @@ import { CommonModule }   from '@angular/common';
 import { HttpModule, Http }   from '@angular/http'; 
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { NgxPaginationModule}  from 'ngx-pagination';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminComponent }           from './admin.component';
 import { AdminDashboardComponent }  from './admin-dashboard.component';
@@ -116,7 +117,8 @@ import { CuentabancariaService } from './cuentabancaria/cuentabancaria.component
 	ReactiveFormsModule,
 	FormsModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+	NgbModule
   ],
   declarations: [
     PlantaCreateComponent,
