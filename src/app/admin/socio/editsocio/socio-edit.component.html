@@ -52,6 +52,18 @@
 					</div>
 				
 					<div class="input-group col-md-12">
+						<label class="control-label" for="correo">Correo electronico</label>
+						<div class="col-md-12" *ngIf="flagDelete"><input class="form-control col-md-12" #correo="ngModel" id="correo" name="correo" maxlength="128" type="text" [(ngModel)]="socio.correo" disabled="true" disabled></div>
+						<div class="col-md-12" *ngIf="!flagDelete"><input class="form-control col-md-12" #correo="ngModel" id="correo" name="correo" maxlength="128" type="text" [(ngModel)]="socio.correo"></div>
+					</div>
+					
+					<div class="input-group col-md-12">
+						<label class="control-label" for="telefono">Numero telefonico</label>
+						<div class="col-md-12" *ngIf="flagDelete"><input class="form-control col-md-12" #telefono="ngModel" id="telefono" name="telefono" maxlength="128" type="text" [(ngModel)]="socio.telefono" disabled="true" disabled></div>
+						<div class="col-md-12" *ngIf="flagDelete"><input class="form-control col-md-12" #telefono="ngModel" id="telefono" name="telefono" maxlength="128" type="text" [(ngModel)]="socio.telefono"></div>
+					</div>
+				
+					<div class="input-group col-md-12">
 						<label class="control-label" for="tipo">Tipo empleado<span class="required">*</span></label>
 						
 						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="p" name="p" [(ngModel)]="socio.tipoempleadoId"  disabled="true" disabled> Planta </div>		
