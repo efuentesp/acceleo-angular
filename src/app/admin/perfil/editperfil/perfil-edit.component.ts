@@ -34,7 +34,7 @@ export class PerfilEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public socioList: Socio;
+	public socioList: Socio [];
     public socio: Socio;
 
 	public busquedaSocio='';
@@ -154,7 +154,6 @@ delete(){
           }	
       });	
 
-      this.socioList.forEach(element => {
           this.plantaService.getPlantaById(element.plantaId).subscribe(dataAux => {
               if (dataAux) {
                   this.plantaAux = dataAux;
