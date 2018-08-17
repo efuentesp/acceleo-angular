@@ -1,6 +1,5 @@
 
-
-describe('Prueba de Seguridad', function() {
+describe('Prueba de Perfil', function() {
 	//This turn off uncaught errors 
 	Cypress.on('uncaught:exception', (err, runnable) => {
 	return false
@@ -17,7 +16,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('login_3')
 	})
 
-	it('1. Crear una Aplicaci�n nueva con datos incompletos', function() {		
+	it('1. Crear una Aplicaci?n nueva con datos incompletos', function() {		
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -31,7 +30,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_1_2')
 	})
 
-	it('2. Crear una Aplicaci�n nueva con datos completos', function() {
+	it('2. Crear una Aplicaci?n nueva con datos completos', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -50,7 +49,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 
-	it('3. Editar la Aplicaci�n con datos incompletos', function() {
+	it('3. Editar la Aplicaci?n con datos incompletos', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.wait(1000)
@@ -69,7 +68,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_3_2')
 	})
 	
-	it('4. Editar la Aplicaci�n creada con datos completos', function() {
+	it('4. Editar la Aplicaci?n creada con datos completos', function() {
 		cy.get('div#sidebar-menu').within(() => {
 				cy.get('div.menu_section').contains('General').as('menu')
 				cy.get('@menu').parent().within(() => {
@@ -92,7 +91,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('5. Crear un Modulo asociado a la Aplicaci�n con datos incompletos', function() {
+	it('5. Crear un Modulo asociado a la Aplicaci?n con datos incompletos', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -100,7 +99,7 @@ describe('Prueba de Seguridad', function() {
 			})
 		})
 		cy.url().should('contain', '/createmodule')
-		cy.get('div').contains('Aplicaci�n').parent().within(() => {
+		cy.get('div').contains('Aplicaci?n').parent().within(() => {
 			cy.get('button[data-target="#modalApplication"]').click()
 		})
 		cy.wait(1000)
@@ -115,7 +114,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_5_2')
 	})
 	
-	it('6. Crear un Modulo asociado a la Aplicaci�n con datos completos', function() {
+	it('6. Crear un Modulo asociado a la Aplicaci?n con datos completos', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -123,7 +122,7 @@ describe('Prueba de Seguridad', function() {
 			})
 		})
 		cy.url().should('contain', '/createmodule')
-		cy.get('div').contains('Aplicaci�n').parent().within(() => {
+		cy.get('div').contains('Aplicaci?n').parent().within(() => {
 			cy.get('button[data-target="#modalApplication"]').click()
 		})
 		cy.wait(1000)
@@ -162,7 +161,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_7_2')
 	})
 	
-	it('8. Editar el Modulo con datos completos, validar que se edit�', function() {
+	it('8. Editar el Modulo con datos completos, validar que se edit?', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -185,7 +184,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()	
 	})
 	
-	it('9. Crear un Men� asociado al Modulo con datos incompletos, validar que marque error', function() {
+	it('9. Crear un Men? asociado al Modulo con datos incompletos, validar que marque error', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -193,7 +192,7 @@ describe('Prueba de Seguridad', function() {
 			})
 		})
 		cy.url().should('contain', '/createmenu')
-		cy.get('div').contains('M�dulo').parent().within(() => {
+		cy.get('div').contains('M?dulo').parent().within(() => {
 			cy.get('button[data-target="#modalModule"]').click()
 		})
 		cy.wait(1000)
@@ -210,7 +209,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_9_3')
 	})
 	
-	it('10. Crear un Men� asociado al Modulo con datos completos, validar que se cre�', function() {
+	it('10. Crear un Men? asociado al Modulo con datos completos, validar que se cre?', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -218,7 +217,7 @@ describe('Prueba de Seguridad', function() {
 			})
 		})
 		cy.url().should('contain', '/createmenu')
-		cy.get('div').contains('M�dulo').parent().within(() => {
+		cy.get('div').contains('M?dulo').parent().within(() => {
 			cy.get('button[data-target="#modalModule"]').click()
 		})
 		cy.wait(1000)
@@ -239,7 +238,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('11. Editar el Men� creado con datos incompletos, validar que marque error', function() {
+	it('11. Editar el Men? creado con datos incompletos, validar que marque error', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -258,7 +257,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_11_2')
 	})
 	
-	it('12. Editar el Men� creado con datos completos, validar que se edit�.', function() {
+	it('12. Editar el Men? creado con datos completos, validar que se edit?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -289,7 +288,7 @@ describe('Prueba de Seguridad', function() {
 			})
 		})
 		cy.url().should('contain', '/createfunctionalservice')
-		cy.get('div').contains('Men�').parent().within(() => {
+		cy.get('div').contains('Men?').parent().within(() => {
 			cy.get('button[data-target="#modalMenu"]').click()
 		})
 		cy.wait(1000)
@@ -304,7 +303,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_13_2')
 	})
 	
-	it('14. Crear un Servicio Funcional con datos completos, validar que se cre�.', function() {
+	it('14. Crear un Servicio Funcional con datos completos, validar que se cre?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -312,7 +311,7 @@ describe('Prueba de Seguridad', function() {
 			})
 		})
 		cy.url().should('contain', '/createfunctionalservice')
-		cy.get('div').contains('Men�').parent().within(() => {
+		cy.get('div').contains('Men?').parent().within(() => {
 			cy.get('button[data-target="#modalMenu"]').click()
 		})
 		cy.wait(1000)
@@ -372,7 +371,7 @@ describe('Prueba de Seguridad', function() {
 		cy.screenshot('paso_15_2')
 	})
 	
-	it('16. Editar un Servicio Funcional con datos completos, validar que se edit�.', function() {
+	it('16. Editar un Servicio Funcional con datos completos, validar que se edit?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -417,7 +416,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div[class="swal2-popup swal2-modal swal2-show"]>div[class="swal2-actions"]>button[class="swal2-confirm swal2-styled"]').click()
 	})
 	
-	it('18. Eliminar el Serivicio Funcional creado anteriormente, validar que se elimin�.', function() {
+	it('18. Eliminar el Serivicio Funcional creado anteriormente, validar que se elimin?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -459,7 +458,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('20. Eliminar el Menu creado anteriormente, validar que se elimin�.', function() {
+	it('20. Eliminar el Menu creado anteriormente, validar que se elimin?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -480,7 +479,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('21. Eliminar la Aplicaci�n creada anteriormente, validar que no se pueda.', function() {
+	it('21. Eliminar la Aplicaci?n creada anteriormente, validar que no se pueda.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -501,7 +500,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('22. Eliminar el Modulo creado anteriormente, validar que se elimin�.', function() {
+	it('22. Eliminar el Modulo creado anteriormente, validar que se elimin?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -522,7 +521,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('23. Eliminar la Aplicaci�n creada anteriormente, validar que se elimin�.', function() {
+	it('23. Eliminar la Aplicaci?n creada anteriormente, validar que se elimin?.', function() {
 		cy.get('div#sidebar-menu').within(() => {
 			cy.get('div.menu_section').contains('General').as('menu')
 			cy.get('@menu').parent().within(() => {
@@ -543,7 +542,7 @@ describe('Prueba de Seguridad', function() {
 		cy.get('div.swal2-popup.swal2-modal.swal2-show>div.swal2-actions>button.swal2-confirm.swal2-styled').click()
 	})
 	
-	it('24. Logout, validar que se est� en pantalla de Login', function() {
+	it('24. Logout, validar que se est? en pantalla de Login', function() {
 		cy.get('div.nav_menu').within(() => {
 			cy.get('a').contains('Javier Aguilar').click()
 			cy.screenshot('paso_24_1')
@@ -555,3 +554,4 @@ describe('Prueba de Seguridad', function() {
 	
 
 })
+
