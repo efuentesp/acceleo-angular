@@ -94,7 +94,6 @@ export class InteresManageComponent implements OnInit {
 					if (dataAux) {
             this.cuentadeahorroAux = dataAux;
             
-            console.log ("Numero de Cuenta: ", this.cuentadeahorroAux.numero+"");
 						element.cuentadeahorroItem = this.cuentadeahorroAux.numero+"";
 
 				}	
@@ -128,7 +127,6 @@ export class InteresManageComponent implements OnInit {
 
   // Select row
   setClickedRowInteres(index, interes){
-    console.log('El valor seleccionado: ', interes.cuentadeahorroItem);
     this.interesService.setInteres(interes);
     this.interesService.setEdit(true);
     this.interesService.setDelete(false);

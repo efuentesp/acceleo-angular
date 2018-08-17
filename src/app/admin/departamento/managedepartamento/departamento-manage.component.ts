@@ -83,26 +83,11 @@ export class DepartamentoManageComponent implements OnInit {
           this.departamentoList = data;
 
 			this.departamentoList.forEach(element => {
+        console.log ('Info', element);
 				this.empresaService.getEmpresaById(element.empresaId).subscribe(dataAux => {
 					if (dataAux) {
 						this.empresaAux = dataAux;
 						element.empresaItem = this.empresaAux.clave;
-
-		
-
-		
-
-		
-
-		
-
-		
-
-		
-
-		
-
-		
 				}	
 			});	
 		});

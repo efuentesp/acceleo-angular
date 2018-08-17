@@ -11,6 +11,10 @@ import { Perfil }                                         from '../../perfil/per
 
 import { SocioService }                                  from '../../socio/socio.component.service';
 import { Socio }                                         from '../../socio/socio.component.model';
+import { Departamento } from '../../departamento/departamento.component.model';
+import { Planta } from '../../planta/planta.component.model';
+import { DepartamentoService } from '../../departamento/departamento.component.service';
+import { PlantaService } from '../../planta/planta.component.service';
 
 @Component ({
     selector: 'app-view',
@@ -31,6 +35,14 @@ export class PerfilCreateComponent implements OnInit {
     public socio: Socio;
     public socioAux: Socio;
 
+    public departamentoList: Departamento [];
+    public departamento: Departamento;
+    public departamentoAux: Departamento;
+    
+    public plantaList: Planta [];
+    public planta: Planta;
+	public plantaAux: Planta;
+
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
 
@@ -39,7 +51,9 @@ export class PerfilCreateComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private perfilService: PerfilService
-	,private socioService: SocioService
+    ,private socioService: SocioService
+    ,private departamentoService: DepartamentoService
+    ,private plantaService: PlantaService
 ){
   	 this.filterInputSocio.valueChanges.subscribe(busquedaSocio => {
      this.busquedaSocio = busquedaSocio;
@@ -73,6 +87,67 @@ save(){
     	if (data) {
       	
 		this.socioList = data;
+
+        this.socioList.forEach(element => {
+            this.departamentoService.getDepartamentoById(element.departamentoId).subscribe(dataAux => {
+                if (dataAux) {
+                    this.departamentoAux = dataAux;
+                    element.departamentoItem = this.departamentoAux.nombredepto;
+
+
+      if (element.generoId == 'mas'){
+          element.generoItem = 'Masculino';
+      }
+      if (element.generoId == 'fem'){
+          element.generoItem = 'Femenino';
+      }
+
+      if (element.tipoempleadoId == 'p'){
+          element.tipoempleadoItem = 'Planta';
+      }
+      if (element.tipoempleadoId == 'c'){
+          element.tipoempleadoItem = 'Confianza';
+      }
+      if (element.tipoempleadoId == 't'){
+          element.tipoempleadoItem = 'Temporal';
+      }
+      if (element.tipoempleadoId == 'b'){
+          element.tipoempleadoItem = 'Becario';
+      }
+
+            }	
+        });	
+
+        this.socioList.forEach(element => {
+            this.plantaService.getPlantaById(element.plantaId).subscribe(dataAux => {
+                if (dataAux) {
+                    this.plantaAux = dataAux;
+                    element.plantaItem = this.plantaAux.nombreplanta;
+
+      if (element.generoId == 'mas'){
+          element.generoItem = 'Masculino';
+      }
+      if (element.generoId == 'fem'){
+          element.generoItem = 'Femenino';
+      }
+
+      if (element.tipoempleadoId == 'p'){
+          element.tipoempleadoItem = 'Planta';
+      }
+      if (element.tipoempleadoId == 'c'){
+          element.tipoempleadoItem = 'Confianza';
+      }
+      if (element.tipoempleadoId == 't'){
+          element.tipoempleadoItem = 'Temporal';
+      }
+      if (element.tipoempleadoId == 'b'){
+          element.tipoempleadoItem = 'Becario';
+      }
+            }	
+        });	
+    });
+
+    });
 
     	}
   		}, error => {

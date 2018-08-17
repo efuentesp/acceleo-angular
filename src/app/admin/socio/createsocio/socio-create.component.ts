@@ -13,6 +13,8 @@ import { DepartamentoService }                                  from '../../depa
 import { Departamento }                                         from '../../departamento/departamento.component.model';
 import { PlantaService }                                  from '../../planta/planta.component.service';
 import { Planta }                                         from '../../planta/planta.component.model';
+import { EmpresaService } from '../../empresa/empresa.component.service';
+import { Empresa } from '../../empresa/empresa.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -38,7 +40,11 @@ export class SocioCreateComponent implements OnInit {
 
 	public plantaList: Planta [];
     public planta: Planta;
-    public plantaAux: Planta;
+	public plantaAux: Planta;
+	
+	public empresaList: Empresa [];
+    public empresa: Empresa;
+    public empresaAux: Empresa;
 
 	public busquedaPlanta='';
 	filterInputPlanta = new FormControl();
@@ -50,6 +56,7 @@ export class SocioCreateComponent implements OnInit {
 				private socioService: SocioService
 	,private departamentoService: DepartamentoService
 	,private plantaService: PlantaService
+	,private empresaService: EmpresaService
 ){
   	 this.filterInputDepartamento.valueChanges.subscribe(busquedaDepartamento => {
      this.busquedaDepartamento = busquedaDepartamento;
@@ -88,7 +95,14 @@ save(){
       	
 		this.departamentoList = data;
 
-
+		this.departamentoList.forEach(element => {
+			this.empresaService.getEmpresaById(element.empresaId).subscribe(dataAux => {
+				if (dataAux) {
+					this.empresaAux = dataAux;
+					element.empresaItem = this.empresaAux.clave;
+				}	
+			});	
+		});
 
     	}
   		}, error => {
@@ -118,7 +132,14 @@ save(){
     	if (data) {
       	
 		this.plantaList = data;
-
+			this.plantaList.forEach(element => {
+				this.empresaService.getEmpresaById(element.empresaId).subscribe(dataAux => {
+					if (dataAux) {
+						this.empresaAux = dataAux;
+						element.empresaItem = this.empresaAux.clave;
+					}	
+				});	
+			});
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Plantas.', 'error');

@@ -65,9 +65,7 @@ export class AportacionEditComponent implements OnInit {
 
 save(){
 
-   console.log ("Fecha: ", this.aportacion.fechaAux);
    this.aportacion.fecha = this.parserFormatter.format(this.aportacion.fechaAux);
-   console.log ("Fecha Paseada Edit: ", this.aportacion.fecha);
    this.aportacionService.saveAportacion(this.aportacion).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', 'Aportacion save successfully.', 'success');

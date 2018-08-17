@@ -31,7 +31,7 @@ export class InteresEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public cuentadeahorroList: Cuentadeahorro;
+	public cuentadeahorroList: Cuentadeahorro [];
     public cuentadeahorro: Cuentadeahorro;
 
 	public busquedaCuentadeahorro='';
@@ -113,7 +113,39 @@ delete(){
 	loadCuentadeahorros(){
   		this.cuentadeahorroService.getAllCuentadeahorro().subscribe(data => {
     	if (data) {
-      	this.cuentadeahorroList = data;
+        this.cuentadeahorroList = data;
+        
+        this.cuentadeahorroList.forEach(element => {
+          this.cuentadeahorroService.getCuentadeahorroById(element.cuentadeahorroId).subscribe(dataAux => {
+      
+  
+              if (element.tipoahorroId == 'v'){
+                  element.tipoahorroItem = 'Ahorro a la vista';
+              }
+              if (element.tipoahorroId == 'm1'){
+                element.tipoahorroItem = 'Plazo fijo 1 mes';
+              }                
+              if (element.tipoahorroId == 'm3'){
+                  element.tipoahorroItem = 'Plazo fijo 3 meses';
+              }
+              if (element.tipoahorroId == 'm6'){
+                  element.tipoahorroItem = 'Plazo fijo 6 meses';
+              }
+              if (element.tipoahorroId == 'fap'){
+                element.tipoahorroItem = 'Patrimonial FAP';
+            }
+            if (element.tipoahorroId == 'nov'){
+              element.tipoahorroItem = 'Ahorro a noviembre';
+          }
+          if (element.tipoahorroId == 'esp1'){
+            element.tipoahorroItem = 'Especial anual';
+        }
+        if (element.tipoahorroId == 'esp2'){
+          element.tipoahorroItem = 'Especial educacion';
+      }
+          
+        });	
+      });
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Cuentadeahorros.', 'error');

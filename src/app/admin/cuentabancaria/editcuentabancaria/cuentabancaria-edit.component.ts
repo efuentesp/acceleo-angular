@@ -10,6 +10,10 @@ import { Cuentabancaria }                                         from '../../cu
 
 import { SocioService }                                  from '../../socio/socio.component.service';
 import { Socio }                                         from '../../socio/socio.component.model';
+import { PlantaService } from '../../planta/planta.component.service';
+import { DepartamentoService } from '../../departamento/departamento.component.service';
+import { Departamento } from '../../departamento/departamento.component.model';
+import { Planta } from '../../planta/planta.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -30,8 +34,16 @@ export class CuentabancariaEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public socioList: Socio;
+	public socioList: Socio [];
     public socio: Socio;
+
+  public departamentoList: Departamento [];
+  public departamento: Departamento;
+  public departamentoAux: Departamento;
+  
+  public plantaList: Planta [];
+  public planta: Planta;
+	public plantaAux: Planta;
 
 	public busquedaSocio='';
 	filterInputSocio = new FormControl();
@@ -39,7 +51,9 @@ export class CuentabancariaEditComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private cuentabancariaService: CuentabancariaService
+        private cuentabancariaService: CuentabancariaService,
+        private plantaService: PlantaService,
+        private departamentoService: DepartamentoService
 	,private socioService: SocioService
 ){
 
@@ -108,7 +122,68 @@ delete(){
 	loadSocios(){
   		this.socioService.getAllSocio().subscribe(data => {
     	if (data) {
-      	this.socioList = data;
+        this.socioList = data;
+        
+        this.socioList.forEach(element => {
+          this.departamentoService.getDepartamentoById(element.departamentoId).subscribe(dataAux => {
+              if (dataAux) {
+                  this.departamentoAux = dataAux;
+                  element.departamentoItem = this.departamentoAux.nombredepto;
+
+
+    if (element.generoId == 'mas'){
+        element.generoItem = 'Masculino';
+    }
+    if (element.generoId == 'fem'){
+        element.generoItem = 'Femenino';
+    }
+
+    if (element.tipoempleadoId == 'p'){
+        element.tipoempleadoItem = 'Planta';
+    }
+    if (element.tipoempleadoId == 'c'){
+        element.tipoempleadoItem = 'Confianza';
+    }
+    if (element.tipoempleadoId == 't'){
+        element.tipoempleadoItem = 'Temporal';
+    }
+    if (element.tipoempleadoId == 'b'){
+        element.tipoempleadoItem = 'Becario';
+    }
+
+          }	
+      });	
+
+      this.socioList.forEach(element => {
+          this.plantaService.getPlantaById(element.plantaId).subscribe(dataAux => {
+              if (dataAux) {
+                  this.plantaAux = dataAux;
+                  element.plantaItem = this.plantaAux.nombreplanta;
+
+    if (element.generoId == 'mas'){
+        element.generoItem = 'Masculino';
+    }
+    if (element.generoId == 'fem'){
+        element.generoItem = 'Femenino';
+    }
+
+    if (element.tipoempleadoId == 'p'){
+        element.tipoempleadoItem = 'Planta';
+    }
+    if (element.tipoempleadoId == 'c'){
+        element.tipoempleadoItem = 'Confianza';
+    }
+    if (element.tipoempleadoId == 't'){
+        element.tipoempleadoItem = 'Temporal';
+    }
+    if (element.tipoempleadoId == 'b'){
+        element.tipoempleadoItem = 'Becario';
+    }
+          }	
+      });	
+  });
+
+  });
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Socios.', 'error');

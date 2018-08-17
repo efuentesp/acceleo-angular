@@ -35,11 +35,25 @@
 						</div>
 					</div>
 				
-					<div class="input-group col-md-12">
+					<div class="form-group ">
 						<label class="control-label" for="fecha">Fecha<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #fecha="ngModel" id="fecha" name="fecha" type="text" [(ngModel)]="interes.fecha" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #fecha="ngModel" id="fecha" name="fecha" type="text" [(ngModel)]="interes.fecha" required>
-					</div>	
+						<div  *ngIf="!flagDelete" class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechaAux" [(ngModel)]="interes.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+							<span class="input-group-btn">
+								<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="flagDelete" class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="fechaAux" [(ngModel)]="interes.fechaAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
+							<span class="input-group-btn">
+								<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
 				
 					<div class="input-group col-md-12">
 						<label class="control-label" for="monto">Monto<span class="required">*</span></label>
@@ -76,11 +90,23 @@
 						<thead>
 							<tr>
 								<th style="max-width:10%"></th>
+								<th  style="max-width: 10%">Numero de cuenta</th>
+								<th  style="max-width: 10%" hidden="true">Tipo</th>
+								<th  style="max-width: 10%">Tipo</th>
+								<th  style="max-width: 10%">Fecha de contratacion</th>
+								<th  style="max-width: 10%">Fecha de vencimiento</th>
+								<th  style="max-width: 10%">Fecha de disponibilidad</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr *ngFor="let cuentadeahorro of cuentadeahorroList | filterCuentadeahorro: busquedaCuentadeahorro | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
-								<td  style="max-width: 10%"><input type="checkbox" name="paraId" [checked]="cuentadeahorro.checked" value="{{cuentadeahorro.cuentadeahorroId}}" (click)="setClickedRowCuentadeahorro(i, cuentadeahorro)"></td>
+								<td  style="max-width: 10%"><input type="radio" name="paraId" [checked]="cuentadeahorro.checked" value="{{cuentadeahorro.cuentadeahorroId}}" (click)="setClickedRowCuentadeahorro(i, cuentadeahorro)"></td>
+								<td  style="max-width: 10%">{{cuentadeahorro.numero}}</td>
+								<td  style="max-width: 10%" hidden="true">{{cuentadeahorro.tipoahorroId}}</td>
+								<td  style="max-width: 10%">{{cuentadeahorro.tipoahorroItem}}</td>
+								<td  style="max-width: 10%">{{cuentadeahorro.fechacontratacion | date: 'yyyy-MM-dd'}}</td>
+								<td  style="max-width: 10%">{{cuentadeahorro.fechavencimiento | date: 'yyyy-MM-dd'}}</td>
+								<td  style="max-width: 10%">{{cuentadeahorro.fechadisponibilidad | date: 'yyyy-MM-dd'}}</td>
 							</tr>
 						</tbody>
 					</table>

@@ -17,7 +17,7 @@
 				<form #cuentabancariaForm="ngForm" id="cuentabancariaForm" class="form-horizontal form-label-left" data-parsley-validate>
 					<input class="form-control" #cuentabancariaId="ngModel" cuentabancariaId="cuentabancariaId" name="cuentabancariaId" type="hidden" [(ngModel)]="cuentabancaria.cuentabancariaId">
 	
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label class="control-label" for="socio">Numero de socio<span class="required">*</span></label>						
 							<div class="input-group">
 								<input type="hidden" class="form-control input-md"  name="socioId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="cuentabancaria.socioId" #socioId="ngModel">
@@ -35,19 +35,19 @@
 						</div>
 					
 					
-						<div class="input-group col-md-12">
+						<div class="form-group col-md-12">
 							<label class="control-label" for="cuenta">Numero de cuenta<span class="required">*</span></label>
 							<input *ngIf="flagDelete" class="form-control col-md-12" #cuenta="ngModel" id="cuenta" name="cuenta" maxlength="128" type="number" [(ngModel)]="cuentabancaria.cuenta" readonly="true" disabled>
 							<input *ngIf="!flagDelete" class="form-control col-md-12" #cuenta="ngModel" id="cuenta" name="cuenta" maxlength="128" type="number" [(ngModel)]="cuentabancaria.cuenta" required>
 						</div>
 					
-						<div class="input-group col-md-12">
+						<div class="form-group col-md-12">
 							<label class="control-label" for="clabe">Cuenta clabe<span class="required">*</span></label>
 							<input *ngIf="flagDelete" class="form-control col-md-12" #clabe="ngModel" id="clabe" name="clabe" maxlength="128" type="number" [(ngModel)]="cuentabancaria.clabe" readonly="true" disabled>
 							<input *ngIf="!flagDelete" class="form-control col-md-12" #clabe="ngModel" id="clabe" name="clabe" maxlength="128" type="number" [(ngModel)]="cuentabancaria.clabe" required>
 						</div>
 					
-						<div class="input-group col-md-12">
+						<div class="form-group col-md-12">
 							<label class="control-label" for="emitidapor">Banco Emisor<span class="required">*</span></label>
 							
 							<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="b1" name="b1" [(ngModel)]="cuentabancaria.bancoId"  disabled="true" disabled> HSBC </div>		
