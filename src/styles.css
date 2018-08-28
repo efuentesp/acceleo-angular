@@ -67,3 +67,8 @@ nav a.active {
 .required{
   color: #FF0000;
 }
+
+.scrollMenu {
+  height: 680px;
+  overflow-y: scroll;
+}
