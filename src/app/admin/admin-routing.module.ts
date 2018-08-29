@@ -76,6 +76,14 @@ import { CuentabancariaManageComponent}       from './cuentabancaria/managecuent
 import { CuentabancariaCreateComponent}       from './cuentabancaria/createcuentabancaria/cuentabancaria-create.component';
 import { CuentabancariaEditComponent}         from './cuentabancaria/editcuentabancaria/cuentabancaria-edit.component';
 
+// Wizard
+import { ClienteComponent } 					from './wizardcliente/createcliente/cliente.component';
+import { ResultComponent } 						from './wizardcliente/result/result.component';
+import { AddressComponent } 					from './wizardcliente/address/address.component';
+import { WorkComponent } 						from './wizardcliente/work/work.component';
+import { PersonalComponent } 					from './wizardcliente/personal/personal.component';
+import { ClienteManageComponent } 				from './wizardcliente/managecliente/cliente-manage.component';
+
 
 const adminRoutes: Routes = [
   {
@@ -89,6 +97,15 @@ const adminRoutes: Routes = [
         children: [
         
 		// Com.softtek.acceleo.demo
+		// Wizard
+		{ path: 'createcliente',  component: ClienteComponent}, 
+		{ path: 'managecliente',  component: ClienteManageComponent},
+		{ path: 'personal',  component: PersonalComponent},
+		{ path: 'work',  component: WorkComponent},
+		{ path: 'address',  component: AddressComponent},
+		{ path: 'result',  component: ResultComponent},
+
+		// Entities
 		{ path: 'createplanta',  component: PlantaCreateComponent},  
 		{ path: 'manageplanta',  component: PlantaManageComponent},  
 		{ path: 'editplanta',  component: PlantaEditComponent},  

@@ -1,205 +1,317 @@
-
 <div class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-                <a href="index.html" class="site_title"><img src="../../assets/img/logo.png" width="30px"> <span>PSG</span></a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="../../assets/img/body.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>{{valueName}} </h2>
-                </div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu scrollMenu">
-              <div class="menu_section">
-                <h3>General</h3>
-
-                <ul class="nav side-menu">{{user.authority}}
-                <!-- entities -->
-				  <li *ngIf="cuentabancaria_mgmnt"><a routerLink="./managecuentabancaria" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Cuenta Bancaria </a>
-				  </li>
-                  <li *ngIf="cuentabancaria"><a routerLink="./createcuentabancaria" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Cuenta Bancaria </a>
-                  </li>
-				  <li *ngIf="cuentadeahorro_mgmnt"><a routerLink="./managecuentadeahorro" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Cuenta de ahorro </a>
-				  </li>
-                  <li *ngIf="cuentadeahorro"><a routerLink="./createcuentadeahorro" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Cuenta de ahorro </a>
-                  </li>
-				  <li *ngIf="aportacion_mgmnt"><a routerLink="./manageaportacion" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Aportacion </a>
-				  </li>
-                  <li *ngIf="aportacion"><a routerLink="./createaportacion" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Aportacion </a>
-                  </li>
-				  <li *ngIf="tasadeinteres_mgmnt"><a routerLink="./managetasadeinteres" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Tasa de interes </a>
-				  </li>
-                  <li *ngIf="tasadeinteres"><a routerLink="./createtasadeinteres" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Tasa de interes </a>
-                  </li>
-				  <li *ngIf="departamento_mgmnt"><a routerLink="./managedepartamento" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Departamento </a>
-				  </li>
-                  <li *ngIf="departamento"><a routerLink="./createdepartamento" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Departamento </a>
-                  </li>
-				  <li *ngIf="domicilio_mgmnt"><a routerLink="./managedomicilio" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Domicilio </a>
-				  </li>
-                  <li *ngIf="domicilio"><a routerLink="./createdomicilio" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Domicilio </a>
-                  </li>
-				  <li *ngIf="empresa_mgmnt"><a routerLink="./manageempresa" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Empresa </a>
-				  </li>
-                  <li *ngIf="empresa"><a routerLink="./createempresa" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Empresa </a>
-                  </li>
-				  <li *ngIf="beneficiario_mgmnt"><a routerLink="./managebeneficiario" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Beneficiario </a>
-				  </li>
-                  <li *ngIf="beneficiario"><a routerLink="./createbeneficiario" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Beneficiario </a>
-                  </li>
-				  <li *ngIf="planta_mgmnt"><a routerLink="./manageplanta" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Planta </a>
-				  </li>
-                  <li *ngIf="planta"><a routerLink="./createplanta" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Planta </a>
-                  </li>
-				  <li *ngIf="socio_mgmnt"><a routerLink="./managesocio" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Socio </a>
-				  </li>
-                  <li *ngIf="socio"><a routerLink="./createsocio" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Socio </a>
-                  </li>
-				  <li *ngIf="perfil_mgmnt"><a routerLink="./manageperfil" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Perfil </a>
-				  </li>
-                  <li *ngIf="perfil"><a routerLink="./createperfil" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Perfil </a>
-                  </li>
-				  <li *ngIf="interes_mgmnt"><a routerLink="./manageinteres" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Intereses </a>
-				  </li>
-                  <li *ngIf="interes"><a routerLink="./createinteres" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Intereses </a>
-                  </li>
-                <!-- /entities -->
-                </ul>
-
-                <div *ngIf="manage">
-                <h3>Admin</h3>
-                </div>
-
-                <ul class="nav side-menu">
-                  <li><a *ngIf="manage" routerLink="./manage" routerLinkActive="active">
-                    <i class="fa fa-edit"></i> Manage Privileges </a>
-                  </li>
-                  <li  *ngIf="authority_mgmnt"><a routerLink="./manageAuthority" routerLinkActive="active">
-                    <i class="fa fa-edit"></i> Administrar Authority </a>
-                  </li>
-                  <li  *ngIf="authority"><a routerLink="./createAuthority" routerLinkActive="active">
-                    <i class="fa fa-edit"></i> Agregar Authority</a>
-                  </li>
-                  <li  *ngIf="user_mgmnt"><a routerLink="./manageUser" routerLinkActive="active">
-                    <i class="fa fa-edit"></i> Administrar User </a>
-                  </li>
-                  <li  *ngIf="user"><a routerLink="./createUser" routerLinkActive="active">
-                    <i class="fa fa-edit"></i> Agregar User </a>
-                  </li>
-                </ul>
-
-            </div>
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><img src="../../assets/img/logo.png" width="30px"> <span>PSG</span></a>
           </div>
-        </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="../../assets/img/body.jpg" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2>{{valueName}} </h2>
               </div>
+          </div>
+          <!-- /menu profile quick info -->
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="../../assets/img/body.jpg" alt="">{{valueName}}
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li style="text-align: right"><button (click) = "logout()" style="background: none;" >LogOut</button></li>
+          <br />
+
+          <!-- sidebar menu -->
+
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu scrollMenu">
+            <div class="menu_section">
+              <h3>General</h3>
+
+              <ul class="nav side-menu">{{user.authority}}
+              
+              <!-- entities -->
+                <li><a><i class="fa fa-home"></i> Cliente <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <!-- <li *ngIf="cliente_mgmnt">
+                      <a routerLink="./managecliente" >
+                        Administrar Cliente
+                      </a>
+                    </li> -->
+                    <li *ngIf="cliente">
+                        <a routerLink="./createcliente" >
+                          Agregar Cliente
+                        </a>
+                    </li>
                   </ul>
                 </li>
+                <li><a><i class="fa fa-home"></i> Cuenta Bancaria <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Cuenta Bancaria
+                      </a>
+                    </li>
+                    <li *ngIf="cuentabancaria">
+                        <a routerLink="./createcuentabancaria" >
+                          Agregar Cuenta Bancaria
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Cuenta de ahorro <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Cuenta de ahorro
+                      </a>
+                    </li>
+                    <li *ngIf="cuentadeahorro">
+                        <a routerLink="./createcuentadeahorro" >
+                          Agregar Cuenta de ahorro
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Aportacion <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Aportacion
+                      </a>
+                    </li>
+                    <li *ngIf="aportacion">
+                        <a routerLink="./createaportacion" >
+                          Agregar Aportacion
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Tasa de interes <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Tasa de interes
+                      </a>
+                    </li>
+                    <li *ngIf="tasadeinteres">
+                        <a routerLink="./createtasadeinteres" >
+                          Agregar Tasa de interes
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Departamento <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Departamento
+                      </a>
+                    </li>
+                    <li *ngIf="departamento">
+                        <a routerLink="./createdepartamento" >
+                          Agregar Departamento
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Domicilio <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Domicilio
+                      </a>
+                    </li>
+                    <li *ngIf="domicilio">
+                        <a routerLink="./createdomicilio" >
+                          Agregar Domicilio
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Empresa <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Empresa
+                      </a>
+                    </li>
+                    <li *ngIf="empresa">
+                        <a routerLink="./createempresa" >
+                          Agregar Empresa
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Beneficiario <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Beneficiario
+                      </a>
+                    </li>
+                    <li *ngIf="beneficiario">
+                        <a routerLink="./createbeneficiario" >
+                          Agregar Beneficiario
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Planta <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Planta
+                      </a>
+                    </li>
+                    <li *ngIf="planta">
+                        <a routerLink="./createplanta" >
+                          Agregar Planta
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Socio <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Socio
+                      </a>
+                    </li>
+                    <li *ngIf="socio">
+                        <a routerLink="./createsocio" >
+                          Agregar Socio
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Perfil
+                      </a>
+                    </li>
+                    <li *ngIf="perfil">
+                        <a routerLink="./createperfil" >
+                          Agregar Perfil
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> Intereses <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentadeahorro_mgmnt">
+                      <a routerLink="./managecuentadeahorro" >
+                        Administrar Intereses
+                      </a>
+                    </li>
+                    <li *ngIf="interes">
+                        <a routerLink="./createinteres" >
+                          Agregar Intereses
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+              <!-- /entities -->  
               </ul>
-            </nav>
+
+              <div *ngIf="manage">
+              <h3>Admin</h3>
+              </div>
+
+              <ul class="nav side-menu">
+                <li><a *ngIf="manage" routerLink="./manage" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> Manage Privileges </a>
+                </li>
+                <li  *ngIf="authority_mgmnt"><a routerLink="./manageAuthority" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> Administrar Authority </a>
+                </li>
+                <li  *ngIf="authority"><a routerLink="./createAuthority" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> Agregar Authority</a>
+                </li>
+                <li  *ngIf="user_mgmnt"><a routerLink="./manageUser" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> Administrar User </a>
+                </li>
+                <li  *ngIf="user"><a routerLink="./createUser" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> Agregar User </a>
+                </li>
+              </ul>
+
           </div>
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
         </div>
-        <!-- /top navigation -->
+      </div>
 
-        <!-- page content -->
-        <div class="container body">
-          <div class="right_col" role="main">
-              <div class="row">
-                  <div class="col-md-12 col-sm-12 col-xs-12">
+      <!-- top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <img src="../../assets/img/body.jpg" alt="">{{valueName}}
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li style="text-align: right"><button (click) = "logout()" style="background: none;" >LogOut</button></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="container body">
+        <div class="right_col" role="main">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
 
 
-                            <router-outlet></router-outlet>
+                          <router-outlet></router-outlet>
 
 
-                  </div>
                 </div>
               </div>
             </div>
-
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            <a href="http://www.softtek.com/es/">@ Softtek 2018</a>
           </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
+
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          <a href="http://www.softtek.com/es/">@ Softtek 2018</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
     </div>
-    </div>
+  </div>
+  </div>
+

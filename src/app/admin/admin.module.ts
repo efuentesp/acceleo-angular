@@ -9,6 +9,7 @@ import { AdminComponent }           from './admin.component';
 import { AdminDashboardComponent }  from './admin-dashboard.component';
 
 import { AdminRoutingModule }       from './admin-routing.module';
+
 import { HttpClientModule} from '@angular/common/http';
 import { ManagePrivilegeComponent } from './manage/manage-privilege.component';
 import { ManagePrivilegeService } from './manage/manage-privilege.component.service';
@@ -107,6 +108,20 @@ import { CuentabancariaEditComponent } from './cuentabancaria/editcuentabancaria
 import { SearchCuentabancariaPipe } from './pipe/cuentabancaria.filter.pipe';
 import { CuentabancariaService } from './cuentabancaria/cuentabancaria.component.service';
 
+// Wizard
+import { ClienteService }           from './wizardcliente/cliente.component.service';
+import { ClienteComponent }         from './wizardcliente/createcliente/cliente.component';
+import { ClienteFakeService }       from './wizardcliente/cliente.component.servicefake';
+import { NavbarComponent }          from './wizardcliente/navbar/navbar.component';
+import { PersonalComponent }        from './wizardcliente/personal/personal.component';
+import { WorkComponent }            from './wizardcliente/work/work.component';
+import { AddressComponent }         from './wizardcliente/address/address.component';
+import { ResultComponent }          from './wizardcliente/result/result.component';
+import { SearchClientePipe }        from './wizardcliente/pipe/cliente.filter.pipe';
+import { WorkflowService }          from './wizardcliente/workflow/workflow.service';
+import { ClienteManageComponent } from './wizardcliente/managecliente/cliente-manage.component';
+import { GeneroService } from './wizardcliente/genero/genero.component.service';
+
 
 @NgModule({
   imports: [
@@ -121,6 +136,12 @@ import { CuentabancariaService } from './cuentabancaria/cuentabancaria.component
 	NgbModule
   ],
   declarations: [
+    SearchClientePipe,  
+    NavbarComponent, 
+    PersonalComponent, 
+    WorkComponent,
+    AddressComponent, 
+    ResultComponent,
     PlantaCreateComponent,
     PlantaManageComponent,
     PlantaEditComponent,  
@@ -179,7 +200,10 @@ import { CuentabancariaService } from './cuentabancaria/cuentabancaria.component
     SearchAuthorityPipe,
     SearchUserPipe,
     UserEditComponent,
-    UserCreateComponent
+    UserCreateComponent,
+
+    ClienteComponent,
+    ClienteManageComponent
   ],
   providers: [ 
     PlantaService,
@@ -196,7 +220,12 @@ import { CuentabancariaService } from './cuentabancaria/cuentabancaria.component
     CuentabancariaService,
     ManagePrivilegeService,
     UserService,
-    AuthorityService
+    AuthorityService,
+    
+    ClienteService,
+    ClienteFakeService,
+    WorkflowService,
+    GeneroService
 ]
 })
 export class AdminModule {}

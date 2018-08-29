@@ -5,7 +5,9 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Authority } from '../user/authorities.component.model';
 
 @Component({
-  templateUrl: 'admin.components.html'
+  templateUrl: 'admin.components.html',
+	styleUrls: ['./admin.component.css']
+
 })
 export class AdminComponent {
 
@@ -16,6 +18,10 @@ export class AdminComponent {
   public username: string;
 
 // Menu activation
+
+// Wizard cliente
+private cliente_mgmnt: boolean = false;
+private cliente: boolean = false;
 // Planta
   private planta_mgmnt: boolean = false;
   private planta: boolean = false;
@@ -90,6 +96,10 @@ export class AdminComponent {
 
   buildMenu(authorities){
     authorities.forEach(element => {
+
+      // Wizard
+      this.cliente = true;
+      this.cliente_mgmnt = true;
 
       if (element.authority == 'ROLE_PLANTASEARCH'){
         this.planta_mgmnt = true;
