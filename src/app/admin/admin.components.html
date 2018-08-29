@@ -30,77 +30,87 @@
                 <h3>General</h3>
 
                 <ul class="nav side-menu">{{user.authority}}
-                <!-- entities -->
-				  <li *ngIf="cuentabancaria_mgmnt"><a routerLink="./managecuentabancaria" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar Cuenta Bancaria </a>
-				  </li>
-                  <li *ngIf="cuentabancaria"><a routerLink="./createcuentabancaria" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar Cuenta Bancaria </a>
-                  </li>
-				  <li *ngIf="cuentadeahorro_mgmnt"><a routerLink="./managecuentadeahorro" routerLinkActive="active">
+                
+                  <!-- entities -->
+                <li><a><i class="fa fa-home"></i> Cuenta bancaria <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cuentabancaria_mgmnt">
+                      <a routerLink="./managecuentabancaria" >
+                        Administrar Cuenta bancaria
+                      </a>
+                    </li>
+                    <li *ngIf="cuentabancaria">
+                        <a routerLink="./createcuentabancaria" >
+                          Agregar Cuenta bancaria 
+                        </a>
+                    </li>
+                  </ul>
+                </li>
+
+				  <li *ngIf="cuentadeahorro_mgmnt"><a routerLink="./managecuentadeahorro" >
 				    <i class="fa fa-edit"></i> Administrar Cuenta de ahorro </a>
 				  </li>
-                  <li *ngIf="cuentadeahorro"><a routerLink="./createcuentadeahorro" routerLinkActive="active" >
+                  <li *ngIf="cuentadeahorro"><a routerLink="./createcuentadeahorro"  >
                     <i class="fa fa-edit"></i> Agregar Cuenta de ahorro </a>
                   </li>
-				  <li *ngIf="aportacion_mgmnt"><a routerLink="./manageaportacion" routerLinkActive="active">
+				  <li *ngIf="aportacion_mgmnt"><a routerLink="./manageaportacion" >
 				    <i class="fa fa-edit"></i> Administrar Aportacion </a>
 				  </li>
-                  <li *ngIf="aportacion"><a routerLink="./createaportacion" routerLinkActive="active" >
+                  <li *ngIf="aportacion"><a routerLink="./createaportacion"  >
                     <i class="fa fa-edit"></i> Agregar Aportacion </a>
                   </li>
-				  <li *ngIf="tasadeinteres_mgmnt"><a routerLink="./managetasadeinteres" routerLinkActive="active">
+				  <li *ngIf="tasadeinteres_mgmnt"><a routerLink="./managetasadeinteres" >
 				    <i class="fa fa-edit"></i> Administrar Tasa de interes </a>
 				  </li>
-                  <li *ngIf="tasadeinteres"><a routerLink="./createtasadeinteres" routerLinkActive="active" >
+                  <li *ngIf="tasadeinteres"><a routerLink="./createtasadeinteres"  >
                     <i class="fa fa-edit"></i> Agregar Tasa de interes </a>
                   </li>
-				  <li *ngIf="departamento_mgmnt"><a routerLink="./managedepartamento" routerLinkActive="active">
+				  <li *ngIf="departamento_mgmnt"><a routerLink="./managedepartamento" >
 				    <i class="fa fa-edit"></i> Administrar Departamento </a>
 				  </li>
-                  <li *ngIf="departamento"><a routerLink="./createdepartamento" routerLinkActive="active" >
+                  <li *ngIf="departamento"><a routerLink="./createdepartamento"  >
                     <i class="fa fa-edit"></i> Agregar Departamento </a>
                   </li>
-				  <li *ngIf="domicilio_mgmnt"><a routerLink="./managedomicilio" routerLinkActive="active">
+				  <li *ngIf="domicilio_mgmnt"><a routerLink="./managedomicilio" >
 				    <i class="fa fa-edit"></i> Administrar Domicilio </a>
 				  </li>
-                  <li *ngIf="domicilio"><a routerLink="./createdomicilio" routerLinkActive="active" >
+                  <li *ngIf="domicilio"><a routerLink="./createdomicilio"  >
                     <i class="fa fa-edit"></i> Agregar Domicilio </a>
                   </li>
-				  <li *ngIf="empresa_mgmnt"><a routerLink="./manageempresa" routerLinkActive="active">
+				  <li *ngIf="empresa_mgmnt"><a routerLink="./manageempresa" >
 				    <i class="fa fa-edit"></i> Administrar Empresa </a>
 				  </li>
-                  <li *ngIf="empresa"><a routerLink="./createempresa" routerLinkActive="active" >
+                  <li *ngIf="empresa"><a routerLink="./createempresa"  >
                     <i class="fa fa-edit"></i> Agregar Empresa </a>
                   </li>
-				  <li *ngIf="beneficiario_mgmnt"><a routerLink="./managebeneficiario" routerLinkActive="active">
+				  <li *ngIf="beneficiario_mgmnt"><a routerLink="./managebeneficiario" >
 				    <i class="fa fa-edit"></i> Administrar Beneficiario </a>
 				  </li>
-                  <li *ngIf="beneficiario"><a routerLink="./createbeneficiario" routerLinkActive="active" >
+                  <li *ngIf="beneficiario"><a routerLink="./createbeneficiario"  >
                     <i class="fa fa-edit"></i> Agregar Beneficiario </a>
                   </li>
-				  <li *ngIf="planta_mgmnt"><a routerLink="./manageplanta" routerLinkActive="active">
+				  <li *ngIf="planta_mgmnt"><a routerLink="./manageplanta" >
 				    <i class="fa fa-edit"></i> Administrar Planta </a>
 				  </li>
-                  <li *ngIf="planta"><a routerLink="./createplanta" routerLinkActive="active" >
+                  <li *ngIf="planta"><a routerLink="./createplanta"  >
                     <i class="fa fa-edit"></i> Agregar Planta </a>
                   </li>
-				  <li *ngIf="socio_mgmnt"><a routerLink="./managesocio" routerLinkActive="active">
+				  <li *ngIf="socio_mgmnt"><a routerLink="./managesocio" >
 				    <i class="fa fa-edit"></i> Administrar Socio </a>
 				  </li>
-                  <li *ngIf="socio"><a routerLink="./createsocio" routerLinkActive="active" >
+                  <li *ngIf="socio"><a routerLink="./createsocio"  >
                     <i class="fa fa-edit"></i> Agregar Socio </a>
                   </li>
-				  <li *ngIf="perfil_mgmnt"><a routerLink="./manageperfil" routerLinkActive="active">
+				  <li *ngIf="perfil_mgmnt"><a routerLink="./manageperfil" >
 				    <i class="fa fa-edit"></i> Administrar Perfil </a>
 				  </li>
-                  <li *ngIf="perfil"><a routerLink="./createperfil" routerLinkActive="active" >
+                  <li *ngIf="perfil"><a routerLink="./createperfil"  >
                     <i class="fa fa-edit"></i> Agregar Perfil </a>
                   </li>
-				  <li *ngIf="interes_mgmnt"><a routerLink="./manageinteres" routerLinkActive="active">
+				  <li *ngIf="interes_mgmnt"><a routerLink="./manageinteres" >
 				    <i class="fa fa-edit"></i> Administrar Intereses </a>
 				  </li>
-                  <li *ngIf="interes"><a routerLink="./createinteres" routerLinkActive="active" >
+                  <li *ngIf="interes"><a routerLink="./createinteres"  >
                     <i class="fa fa-edit"></i> Agregar Intereses </a>
                   </li>
                 <!-- /entities -->
@@ -111,19 +121,19 @@
                 </div>
 
                 <ul class="nav side-menu">
-                  <li><a *ngIf="manage" routerLink="./manage" routerLinkActive="active">
+                  <li><a *ngIf="manage" routerLink="./manage" >
                     <i class="fa fa-edit"></i> Manage Privileges </a>
                   </li>
-                  <li  *ngIf="authority_mgmnt"><a routerLink="./manageAuthority" routerLinkActive="active">
+                  <li  *ngIf="authority_mgmnt"><a routerLink="./manageAuthority" >
                     <i class="fa fa-edit"></i> Administrar Authority </a>
                   </li>
-                  <li  *ngIf="authority"><a routerLink="./createAuthority" routerLinkActive="active">
+                  <li  *ngIf="authority"><a routerLink="./createAuthority" >
                     <i class="fa fa-edit"></i> Agregar Authority</a>
                   </li>
-                  <li  *ngIf="user_mgmnt"><a routerLink="./manageUser" routerLinkActive="active">
+                  <li  *ngIf="user_mgmnt"><a routerLink="./manageUser" >
                     <i class="fa fa-edit"></i> Administrar User </a>
                   </li>
-                  <li  *ngIf="user"><a routerLink="./createUser" routerLinkActive="active">
+                  <li  *ngIf="user"><a routerLink="./createUser" >
                     <i class="fa fa-edit"></i> Agregar User </a>
                   </li>
                 </ul>

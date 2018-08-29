@@ -1,0 +1,38 @@
+<div style="height:600px">
+    <div class="page-title" style="background: #F7F7F7;">
+    <div class="title_left">
+      <h3>Home</h3>
+
+    
+        <div class="form-group ">
+        <div class="input-group col-md-12">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <span class="input-group-btn">
+              <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="departamento">Departamento<span class="required">*</span></label>						
+            <div class="input-group">
+                <input type="hidden" class="form-control input-md"  name="departamentoId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="socio.departamentoId" #departamentoId="ngModel">
+                <input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="socio.departamentoItem"  [ngModelOptions]="{standalone: true}" #departamentoItem="ngModel" placeholder="Departamento..." readonly="true" disabled>
+                <input *ngIf="!flagDelete" type="text" class="form-control" [(ngModel)]="socio.departamentoItem"  [ngModelOptions]="{standalone: true}" #departamentoItem="ngModel" placeholder="Departamento...">
+                <span class="input-group-btn">
+                    <button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalDepartamento">
+                        <em class="fa fa-search"></em>
+                    </button>
+                    <button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalDepartamento">
+                        <em class="fa fa-search"></em>
+                    </button>
+                </span>
+            </div>
+        </div>
+     
+
+    </div>
+  </div>
+  </div>

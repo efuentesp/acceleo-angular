@@ -5,7 +5,9 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Authority } from '../user/authorities.component.model';
 
 @Component({
-  templateUrl: 'admin.components.html'
+  templateUrl: 'admin.components.html',
+	styleUrls: ['./admin.component.css']
+
 })
 export class AdminComponent {
 
