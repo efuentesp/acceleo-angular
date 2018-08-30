@@ -1,71 +1,80 @@
 <div>
-	<div class="page-title" style="background: #F7F7F7;">
-		<div class="title_left">
-			<h3 >Agregar Beneficiario</h3>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3 >Agregar Beneficiario</h3>
+			</div>
 		</div>
-	</div>
-
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>Datos del Beneficiario</h2>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="x_content">
-			<!-- start form for validation -->
-			<form #beneficiarioForm="ngForm" id="beneficiarioForm" class="form-horizontal form-label-left" data-parsley-validate>
-				<input class="form-control" #beneficiarioId="ngModel" beneficiarioId="beneficiarioId" name="beneficiarioId" type="hidden" [(ngModel)]="beneficiario.beneficiarioId">
-					
-					<div class="form-group">
-						<label class="control-label" for="cuentadeahorro">Cuenta de ahorro<span class="required">*</span></label>
-						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="cuentadeahorroId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="beneficiario.cuentadeahorroId" #cuentadeahorroId="ngModel">
-							<input type="text" class="form-control" [(ngModel)]="beneficiario.cuentadeahorroItem"  [ngModelOptions]="{standalone: true}" #cuentadeahorroItem="ngModel" placeholder="Cuentadeahorro...">
-							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCuentadeahorro">
-									<em class="fa fa-search"></em>
-								</button>
-							</span>
+	
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Datos del Beneficiario</h2>
+				<div class="clearfix"></div>
+			</div>
+	
+			<div class="x_content">
+				<!-- start form for validation -->
+				<form #beneficiarioForm="ngForm" id="beneficiarioForm" class="form-horizontal form-label-left" (ngSubmit)="beneficiarioForm.valid && save()" novalidate>
+					<input class="form-control" #beneficiarioId="ngModel" beneficiarioId="beneficiarioId" name="beneficiarioId" type="hidden" [(ngModel)]="beneficiario.beneficiarioId">
+						
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !cuentadeahorroId.valid}">
+							<label class="control-label" for="cuentadeahorro">Cuenta de ahorro<span class="required">*</span></label>
+							<div class="input-group">
+								<input type="hidden" class="form-control input-md"  name="cuentadeahorroId"   [(ngModel)]="beneficiario.cuentadeahorroId"    #cuentadeahorroId="ngModel" required>
+								<input type="text"   class="form-control input-md"  name="cuentadeahorroItem" [(ngModel)]="beneficiario.cuentadeahorroItem"  #cuentadeahorroItem="ngModel" placeholder="Cuentadeahorro...">
+								<span class="input-group-btn">
+									<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCuentadeahorro">
+										<em class="fa fa-search"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="beneficiarioForm.submitted && !cuentadeahorroId.valid" class="help-block">Cuenta de ahorro es requerido</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-						<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="beneficiario.nombre" required>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
-						<input class="form-control col-md-12" #apellidopaterno="ngModel" id="apellidopaterno" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="beneficiario.apellidopaterno" required>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
-						<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="beneficiario.apellidomaterno" required>
-					</div>
-					<div class="form-group ">
-						<label class="control-label" for="fechanacimiento">Fecha de nacimiento<span class="required">*</span></label>
-						<div class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechanacimientoAux" [(ngModel)]="beneficiario.fechanacimientoAux" ngbDatepicker #fechanacimientoAux="ngbDatepicker" required>
-							<span class="input-group-btn">
-								<button class="btn btn-outline-secondary" (click)="fechanacimientoAux.toggle()" type="button">
-									<em class="fa fa-calendar"></em>
-								</button>
-							</span>
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !nombre.valid}">
+							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="beneficiario.nombre" required>
+							<div *ngIf="beneficiarioForm.submitted && !nombre.valid" class="help-block">Nombre es requerido</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="es">Genero<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="mas" name="mas" [(ngModel)]="beneficiario.generoId"> Masculino</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fem" name="fem" [(ngModel)]="beneficiario.generoId"> Femenino</div>		
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="de">Parentesco<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="cy" name="cy" [(ngModel)]="beneficiario.parentescoId"> Conyuge</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="hj1" name="hj1" [(ngModel)]="beneficiario.parentescoId"> Hijo</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="hj2" name="hj2" [(ngModel)]="beneficiario.parentescoId"> Hija</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="pa" name="pa" [(ngModel)]="beneficiario.parentescoId"> Padre</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ma" name="ma" [(ngModel)]="beneficiario.parentescoId"> Madre</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="h1" name="h1" [(ngModel)]="beneficiario.parentescoId"> Hermano</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="h2" name="h2" [(ngModel)]="beneficiario.parentescoId"> Hermana</div>		
-					</div>
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !apellidopaterno.valid}">
+							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
+							<input class="form-control col-md-12" #apellidopaterno="ngModel" id="apellidopaterno" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="beneficiario.apellidopaterno" required>
+							<div *ngIf="beneficiarioForm.submitted && !apellidopaterno.valid" class="help-block">Apellido Paterno es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !apellidomaterno.valid}">
+							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
+							<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="beneficiario.apellidomaterno" required>
+							<div *ngIf="beneficiarioForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !fechanacimientoAux.valid}">
+							<label class="control-label" for="fechanacimiento">Fecha de nacimiento<span class="required">*</span></label>
+							<div class="input-group col-md-12">	
+								<input class="form-control" placeholder="yyyy-mm-dd" name="fechanacimientoAux" [(ngModel)]="beneficiario.fechanacimientoAux" ngbDatepicker #fechanacimientoAux="ngbDatepicker" required>
+								<span class="input-group-btn">
+									<button class="btn btn-outline-secondary" (click)="fechanacimientoAux.toggle()" type="button">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="beneficiarioForm.submitted && !fechanacimientoAux.valid" class="help-block">Fecha de nacimiento es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !generoId.valid}">
+							<label class="control-label" for="genero">Genero<span class="required">*</span></label>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="mas" name="genero" [(ngModel)]="beneficiario.generoId" required> Masculino</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fem" name="genero" [(ngModel)]="beneficiario.generoId" required> Femenino</div>		
+							<input type="hidden" class="form-control input-md"  name="generoId"  [(ngModel)]="beneficiario.generoId"    #generoId="ngModel" required>
+							<div *ngIf="beneficiarioForm.submitted && !generoId.valid" class="help-block">Genero es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': beneficiarioForm.submitted && !parentescoId.valid}">
+							<label class="control-label" for="parentesco">Parentesco<span class="required">*</span></label>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="cy" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Conyuge</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="hj1" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Hijo</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="hj2" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Hija</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="pa" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Padre</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ma" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Madre</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="h1" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Hermano</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="h2" name="parentesco" [(ngModel)]="beneficiario.parentescoId" required> Hermana</div>		
+							<input type="hidden" class="form-control input-md"  name="parentescoId"  [(ngModel)]="beneficiario.parentescoId"    #parentescoId="ngModel" required>
+							<div *ngIf="beneficiarioForm.submitted && !parentescoId.valid" class="help-block">Parentesco es requerido</div>
+						</div>
 
 <!-- Modal cuentadeahorro -->
 <div id="modalCuentadeahorro" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -144,11 +153,11 @@
 							<button class="btn btn-link" (click)="return(beneficiarioForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!beneficiarioForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
 							<button class="btn btn-link" (click)="return(beneficiarioForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!beneficiarioForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
 							<button class="btn btn-link" (click)="return(beneficiarioForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>
