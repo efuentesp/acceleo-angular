@@ -1,56 +1,60 @@
 <div>
-	<div class="page-title" style="background: #F7F7F7;">
-		<div class="title_left">
-			<h3 >Agregar Aportacion</h3>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3 >Agregar Aportacion</h3>
+			</div>
 		</div>
-	</div>
-
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>Datos del Aportacion</h2>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="x_content">
-			<!-- start form for validation -->
-			<form #aportacionForm="ngForm" id="aportacionForm" class="form-horizontal form-label-left" data-parsley-validate>
-				<input class="form-control" #aportacionId="ngModel" aportacionId="aportacionId" name="aportacionId" type="hidden" [(ngModel)]="aportacion.aportacionId">
-
-					<div class="form-group">
-						<label class="control-label" for="cuentadeahorro">Cuenta de ahorro<span class="required">*</span></label>
-						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="cuentadeahorroId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="aportacion.cuentadeahorroId" #cuentadeahorroId="ngModel">
-							<input type="text" class="form-control" [(ngModel)]="aportacion.cuentadeahorroItem"  [ngModelOptions]="{standalone: true}" #cuentadeahorroItem="ngModel" placeholder="Cuentadeahorro...">
-							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCuentadeahorro">
-									<em class="fa fa-search"></em>
-								</button>
-							</span>
+	
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Datos del Aportacion</h2>
+				<div class="clearfix"></div>
+			</div>
+	
+			<div class="x_content">
+				<!-- start form for validation -->
+				<form #aportacionForm="ngForm" id="aportacionForm" class="form-horizontal form-label-left" (ngSubmit)="aportacionForm.valid && save()" novalidate>
+					<input class="form-control" #aportacionId="ngModel" aportacionId="aportacionId" name="aportacionId" type="hidden" [(ngModel)]="aportacion.aportacionId">
+						
+						<div class="form-group" [ngClass]="{ 'has-error': aportacionForm.submitted && !cuentadeahorroId.valid}">
+							<label class="control-label" for="cuentadeahorro">Cuenta de ahorro<span class="required">*</span></label>
+							<div class="input-group">
+								<input type="hidden" class="form-control input-md"  name="cuentadeahorroId"   [(ngModel)]="aportacion.cuentadeahorroId"    #cuentadeahorroId="ngModel" required>
+								<input type="text"   class="form-control input-md"  name="cuentadeahorroItem" [(ngModel)]="aportacion.cuentadeahorroItem"  #cuentadeahorroItem="ngModel" placeholder="Cuentadeahorro...">
+								<span class="input-group-btn">
+									<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCuentadeahorro">
+										<em class="fa fa-search"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="aportacionForm.submitted && !cuentadeahorroId.valid" class="help-block">Cuenta de ahorro es requerido</div>
 						</div>
-					</div>
-					<div class="form-group ">
-						<label class="control-label" for="fecha">Fecha<span class="required">*</span></label>
-						<div class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechaAux" [(ngModel)]="aportacion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
-							<span class="input-group-btn">
-								<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
-									<em class="fa fa-calendar"></em>
-								</button>
-							</span>
+						<div class="form-group" [ngClass]="{ 'has-error': aportacionForm.submitted && !fechaAux.valid}">
+							<label class="control-label" for="fecha">Fecha<span class="required">*</span></label>
+							<div class="input-group col-md-12">	
+								<input class="form-control" placeholder="yyyy-mm-dd" name="fechaAux" [(ngModel)]="aportacion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+								<span class="input-group-btn">
+									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="aportacionForm.submitted && !fechaAux.valid" class="help-block">Fecha es requerido</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="tipoaportacion">Concepto<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="cf" name="cf" [(ngModel)]="aportacion.tipoaportacionId"> Cuota fija quincenal</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fa" name="fa" [(ngModel)]="aportacion.tipoaportacionId"> Especial fondo de ahorro</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ut" name="ut" [(ngModel)]="aportacion.tipoaportacionId"> Especial utilidades</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ag" name="ag" [(ngModel)]="aportacion.tipoaportacionId"> Especial aguinaldo</div>		
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="monto">Monto<span class="required">*</span></label>
-						<input class="form-control col-md-12" #monto="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="monto" name="monto" maxlength="128" type="number" [(ngModel)]="aportacion.monto" required>
-					</div>
-
+						<div class="form-group" [ngClass]="{ 'has-error': aportacionForm.submitted && !tipoaportacionId.valid}">
+							<label class="control-label" for="tipoaportacion">Concepto<span class="required">*</span></label>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="cf" name="tipoaportacion" [(ngModel)]="aportacion.tipoaportacionId" required> Cuota fija quincenal</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fa" name="tipoaportacion" [(ngModel)]="aportacion.tipoaportacionId" required> Especial fondo de ahorro</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ut" name="tipoaportacion" [(ngModel)]="aportacion.tipoaportacionId" required> Especial utilidades</div>		
+							<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="ag" name="tipoaportacion" [(ngModel)]="aportacion.tipoaportacionId" required> Especial aguinaldo</div>		
+							<input type="hidden" class="form-control input-md"  name="tipoaportacionId"  [(ngModel)]="aportacion.tipoaportacionId"    #tipoaportacionId="ngModel" required>
+							<div *ngIf="aportacionForm.submitted && !tipoaportacionId.valid" class="help-block">Concepto es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': aportacionForm.submitted && !monto.valid}">
+							<label class="control-label" for="monto">Monto<span class="required">*</span></label>
+							<input class="form-control col-md-12" #monto="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="monto" name="monto" maxlength="128" type="number" [(ngModel)]="aportacion.monto" required>
+							<div *ngIf="aportacionForm.submitted && !monto.valid" class="help-block">Monto es requerido</div>
+						</div>
 
 <!-- Modal cuentadeahorro -->
 <div id="modalCuentadeahorro" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -99,7 +103,7 @@
 								<td  style="max-width: 10%">{{cuentadeahorro.fechadisponibilidad | date: 'yyyy-MM-dd'}}</td>
 							</tr>
 						</tbody>
-					</table>
+						</table>
 
 						<div align="center" style="margin-top:15px;">
 							<pagination-controls (pageChange)="page = $event" id="1" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
@@ -129,11 +133,11 @@
 							<button class="btn btn-link" (click)="return(aportacionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!aportacionForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
 							<button class="btn btn-link" (click)="return(aportacionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!aportacionForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
 							<button class="btn btn-link" (click)="return(aportacionForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>
