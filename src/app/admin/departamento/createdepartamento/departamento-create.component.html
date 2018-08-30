@@ -1,42 +1,45 @@
 <div>
-	<div class="page-title" style="background: #F7F7F7;">
-		<div class="title_left">
-			<h3 >Agregar Departamento</h3>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3 >Agregar Departamento</h3>
+			</div>
 		</div>
-	</div>
-
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>Datos del Departamento</h2>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="x_content">
-			<!-- start form for validation -->
-			<form #departamentoForm="ngForm" id="departamentoForm" class="form-horizontal form-label-left" data-parsley-validate>
-				<input class="form-control" #departamentoId="ngModel" departamentoId="departamentoId" name="departamentoId" type="hidden" [(ngModel)]="departamento.departamentoId">
-
-					<div class="form-group">
-						<label class="control-label" for="empresa">Empresa<span class="required">*</span></label>
-						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="empresaId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="departamento.empresaId" #empresaId="ngModel">
-							<input type="text" class="form-control" [(ngModel)]="departamento.empresaItem"  [ngModelOptions]="{standalone: true}" #empresaItem="ngModel" placeholder="Empresa...">
-							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
-									<em class="fa fa-search"></em>
-								</button>
-							</span>
+	
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Datos del Departamento</h2>
+				<div class="clearfix"></div>
+			</div>
+	
+			<div class="x_content">
+				<!-- start form for validation -->
+				<form #departamentoForm="ngForm" id="departamentoForm" class="form-horizontal form-label-left" (ngSubmit)="departamentoForm.valid && save()" novalidate>
+					<input class="form-control" #departamentoId="ngModel" departamentoId="departamentoId" name="departamentoId" type="hidden" [(ngModel)]="departamento.departamentoId">
+						
+						<div class="form-group" [ngClass]="{ 'has-error': departamentoForm.submitted && !empresaId.valid}">
+							<label class="control-label" for="empresa">Empresa<span class="required">*</span></label>
+							<div class="input-group">
+								<input type="hidden" class="form-control input-md"  name="empresaId"   [(ngModel)]="departamento.empresaId"    #empresaId="ngModel" required>
+								<input type="text"   class="form-control input-md"  name="empresaItem" [(ngModel)]="departamento.empresaItem"  #empresaItem="ngModel" placeholder="Empresa...">
+								<span class="input-group-btn">
+									<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
+										<em class="fa fa-search"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="departamentoForm.submitted && !empresaId.valid" class="help-block">Empresa es requerido</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="nombredepto">Departamento<span class="required">*</span></label>
-						<input class="form-control col-md-12" #nombredepto="ngModel" id="nombredepto" name="nombredepto" maxlength="128" type="text" [(ngModel)]="departamento.nombredepto" required>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="representante">Respresentante<span class="required">*</span></label>
-						<input class="form-control col-md-12" #representante="ngModel" id="representante" name="representante" maxlength="128" type="text" [(ngModel)]="departamento.representante" required>
-					</div>
-
+						<div class="form-group" [ngClass]="{ 'has-error': departamentoForm.submitted && !nombredepto.valid}">
+							<label class="control-label" for="nombredepto">Departamento<span class="required">*</span></label>
+							<input class="form-control col-md-12" #nombredepto="ngModel" id="nombredepto" name="nombredepto" maxlength="128" type="text" [(ngModel)]="departamento.nombredepto" required>
+							<div *ngIf="departamentoForm.submitted && !nombredepto.valid" class="help-block">Departamento es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': departamentoForm.submitted && !representante.valid}">
+							<label class="control-label" for="representante">Respresentante<span class="required">*</span></label>
+							<input class="form-control col-md-12" #representante="ngModel" id="representante" name="representante" maxlength="128" type="text" [(ngModel)]="departamento.representante" required>
+							<div *ngIf="departamentoForm.submitted && !representante.valid" class="help-block">Respresentante es requerido</div>
+						</div>
+	
 
 <!-- Modal empresa -->
 <div id="modalEmpresa" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -107,11 +110,11 @@
 							<button class="btn btn-link" (click)="return(departamentoForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!departamentoForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
 							<button class="btn btn-link" (click)="return(departamentoForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!departamentoForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
 							<button class="btn btn-link" (click)="return(departamentoForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>

@@ -1,69 +1,109 @@
 <div>
-	<div class="page-title" style="background: #F7F7F7;">
-		<div class="title_left">
-			<h3 *ngIf="flagDelete">Eliminar Planta</h3>
-			<h3 *ngIf="flag && !flagDelete">Actualizar Planta</h3>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3 *ngIf="flagDelete">Eliminar Planta</h3>
+				<h3 *ngIf="flag && !flagDelete">Actualizar Planta</h3>
+			</div>
 		</div>
-	</div>
-
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>Datos del Planta</h2>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="x_content">
-			<!-- start form for validation -->
-			<form #plantaForm="ngForm" id="plantaForm" class="form-horizontal form-label-left" data-parsley-validate>
-				<input class="form-control" #plantaId="ngModel" plantaId="plantaId" name="plantaId" type="hidden" [(ngModel)]="planta.plantaId">
-
-				
-					<div class="form-group">
-						<label class="control-label" for="empresa">Clave Empresa<span class="required">*</span></label>						
-						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="empresaId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="planta.empresaId" #empresaId="ngModel">
-							<input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="planta.empresaItem"  [ngModelOptions]="{standalone: true}" #empresaItem="ngModel" placeholder="Empresa..." readonly="true" disabled>
-							<input *ngIf="!flagDelete" type="text" class="form-control" [(ngModel)]="planta.empresaItem"  [ngModelOptions]="{standalone: true}" #empresaItem="ngModel" placeholder="Empresa...">
-							<span class="input-group-btn">
-								<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
-									<em class="fa fa-search"></em>
-								</button>
-								<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
-									<em class="fa fa-search"></em>
-								</button>
-							</span>
+	
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Datos del Planta</h2>
+				<div class="clearfix"></div>
+			</div>
+	
+			<div class="x_content">
+				<!-- start form for validation -->
+				<form #plantaForm="ngForm" id="plantaForm" class="form-horizontal form-label-left" (ngSubmit)="plantaForm.valid && save()" novalidate>
+					<input class="form-control" #plantaId="ngModel" plantaId="plantaId" name="plantaId" type="hidden" [(ngModel)]="planta.plantaId">
+					
+						<div class="form-group" [ngClass]="{ 'has-error': plantaForm.submitted && !empresaId.valid}">
+							<label class="control-label" for="empresa">Clave Empresa<span class="required">*</span></label>						
+							<div class="input-group">
+								<input type="hidden" class="form-control input-md"  name="empresaId"  [(ngModel)]="planta.empresaId" #empresaId="ngModel" required>
+								<input *ngIf="flagDelete"  type="text" class="form-control" name="empresa"Item  [(ngModel)]="planta.empresaItem"  #empresaItem="ngModel" placeholder="Empresa..." readonly disabled>
+								<input *ngIf="!flagDelete" type="text" class="form-control" name="empresa"Item  [(ngModel)]="planta.empresaItem"  #empresaItem="ngModel" placeholder="Empresa..." readonly>
+								<span class="input-group-btn">
+									<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
+										<em class="fa fa-search"></em>
+									</button>
+									<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
+										<em class="fa fa-search"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="plantaForm.submitted && !empresaId.valid" class="help-block">Clave Empresa es requerido</div>
 						</div>
-					</div>
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="nombreplanta">Planta<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #nombreplanta="ngModel" id="nombreplanta" name="nombreplanta" type="text" [(ngModel)]="planta.nombreplanta" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #nombreplanta="ngModel" id="nombreplanta" name="nombreplanta" type="text" [(ngModel)]="planta.nombreplanta" required>
-					</div>
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="direccion">Direccion<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #direccion="ngModel" id="direccion" name="direccion" type="text" [(ngModel)]="planta.direccion" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #direccion="ngModel" id="direccion" name="direccion" type="text" [(ngModel)]="planta.direccion" required>
-					</div>
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="diadepago">Dia de pago<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #diadepago="ngModel" id="diadepago" name="diadepago" maxlength="128" type="number" [(ngModel)]="planta.diadepago" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #diadepago="ngModel" id="diadepago" name="diadepago" maxlength="128" type="number" [(ngModel)]="planta.diadepago" required>
-					</div>
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="maximo">Prestamo maximo<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #maximo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="maximo" name="maximo" maxlength="128" type="number" [(ngModel)]="planta.maximo" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #maximo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="maximo" name="maximo" maxlength="128" type="number" [(ngModel)]="planta.maximo" required>
-					</div>
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="minimo">Prestamo minimo<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #minimo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="minimo" name="minimo" maxlength="128" type="number" [(ngModel)]="planta.minimo" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #minimo="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="minimo" name="minimo" maxlength="128" type="number" [(ngModel)]="planta.minimo" required>
-					</div>
+					
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="nombreplanta">Planta<span class="required">*</span></label>
+								<input class="form-control col-md-12"   #nombreplanta="ngModel" name="nombreplanta" maxlength="128" type="text" [(ngModel)]="planta.nombreplanta" readonly disabled>
+							</div>
+						</div>
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': plantaForm.submitted && !nombreplanta.valid}">
+								<label class="control-label" for="nombreplanta">Planta<span class="required">*</span></label>
+								<input class="form-control col-md-12" #nombreplanta="ngModel" name="nombreplanta" maxlength="128" type="text" [(ngModel)]="planta.nombreplanta" required>
+								<div *ngIf="plantaForm.submitted && !nombreplanta.valid" class="help-block">Planta es requerido</div>
+							</div>
+						</div>
+					
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="direccion">Direccion<span class="required">*</span></label>
+								<input class="form-control col-md-12"   #direccion="ngModel" name="direccion" maxlength="128" type="text" [(ngModel)]="planta.direccion" readonly disabled>
+							</div>
+						</div>
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': plantaForm.submitted && !direccion.valid}">
+								<label class="control-label" for="direccion">Direccion<span class="required">*</span></label>
+								<input class="form-control col-md-12" #direccion="ngModel" name="direccion" maxlength="128" type="text" [(ngModel)]="planta.direccion" required>
+								<div *ngIf="plantaForm.submitted && !direccion.valid" class="help-block">Direccion es requerido</div>
+							</div>
+						</div>
+					
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="diadepago">Dia de pago<span class="required">*</span></label>
+								<input class="form-control col-md-12"   #diadepago="ngModel" name="diadepago" maxlength="128" type="number" [(ngModel)]="planta.diadepago" readonly disabled>
+							</div>
+						</div>
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': plantaForm.submitted && !diadepago.valid}">
+								<label class="control-label" for="diadepago">Dia de pago<span class="required">*</span></label>
+								<input class="form-control col-md-12" #diadepago="ngModel" name="diadepago" maxlength="128" type="number" [(ngModel)]="planta.diadepago" required>
+								<div *ngIf="plantaForm.submitted && !diadepago.valid" class="help-block">Dia de pago es requerido</div>
+							</div>
+						</div>
+					
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="maximo">Prestamo maximo<span class="required">*</span></label>
+								<input class="form-control col-md-12"   #maximo="ngModel" name="maximo" maxlength="128" type="text" [(ngModel)]="planta.maximo" readonly disabled>
+							</div>
+						</div>
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': plantaForm.submitted && !maximo.valid}">
+								<label class="control-label" for="maximo">Prestamo maximo<span class="required">*</span></label>
+								<input class="form-control col-md-12" #maximo="ngModel" name="maximo" maxlength="128" type="text" [(ngModel)]="planta.maximo" required>
+								<div *ngIf="plantaForm.submitted && !maximo.valid" class="help-block">Prestamo maximo es requerido</div>
+							</div>
+						</div>
+					
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="minimo">Prestamo minimo<span class="required">*</span></label>
+								<input class="form-control col-md-12"   #minimo="ngModel" name="minimo" maxlength="128" type="text" [(ngModel)]="planta.minimo" readonly disabled>
+							</div>
+						</div>
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': plantaForm.submitted && !minimo.valid}">
+								<label class="control-label" for="minimo">Prestamo minimo<span class="required">*</span></label>
+								<input class="form-control col-md-12" #minimo="ngModel" name="minimo" maxlength="128" type="text" [(ngModel)]="planta.minimo" required>
+								<div *ngIf="plantaForm.submitted && !minimo.valid" class="help-block">Prestamo minimo es requerido</div>
+							</div>
+						</div>
 				
 
 
@@ -101,7 +141,7 @@
 						</thead>
 						<tbody>
 							<tr *ngFor="let empresa of empresaList | filterEmpresa: busquedaEmpresa | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
-								<td  style="max-width: 10%"><input type="checkbox" name="empresaId" [checked]="empresa.checked" value="{{empresa.empresaId}}" (click)="setClickedRowEmpresa(i, empresa)"></td>
+								<td  style="max-width: 10%"><input type="radio" name="empresaId" [checked]="empresa.checked" value="{{empresa.empresaId}}" (click)="setClickedRowEmpresa(i, empresa)"></td>
 								<td  style="max-width: 10%">{{empresa.clave}}</td>
 								<td  style="max-width: 10%">{{empresa.nombrecorto}}</td>
 							</tr>
@@ -127,26 +167,22 @@
 </div>
         
 
-				<div class="ln_solid"></div>
+<div class="ln_solid"></div>
 
-				<div class="col-sm-12">
-					<div class="input-group">
-						<div *ngIf="flagDelete">
-							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-							<button class="btn btn-link" (click)="return(plantaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!plantaForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
-							<button class="btn btn-link" (click)="return(plantaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!plantaForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
-							<button class="btn btn-link" (click)="return(plantaForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!-- end form for validation -->
+<div class="col-sm-12">
+	<div class="input-group">
+		<div *ngIf="flagDelete">
+			<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+			<button class="btn btn-link" (click)="return(plantaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+		</div>
+		<div *ngIf="flag && !flagDelete">
+			<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+			<button class="btn btn-link" (click)="return(plantaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 		</div>
 	</div>
+</div>
+</form>
+<!-- end form for validation -->
+</div>
+</div>
 </div>

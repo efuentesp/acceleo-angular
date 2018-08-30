@@ -1,41 +1,44 @@
 <div>
-	<div class="page-title" style="background: #F7F7F7;">
-		<div class="title_left">
-			<h3 >Agregar Perfil</h3>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3 >Agregar Perfil</h3>
+			</div>
 		</div>
-	</div>
-
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>Datos del Perfil</h2>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="x_content">
-			<!-- start form for validation -->
-			<form #perfilForm="ngForm" id="perfilForm" class="form-horizontal form-label-left" data-parsley-validate>
-				<input class="form-control" #perfilId="ngModel" perfilId="perfilId" name="perfilId" type="hidden" [(ngModel)]="perfil.perfilId">
-					
-					<div class="form-group">
-						<label class="control-label" for="socio">Numero de socio<span class="required">*</span></label>
-						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="socioId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="perfil.socioId" #socioId="ngModel">
-							<input type="text" class="form-control" [(ngModel)]="perfil.socioItem"  [ngModelOptions]="{standalone: true}" #socioItem="ngModel" placeholder="Socio...">
-							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalSocio">
-									<em class="fa fa-search"></em>
-								</button>
-							</span>
+	
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Datos del Perfil</h2>
+				<div class="clearfix"></div>
+			</div>
+	
+			<div class="x_content">
+				<!-- start form for validation -->
+				<form #perfilForm="ngForm" id="perfilForm" class="form-horizontal form-label-left" (ngSubmit)="perfilForm.valid && save()" novalidate>
+					<input class="form-control" #perfilId="ngModel" perfilId="perfilId" name="perfilId" type="hidden" [(ngModel)]="perfil.perfilId">
+						
+						<div class="form-group" [ngClass]="{ 'has-error': perfilForm.submitted && !socioId.valid}">
+							<label class="control-label" for="socio">Numero de socio<span class="required">*</span></label>
+							<div class="input-group">
+								<input type="hidden" class="form-control input-md"  name="socioId"   [(ngModel)]="perfil.socioId"    #socioId="ngModel" required>
+								<input type="text"   class="form-control input-md"  name="socioItem" [(ngModel)]="perfil.socioItem"  #socioItem="ngModel" placeholder="Socio...">
+								<span class="input-group-btn">
+									<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalSocio">
+										<em class="fa fa-search"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="perfilForm.submitted && !socioId.valid" class="help-block">Numero de socio es requerido</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="usuario">Usuario<span class="required">*</span></label>
-						<input class="form-control col-md-12" #usuario="ngModel" id="usuario" name="usuario" maxlength="128" type="text" [(ngModel)]="perfil.usuario" required>
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="nip">Contraseña<span class="required">*</span></label>
-						<input class="form-control col-md-12" #nip="ngModel" id="nip" name="nip" maxlength="128" type="text" [(ngModel)]="perfil.nip" required>
-					</div>
+						<div class="form-group" [ngClass]="{ 'has-error': perfilForm.submitted && !usuario.valid}">
+							<label class="control-label" for="usuario">Usuario<span class="required">*</span></label>
+							<input class="form-control col-md-12" #usuario="ngModel" id="usuario" name="usuario" maxlength="128" type="text" [(ngModel)]="perfil.usuario" required>
+							<div *ngIf="perfilForm.submitted && !usuario.valid" class="help-block">Usuario es requerido</div>
+						</div>
+						<div class="form-group" [ngClass]="{ 'has-error': perfilForm.submitted && !nip.valid}">
+							<label class="control-label" for="nip">ContraseÃ±a<span class="required">*</span></label>
+							<input class="form-control col-md-12" #nip="ngModel" id="nip" name="nip" maxlength="128" type="text" [(ngModel)]="perfil.nip" required>
+							<div *ngIf="perfilForm.submitted && !nip.valid" class="help-block">ContraseÃ±a es requerido</div>
+						</div>
 
 <!-- Modal socio -->
 <div id="modalSocio" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -78,7 +81,7 @@
 								</thead>
 								<tbody>
 									<tr *ngFor="let socio of socioList | filterSocio: busquedaSocio | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
-										<td  style="max-width: 10%"><input type="checkbox" name="socioId" [checked]="socio.checked" value="{{socio.socioId}}" (click)="setClickedRowSocio(i, socio)"></td>
+										<td  style="max-width: 10%"><input type="radio" name="socioId" [checked]="socio.checked" value="{{socio.socioId}}" (click)="setClickedRowSocio(i, socio)"></td>
 										<td  style="max-width: 10%">{{socio.numero}}</td>
 										<td  style="max-width: 10%">{{socio.nombre}}</td>
 										<td  style="max-width: 10%">{{socio.apellidopaterno}}</td>
@@ -120,12 +123,8 @@
 							<button class="btn btn-link" (click)="return(perfilForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!perfilForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
 							<button class="btn btn-link" (click)="return(perfilForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!perfilForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
-							<button class="btn btn-link" (click)="return(perfilForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>
 				</div>
