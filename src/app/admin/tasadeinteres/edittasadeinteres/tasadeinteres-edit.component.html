@@ -1,87 +1,109 @@
 <div>
-	<div class="page-title" style="background: #F7F7F7;">
-		<div class="title_left">
-			<h3 *ngIf="flagDelete">Eliminar Tasa de interes</h3>
-			<h3 *ngIf="flag && !flagDelete">Actualizar Tasa de interes</h3>
+		<div class="page-title" style="background: #F7F7F7;">
+			<div class="title_left">
+				<h3 *ngIf="flagDelete">Eliminar Tasa de interes</h3>
+				<h3 *ngIf="flag && !flagDelete">Actualizar Tasa de interes</h3>
+			</div>
 		</div>
-	</div>
-
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>Datos del Tasa de interes</h2>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="x_content">
-			<!-- start form for validation -->
-			<form #tasadeinteresForm="ngForm" id="tasadeinteresForm" class="form-horizontal form-label-left" data-parsley-validate>
-				<input class="form-control" #tasadeinteresId="ngModel" tasadeinteresId="tasadeinteresId" name="tasadeinteresId" type="hidden" [(ngModel)]="tasadeinteres.tasadeinteresId">
-
-				
-					<div class="form-group">
-						<label class="control-label" for="empresa">Empresa<span class="required">*</span></label>						
-						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="empresaId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="tasadeinteres.empresaId" #empresaId="ngModel">
-							<input *ngIf="flagDelete" type="text" class="form-control" [(ngModel)]="tasadeinteres.empresaItem"  [ngModelOptions]="{standalone: true}" #empresaItem="ngModel" placeholder="Empresa..." readonly="true" disabled>
-							<input *ngIf="!flagDelete" type="text" class="form-control" [(ngModel)]="tasadeinteres.empresaItem"  [ngModelOptions]="{standalone: true}" #empresaItem="ngModel" placeholder="Empresa...">
-							<span class="input-group-btn">
-								<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
-									<em class="fa fa-search"></em>
-								</button>
-								<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
-									<em class="fa fa-search"></em>
-								</button>
-							</span>
+	
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Datos del Tasa de interes</h2>
+				<div class="clearfix"></div>
+			</div>
+	
+			<div class="x_content">
+				<!-- start form for validation -->
+				<form #tasadeinteresForm="ngForm" id="tasadeinteresForm" class="form-horizontal form-label-left" (ngSubmit)="tasadeinteresForm.valid && save()" novalidate>
+					<input class="form-control" #tasadeinteresId="ngModel" tasadeinteresId="tasadeinteresId" name="tasadeinteresId" type="hidden" [(ngModel)]="tasadeinteres.tasadeinteresId">
+					
+						<div class="form-group" [ngClass]="{ 'has-error': tasadeinteresForm.submitted && !empresaId.valid}">
+							<label class="control-label" for="empresa">Empresa<span class="required">*</span></label>						
+							<div class="input-group">
+								<input type="hidden" class="form-control input-md"  name="empresaId"  [(ngModel)]="tasadeinteres.empresaId" #empresaId="ngModel" required>
+								<input *ngIf="flagDelete"  type="text" class="form-control" name="empresa"Item  [(ngModel)]="tasadeinteres.empresaItem"  #empresaItem="ngModel" placeholder="Empresa..." readonly disabled>
+								<input *ngIf="!flagDelete" type="text" class="form-control" name="empresa"Item  [(ngModel)]="tasadeinteres.empresaItem"  #empresaItem="ngModel" placeholder="Empresa..." readonly>
+								<span class="input-group-btn">
+									<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
+										<em class="fa fa-search"></em>
+									</button>
+									<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalEmpresa">
+										<em class="fa fa-search"></em>
+									</button>
+								</span>
+							</div>
+							<div *ngIf="tasadeinteresForm.submitted && !empresaId.valid" class="help-block">Empresa es requerido</div>
 						</div>
-					</div>
-				
-					<div class="input-group col-md-12 ">
-						<label class="control-label" for="fechainicio">Fecha Inicio<span class="required">*</span></label>
-						<div  *ngIf="!flagDelete" class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechainicioAux" [(ngModel)]="tasadeinteres.fechainicioAux" ngbDatepicker #fechainicioAux="ngbDatepicker" required>
-							<span class="input-group-btn">
-								<button class="btn btn-outline-secondary" (click)="fechainicioAux.toggle()" type="button">
-									<em class="fa fa-calendar"></em>
-								</button>
-							</span>
+					
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': tasadeinteresForm.submitted && !fechainicioAux.valid}">
+								<label class="control-label" for="fechainicio">Fecha Inicio<span class="required">*</span></label>
+								<div class="input-group col-md-12">	
+									<input class="form-control" placeholder="yyyy-mm-dd" name="fechainicioAux" [(ngModel)]="tasadeinteres.fechainicioAux" ngbDatepicker #fechainicioAux="ngbDatepicker" required>
+									<span class="input-group-btn">
+										<button class="btn btn-outline-secondary" (click)="fechainicioAux.toggle()" type="button">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+								<div *ngIf="tasadeinteresForm.submitted && !fechainicioAux.valid" class="help-block">Fecha Inicio es requerido o formato invalido</div>
+							</div>
 						</div>
-						<div *ngIf="flagDelete" class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechainicioAux" [(ngModel)]="tasadeinteres.fechainicioAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
-							<span class="input-group-btn">
-								<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
-									<em class="fa fa-calendar"></em>
-								</button>
-							</span>
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="fechainicio">Fecha Inicio<span class="required">*</span></label>
+								<div class="input-group col-md-12">	
+									<input class="form-control" placeholder="yyyy-mm-dd" name="fechainicioAux" [(ngModel)]="tasadeinteres.fechainicioAux" ngbDatepicker #fechainicioAux="ngbDatepicker" readonly disabled>
+									<span class="input-group-btn">
+										<button class="btn btn-outline-secondary" (click)="fechainicioAux.toggle()" type="button" disabled>
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+							</div>
 						</div>
-					</div>	
-				
-					<div class="input-group col-md-12 ">
-						<label class="control-label" for="fechafin">Fecha Fin<span class="required">*</span></label>
-						<div  *ngIf="!flagDelete" class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechafinAux" [(ngModel)]="tasadeinteres.fechafinAux" ngbDatepicker #fechafinAux="ngbDatepicker" required>
-							<span class="input-group-btn">
-								<button class="btn btn-outline-secondary" (click)="fechafinAux.toggle()" type="button">
-									<em class="fa fa-calendar"></em>
-								</button>
-							</span>
+					
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': tasadeinteresForm.submitted && !fechafinAux.valid}">
+								<label class="control-label" for="fechafin">Fecha Fin<span class="required">*</span></label>
+								<div class="input-group col-md-12">	
+									<input class="form-control" placeholder="yyyy-mm-dd" name="fechafinAux" [(ngModel)]="tasadeinteres.fechafinAux" ngbDatepicker #fechafinAux="ngbDatepicker" required>
+									<span class="input-group-btn">
+										<button class="btn btn-outline-secondary" (click)="fechafinAux.toggle()" type="button">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+								<div *ngIf="tasadeinteresForm.submitted && !fechafinAux.valid" class="help-block">Fecha Fin es requerido o formato invalido</div>
+							</div>
 						</div>
-						<div *ngIf="flagDelete" class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechafinAux" [(ngModel)]="tasadeinteres.fechafinAux" ngbDatepicker #dfecha="ngbDatepicker" readonly="true" disabled>
-							<span class="input-group-btn">
-								<button *ngIf="flagDelete" class="btn btn-outline-secondary" (click)="dfecha.toggle()" type="button" disabled>
-									<em class="fa fa-calendar"></em>
-								</button>
-							</span>
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="fechafin">Fecha Fin<span class="required">*</span></label>
+								<div class="input-group col-md-12">	
+									<input class="form-control" placeholder="yyyy-mm-dd" name="fechafinAux" [(ngModel)]="tasadeinteres.fechafinAux" ngbDatepicker #fechafinAux="ngbDatepicker" readonly disabled>
+									<span class="input-group-btn">
+										<button class="btn btn-outline-secondary" (click)="fechafinAux.toggle()" type="button" disabled>
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+							</div>
 						</div>
-					</div>
-				
-					<div class="input-group col-md-12">
-						<label class="control-label" for="tasa">Tasa<span class="required">*</span></label>
-						<input *ngIf="flagDelete" class="form-control col-md-12" #tasa="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="tasa" name="tasa" maxlength="128" type="number" [(ngModel)]="tasadeinteres.tasa" readonly="true" disabled>
-						<input *ngIf="!flagDelete" class="form-control col-md-12" #tasa="ngModel" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" id="tasa" name="tasa" maxlength="128" type="number" [(ngModel)]="tasadeinteres.tasa" required>
-					</div>
-				
-
+					
+						<div *ngIf="flagDelete">
+							<div class="form-group">
+								<label class="control-label" for="tasa">Tasa<span class="required">*</span></label>
+								<input class="form-control col-md-12"   #tasa="ngModel" name="tasa" maxlength="128" type="text" [(ngModel)]="tasadeinteres.tasa" readonly disabled>
+							</div>
+						</div>
+						<div *ngIf="!flagDelete">
+							<div class="form-group" [ngClass]="{ 'has-error': tasadeinteresForm.submitted && !tasa.valid}">
+								<label class="control-label" for="tasa">Tasa<span class="required">*</span></label>
+								<input class="form-control col-md-12" #tasa="ngModel" name="tasa" maxlength="128" type="text" [(ngModel)]="tasadeinteres.tasa" required>
+								<div *ngIf="tasadeinteresForm.submitted && !tasa.valid" class="help-block">Tasa es requerido</div>
+							</div>
+						</div>
 
 <!-- Modal empresa -->
 <div id="modalEmpresa" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
@@ -143,26 +165,22 @@
 </div>
         
 
-				<div class="ln_solid"></div>
+<div class="ln_solid"></div>
 
-				<div class="col-sm-12">
-					<div class="input-group">
-						<div *ngIf="flagDelete">
-							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-							<button class="btn btn-link" (click)="return(tasadeinteresForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!tasadeinteresForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
-							<button class="btn btn-link" (click)="return(tasadeinteresForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!tasadeinteresForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
-							<button class="btn btn-link" (click)="return(tasadeinteresForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!-- end form for validation -->
+<div class="col-sm-12">
+	<div class="input-group">
+		<div *ngIf="flagDelete">
+			<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+			<button class="btn btn-link" (click)="return(tasadeinteresForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+		</div>
+		<div *ngIf="flag && !flagDelete">
+			<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+			<button class="btn btn-link" (click)="return(tasadeinteresForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 		</div>
 	</div>
 </div>
+</form>
+<!-- end form for validation -->
+</div>
+</div>
+</div>			
