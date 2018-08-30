@@ -13,36 +13,41 @@
 
 		<div class="x_content">
 			<!-- start form for validation -->
-			<form #cuentabancariaForm="ngForm" id="cuentabancariaForm" class="form-horizontal form-label-left" data-parsley-validate>
+			<form #cuentabancariaForm="ngForm" id="cuentabancariaForm" class="form-horizontal form-label-left" (ngSubmit)="cuentabancariaForm.valid  && save()" novalidate>
 				<input class="form-control" #cuentabancariaId="ngModel" cuentabancariaId="cuentabancariaId" name="cuentabancariaId" type="hidden" [(ngModel)]="cuentabancaria.cuentabancariaId">
 					
-					<div class="form-group">
+					<div class="form-group" [ngClass]="{ 'has-error': cuentabancariaForm.submitted && !socioId.valid}">
 						<label class="control-label" for="socio">Numero de socio<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="socioId"  [ngModelOptions]="{standalone: true}" [(ngModel)]="cuentabancaria.socioId" #socioId="ngModel">
-							<input type="text" class="form-control" [(ngModel)]="cuentabancaria.socioItem"  [ngModelOptions]="{standalone: true}" #socioItem="ngModel" placeholder="Socio...">
+							<input type="hidden" class="form-control input-md"  name="socioId"   [(ngModel)]="cuentabancaria.socioId"    #socioId="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="socioItem" [(ngModel)]="cuentabancaria.socioItem"  #socioItem="ngModel" placeholder="Socio...">
 							<span class="input-group-btn">
 								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalSocio">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
+						<div *ngIf="cuentabancariaForm.submitted && !socioId.valid" class="help-block">Numero de socio es requerido</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" [ngClass]="{ 'has-error': cuentabancariaForm.submitted && !cuenta.valid}">
 						<label class="control-label" for="cuenta">Numero de cuenta<span class="required">*</span></label>
 						<input class="form-control col-md-12" #cuenta="ngModel" id="cuenta" name="cuenta" maxlength="128" type="number" [(ngModel)]="cuentabancaria.cuenta" required>
+						<div *ngIf="cuentabancariaForm.submitted && !cuenta.valid" class="help-block">Numero de cuenta es requerido</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" [ngClass]="{ 'has-error': cuentabancariaForm.submitted && !clabe.valid}">
 						<label class="control-label" for="clabe">Cuenta clabe<span class="required">*</span></label>
 						<input class="form-control col-md-12" #clabe="ngModel" id="clabe" name="clabe" maxlength="128" type="number" [(ngModel)]="cuentabancaria.clabe" required>
+						<div *ngIf="cuentabancariaForm.submitted && !clabe.valid" class="help-block">Cuenta clabe es requerido</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="emitidapor">Banco Emisor<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b1" name="b1" [(ngModel)]="cuentabancaria.bancoId"> HSBC</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b2" name="b2" [(ngModel)]="cuentabancaria.bancoId"> SANTANDER</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b3" name="b3" [(ngModel)]="cuentabancaria.bancoId"> BBVA Bancomer</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b4" name="b4" [(ngModel)]="cuentabancaria.bancoId"> BANAMEX</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b5" name="b5" [(ngModel)]="cuentabancaria.bancoId"> BANORTE</div>		
+					<div class="form-group" [ngClass]="{ 'has-error': cuentabancariaForm.submitted && !bancoId.valid}">
+						<label class="control-label" for="banco">Banco Emisor<span class="required">*</span></label>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b1" name="banco" [(ngModel)]="cuentabancaria.bancoId" required> HSBC</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b2" name="banco" [(ngModel)]="cuentabancaria.bancoId" required> SANTANDER</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b3" name="banco" [(ngModel)]="cuentabancaria.bancoId" required> BBVA Bancomer</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b4" name="banco" [(ngModel)]="cuentabancaria.bancoId" required> BANAMEX</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b5" name="banco" [(ngModel)]="cuentabancaria.bancoId" required> BANORTE</div>		
+						<input type="hidden" class="form-control input-md"  name="bancoId"  [(ngModel)]="cuentabancaria.bancoId"    #bancoId="ngModel" required>
+						<div *ngIf="cuentabancariaForm.submitted && !bancoId.valid" class="help-block">Banco Emisor es requerido</div>
 					</div>
 
 <!-- Modal socio -->
@@ -86,7 +91,7 @@
 						</thead>
 						<tbody>
 							<tr *ngFor="let socio of socioList | filterSocio: busquedaSocio | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
-								<td  style="max-width: 10%"><input type="checkbox" name="socioId" [checked]="socio.checked" value="{{socio.socioId}}" (click)="setClickedRowSocio(i, socio)"></td>
+								<td  style="max-width: 10%"><input type="radio" name="socioId" [checked]="socio.checked" value="{{socio.socioId}}" (click)="setClickedRowSocio(i, socio)"></td>
 								<td  style="max-width: 10%">{{socio.numero}}</td>
 								<td  style="max-width: 10%">{{socio.nombre}}</td>
 								<td  style="max-width: 10%">{{socio.apellidopaterno}}</td>
@@ -128,11 +133,11 @@
 							<button class="btn btn-link" (click)="return(cuentabancariaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!cuentabancariaForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
 							<button class="btn btn-link" (click)="return(cuentabancariaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" [disabled]="!cuentabancariaForm.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
 							<button class="btn btn-link" (click)="return(cuentabancariaForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>
