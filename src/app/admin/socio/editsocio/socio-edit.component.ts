@@ -12,6 +12,8 @@ import { DepartamentoService }                                  from '../../depa
 import { Departamento }                                         from '../../departamento/departamento.component.model';
 import { PlantaService }                                  from '../../planta/planta.component.service';
 import { Planta }                                         from '../../planta/planta.component.model';
+import { Empresa } from '../../empresa/empresa.component.model';
+import { EmpresaService } from '../../empresa/empresa.component.service';
 
 @Component ({
     selector: 'app-view',
@@ -29,32 +31,41 @@ export class SocioEditComponent implements OnInit {
     public valueName: string;
     public token: string;
 
-	public flag: boolean;
+	  public flag: boolean;
     public flagDelete: boolean;
 
-	public departamentoList: Departamento;
+    public departamentoList: Departamento [];
     public departamento: Departamento;
+    public departamentoAux: Departamento;
 
 	public busquedaDepartamento='';
 	filterInputDepartamento = new FormControl();
-	public plantaList: Planta;
-    public planta: Planta;
 
+	public plantaList: Planta [];
+    public planta: Planta;
+  public plantaAux: Planta;
+  
+  
 	public busquedaPlanta='';
 	filterInputPlanta = new FormControl();
+	
+	public empresaList: Empresa [];
+    public empresa: Empresa;
+    public empresaAux: Empresa;
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private socioService: SocioService
 	,private departamentoService: DepartamentoService
-	,private plantaService: PlantaService
+  ,private plantaService: PlantaService
+  ,private empresaService: EmpresaService
 ){
 
- 	 this.filterInputDepartamento.valueChanges.subscribe(busquedaDepartamento => {
+ 	    this.filterInputDepartamento.valueChanges.subscribe(busquedaDepartamento => {
      this.busquedaDepartamento = busquedaDepartamento;
    });
- 	 this.filterInputPlanta.valueChanges.subscribe(busquedaPlanta => {
+ 	    this.filterInputPlanta.valueChanges.subscribe(busquedaPlanta => {
      this.busquedaPlanta = busquedaPlanta;
    });
 
@@ -67,9 +78,7 @@ export class SocioEditComponent implements OnInit {
         this.flagDelete = this.socioService.getDelete();
         
 		this.loadDepartamentos();
-		this.loadItemDepartamento(this.socio);
 		this.loadPlantas();
-		this.loadItemPlanta(this.socio);
 
     }  
 
@@ -118,67 +127,75 @@ delete(){
   });
 }
 
-	loadDepartamentos(){
-  		this.departamentoService.getAllDepartamento().subscribe(data => {
-    	if (data) {
-      	this.departamentoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Departamentos.', 'error');
-  	});
+loadDepartamentos(){
+  this.departamentoService.getAllDepartamento().subscribe(data => {
+  if (data) {
+    
+this.departamentoList = data;
+
+this.departamentoList.forEach(element => {
+  this.empresaService.getEmpresaById(element.empresaId).subscribe(dataAux => {
+    if (dataAux) {
+      this.empresaAux = dataAux;
+      element.empresaItem = this.empresaAux.clave;
+    }	
+  });	
+});
+
+  }
+  }, error => {
+  swal('Error...', 'An error occurred while calling the Departamentos.', 'error');
+});
+
 }
 
- setClickedRowDepartamento(index,departamento){
-	      
-		  departamento.checked = !departamento.checked;
-
-		  if (departamento.checked){
-		  this.departamentoService.setDepartamento(departamento);
-		  this.socio.departamentoId = departamento.departamentoId;
-		  this.socio.departamentoItem = departamento.nombredepto;
-	    	}else{
-            this.departamentoService.clear();
-			this.socio.departamentoId = null;
-		    this.socio.departamentoItem = "";
-		}
+setClickedRowDepartamento(index,departamento){
+    
+  departamento.checked = !departamento.checked;
+  if (departamento.checked){
+    this.departamentoService.setDepartamento(departamento);
+    this.socio.departamentoId = departamento.departamentoId;
+    this.socio.departamentoItem = departamento.nombredepto;
+      }else{
+          this.departamentoService.clear();
+      this.socio.departamentoId = null;
+      this.socio.departamentoItem = "";
+  }
 }
 
-loadItemDepartamento(socio){
-  this.departamentoService.getDepartamentoById(socio.departamentoId).subscribe(data => {
-    if (data) {
-      this.departamento = data;
-      this.socio.departamentoItem = this.departamento.nombredepto;
+loadPlantas(){
+  this.plantaService.getAllPlanta().subscribe(data => {
+  if (data) {
+    
+  this.plantaList = data;
+    this.plantaList.forEach(element => {
+      this.empresaService.getEmpresaById(element.empresaId).subscribe(dataAux => {
+        if (dataAux) {
+          this.empresaAux = dataAux;
+          element.empresaItem = this.empresaAux.clave;
+        }	
+      });	
+    });
     }
     }, error => {
-    swal('Error...', 'An error occurred while calling the departamentos.', 'error');
+    swal('Error...', 'An error occurred while calling the Plantas.', 'error');
   });
-
 }
 
-	loadPlantas(){
-  		this.plantaService.getAllPlanta().subscribe(data => {
-    	if (data) {
-      	this.plantaList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Plantas.', 'error');
-  	});
+setClickedRowPlanta(index,planta){
+    
+  planta.checked = !planta.checked;
+  if (planta.checked){
+  this.plantaService.setPlanta(planta);
+  this.socio.plantaId = planta.plantaId;
+  this.socio.plantaItem = planta.nombreplanta;
+    }else{
+        this.plantaService.clear();
+  this.socio.plantaId = null;
+    this.socio.plantaItem = "";
+}
 }
 
- setClickedRowPlanta(index,planta){
-	      
-		  planta.checked = !planta.checked;
-
-		  if (planta.checked){
-		  this.plantaService.setPlanta(planta);
-		  this.socio.plantaId = planta.plantaId;
-		  this.socio.plantaItem = planta.nombreplanta;
-	    	}else{
-            this.plantaService.clear();
-			this.socio.plantaId = null;
-		    this.socio.plantaItem = "";
-		}
-}
 
 loadItemPlanta(socio){
   this.plantaService.getPlantaById(socio.plantaId).subscribe(data => {
