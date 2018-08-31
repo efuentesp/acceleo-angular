@@ -5,7 +5,9 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Authority } from '../user/authorities.component.model';
 
 @Component({
-  templateUrl: 'admin.components.html'
+  templateUrl: 'admin.components.html',
+	styleUrls: ['./admin.component.css']
+
 })
 export class AdminComponent {
 
@@ -14,6 +16,21 @@ export class AdminComponent {
   public token: string;
   public authorityList: Authority [];
   public username: string;
+
+// Menu activation
+// Operadorproduccion
+  private operadorproduccion_mgmnt: boolean = false;
+  private operadorproduccion: boolean = false;
+// Ordensimplificada
+  private ordensimplificada_mgmnt: boolean = false;
+  private ordensimplificada: boolean = false;
+// Etiquetaasignada
+  private etiquetaasignada_mgmnt: boolean = false;
+  private etiquetaasignada: boolean = false;
+// Cliente
+  private cliente_mgmnt: boolean = false;
+  private cliente: boolean = false;
+
 
   // Admin
   private manage: boolean = false;
@@ -51,6 +68,35 @@ export class AdminComponent {
 
   buildMenu(authorities){
     authorities.forEach(element => {
+
+      if (element.authority == 'ROLE_OPERADORPRODUCCIONSEARCH'){
+        this.operadorproduccion_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_OPERADORPRODUCCIONCREATE'){
+        this.operadorproduccion = true;
+      }
+
+      if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+        this.ordensimplificada_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_ORDENSIMPLIFICADACREATE'){
+        this.ordensimplificada = true;
+      }
+
+      if (element.authority == 'ROLE_ETIQUETAASIGNADASEARCH'){
+        this.etiquetaasignada_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_ETIQUETAASIGNADACREATE'){
+        this.etiquetaasignada = true;
+      }
+
+      if (element.authority == 'ROLE_CLIENTESEARCH'){
+        this.cliente_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_CLIENTECREATE'){
+        this.cliente = true;
+      }
+
  
       // Manage  --> (6)
       if (element.authority == 'ROLE_MANAGESEARCH'){
@@ -81,7 +127,7 @@ export class AdminComponent {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem('currentUser');
-    this.router.navigate(['login']); 
+    this.router.navigate( ['login' ]); 
 }
 
 

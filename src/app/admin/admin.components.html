@@ -1,6 +1,5 @@
 
-
-  <div class="nav-md">
+<div class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -27,12 +26,71 @@
 
             <!-- sidebar menu -->
 
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu scrollMenu">
               <div class="menu_section">
                 <h3>General</h3>
 
                 <ul class="nav side-menu">{{user.authority}}
-                  
+                <!-- entities -->
+
+                <li><a><i class="fa fa-home"></i> Cliente Registrado <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="cliente_mgmnt">
+                      <a routerLink="./managecliente" >
+                        Administrar Cliente Registrado
+                      </a>
+                    </li>
+                    <li *ngIf="cliente">
+                        <a routerLink="./createcliente" >
+                          Agregar Cliente Registrado
+                        </a>
+                    </li>
+                  </ul>
+           </li>
+                <li><a><i class="fa fa-home"></i> Etiqueta Asignada <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="etiquetaasignada_mgmnt">
+                      <a routerLink="./manageetiquetaasignada" >
+                        Administrar Etiqueta Asignada
+                      </a>
+                    </li>
+                    <li *ngIf="etiquetaasignada">
+                        <a routerLink="./createetiquetaasignada" >
+                          Agregar Etiqueta Asignada
+                        </a>
+                    </li>
+                  </ul>
+           </li>
+                <li><a><i class="fa fa-home"></i> Orden de fabricacion <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="ordensimplificada_mgmnt">
+                      <a routerLink="./manageordensimplificada" >
+                        Administrar Orden de fabricacion
+                      </a>
+                    </li>
+                    <li *ngIf="ordensimplificada">
+                        <a routerLink="./createordensimplificada" >
+                          Agregar Orden de fabricacion
+                        </a>
+                    </li>
+                  </ul>
+           </li>
+                <li><a><i class="fa fa-home"></i> Orden de fabricacion <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li *ngIf="operadorproduccion_mgmnt">
+                      <a routerLink="./manageoperadorproduccion" >
+                        Administrar Orden de fabricacion
+                      </a>
+                    </li>
+                    <li *ngIf="operadorproduccion">
+                        <a routerLink="./createoperadorproduccion" >
+                          Agregar Orden de fabricacion
+                        </a>
+                    </li>
+                  </ul>
+           </li>
+
+                <!-- /entities -->  
                 </ul>
 
                 <div *ngIf="manage">
@@ -95,83 +153,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <!-- <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li> -->
-                    <!-- <li><button (click) = logout()>LogOut</button></li> -->
-                    <!-- <a routerLink="../login" routerLinkActive="active">Log Out</a> -->
                     <li style="text-align: right"><button (click) = "logout()" style="background: none;" >LogOut</button></li>
-
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <!-- <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a> -->
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="../../assets/img/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
                   </ul>
                 </li>
               </ul>
@@ -200,7 +182,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            @ Softtek 2018 <a href="http://www.softtek.com/es/">Colorlib</a>
+            <a href="http://www.softtek.com/es/">@ Softtek 2018</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -208,3 +190,4 @@
       </div>
     </div>
     </div>
+

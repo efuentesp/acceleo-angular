@@ -22,6 +22,35 @@ import { AuthorityCreateComponent } from './authority/createAuthority/authority-
 import { AuthorityManageComponent } from './authority/manageAuthority/manage-authority.component';
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
+  
+import { OperadorproduccionManageComponent } from './operadorproduccion/manageoperadorproduccion/operadorproduccion-manage.component';
+import { OperadorproduccionCreateComponent } from './operadorproduccion/createoperadorproduccion/operadorproduccion-create.component';
+import { OperadorproduccionEditComponent } from './operadorproduccion/editoperadorproduccion/operadorproduccion-edit.component';
+import { SearchOperadorproduccionPipe } from './pipe/operadorproduccion.filter.pipe';
+import { OperadorproduccionService } from './operadorproduccion/operadorproduccion.component.service';
+
+  
+import { OrdensimplificadaManageComponent } from './ordensimplificada/manageordensimplificada/ordensimplificada-manage.component';
+import { OrdensimplificadaCreateComponent } from './ordensimplificada/createordensimplificada/ordensimplificada-create.component';
+import { OrdensimplificadaEditComponent } from './ordensimplificada/editordensimplificada/ordensimplificada-edit.component';
+import { SearchOrdensimplificadaPipe } from './pipe/ordensimplificada.filter.pipe';
+import { OrdensimplificadaService } from './ordensimplificada/ordensimplificada.component.service';
+
+  
+import { EtiquetaasignadaManageComponent } from './etiquetaasignada/manageetiquetaasignada/etiquetaasignada-manage.component';
+import { EtiquetaasignadaCreateComponent } from './etiquetaasignada/createetiquetaasignada/etiquetaasignada-create.component';
+import { EtiquetaasignadaEditComponent } from './etiquetaasignada/editetiquetaasignada/etiquetaasignada-edit.component';
+import { SearchEtiquetaasignadaPipe } from './pipe/etiquetaasignada.filter.pipe';
+import { EtiquetaasignadaService } from './etiquetaasignada/etiquetaasignada.component.service';
+
+  
+import { ClienteManageComponent } from './cliente/managecliente/cliente-manage.component';
+import { ClienteCreateComponent } from './cliente/createcliente/cliente-create.component';
+import { ClienteEditComponent } from './cliente/editcliente/cliente-edit.component';
+import { SearchClientePipe } from './pipe/cliente.filter.pipe';
+import { ClienteService } from './cliente/cliente.component.service';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -34,6 +63,22 @@ import { AuthorityEditComponent } from './authority/editAuthority/authority-edit
     HttpClientModule
   ],
   declarations: [
+    OperadorproduccionCreateComponent,
+    OperadorproduccionManageComponent,
+    OperadorproduccionEditComponent,  
+	SearchOperadorproduccionPipe,
+    OrdensimplificadaCreateComponent,
+    OrdensimplificadaManageComponent,
+    OrdensimplificadaEditComponent,  
+	SearchOrdensimplificadaPipe,
+    EtiquetaasignadaCreateComponent,
+    EtiquetaasignadaManageComponent,
+    EtiquetaasignadaEditComponent,  
+	SearchEtiquetaasignadaPipe,
+    ClienteCreateComponent,
+    ClienteManageComponent,
+    ClienteEditComponent,  
+	SearchClientePipe,
     AdminComponent,
     AdminDashboardComponent,
     ManagePrivilegeComponent,
@@ -47,9 +92,14 @@ import { AuthorityEditComponent } from './authority/editAuthority/authority-edit
     UserCreateComponent
   ],
   providers: [ 
+    OperadorproduccionService,
+    OrdensimplificadaService,
+    EtiquetaasignadaService,
+    ClienteService,
     ManagePrivilegeService,
     UserService,
     AuthorityService
 ]
 })
 export class AdminModule {}
+

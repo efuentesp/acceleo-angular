@@ -1,0 +1,88 @@
+<!-- principal -->
+<div>
+	<!-- page-title -->
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3>Administrar Orden de fabricacion</h3>
+		</div>
+	</div>
+	<!-- ./page-title -->
+
+	<!-- x_panel -->
+	<div class="x_panel">
+		<div class="x_content">
+			<form #operadorproduccionMngForm="ngForm" class="editForm" novalidate>
+				
+				<!-- row -->
+				<div class='row'>
+					<div class="col-lg-6">
+						<button *ngIf="createActive" class="btn btn-primary" (click)="add()"><span class="fa fa-plus"></span></button>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Criterios de busqueda..." name="busquedaOperadorproduccion" [(ngModel)]="busquedaOperadorproduccion">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+
+				<br/>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							
+							<div class="x_title">
+								<h2>Resultados de la busqueda</h2>
+								<div class="clearfix"></div>
+							</div>
+						
+							<div class="x_content table-responsive">
+								<br/>
+
+								<!-- table -->
+								<table id="datatable" class="table table-striped" style="resizable = true;">
+									<thead>
+										<tr>
+												<th style="max-width:10%">Numero de empleado</th>
+												<th style="max-width:10%">Nombre del operador</th>
+										<th style="max-width:20%">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let operadorproduccion of operadorproduccionList | filterOperadorproduccion: busquedaOperadorproduccion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableOperadorproduccion'}; let i = index" (click)="setClickedRowOperadorproduccion(i, operadorproduccion)" >
+												<td  style="max-width: 10%">{{operadorproduccion.numeroempleado}}</td>
+												<td  style="max-width: 10%">{{operadorproduccion.nombre}}</td>
+											<td style="max-width: 20%">															
+												<div class="container">
+												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(operadorproduccion)"><span class="fa fa-pencil"></span></button>
+												<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar(operadorproduccion)"><span class="fa fa-trash"></span></button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- ./table -->
+
+								<div align="row" align="right">
+									<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
+										<pagination-controls (pageChange)="page = $event" id="paginationTableOperadorproduccion" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+										</pagination-controls>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.row -->
+
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.x_panel -->
+</div>
+<!-- /.principal -->

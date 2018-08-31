@@ -1,3 +1,4 @@
+
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -15,6 +16,26 @@ import { AuthorityManageComponent } from './authority/manageAuthority/manage-aut
 import { AuthorityCreateComponent } from './authority/createAuthority/authority-create.component';
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
+// Operadorproduccion
+import { OperadorproduccionManageComponent}       from './operadorproduccion/manageoperadorproduccion/operadorproduccion-manage.component';
+import { OperadorproduccionCreateComponent}       from './operadorproduccion/createoperadorproduccion/operadorproduccion-create.component';
+import { OperadorproduccionEditComponent}         from './operadorproduccion/editoperadorproduccion/operadorproduccion-edit.component';
+
+// Ordensimplificada
+import { OrdensimplificadaManageComponent}       from './ordensimplificada/manageordensimplificada/ordensimplificada-manage.component';
+import { OrdensimplificadaCreateComponent}       from './ordensimplificada/createordensimplificada/ordensimplificada-create.component';
+import { OrdensimplificadaEditComponent}         from './ordensimplificada/editordensimplificada/ordensimplificada-edit.component';
+
+// Etiquetaasignada
+import { EtiquetaasignadaManageComponent}       from './etiquetaasignada/manageetiquetaasignada/etiquetaasignada-manage.component';
+import { EtiquetaasignadaCreateComponent}       from './etiquetaasignada/createetiquetaasignada/etiquetaasignada-create.component';
+import { EtiquetaasignadaEditComponent}         from './etiquetaasignada/editetiquetaasignada/etiquetaasignada-edit.component';
+
+// Cliente
+import { ClienteManageComponent}       from './cliente/managecliente/cliente-manage.component';
+import { ClienteCreateComponent}       from './cliente/createcliente/cliente-create.component';
+import { ClienteEditComponent}         from './cliente/editcliente/cliente-edit.component';
+
 
 const adminRoutes: Routes = [
   {
@@ -27,6 +48,24 @@ const adminRoutes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
         
+		// Com.softtek.acceleo.demo
+		{ path: 'createoperadorproduccion',  component: OperadorproduccionCreateComponent},  
+		{ path: 'manageoperadorproduccion',  component: OperadorproduccionManageComponent},  
+		{ path: 'editoperadorproduccion',  component: OperadorproduccionEditComponent},  
+			
+		{ path: 'createordensimplificada',  component: OrdensimplificadaCreateComponent},  
+		{ path: 'manageordensimplificada',  component: OrdensimplificadaManageComponent},  
+		{ path: 'editordensimplificada',  component: OrdensimplificadaEditComponent},  
+			
+		{ path: 'createetiquetaasignada',  component: EtiquetaasignadaCreateComponent},  
+		{ path: 'manageetiquetaasignada',  component: EtiquetaasignadaManageComponent},  
+		{ path: 'editetiquetaasignada',  component: EtiquetaasignadaEditComponent},  
+			
+		{ path: 'createcliente',  component: ClienteCreateComponent},  
+		{ path: 'managecliente',  component: ClienteManageComponent},  
+		{ path: 'editcliente',  component: ClienteEditComponent},  
+			
+
 		  // Manage
           { path: 'manage', component: ManagePrivilegeComponent },
           
@@ -55,3 +94,4 @@ const adminRoutes: Routes = [
   ]
 })
 export class AdminRoutingModule {}
+

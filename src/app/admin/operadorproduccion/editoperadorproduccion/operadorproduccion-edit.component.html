@@ -1,0 +1,68 @@
+<div>
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3 *ngIf="flagDelete">Eliminar Orden de fabricacion</h3>
+			<h3 *ngIf="flag && !flagDelete">Actualizar Orden de fabricacion</h3>
+		</div>
+	</div>
+
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>Datos del Orden de fabricacion</h2>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="x_content">
+			<!-- start form for validation -->
+			<form #operadorproduccionForm="ngForm" id="operadorproduccionForm" class="form-horizontal form-label-left" (ngSubmit)="operadorproduccionForm.valid && save()" novalidate>
+				<input class="form-control" #operadorproduccionId="ngModel" operadorproduccionId="operadorproduccionId" name="operadorproduccionId" type="hidden" [(ngModel)]="operadorproduccion.operadorproduccionId">
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="numeroempleado">Numero de empleado<span class="required">*</span></label>
+							<input class="form-control col-md-12"   #numeroempleado="ngModel" name="numeroempleado" maxlength="128" type="number" [(ngModel)]="operadorproduccion.numeroempleado" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': operadorproduccionForm.submitted && !numeroempleado.valid}">
+							<label class="control-label" for="numeroempleado">Numero de empleado<span class="required">*</span></label>
+							<input class="form-control col-md-12" #numeroempleado="ngModel" name="numeroempleado" maxlength="128" type="number" [(ngModel)]="operadorproduccion.numeroempleado" required>
+							<div *ngIf="operadorproduccionForm.submitted && !numeroempleado.valid" class="help-block">Numero de empleado es requerido</div>
+						</div>
+					</div>
+				
+				
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="nombre">Nombre del operador<span class="required">*</span></label>
+							<input class="form-control col-md-12"   #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="operadorproduccion.nombre" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': operadorproduccionForm.submitted && !nombre.valid}">
+							<label class="control-label" for="nombre">Nombre del operador<span class="required">*</span></label>
+							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="operadorproduccion.nombre" required>
+							<div *ngIf="operadorproduccionForm.submitted && !nombre.valid" class="help-block">Nombre del operador es requerido</div>
+						</div>
+					</div>
+				
+
+
+				<div class="ln_solid"></div>
+
+				<div class="col-sm-12">
+					<div class="input-group">
+						<div *ngIf="flagDelete">
+							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+							<button class="btn btn-link" (click)="return(operadorproduccionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="flag && !flagDelete">
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-link" (click)="return(operadorproduccionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- end form for validation -->
+		</div>
+	</div>
+</div>
