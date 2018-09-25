@@ -51,21 +51,57 @@
 												<th style="max-width:10%">Nombre del cliente</th>
 												<th style="max-width:10%" hidden="true">Empresa</th>
 												<th style="max-width:10%">Empresa</th>
-										<th style="max-width:20%">Acciones</th>
+												<th style="max-width:20%">Acciones</th>
+												<th style="max-width:10%"></th>
+												<th style="max-width:10%"></th>
+										
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let cliente of clienteList | filterCliente: busquedaCliente | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCliente'}; let i = index" (click)="setClickedRowCliente(i, cliente)" >
+										<tr *ngFor="let cliente of clienteList | filterCliente: busquedaCliente | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCliente'}; let i = index">
 												<td  style="max-width: 10%">{{cliente.clave}}</td>
 												<td  style="max-width: 10%">{{cliente.nombre}}</td>
-												<td  style="max-width: 10%" hidden="true">{{cliente.clienteId}}</td>
-												<td  style="max-width: 10%">{{cliente.clienteItem}}</td>
-											<td style="max-width: 20%">															
-												<div class="container">
-												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(cliente)"><span class="fa fa-pencil"></span></button>
-												<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar(cliente)"><span class="fa fa-trash"></span></button>
+												<td  style="max-width: 10%" hidden="true">{{cliente.cliente1Id}}</td>
+												<td  style="max-width: 10%">{{cliente.cliente1Item}}</td>
+												<td style="max-width: 20%">															
+													<div class="container">
+													<button *ngIf="updateActive" class="btn btn-default" (click)="editar(cliente)"><span class="fa fa-pencil"></span></button>
+													<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar(cliente)"><span class="fa fa-trash"></span></button>
+													</div>
+												</td>
+											<td>
+												<!-- <select name="etiquetaasignada" ngModel>
+													<option *ngFor="let etiquetaasignada of etiquetaasignadaSelectList" [ngValue]="etiquetaasignada">
+														{{ etiquetaasignada }}
+													</option>
+												</select> 	 -->
+												<!-- <div class="col">
+													<div ngbDropdown class="d-inline-block">
+														<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+														<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+														<button class="dropdown-item">Action - 1</button>
+														<button class="dropdown-item">Another Action</button>
+														<button class="dropdown-item">Something else is here</button>
+														</div>
+													</div>
+												</div> -->
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="etiquetaasignada" ngbDropdownToggle><i class="fa fa-sitemap"></i> Etiqueta Asignada <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageetiquetaasignada')" >Administrar Etiqueta Asignada</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createetiquetaasignada')">Agregar Etiqueta Asignada</button>
+													</div>
 												</div>
-											</td>
+											</td>	
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="ordensimplificada" ngbDropdownToggle><i class="fa fa-sitemap"></i> Orden de fabricacion <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageordensimplificada')" >Administrar Orden de fabricacion</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createordensimplificada')">Agregar Orden de fabricacion</button>
+													</div>
+												</div>	
+											</td>	
 										</tr>
 									</tbody>
 								</table>

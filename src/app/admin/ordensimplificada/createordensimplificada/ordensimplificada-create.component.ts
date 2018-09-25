@@ -69,9 +69,9 @@ export class OrdensimplificadaCreateComponent implements OnInit {
 		this.ordensimplificadaService.clear();
         this.ordensimplificada = new Ordensimplificada;
 
-		this.loadOperadorproduccions();
-		this.loadOperadorproduccions();
-		this.loadClientes();
+		// this.loadOperadorproduccions();
+		// this.loadOperadorproduccions();
+		// this.loadCliente1();
        
     } 
 
@@ -108,48 +108,48 @@ save(){
 
 }
 
- setClickedRowOperadorproduccion(index,operadorproduccion){
+//  setClickedRowOperadorproduccion(index,operadorproduccion){
 	      
-		  operadorproduccion.checked = !operadorproduccion.checked;
-		  if (operadorproduccion.checked){
-		  this.operadorproduccionService.setOperadorproduccion(operadorproduccion);
-		  this.ordensimplificada.operadorproduccionId = operadorproduccion.operadorproduccionId;
-		  this.ordensimplificada.operadorproduccionItem = operadorproduccion.numeroempleado;
-	    	}else{
-            this.operadorproduccionService.clear();
-			this.ordensimplificada.operadorproduccionId = null;
-		    this.ordensimplificada.operadorproduccionItem = "";
-		}
- }
+// 		  operadorproduccion.checked = !operadorproduccion.checked;
+// 		  if (operadorproduccion.checked){
+// 		  this.operadorproduccionService.setOperadorproduccion(operadorproduccion);
+// 		  this.ordensimplificada.operadorproduccionId = operadorproduccion.operadorproduccionId;
+// 		  this.ordensimplificada.operadorproduccionItem = operadorproduccion.numeroempleado;
+// 	    	}else{
+//             this.operadorproduccionService.clear();
+// 			this.ordensimplificada.operadorproduccionId = null;
+// 		    this.ordensimplificada.operadorproduccionItem = "";
+// 		}
+//  }
 
-	loadClientes(){
-  		this.clienteService.getAllCliente().subscribe(data => {
-    	if (data) {
+// 	loadClientes(){
+//   		this.clienteService.getAllCliente().subscribe(data => {
+//     	if (data) {
       	
-		this.clienteList = data;
-// Cambios por cada modal
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Clientes.', 'error');
-  	});
+// 		this.clienteList = data;
+// // Cambios por cada modal
+//     	}
+//   		}, error => {
+//     	swal('Error...', 'An error occurred while calling the Clientes.', 'error');
+//   	});
 
 
 
-}
+// }
 
- setClickedRowCliente(index,cliente){
+//  setClickedRowCliente(index,cliente){
 	      
-		  cliente.checked = !cliente.checked;
-		  if (cliente.checked){
-		  this.clienteService.setCliente(cliente);
-		  this.ordensimplificada.clienteId = cliente.clienteId;
-		  this.ordensimplificada.clienteItem = cliente.nombre;
-	    	}else{
-            this.clienteService.clear();
-			this.ordensimplificada.clienteId = null;
-		    this.ordensimplificada.clienteItem = "";
-		}
- }
+// 		  cliente.checked = !cliente.checked;
+// 		  if (cliente.checked){
+// 		  this.clienteService.setCliente(cliente);
+// 		  this.ordensimplificada.clienteId = cliente.clienteId;
+// 		  this.ordensimplificada.clienteItem = cliente.nombre;
+// 	    	}else{
+//             this.clienteService.clear();
+// 			this.ordensimplificada.clienteId = null;
+// 		    this.ordensimplificada.clienteItem = "";
+// 		}
+//  }
 
   return(ordensimplificada){
       this.location.back();

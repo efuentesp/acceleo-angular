@@ -13,7 +13,7 @@
 
 		<div class="x_content">
 			<!-- start form for validation -->
-			<form #ordensimplificadaForm="ngForm" id="ordensimplificadaForm" class="form-horizontal form-label-left" (ngSubmit)="ordensimplificadaForm.valid && save()" novalidate>
+			<form #ordensimplificadaForm="ngForm" id="ordensimplificadaForm" class="form-horizontal form-label-left" (ngSubmit)="ordensimplificadaForm.valid" novalidate>
 				<input class="form-control" #ordensimplificadaId="ngModel" ordensimplificadaId="ordensimplificadaId" name="ordensimplificadaId" type="hidden" [(ngModel)]="ordensimplificada.ordensimplificadaId">
 					
 					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !ordentrabajo.valid}">
@@ -26,17 +26,17 @@
 						<input class="form-control col-md-12" #sap="ngModel" id="sap" name="sap" maxlength="128" type="number" [(ngModel)]="ordensimplificada.sap" required>
 						<div *ngIf="ordensimplificadaForm.submitted && !sap.valid" class="help-block">SAP es requerido</div>
 					</div>
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !lineaId.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !linea1Id.valid}">
 						<label class="control-label" for="linea">Linea<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="a" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 1</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 2</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="c" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 3</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 4</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 5</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="f" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 6</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="g" name="linea" [(ngModel)]="ordensimplificada.lineaId" required> 7</div>		
-						<input type="hidden" class="form-control input-md"  name="lineaId"  [(ngModel)]="ordensimplificada.lineaId"    #lineaId="ngModel" required>
-						<div *ngIf="ordensimplificadaForm.submitted && !lineaId.valid" class="help-block">Linea es requerido</div>
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="a" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 1</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 2</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="c" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 3</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 4</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 5</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="f" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 6</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="g" name="linea" [(ngModel)]="ordensimplificada.linea1Id" required> 7</div>		
+						<input type="hidden" class="form-control input-md"  name="linea1Id"  [(ngModel)]="ordensimplificada.linea1Id"    #linea1Id="ngModel" required>
+						<div *ngIf="ordensimplificadaForm.submitted && !linea1Id.valid" class="help-block">Linea es requerido</div>
 					</div>
 					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !cantidadprogramada.valid}">
 						<label class="control-label" for="cantidadprogramada">Programado<span class="required">*</span></label>
@@ -48,10 +48,10 @@
 						<input class="form-control col-md-12" #cantidadproducida="ngModel" id="cantidadproducida" name="cantidadproducida" maxlength="128" type="number" [(ngModel)]="ordensimplificada.cantidadproducida" required>
 						<div *ngIf="ordensimplificadaForm.submitted && !cantidadproducida.valid" class="help-block">Producido es requerido</div>
 					</div>
-					<!-- <div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !fechainicialAux.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !fechainicialAux.valid}">
 						<label class="control-label" for="fechainicial">Fecha/Hora Inicial<span class="required">*</span></label>
 						<div class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechainicialAux" [(ngModel)]="ordensimplificada.fechainicialAux" ngbDatepicker #fechainicialAux="ngbDatepicker" required>
+							<input class="form-control" placeholder="dd/MM/yyyy" name="fechainicialAux" maxlength="10" minlength="10" [(ngModel)]="ordensimplificada.fechainicialAux" ngbDatepicker #fechainicialAux="ngbDatepicker" required>
 							<span class="input-group-btn">
 								<button class="btn btn-outline-secondary" (click)="fechainicialAux.toggle()" type="button">
 									<em class="fa fa-calendar"></em>
@@ -63,7 +63,7 @@
 					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !fechafinalAux.valid}">
 						<label class="control-label" for="fechafinal">Fecha/Hora Final<span class="required">*</span></label>
 						<div class="input-group col-md-12">	
-							<input class="form-control" placeholder="yyyy-mm-dd" name="fechafinalAux" [(ngModel)]="ordensimplificada.fechafinalAux" ngbDatepicker #fechafinalAux="ngbDatepicker" required>
+							<input class="form-control" placeholder="dd/MM/yyyy" name="fechafinalAux" maxlength="10" minlength="10" [(ngModel)]="ordensimplificada.fechafinalAux" ngbDatepicker #fechafinalAux="ngbDatepicker" required>
 							<span class="input-group-btn">
 								<button class="btn btn-outline-secondary" (click)="fechafinalAux.toggle()" type="button">
 									<em class="fa fa-calendar"></em>
@@ -71,77 +71,77 @@
 							</span>
 						</div>
 						<div *ngIf="ordensimplificadaForm.submitted && !fechafinalAux.valid" class="help-block">Fecha/Hora Final es requerido</div>
-					</div> -->
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !destinoId.valid}">
+					</div>
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !destino1Id.valid}">
 						<label class="control-label" for="destino">Destino mercanc�a<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="xx" name="destino" [(ngModel)]="ordensimplificada.destinoId" required> N/A</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d1" name="destino" [(ngModel)]="ordensimplificada.destinoId" required> USA</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d2" name="destino" [(ngModel)]="ordensimplificada.destinoId" required> Canada</div>		
-						<input type="hidden" class="form-control input-md"  name="destinoId"  [(ngModel)]="ordensimplificada.destinoId"    #destinoId="ngModel" required>
-						<div *ngIf="ordensimplificadaForm.submitted && !destinoId.valid" class="help-block">Destino mercanc�a es requerido</div>
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="xx" name="destino" [(ngModel)]="ordensimplificada.destino1Id" required> N/A</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d1" name="destino" [(ngModel)]="ordensimplificada.destino1Id" required> USA</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="d2" name="destino" [(ngModel)]="ordensimplificada.destino1Id" required> Canada</div>		
+						<input type="hidden" class="form-control input-md"  name="destino1Id"  [(ngModel)]="ordensimplificada.destino1Id"    #destino1Id="ngModel" required>
+						<div *ngIf="ordensimplificadaForm.submitted && !destino1Id.valid" class="help-block">Destino mercanc�a es requerido</div>
 					</div>
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !estadoordenId.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !estadoorden1Id.valid}">
 						<label class="control-label" for="estadoorden">Estado de la Orden<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="xx" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Pendiente</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> En proceso</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Pausada</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Finalizada</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e4" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Cancelada</div>		
-						<input type="hidden" class="form-control input-md"  name="estadoordenId"  [(ngModel)]="ordensimplificada.estadoordenId"    #estadoordenId="ngModel" required>
-						<div *ngIf="ordensimplificadaForm.submitted && !estadoordenId.valid" class="help-block">Estado de la Orden es requerido</div>
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="xx" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden1Id" required> Pendiente</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden1Id" required> En proceso</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden1Id" required> Pausada</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden1Id" required> Finalizada</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e4" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden1Id" required> Cancelada</div>		
+						<input type="hidden" class="form-control input-md"  name="estadoorden1Id"  [(ngModel)]="ordensimplificada.estadoorden1Id"    #estadoorden1Id="ngModel" required>
+						<div *ngIf="ordensimplificadaForm.submitted && !estadoorden1Id.valid" class="help-block">Estado de la Orden es requerido</div>
 					</div>
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !estadoordenId.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !estadoorden2Id.valid}">
 						<label class="control-label" for="estadoorden">Estado de la Orden<span class="required">*</span></label>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="xx" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Pendiente</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> En proceso</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Pausada</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Finalizada</div>		
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e4" name="estadoorden" [(ngModel)]="ordensimplificada.estadoordenId" required> Cancelada</div>		
-						<input type="hidden" class="form-control input-md"  name="estadoordenId"  [(ngModel)]="ordensimplificada.estadoordenId"    #estadoordenId="ngModel" required>
-						<div *ngIf="ordensimplificadaForm.submitted && !estadoordenId.valid" class="help-block">Estado de la Orden es requerido</div>
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="xx" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden2Id" required> Pendiente</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden2Id" required> En proceso</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden2Id" required> Pausada</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden2Id" required> Finalizada</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e4" name="estadoorden" [(ngModel)]="ordensimplificada.estadoorden2Id" required> Cancelada</div>		
+						<input type="hidden" class="form-control input-md"  name="estadoorden2Id"  [(ngModel)]="ordensimplificada.estadoorden2Id"    #estadoorden2Id="ngModel" required>
+						<div *ngIf="ordensimplificadaForm.submitted && !estadoorden2Id.valid" class="help-block">Estado de la Orden es requerido</div>
 					</div>
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !operadorproduccionId.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !operadorproduccion1Id.valid}">
 						<label class="control-label" for="operadorproduccion">Supervisor<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="operadorproduccionId"   [(ngModel)]="ordensimplificada.operadorproduccionId"    #operadorproduccionId="ngModel" required>
-							<input type="text"   class="form-control input-md"  name="operadorproduccionItem" [(ngModel)]="ordensimplificada.operadorproduccionItem"  #operadorproduccionItem="ngModel" placeholder="Operadorproduccion...">
+							<input type="hidden" class="form-control input-md"  name="operadorproduccion1Id"   [(ngModel)]="ordensimplificada.operadorproduccion1Id"    #operadorproduccion1Id="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="operadorproduccion1Item" [(ngModel)]="ordensimplificada.operadorproduccion1Item"  #operadorproduccion1Item="ngModel" placeholder="Operadorproduccion..." disabled>
 							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalOperadorproduccion">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalOperadorproduccion1">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
-						<div *ngIf="ordensimplificadaForm.submitted && !operadorproduccionId.valid" class="help-block">Supervisor es requerido</div>
+						<div *ngIf="ordensimplificadaForm.submitted && !operadorproduccion1Id.valid" class="help-block">Supervisor es requerido</div>
 					</div>
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !operadorproduccionId.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !operadorproduccion2Id.valid}">
 						<label class="control-label" for="operadorproduccion">Operador<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="operadorproduccionId"   [(ngModel)]="ordensimplificada.operadorproduccionId"    #operadorproduccionId="ngModel" required>
-							<input type="text"   class="form-control input-md"  name="operadorproduccionItem" [(ngModel)]="ordensimplificada.operadorproduccionItem"  #operadorproduccionItem="ngModel" placeholder="Operadorproduccion...">
+							<input type="hidden" class="form-control input-md"  name="operadorproduccion2Id"   [(ngModel)]="ordensimplificada.operadorproduccion2Id"    #operadorproduccion2Id="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="operadorproduccion2Item" [(ngModel)]="ordensimplificada.operadorproduccion2Item"  #operadorproduccion2Item="ngModel" placeholder="Operadorproduccion..." disabled>
 							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalOperadorproduccion">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalOperadorproduccion2">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
-						<div *ngIf="ordensimplificadaForm.submitted && !operadorproduccionId.valid" class="help-block">Operador es requerido</div>
+						<div *ngIf="ordensimplificadaForm.submitted && !operadorproduccion2Id.valid" class="help-block">Operador es requerido</div>
 					</div>
-					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !clienteId.valid}">
+					<div class="form-group" [ngClass]="{ 'has-error': ordensimplificadaForm.submitted && !cliente1Id.valid}">
 						<label class="control-label" for="cliente">Cliente<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="clienteId"   [(ngModel)]="ordensimplificada.clienteId"    #clienteId="ngModel" required>
-							<input type="text"   class="form-control input-md"  name="clienteItem" [(ngModel)]="ordensimplificada.clienteItem"  #clienteItem="ngModel" placeholder="Cliente...">
+							<input type="hidden" class="form-control input-md"  name="cliente1Id"   [(ngModel)]="ordensimplificada.cliente1Id"    #cliente1Id="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="cliente1Item" [(ngModel)]="ordensimplificada.cliente1Item"  #cliente1Item="ngModel" placeholder="Cliente..." disabled>
 							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCliente">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCliente1">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
-						<div *ngIf="ordensimplificadaForm.submitted && !clienteId.valid" class="help-block">Cliente es requerido</div>
+						<div *ngIf="ordensimplificadaForm.submitted && !cliente1Id.valid" class="help-block">Cliente es requerido</div>
 					</div>
 
 <!-- Modal operadorproduccion -->
-<div id="modalOperadorproduccion" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+<div id="modalOperadorproduccion1" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -196,7 +196,7 @@
 </div>
 
 <!-- Modal operadorproduccion -->
-<div id="modalOperadorproduccion" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+<div id="modalOperadorproduccion2" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -250,8 +250,8 @@
 	</div>
 </div>
 
-<!-- Modal cliente -->
-<div id="modalCliente" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+<!-- Modal cliente1 -->
+<div id="modalCliente1" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -265,7 +265,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..." name="busquedacliente" [(ngModel)]="busquedaCliente">
+							<input type="text" class="form-control" placeholder="Search for..." name="busquedacliente1" [(ngModel)]="busquedaCliente1">
 							<span class="input-group-btn">
 								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
 							</span>
@@ -278,11 +278,19 @@
 						<thead>
 							<tr>
 								<th style="max-width:10%"></th>
+								<th style="max-width:10%">Clave</th>
+								<th style="max-width:10%">Nombre del cliente</th>
+								<th style="max-width:10%" hidden="true">Empresa</th>
+								<th style="max-width:10%">Empresa</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr *ngFor="let cliente of clienteList | filterCliente: busquedaCliente | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
-								<td  style="max-width: 10%"><input type="radio" name="clienteId" [checked]="cliente.checked" value="{{cliente.clienteId}}" (click)="setClickedRowCliente(i, cliente)"></td>
+								<td  style="max-width: 10%"><input type="radio" name="clienteId" [checked]="cliente1.checked" value="{{cliente1.clienteId}}" (click)="setClickedRowCliente1(i, cliente1)"></td>
+								<td  style="max-width: 10%">{{cliente1.clave}}</td>
+								<td  style="max-width: 10%">{{cliente1.nombre}}</td>
+								<td  style="max-width: 10%" hidden="true">{{cliente1.clienteId}}</td>
+								<td  style="max-width: 10%">{{cliente1.clienteItem}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -315,7 +323,7 @@
 							<button class="btn btn-link" (click)="return(ordensimplificadaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
 							<button class="btn btn-link" (click)="return(ordensimplificadaForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>

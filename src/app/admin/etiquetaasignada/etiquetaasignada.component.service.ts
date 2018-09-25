@@ -74,10 +74,11 @@ export class EtiquetaasignadaService {
 		multiplo3: this.etiquetaasignada.multiplo3, 
 		multiplo2: this.etiquetaasignada.multiplo2, 
 		multiplo1: this.etiquetaasignada.multiplo1, 
-		clienteId: this.etiquetaasignada.clienteId,
-		clienteItem: this.etiquetaasignada.clienteItem,
-		ordensimplificadaId: this.etiquetaasignada.ordensimplificadaId,
-		ordensimplificadaItem: this.etiquetaasignada.ordensimplificadaItem,
+		cliente1Id: this.etiquetaasignada.cliente1Id,
+		cliente1Item: this.etiquetaasignada.cliente1Item,
+		ordensimplificada1Id: this.etiquetaasignada.ordensimplificada1Id,
+        ordensimplificada1Item: this.etiquetaasignada.ordensimplificada1Item,
+        
 		etiquetaasignadaId: this.etiquetaasignada.etiquetaasignadaId,
 		etiquetaasignadaItem: this.etiquetaasignada.etiquetaasignadaItem	
         };
@@ -93,10 +94,11 @@ setEtiquetaasignada(etiquetaasignada: Etiquetaasignada) {
 		this.etiquetaasignada.multiplo3 = etiquetaasignada.multiplo3;  
 		this.etiquetaasignada.multiplo2 = etiquetaasignada.multiplo2;  
 		this.etiquetaasignada.multiplo1 = etiquetaasignada.multiplo1;  
-		this.etiquetaasignada.clienteId = etiquetaasignada.clienteId;
-		this.etiquetaasignada.clienteItem = etiquetaasignada.clienteItem;
-		this.etiquetaasignada.ordensimplificadaId = etiquetaasignada.ordensimplificadaId;
-		this.etiquetaasignada.ordensimplificadaItem = etiquetaasignada.ordensimplificadaItem;
+		this.etiquetaasignada.cliente1Id = etiquetaasignada.cliente1Id;
+		this.etiquetaasignada.cliente1Item = etiquetaasignada.cliente1Item;
+		this.etiquetaasignada.ordensimplificada1Id = etiquetaasignada.ordensimplificada1Id;
+        this.etiquetaasignada.ordensimplificada1Item = etiquetaasignada.ordensimplificada1Item;
+        
 		this.etiquetaasignada.etiquetaasignadaId = etiquetaasignada.etiquetaasignadaId;
 		this.etiquetaasignada.etiquetaasignadaItem = etiquetaasignada.etiquetaasignadaItem;
 		this.validateEtiquetaasignada();
@@ -119,10 +121,11 @@ setEtiquetaasignada(etiquetaasignada: Etiquetaasignada) {
 			this.etiquetaasignada.multiplo2 = null;    
 			this.etiquetaasignada.multiplo1 = null;    
 
-			this.etiquetaasignada.clienteId = null;
-			this.etiquetaasignada.clienteItem = null;
-			this.etiquetaasignada.ordensimplificadaId = null;
-			this.etiquetaasignada.ordensimplificadaItem = null;
+			this.etiquetaasignada.cliente1Id = null;
+			this.etiquetaasignada.cliente1Item = null;
+			this.etiquetaasignada.ordensimplificada1Id = null;
+            this.etiquetaasignada.ordensimplificada1Item = null;
+            
 			this.etiquetaasignada.etiquetaasignadaId = null;
 			this.etiquetaasignada.etiquetaasignadaItem = null;
     }

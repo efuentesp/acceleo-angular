@@ -15,7 +15,8 @@ import { EtiquetaasignadaService }                                  from '../../
 import { Etiquetaasignada }                                         from '../../etiquetaasignada/etiquetaasignada.component.model';
 import { OrdensimplificadaService }                                  from '../../ordensimplificada/ordensimplificada.component.service';
 import { Ordensimplificada }                                         from '../../ordensimplificada/ordensimplificada.component.model';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbDateStruct, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
     selector: 'app-view',
@@ -36,7 +37,9 @@ export class ClienteManageComponent implements OnInit {
 
   	public busquedacliente='';
     public filterInputcliente = new FormControl();
+    
 
+    
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
 
     // Buttons 
@@ -67,21 +70,15 @@ export class ClienteManageComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private clienteService: ClienteService
-	//,private clienteService: ClienteService
-	,private etiquetaasignadaService: EtiquetaasignadaService
-	,private ordensimplificadaService: OrdensimplificadaService
+				private clienteService: ClienteService,
+  config: NgbDropdownConfig
 ){
 
+     config.placement = 'top-left';
+     config.autoClose = false;
 
   	 this.filterInputCliente.valueChanges.subscribe(busquedaCliente => {
      this.busquedaCliente = busquedaCliente;
-	   });
-  	 this.filterInputEtiquetaasignada.valueChanges.subscribe(busquedaEtiquetaasignada => {
-     this.busquedaEtiquetaasignada = busquedaEtiquetaasignada;
-	   });
-  	 this.filterInputOrdensimplificada.valueChanges.subscribe(busquedaOrdensimplificada => {
-     this.busquedaOrdensimplificada = busquedaOrdensimplificada;
 	   });
 
 	}
@@ -96,137 +93,30 @@ export class ClienteManageComponent implements OnInit {
       this.clienteService.setEdit(false);
       this.clienteService.setDelete(false);
 
-      this.loadClientes();
+      this.loadCliente1();
       this.habilita();
 
     }   
 
-    loadClientes() {
+    loadCliente1() {
+      
       this.clienteService.getAllCliente().subscribe(data => {
 
-		var datePipe = new DatePipe('en-US');
-
         if (data) {
-
-          this.clienteList = data;
-
-			this.clienteList.forEach(element => {
-
-				//Atributocliente
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
-				this.clienteService.getClienteById(element.clienteId).subscribe(dataAux => {
-					if (dataAux) {
-						this.clienteAux = dataAux;
-						element.clienteItem = this.clienteAux.nombre;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
-			this.clienteList.forEach(element => {
-
-				//Atributoetiquetaasignada
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
-				this.etiquetaasignadaService.getEtiquetaasignadaById(element.etiquetaasignadaId).subscribe(dataAux => {
-					if (dataAux) {
-						this.etiquetaasignadaAux = dataAux;
-						element.etiquetaasignadaItem = this.etiquetaasignadaAux.sap+"";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
-			this.clienteList.forEach(element => {
-
-				//Atributoordensimplificada
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
-				this.ordensimplificadaService.getOrdensimplificadaById(element.ordensimplificadaId).subscribe(dataAux => {
-					if (dataAux) {
-						this.ordensimplificadaAux = dataAux;
-						element.ordensimplificadaItem = this.ordensimplificadaAux.ordentrabajo+"";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
+            this.clienteList = data;
+            this.clienteList.forEach(element => {
+
+              if (element.cliente1Id != null){
+                  this.clienteService.getClienteById(element.cliente1Id).subscribe(dataAux => {
+                    console.log('Recupera: ', dataAux);
+                    if (dataAux) {
+                      element.cliente1Item = dataAux.nombre;
+                  }	
+                });	
+              }else{
+                      element.cliente1Item = "NA";
+              }
+          });
         }
       }, error => {
         swal('Error...', 'An error occurred while calling the clientes.', 'error');
@@ -258,6 +148,11 @@ export class ClienteManageComponent implements OnInit {
     this.clienteService.setEdit(true);
     this.clienteService.setDelete(false);
     this.router.navigate([ '../editcliente' ], { relativeTo: this.route })
+  }
+
+  go(routeString){
+    console.log('Ruta:', routeString)
+    this.router.navigate([ '../'.concat(routeString) ], { relativeTo: this.route })
   }
   
   habilita(){

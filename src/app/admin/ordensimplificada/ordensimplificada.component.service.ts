@@ -76,17 +76,21 @@ export class OrdensimplificadaService {
 		cantidadproducida: this.ordensimplificada.cantidadproducida, 
 		fechainicial: this.ordensimplificada.fechainicial, 
 		fechainicialAux: this.ordensimplificada.fechainicialAux, 
-		lineaId: this.ordensimplificada.lineaId,
-		lineaItem: this.ordensimplificada.lineaItem,
-		destinoId: this.ordensimplificada.destinoId,
-		destinoItem: this.ordensimplificada.destinoItem,
-		estadoordenId: this.ordensimplificada.estadoordenId,
-		estadoordenItem: this.ordensimplificada.estadoordenItem,
-		operadorproduccionId: this.ordensimplificada.operadorproduccionId,
-		operadorproduccionItem: this.ordensimplificada.operadorproduccionItem,
+		linea1Id: this.ordensimplificada.linea1Id,
+		linea1Item: this.ordensimplificada.linea1Item,
+		destino1Id: this.ordensimplificada.destino1Id,
+		destino1Item: this.ordensimplificada.destino1Item,
+		estadoorden1Id: this.ordensimplificada.estadoorden1Id,
+		estadoorden1Item: this.ordensimplificada.estadoorden1Item,
+		estadoorden2Id: this.ordensimplificada.estadoorden2Id,
+		estadoorden2Item: this.ordensimplificada.estadoorden2Item,
+		operadorproduccion1Id: this.ordensimplificada.operadorproduccion1Id,
+		operadorproduccion1Item: this.ordensimplificada.operadorproduccion1Item,
+		operadorproduccion2Id: this.ordensimplificada.operadorproduccion2Id,
+		operadorproduccion2Item: this.ordensimplificada.operadorproduccion2Item,
 		comentario: this.ordensimplificada.comentario,
-		clienteId: this.ordensimplificada.clienteId,
-		clienteItem: this.ordensimplificada.clienteItem,
+		cliente1Id: this.ordensimplificada.cliente1Id,
+		cliente1Item: this.ordensimplificada.cliente1Item,
 		ordensimplificadaId: this.ordensimplificada.ordensimplificadaId,
 		ordensimplificadaItem: this.ordensimplificada.ordensimplificadaItem	
         };
@@ -104,21 +108,22 @@ setOrdensimplificada(ordensimplificada: Ordensimplificada) {
 		this.ordensimplificada.cantidadproducida = ordensimplificada.cantidadproducida;  
 		this.ordensimplificada.fechainicial = ordensimplificada.fechainicial;  
 		this.ordensimplificada.fechainicialAux = ordensimplificada.fechainicialAux;  
-		this.ordensimplificada.lineaId = ordensimplificada.lineaId;
-		this.ordensimplificada.lineaItem = ordensimplificada.lineaItem;
-		this.ordensimplificada.destinoId = ordensimplificada.destinoId;
-		this.ordensimplificada.destinoItem = ordensimplificada.destinoItem;
-		this.ordensimplificada.estadoordenId = ordensimplificada.estadoordenId;
-		this.ordensimplificada.estadoordenItem = ordensimplificada.estadoordenItem;
-		this.ordensimplificada.estadoordenId = ordensimplificada.estadoordenId;
-		this.ordensimplificada.estadoordenItem = ordensimplificada.estadoordenItem;
-		this.ordensimplificada.operadorproduccionId = ordensimplificada.operadorproduccionId;
-		this.ordensimplificada.operadorproduccionItem = ordensimplificada.operadorproduccionItem;
-		this.ordensimplificada.operadorproduccionId = ordensimplificada.operadorproduccionId;
-		this.ordensimplificada.operadorproduccionItem = ordensimplificada.operadorproduccionItem;
+		this.ordensimplificada.linea1Id = ordensimplificada.linea1Id;
+		this.ordensimplificada.linea1Item = ordensimplificada.linea1Item;
+		this.ordensimplificada.destino1Id = ordensimplificada.destino1Id;
+		this.ordensimplificada.destino1Item = ordensimplificada.destino1Item;
+		this.ordensimplificada.estadoorden1Id = ordensimplificada.estadoorden1Id;
+		this.ordensimplificada.estadoorden1Item = ordensimplificada.estadoorden1Item;
+		this.ordensimplificada.estadoorden2Id = ordensimplificada.estadoorden2Id;
+		this.ordensimplificada.estadoorden2Item = ordensimplificada.estadoorden2Item;
+		this.ordensimplificada.operadorproduccion1Id = ordensimplificada.operadorproduccion1Id;
+		this.ordensimplificada.operadorproduccion1Item = ordensimplificada.operadorproduccion1Item;
+		this.ordensimplificada.operadorproduccion2Id = ordensimplificada.operadorproduccion2Id;
+		this.ordensimplificada.operadorproduccion2Item = ordensimplificada.operadorproduccion2Item;
 		this.ordensimplificada.comentario = ordensimplificada.comentario;
-		this.ordensimplificada.clienteId = ordensimplificada.clienteId;
-		this.ordensimplificada.clienteItem = ordensimplificada.clienteItem;
+		this.ordensimplificada.cliente1Id = ordensimplificada.cliente1Id;
+		this.ordensimplificada.cliente1Item = ordensimplificada.cliente1Item;
+
 		this.ordensimplificada.ordensimplificadaId = ordensimplificada.ordensimplificadaId;
 		this.ordensimplificada.ordensimplificadaItem = ordensimplificada.ordensimplificadaItem;
 		this.validateOrdensimplificada();
@@ -143,21 +148,26 @@ setOrdensimplificada(ordensimplificada: Ordensimplificada) {
 			this.ordensimplificada.fechainicial = '';  
 			this.ordensimplificada.fechainicialAux = null;    
 
-			this.ordensimplificada.lineaId = null;
-			this.ordensimplificada.lineaItem = null;
-			this.ordensimplificada.destinoId = null;
-			this.ordensimplificada.destinoItem = null;
-			this.ordensimplificada.estadoordenId = null;
-			this.ordensimplificada.estadoordenItem = null;
-			this.ordensimplificada.estadoordenId = null;
-			this.ordensimplificada.estadoordenItem = null;
-			this.ordensimplificada.operadorproduccionId = null;
-			this.ordensimplificada.operadorproduccionItem = null;
-			this.ordensimplificada.operadorproduccionId = null;
-			this.ordensimplificada.operadorproduccionItem = null;
+			this.ordensimplificada.linea1Id = null;
+			this.ordensimplificada.linea1Item = null;
+
+			this.ordensimplificada.destino1Id = null;
+			this.ordensimplificada.destino1Item = null;
+			
+			this.ordensimplificada.estadoorden1Id = null;
+			this.ordensimplificada.estadoorden1Item = null;
+			
+			this.ordensimplificada.estadoorden2Id = null;
+			this.ordensimplificada.estadoorden2Item = null;
+			
+			this.ordensimplificada.operadorproduccion1Id = null;
+			this.ordensimplificada.operadorproduccion1Item = null;
+			
+			this.ordensimplificada.operadorproduccion2Id = null;
+			this.ordensimplificada.operadorproduccion2Item = null;
 			this.ordensimplificada.comentario = '';
-			this.ordensimplificada.clienteId = null;
-			this.ordensimplificada.clienteItem = null;
+			this.ordensimplificada.cliente1Id = null;
+			this.ordensimplificada.cliente1Item = null;
 			this.ordensimplificada.ordensimplificadaId = null;
 			this.ordensimplificada.ordensimplificadaItem = null;
     }

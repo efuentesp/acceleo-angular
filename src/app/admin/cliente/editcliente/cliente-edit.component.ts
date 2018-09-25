@@ -24,47 +24,32 @@ export class ClienteEditComponent implements OnInit {
 
 	public title = 'Editar Cliente';
     public cliente: Cliente;
- 	public clienteList: Cliente;
+    public clienteList: Cliente [];
+     
     public form: any;
     public user: User;
     public valueName: string;
     public token: string;
 
+    public cliente1: Cliente;
+    public cliente1List: Cliente [];
+
 	public flag: boolean;
-    public flagDelete: boolean;
+  public flagDelete: boolean;
 
-	public busquedaCliente='';
-	filterInputCliente = new FormControl();
-	public etiquetaasignadaList: Etiquetaasignada;
-    public etiquetaasignada: Etiquetaasignada;
-
-	public busquedaEtiquetaasignada='';
-	filterInputEtiquetaasignada = new FormControl();
-	public ordensimplificadaList: Ordensimplificada;
-    public ordensimplificada: Ordensimplificada;
-
-	public busquedaOrdensimplificada='';
-	filterInputOrdensimplificada = new FormControl();
+	public busquedaCliente1='';
+	filterInputCliente1 = new FormControl();
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
 				private clienteService: ClienteService
-	,private etiquetaasignadaService: EtiquetaasignadaService
-	,private ordensimplificadaService: OrdensimplificadaService
 ){
 
- 	 this.filterInputCliente.valueChanges.subscribe(busquedaCliente => {
-     this.busquedaCliente = busquedaCliente;
+ 	 this.filterInputCliente1.valueChanges.subscribe(busquedaCliente => {
+     this.busquedaCliente1 = busquedaCliente;
    });
- 	 this.filterInputEtiquetaasignada.valueChanges.subscribe(busquedaEtiquetaasignada => {
-     this.busquedaEtiquetaasignada = busquedaEtiquetaasignada;
-   });
- 	 this.filterInputOrdensimplificada.valueChanges.subscribe(busquedaOrdensimplificada => {
-     this.busquedaOrdensimplificada = busquedaOrdensimplificada;
-   });
-
 	}	
 
     ngOnInit() {
@@ -73,12 +58,7 @@ export class ClienteEditComponent implements OnInit {
         this.cliente = this.clienteService.getCliente();
         this.flagDelete = this.clienteService.getDelete();
         
-		this.loadClientes();
-		this.loadItemCliente(this.cliente);
-		this.loadEtiquetaasignadas();
-		this.loadItemEtiquetaasignada(this.cliente);
-		this.loadOrdensimplificadas();
-		this.loadItemOrdensimplificada(this.cliente);
+	    	this.loadCliente1();
 
     }  
 
@@ -129,118 +109,47 @@ delete(){
   });
 }
 
-	loadClientes(){
-  		this.clienteService.getAllCliente().subscribe(data => {
-    	if (data) {
-      	this.clienteList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Clientes.', 'error');
-  	});
-}
-
- setClickedRowCliente(index,cliente){
-	      
-		  cliente.checked = !cliente.checked;
-
-		  if (cliente.checked){
-		  this.clienteService.setCliente(cliente);
-		  this.cliente.clienteId = cliente.clienteId;
-		  this.cliente.clienteItem = cliente.nombre;
-	    	}else{
-            this.clienteService.clear();
-			this.cliente.clienteId = null;
-		    this.cliente.clienteItem = "";
-		}
-}
-
-loadItemCliente(cliente){
-  this.clienteService.getClienteById(cliente.clienteId).subscribe(data => {
-    if (data) {
-      this.cliente = data;
-      this.cliente.clienteItem = this.cliente.nombre;
+loadCliente1(){
+  this.clienteService.getAllCliente().subscribe(data => {
+  if (data) {
+  this.cliente1List = data;
+  this.cliente1List.forEach(element => {
+    if (element.cliente1Id!= null){
+      this.clienteService.getClienteById(element.cliente1Id).subscribe(res =>{
+        element.cliente1Id   = res.clienteId;
+        element.cliente1Item = res.nombre;
+      })
     }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the clientes.', 'error');
   });
-
+  }
+  }, error => {
+  swal('Error...', 'An error occurred while calling the Clientes.', 'error');
+});
 }
 
-	loadEtiquetaasignadas(){
-  		this.etiquetaasignadaService.getAllEtiquetaasignada().subscribe(data => {
-    	if (data) {
-      	this.etiquetaasignadaList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Etiquetaasignadas.', 'error');
-  	});
+setClickedRowCliente1(index,cliente1){
+  cliente1.checked = !cliente1.checked;
+  if (cliente1.checked){
+  this.cliente.cliente1Id = cliente1.clienteId;
+  this.cliente.cliente1Item = cliente1.nombre;
+  }else{
+  this.clienteService.clear();
+  this.cliente.cliente1Id = null;
+  this.cliente.cliente1Item = "";
+  }
 }
 
- setClickedRowEtiquetaasignada(index,etiquetaasignada){
-	      
-		  etiquetaasignada.checked = !etiquetaasignada.checked;
+// loadItemCliente(cliente){
+//   this.clienteService.getClienteById(cliente.clienteId).subscribe(data => {
+//     if (data) {
+//       this.cliente = data;
+//       this.cliente.clienteItem = this.cliente.nombre;
+//     }
+//     }, error => {
+//     swal('Error...', 'An error occurred while calling the clientes.', 'error');
+//   });
 
-		  if (etiquetaasignada.checked){
-		  this.etiquetaasignadaService.setEtiquetaasignada(etiquetaasignada);
-		  this.cliente.etiquetaasignadaId = etiquetaasignada.etiquetaasignadaId;
-		  this.cliente.etiquetaasignadaItem = etiquetaasignada.sap+"";
-	    	}else{
-            this.etiquetaasignadaService.clear();
-			this.cliente.etiquetaasignadaId = null;
-		    this.cliente.etiquetaasignadaItem = "";
-		}
-}
-
-loadItemEtiquetaasignada(cliente){
-  this.etiquetaasignadaService.getEtiquetaasignadaById(cliente.etiquetaasignadaId).subscribe(data => {
-    if (data) {
-      this.etiquetaasignada = data;
-      this.cliente.etiquetaasignadaItem = this.etiquetaasignada.sap+"";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the etiquetaasignadas.', 'error');
-  });
-
-}
-
-	loadOrdensimplificadas(){
-  		this.ordensimplificadaService.getAllOrdensimplificada().subscribe(data => {
-    	if (data) {
-      	this.ordensimplificadaList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Ordensimplificadas.', 'error');
-  	});
-}
-
- setClickedRowOrdensimplificada(index,ordensimplificada){
-	      
-		  ordensimplificada.checked = !ordensimplificada.checked;
-
-		  if (ordensimplificada.checked){
-		  this.ordensimplificadaService.setOrdensimplificada(ordensimplificada);
-		  this.cliente.ordensimplificadaId = ordensimplificada.ordensimplificadaId;
-		  this.cliente.ordensimplificadaItem = ordensimplificada.ordentrabajo+"";
-	    	}else{
-            this.ordensimplificadaService.clear();
-			this.cliente.ordensimplificadaId = null;
-		    this.cliente.ordensimplificadaItem = "";
-		}
-}
-
-loadItemOrdensimplificada(cliente){
-  this.ordensimplificadaService.getOrdensimplificadaById(cliente.ordensimplificadaId).subscribe(data => {
-    if (data) {
-      this.ordensimplificada = data;
-      this.cliente.ordensimplificadaItem = this.ordensimplificada.ordentrabajo+"";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the ordensimplificadas.', 'error');
-  });
-
-}
-
-
+// }
 
 return(cliente){
   this.location.back();

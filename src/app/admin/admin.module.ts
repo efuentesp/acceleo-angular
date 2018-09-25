@@ -49,6 +49,8 @@ import { ClienteCreateComponent } from './cliente/createcliente/cliente-create.c
 import { ClienteEditComponent } from './cliente/editcliente/cliente-edit.component';
 import { SearchClientePipe } from './pipe/cliente.filter.pipe';
 import { ClienteService } from './cliente/cliente.component.service';
+import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../dateformat';
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { ClienteService } from './cliente/cliente.component.service';
 	ReactiveFormsModule,
 	FormsModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   declarations: [
     OperadorproduccionCreateComponent,
@@ -98,7 +101,8 @@ import { ClienteService } from './cliente/cliente.component.service';
     ClienteService,
     ManagePrivilegeService,
     UserService,
-    AuthorityService
+    AuthorityService,
+    {provide: NgbDateParserFormatter, useFactory: () => new CustomNgbDateParserFormatter('dd/MM/yyyy')}
 ]
 })
 export class AdminModule {}

@@ -12,8 +12,8 @@ export class Etiquetaasignada {
 	multiplo2: number = null;
 	multiplo1: number = null;
 
-	clienteId: number = null;
-	clienteItem: string = '';
-	ordensimplificadaId: number = null;
-	ordensimplificadaItem: string = '';
+	cliente1Id: number = null;
+	cliente1Item: string = '';
+	ordensimplificada1Id: number = null;
+	ordensimplificada1Item: string = '';
 }

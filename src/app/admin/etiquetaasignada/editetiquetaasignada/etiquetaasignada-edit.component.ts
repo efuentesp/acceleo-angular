@@ -138,12 +138,12 @@ delete(){
 
 		  if (cliente.checked){
 		  this.clienteService.setCliente(cliente);
-		  this.etiquetaasignada.clienteId = cliente.clienteId;
-		  this.etiquetaasignada.clienteItem = cliente.nombre;
+		  this.etiquetaasignada.cliente1Id = cliente.clienteId;
+		  this.etiquetaasignada.cliente1Item = cliente.nombre;
 	    	}else{
             this.clienteService.clear();
-			this.etiquetaasignada.clienteId = null;
-		    this.etiquetaasignada.clienteItem = "";
+			this.etiquetaasignada.cliente1Id = null;
+		    this.etiquetaasignada.cliente1Item = "";
 		}
 }
 
@@ -151,7 +151,7 @@ loadItemCliente(etiquetaasignada){
   this.clienteService.getClienteById(etiquetaasignada.clienteId).subscribe(data => {
     if (data) {
       this.cliente = data;
-      this.etiquetaasignada.clienteItem = this.cliente.nombre;
+      this.etiquetaasignada.cliente1Item = this.cliente.nombre;
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the clientes.', 'error');
@@ -171,28 +171,28 @@ loadItemCliente(etiquetaasignada){
 
  setClickedRowOrdensimplificada(index,ordensimplificada){
 	      
-		  ordensimplificada.checked = !ordensimplificada.checked;
+		//   ordensimplificada.checked = !ordensimplificada.checked;
 
-		  if (ordensimplificada.checked){
-		  this.ordensimplificadaService.setOrdensimplificada(ordensimplificada);
-		  this.etiquetaasignada.ordensimplificadaId = ordensimplificada.ordensimplificadaId;
-		  this.etiquetaasignada.ordensimplificadaItem = ordensimplificada.ordentrabajo+"";
-	    	}else{
-            this.ordensimplificadaService.clear();
-			this.etiquetaasignada.ordensimplificadaId = null;
-		    this.etiquetaasignada.ordensimplificadaItem = "";
-		}
+		//   if (ordensimplificada.checked){
+		//   this.ordensimplificadaService.setOrdensimplificada(ordensimplificada);
+		//   this.etiquetaasignada.ordensimplificadaId = ordensimplificada.ordensimplificadaId;
+		//   this.etiquetaasignada.ordensimplificadaItem = ordensimplificada.ordentrabajo+"";
+	  //   	}else{
+    //         this.ordensimplificadaService.clear();
+		// 	this.etiquetaasignada.ordensimplificadaId = null;
+		//     this.etiquetaasignada.ordensimplificadaItem = "";
+		// }
 }
 
 loadItemOrdensimplificada(etiquetaasignada){
-  this.ordensimplificadaService.getOrdensimplificadaById(etiquetaasignada.ordensimplificadaId).subscribe(data => {
-    if (data) {
-      this.ordensimplificada = data;
-      this.etiquetaasignada.ordensimplificadaItem = this.ordensimplificada.ordentrabajo+"";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the ordensimplificadas.', 'error');
-  });
+  // this.ordensimplificadaService.getOrdensimplificadaById(etiquetaasignada.ordensimplificadaId).subscribe(data => {
+  //   if (data) {
+  //     this.ordensimplificada = data;
+  //     this.etiquetaasignada.ordensimplificadaItem = this.ordensimplificada.ordentrabajo+"";
+  //   }
+  //   }, error => {
+  //   swal('Error...', 'An error occurred while calling the ordensimplificadas.', 'error');
+  // });
 
 }
 

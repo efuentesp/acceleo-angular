@@ -5,11 +5,9 @@ export class Cliente {
 	clienteId: number = null;
 	clienteItem: string = '';
 
+	cliente1Id: number = null;
+	cliente1Item: string = '';
+
 	nombre: string = '';
 	clave: number = null;
-
-	etiquetaasignadaId: number = null;
-	etiquetaasignadaItem: string = '';
-	ordensimplificadaId: number = null;
-	ordensimplificadaItem: string = '';
 }

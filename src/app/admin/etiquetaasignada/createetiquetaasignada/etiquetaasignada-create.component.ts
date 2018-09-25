@@ -31,19 +31,19 @@ export class EtiquetaasignadaCreateComponent implements OnInit {
     public token: string;
 	public datePipe = new DatePipe('en-US');
 
-	public clienteList: Cliente [];
-    public cliente: Cliente;
-    public clienteAux: Cliente;
+	public cliente1List: Cliente [];
+    public cliente1: Cliente;
+    public cliente1Aux: Cliente;
 
-	public busquedaCliente='';
-	filterInputCliente = new FormControl();
+	public busquedaCliente1='';
+	filterInputCliente1 = new FormControl();
 
-	public ordensimplificadaList: Ordensimplificada [];
-    public ordensimplificada: Ordensimplificada;
-    public ordensimplificadaAux: Ordensimplificada;
+	public ordensimplificada1List: Ordensimplificada [];
+    public ordensimplificada1: Ordensimplificada;
+    public ordensimplificada1Aux: Ordensimplificada;
 
-	public busquedaOrdensimplificada='';
-	filterInputOrdensimplificada = new FormControl();
+	public busquedaOrdensimplificada1='';
+	filterInputOrdensimplificada1 = new FormControl();
 
 
     constructor(private router: Router,  
@@ -54,11 +54,11 @@ export class EtiquetaasignadaCreateComponent implements OnInit {
 	,private clienteService: ClienteService
 	,private ordensimplificadaService: OrdensimplificadaService
 ){
-  	 this.filterInputCliente.valueChanges.subscribe(busquedaCliente => {
-     this.busquedaCliente = busquedaCliente;
+  	 this.filterInputCliente1.valueChanges.subscribe(busquedaCliente => {
+     this.busquedaCliente1 = busquedaCliente;
    });
-  	 this.filterInputOrdensimplificada.valueChanges.subscribe(busquedaOrdensimplificada => {
-     this.busquedaOrdensimplificada = busquedaOrdensimplificada;
+  	 this.filterInputOrdensimplificada1.valueChanges.subscribe(busquedaOrdensimplificada => {
+     this.busquedaOrdensimplificada1 = busquedaOrdensimplificada;
    });
 	}
 
@@ -66,8 +66,8 @@ export class EtiquetaasignadaCreateComponent implements OnInit {
 		this.etiquetaasignadaService.clear();
         this.etiquetaasignada = new Etiquetaasignada;
 
-		this.loadClientes();
-		this.loadOrdensimplificadas();
+		// this.loadCliente1();
+		this.loadOrdensimplificada1();
        
     } 
 
@@ -87,41 +87,52 @@ save(){
 }
 
 
-	loadClientes(){
-  		this.clienteService.getAllCliente().subscribe(data => {
-    	if (data) {
-      	
-		this.clienteList = data;
-// Cambios por cada modal
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Clientes.', 'error');
-  	});
+// 	loadCliente1(){
+//   		this.clienteService.getAllCliente().subscribe(data => {
+//     	if (data) {
+// 		this.cliente1List = data;
+// 		this.cliente1List.forEach(element => {
 
+// 				if (element.cliente1Id != null){
+// 					this.clienteService.getClienteById(element.cliente1Id).subscribe(dataAux => {
+// 					console.log('Recupera: ', dataAux);
+// 					if (dataAux) {
+// 						element.cliente1Item = dataAux.nombre;
+// 					}	
+// 				});	
+// 				}else{
+// 						element.cliente1Item = "NA";
+// 				}
+// 			});
+//     	}
+//   		}, error => {
+//     	swal('Error...', 'An error occurred while calling the Clientes.', 'error');
+//   	});
 
+// }
 
-}
-
- setClickedRowCliente(index,cliente){
+//  setClickedRowCliente1(index,cliente1){
 	      
-		  cliente.checked = !cliente.checked;
-		  if (cliente.checked){
-		  this.clienteService.setCliente(cliente);
-		  this.etiquetaasignada.clienteId = cliente.clienteId;
-		  this.etiquetaasignada.clienteItem = cliente.nombre;
-	    	}else{
-            this.clienteService.clear();
-			this.etiquetaasignada.clienteId = null;
-		    this.etiquetaasignada.clienteItem = "";
-		}
- }
+// 		  cliente1.checked = !cliente1.checked;
+// 		  if (cliente1.checked){
+// 		  this.clienteService.setCliente(cliente1);
+// 		  this.etiquetaasignada.cliente1Id = cliente1.clienteId;
+// 		  this.etiquetaasignada.cliente1Item = cliente1.nombre;
+// 	    	}else{
+//             this.clienteService.clear();
+// 			this.etiquetaasignada.cliente1Id = null;
+// 		    this.etiquetaasignada.cliente1Item = "";
+// 		}
+//  }
 
-	loadOrdensimplificadas(){
+	loadOrdensimplificada1(){
   		this.ordensimplificadaService.getAllOrdensimplificada().subscribe(data => {
+
+			console.log('Prueba: ', data);
     	if (data) {
       	
-		this.ordensimplificadaList = data;
-// Cambios por cada modal
+		this.ordensimplificada1List = data;
+
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Ordensimplificadas.', 'error');
@@ -131,17 +142,17 @@ save(){
 
 }
 
- setClickedRowOrdensimplificada(index,ordensimplificada){
+ setClickedRowOrdensimplificada1(index,ordensimplificada1){
 	      
-		  ordensimplificada.checked = !ordensimplificada.checked;
-		  if (ordensimplificada.checked){
-		  this.ordensimplificadaService.setOrdensimplificada(ordensimplificada);
-		  this.etiquetaasignada.ordensimplificadaId = ordensimplificada.ordensimplificadaId;
-		  this.etiquetaasignada.ordensimplificadaItem = ordensimplificada.ordentrabajo;
+		  ordensimplificada1.checked = !ordensimplificada1.checked;
+		  if (ordensimplificada1.checked){
+				this.ordensimplificadaService.setOrdensimplificada(ordensimplificada1);
+				this.etiquetaasignada.ordensimplificada1Id = ordensimplificada1.ordensimplificada1Id;
+				this.etiquetaasignada.ordensimplificada1Item = ordensimplificada1.ordentrabajo;
 	    	}else{
-            this.ordensimplificadaService.clear();
-			this.etiquetaasignada.ordensimplificadaId = null;
-		    this.etiquetaasignada.ordensimplificadaItem = "";
+				this.ordensimplificadaService.clear();
+				this.etiquetaasignada.ordensimplificada1Id = null;
+				this.etiquetaasignada.ordensimplificada1Item = "";
 		}
  }
 

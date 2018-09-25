@@ -96,61 +96,61 @@ export class OrdensimplificadaManageComponent implements OnInit {
       this.ordensimplificadaService.setEdit(false);
       this.ordensimplificadaService.setDelete(false);
 
-      this.loadOrdensimplificadas();
+    //   this.loadOrdensimplificadas();
       this.habilita();
 
     }   
 
-    loadOrdensimplificadas() {
-      this.ordensimplificadaService.getAllOrdensimplificada().subscribe(data => {
+    // loadOrdensimplificadas() {
+    //   this.ordensimplificadaService.getAllOrdensimplificada().subscribe(data => {
 
-		var datePipe = new DatePipe('en-US');
+	// 	var datePipe = new DatePipe('en-US');
 
-        if (data) {
+    //     if (data) {
 
-          this.ordensimplificadaList = data;
+    //       this.ordensimplificadaList = data;
 
-			this.ordensimplificadaList.forEach(element => {
+	// 		this.ordensimplificadaList.forEach(element => {
 
-				// Atributooperadorproduccion
+	// 			// Atributooperadorproduccion
 
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
+	// 		//let datePipe     = new DatePipe('en-US');
+	// 		//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
+    //         //element.fecha    = fechaDate;
+    //         //element.fechaAux = this.parse(fechaDate);
 
 
 
-				this.operadorproduccionService.getOperadorproduccionById(element.operadorproduccionId).subscribe(dataAux => {
-					if (dataAux) {
-						this.operadorproduccionAux = dataAux;
-						element.operadorproduccionItem = this.operadorproduccionAux.numeroempleado+"";
+	// 			this.operadorproduccionService.getOperadorproduccionById(element.operadorproduccionId).subscribe(dataAux => {
+	// 				if (dataAux) {
+	// 					this.operadorproduccionAux = dataAux;
+	// 					element.operadorproduccionItem = this.operadorproduccionAux.numeroempleado+"";
 
 
 
 
 
-	      if (element.lineaId == 'a'){
-	          element.lineaItem = '1';
-	      }
-	      if (element.lineaId == 'b'){
-	          element.lineaItem = '2';
-	      }
-	      if (element.lineaId == 'c'){
-	          element.lineaItem = '3';
-	      }
-	      if (element.lineaId == 'd'){
-	          element.lineaItem = '4';
-	      }
-	      if (element.lineaId == 'e'){
-	          element.lineaItem = '5';
-	      }
-	      if (element.lineaId == 'f'){
-	          element.lineaItem = '6';
-	      }
-	      if (element.lineaId == 'g'){
-	          element.lineaItem = '7';
-	      }
+	//       if (element.lineaId == 'a'){
+	//           element.lineaItem = '1';
+	//       }
+	//       if (element.lineaId == 'b'){
+	//           element.lineaItem = '2';
+	//       }
+	//       if (element.lineaId == 'c'){
+	//           element.lineaItem = '3';
+	//       }
+	//       if (element.lineaId == 'd'){
+	//           element.lineaItem = '4';
+	//       }
+	//       if (element.lineaId == 'e'){
+	//           element.lineaItem = '5';
+	//       }
+	//       if (element.lineaId == 'f'){
+	//           element.lineaItem = '6';
+	//       }
+	//       if (element.lineaId == 'g'){
+	//           element.lineaItem = '7';
+	//       }
 
 
 
@@ -161,49 +161,49 @@ export class OrdensimplificadaManageComponent implements OnInit {
 
 
 
-	      if (element.destinoId == 'xx'){
-	          element.destinoItem = 'N/A';
-	      }
-	      if (element.destinoId == 'd1'){
-	          element.destinoItem = 'USA';
-	      }
-	      if (element.destinoId == 'd2'){
-	          element.destinoItem = 'Canada';
-	      }
+	//       if (element.destinoId == 'xx'){
+	//           element.destinoItem = 'N/A';
+	//       }
+	//       if (element.destinoId == 'd1'){
+	//           element.destinoItem = 'USA';
+	//       }
+	//       if (element.destinoId == 'd2'){
+	//           element.destinoItem = 'Canada';
+	//       }
 
 
-	      if (element.estadoordenId == 'xx'){
-	          element.estadoordenItem = 'Pendiente';
-	      }
-	      if (element.estadoordenId == 'e1'){
-	          element.estadoordenItem = 'En proceso';
-	      }
-	      if (element.estadoordenId == 'e2'){
-	          element.estadoordenItem = 'Pausada';
-	      }
-	      if (element.estadoordenId == 'e3'){
-	          element.estadoordenItem = 'Finalizada';
-	      }
-	      if (element.estadoordenId == 'e4'){
-	          element.estadoordenItem = 'Cancelada';
-	      }
+	//       if (element.estadoordenId == 'xx'){
+	//           element.estadoordenItem = 'Pendiente';
+	//       }
+	//       if (element.estadoordenId == 'e1'){
+	//           element.estadoordenItem = 'En proceso';
+	//       }
+	//       if (element.estadoordenId == 'e2'){
+	//           element.estadoordenItem = 'Pausada';
+	//       }
+	//       if (element.estadoordenId == 'e3'){
+	//           element.estadoordenItem = 'Finalizada';
+	//       }
+	//       if (element.estadoordenId == 'e4'){
+	//           element.estadoordenItem = 'Cancelada';
+	//       }
 
 
-	      if (element.estadoordenId == 'xx'){
-	          element.estadoordenItem = 'Pendiente';
-	      }
-	      if (element.estadoordenId == 'e1'){
-	          element.estadoordenItem = 'En proceso';
-	      }
-	      if (element.estadoordenId == 'e2'){
-	          element.estadoordenItem = 'Pausada';
-	      }
-	      if (element.estadoordenId == 'e3'){
-	          element.estadoordenItem = 'Finalizada';
-	      }
-	      if (element.estadoordenId == 'e4'){
-	          element.estadoordenItem = 'Cancelada';
-	      }
+	//       if (element.estadoordenId == 'xx'){
+	//           element.estadoordenItem = 'Pendiente';
+	//       }
+	//       if (element.estadoordenId == 'e1'){
+	//           element.estadoordenItem = 'En proceso';
+	//       }
+	//       if (element.estadoordenId == 'e2'){
+	//           element.estadoordenItem = 'Pausada';
+	//       }
+	//       if (element.estadoordenId == 'e3'){
+	//           element.estadoordenItem = 'Finalizada';
+	//       }
+	//       if (element.estadoordenId == 'e4'){
+	//           element.estadoordenItem = 'Cancelada';
+	//       }
 
 
 
@@ -223,51 +223,51 @@ export class OrdensimplificadaManageComponent implements OnInit {
 
 
 
-				}	
-			});	
-		});
+	// 			}	
+	// 		});	
+	// 	});
 
-			this.ordensimplificadaList.forEach(element => {
+	// 		this.ordensimplificadaList.forEach(element => {
 
-				//Atributooperadorproduccion
+	// 			//Atributooperadorproduccion
 
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
+	// 		//let datePipe     = new DatePipe('en-US');
+	// 		//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
+    //         //element.fecha    = fechaDate;
+    //         //element.fechaAux = this.parse(fechaDate);
 
 
 
-				this.operadorproduccionService.getOperadorproduccionById(element.operadorproduccionId).subscribe(dataAux => {
-					if (dataAux) {
-						this.operadorproduccionAux = dataAux;
-						element.operadorproduccionItem = this.operadorproduccionAux.numeroempleado+"";
+	// 			this.operadorproduccionService.getOperadorproduccionById(element.operadorproduccionId).subscribe(dataAux => {
+	// 				if (dataAux) {
+	// 					this.operadorproduccionAux = dataAux;
+	// 					element.operadorproduccionItem = this.operadorproduccionAux.numeroempleado+"";
 
 
 
 
 
-	      if (element.lineaId == 'a'){
-	          element.lineaItem = '1';
-	      }
-	      if (element.lineaId == 'b'){
-	          element.lineaItem = '2';
-	      }
-	      if (element.lineaId == 'c'){
-	          element.lineaItem = '3';
-	      }
-	      if (element.lineaId == 'd'){
-	          element.lineaItem = '4';
-	      }
-	      if (element.lineaId == 'e'){
-	          element.lineaItem = '5';
-	      }
-	      if (element.lineaId == 'f'){
-	          element.lineaItem = '6';
-	      }
-	      if (element.lineaId == 'g'){
-	          element.lineaItem = '7';
-	      }
+	//       if (element.lineaId == 'a'){
+	//           element.lineaItem = '1';
+	//       }
+	//       if (element.lineaId == 'b'){
+	//           element.lineaItem = '2';
+	//       }
+	//       if (element.lineaId == 'c'){
+	//           element.lineaItem = '3';
+	//       }
+	//       if (element.lineaId == 'd'){
+	//           element.lineaItem = '4';
+	//       }
+	//       if (element.lineaId == 'e'){
+	//           element.lineaItem = '5';
+	//       }
+	//       if (element.lineaId == 'f'){
+	//           element.lineaItem = '6';
+	//       }
+	//       if (element.lineaId == 'g'){
+	//           element.lineaItem = '7';
+	//       }
 
 
 
@@ -278,49 +278,49 @@ export class OrdensimplificadaManageComponent implements OnInit {
 
 
 
-	      if (element.destinoId == 'xx'){
-	          element.destinoItem = 'N/A';
-	      }
-	      if (element.destinoId == 'd1'){
-	          element.destinoItem = 'USA';
-	      }
-	      if (element.destinoId == 'd2'){
-	          element.destinoItem = 'Canada';
-	      }
+	//       if (element.destinoId == 'xx'){
+	//           element.destinoItem = 'N/A';
+	//       }
+	//       if (element.destinoId == 'd1'){
+	//           element.destinoItem = 'USA';
+	//       }
+	//       if (element.destinoId == 'd2'){
+	//           element.destinoItem = 'Canada';
+	//       }
 
 
-	      if (element.estadoordenId == 'xx'){
-	          element.estadoordenItem = 'Pendiente';
-	      }
-	      if (element.estadoordenId == 'e1'){
-	          element.estadoordenItem = 'En proceso';
-	      }
-	      if (element.estadoordenId == 'e2'){
-	          element.estadoordenItem = 'Pausada';
-	      }
-	      if (element.estadoordenId == 'e3'){
-	          element.estadoordenItem = 'Finalizada';
-	      }
-	      if (element.estadoordenId == 'e4'){
-	          element.estadoordenItem = 'Cancelada';
-	      }
+	//       if (element.estadoordenId == 'xx'){
+	//           element.estadoordenItem = 'Pendiente';
+	//       }
+	//       if (element.estadoordenId == 'e1'){
+	//           element.estadoordenItem = 'En proceso';
+	//       }
+	//       if (element.estadoordenId == 'e2'){
+	//           element.estadoordenItem = 'Pausada';
+	//       }
+	//       if (element.estadoordenId == 'e3'){
+	//           element.estadoordenItem = 'Finalizada';
+	//       }
+	//       if (element.estadoordenId == 'e4'){
+	//           element.estadoordenItem = 'Cancelada';
+	//       }
 
 
-	      if (element.estadoordenId == 'xx'){
-	          element.estadoordenItem = 'Pendiente';
-	      }
-	      if (element.estadoordenId == 'e1'){
-	          element.estadoordenItem = 'En proceso';
-	      }
-	      if (element.estadoordenId == 'e2'){
-	          element.estadoordenItem = 'Pausada';
-	      }
-	      if (element.estadoordenId == 'e3'){
-	          element.estadoordenItem = 'Finalizada';
-	      }
-	      if (element.estadoordenId == 'e4'){
-	          element.estadoordenItem = 'Cancelada';
-	      }
+	//       if (element.estadoordenId == 'xx'){
+	//           element.estadoordenItem = 'Pendiente';
+	//       }
+	//       if (element.estadoordenId == 'e1'){
+	//           element.estadoordenItem = 'En proceso';
+	//       }
+	//       if (element.estadoordenId == 'e2'){
+	//           element.estadoordenItem = 'Pausada';
+	//       }
+	//       if (element.estadoordenId == 'e3'){
+	//           element.estadoordenItem = 'Finalizada';
+	//       }
+	//       if (element.estadoordenId == 'e4'){
+	//           element.estadoordenItem = 'Cancelada';
+	//       }
 
 
 
@@ -340,51 +340,51 @@ export class OrdensimplificadaManageComponent implements OnInit {
 
 
 
-				}	
-			});	
-		});
+	// 			}	
+	// 		});	
+	// 	});
 
-			this.ordensimplificadaList.forEach(element => {
+	// 		this.ordensimplificadaList.forEach(element => {
 
-				//Atributocliente
+	// 			//Atributocliente
 
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
+	// 		//let datePipe     = new DatePipe('en-US');
+	// 		//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
+    //         //element.fecha    = fechaDate;
+    //         //element.fechaAux = this.parse(fechaDate);
 
 
 
-				this.clienteService.getClienteById(element.clienteId).subscribe(dataAux => {
-					if (dataAux) {
-						this.clienteAux = dataAux;
-						element.clienteItem = this.clienteAux.nombre;
+	// 			this.clienteService.getClienteById(element.clienteId).subscribe(dataAux => {
+	// 				if (dataAux) {
+	// 					this.clienteAux = dataAux;
+	// 					element.clienteItem = this.clienteAux.nombre;
 
 
 
 
 
-	      if (element.lineaId == 'a'){
-	          element.lineaItem = '1';
-	      }
-	      if (element.lineaId == 'b'){
-	          element.lineaItem = '2';
-	      }
-	      if (element.lineaId == 'c'){
-	          element.lineaItem = '3';
-	      }
-	      if (element.lineaId == 'd'){
-	          element.lineaItem = '4';
-	      }
-	      if (element.lineaId == 'e'){
-	          element.lineaItem = '5';
-	      }
-	      if (element.lineaId == 'f'){
-	          element.lineaItem = '6';
-	      }
-	      if (element.lineaId == 'g'){
-	          element.lineaItem = '7';
-	      }
+	//       if (element.lineaId == 'a'){
+	//           element.lineaItem = '1';
+	//       }
+	//       if (element.lineaId == 'b'){
+	//           element.lineaItem = '2';
+	//       }
+	//       if (element.lineaId == 'c'){
+	//           element.lineaItem = '3';
+	//       }
+	//       if (element.lineaId == 'd'){
+	//           element.lineaItem = '4';
+	//       }
+	//       if (element.lineaId == 'e'){
+	//           element.lineaItem = '5';
+	//       }
+	//       if (element.lineaId == 'f'){
+	//           element.lineaItem = '6';
+	//       }
+	//       if (element.lineaId == 'g'){
+	//           element.lineaItem = '7';
+	//       }
 
 
 
@@ -395,49 +395,49 @@ export class OrdensimplificadaManageComponent implements OnInit {
 
 
 
-	      if (element.destinoId == 'xx'){
-	          element.destinoItem = 'N/A';
-	      }
-	      if (element.destinoId == 'd1'){
-	          element.destinoItem = 'USA';
-	      }
-	      if (element.destinoId == 'd2'){
-	          element.destinoItem = 'Canada';
-	      }
+	//       if (element.destinoId == 'xx'){
+	//           element.destinoItem = 'N/A';
+	//       }
+	//       if (element.destinoId == 'd1'){
+	//           element.destinoItem = 'USA';
+	//       }
+	//       if (element.destinoId == 'd2'){
+	//           element.destinoItem = 'Canada';
+	//       }
 
 
-	      if (element.estadoordenId == 'xx'){
-	          element.estadoordenItem = 'Pendiente';
-	      }
-	      if (element.estadoordenId == 'e1'){
-	          element.estadoordenItem = 'En proceso';
-	      }
-	      if (element.estadoordenId == 'e2'){
-	          element.estadoordenItem = 'Pausada';
-	      }
-	      if (element.estadoordenId == 'e3'){
-	          element.estadoordenItem = 'Finalizada';
-	      }
-	      if (element.estadoordenId == 'e4'){
-	          element.estadoordenItem = 'Cancelada';
-	      }
+	//       if (element.estadoordenId == 'xx'){
+	//           element.estadoordenItem = 'Pendiente';
+	//       }
+	//       if (element.estadoordenId == 'e1'){
+	//           element.estadoordenItem = 'En proceso';
+	//       }
+	//       if (element.estadoordenId == 'e2'){
+	//           element.estadoordenItem = 'Pausada';
+	//       }
+	//       if (element.estadoordenId == 'e3'){
+	//           element.estadoordenItem = 'Finalizada';
+	//       }
+	//       if (element.estadoordenId == 'e4'){
+	//           element.estadoordenItem = 'Cancelada';
+	//       }
 
 
-	      if (element.estadoordenId == 'xx'){
-	          element.estadoordenItem = 'Pendiente';
-	      }
-	      if (element.estadoordenId == 'e1'){
-	          element.estadoordenItem = 'En proceso';
-	      }
-	      if (element.estadoordenId == 'e2'){
-	          element.estadoordenItem = 'Pausada';
-	      }
-	      if (element.estadoordenId == 'e3'){
-	          element.estadoordenItem = 'Finalizada';
-	      }
-	      if (element.estadoordenId == 'e4'){
-	          element.estadoordenItem = 'Cancelada';
-	      }
+	//       if (element.estadoordenId == 'xx'){
+	//           element.estadoordenItem = 'Pendiente';
+	//       }
+	//       if (element.estadoordenId == 'e1'){
+	//           element.estadoordenItem = 'En proceso';
+	//       }
+	//       if (element.estadoordenId == 'e2'){
+	//           element.estadoordenItem = 'Pausada';
+	//       }
+	//       if (element.estadoordenId == 'e3'){
+	//           element.estadoordenItem = 'Finalizada';
+	//       }
+	//       if (element.estadoordenId == 'e4'){
+	//           element.estadoordenItem = 'Cancelada';
+	//       }
 
 
 
@@ -457,15 +457,15 @@ export class OrdensimplificadaManageComponent implements OnInit {
 
 
 
-				}	
-			});	
-		});
+	// 			}	
+	// 		});	
+	// 	});
 
-        }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the ordensimplificadas.', 'error');
-      });
-    }
+    //     }
+    //   }, error => {
+    //     swal('Error...', 'An error occurred while calling the ordensimplificadas.', 'error');
+    //   });
+    // }
 
   add(){
     this.ordensimplificadaService.clear();

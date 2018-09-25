@@ -71,11 +71,9 @@ export class ClienteService {
 		nombre: this.cliente.nombre, 
 		clave: this.cliente.clave, 
 		clienteId: this.cliente.clienteId,
-		clienteItem: this.cliente.clienteItem,
-		etiquetaasignadaId: this.cliente.etiquetaasignadaId,
-		etiquetaasignadaItem: this.cliente.etiquetaasignadaItem,
-		ordensimplificadaId: this.cliente.ordensimplificadaId,
-		ordensimplificadaItem: this.cliente.ordensimplificadaItem
+        clienteItem: this.cliente.clienteItem, 
+        cliente1Id: this.cliente.cliente1Id,
+		cliente1Item: this.cliente.cliente1Item
         };
         return cliente;
     }
@@ -84,15 +82,13 @@ setCliente(cliente: Cliente) {
        
 		this.isClienteFormValid = true;
 		this.cliente.nombre = cliente.nombre;  
-		this.cliente.clave = cliente.clave;  
+        this.cliente.clave = cliente.clave;  
+        
 		this.cliente.clienteId = cliente.clienteId;
-		this.cliente.clienteItem = cliente.clienteItem;
-		this.cliente.etiquetaasignadaId = cliente.etiquetaasignadaId;
-		this.cliente.etiquetaasignadaItem = cliente.etiquetaasignadaItem;
-		this.cliente.ordensimplificadaId = cliente.ordensimplificadaId;
-		this.cliente.ordensimplificadaItem = cliente.ordensimplificadaItem;
-		this.cliente.clienteId = cliente.clienteId;
-		this.cliente.clienteItem = cliente.clienteItem;
+        this.cliente.clienteItem = cliente.clienteItem;
+        
+		this.cliente.cliente1Id = cliente.cliente1Id;
+		this.cliente.cliente1Item = cliente.cliente1Item;
 		this.validateCliente();
     }
 
@@ -110,13 +106,10 @@ setCliente(cliente: Cliente) {
 			this.cliente.clave = null;    
 
 			this.cliente.clienteId = null;
-			this.cliente.clienteItem = null;
-			this.cliente.etiquetaasignadaId = null;
-			this.cliente.etiquetaasignadaItem = null;
-			this.cliente.ordensimplificadaId = null;
-			this.cliente.ordensimplificadaItem = null;
-			this.cliente.clienteId = null;
-			this.cliente.clienteItem = null;
+            this.cliente.clienteItem = null;
+            
+			this.cliente.cliente1Id = null;
+			this.cliente.cliente1Item = null;
     }
 
     setEdit(flag){

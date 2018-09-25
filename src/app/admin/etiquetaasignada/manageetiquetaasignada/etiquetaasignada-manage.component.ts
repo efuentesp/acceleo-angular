@@ -43,40 +43,40 @@ export class EtiquetaasignadaManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public clienteList: Cliente [];
-    public cliente: Cliente;
-	public clienteAux: Cliente;
+	public cliente1List: Cliente [];
+  public cliente1: Cliente;
+	public cliente1Aux: Cliente;
 
-	public busquedaCliente='';
-	filterInputCliente = new FormControl();
-	public ordensimplificadaList: Ordensimplificada [];
-    public ordensimplificada: Ordensimplificada;
-	public ordensimplificadaAux: Ordensimplificada;
+	public busquedaCliente1='';
+  filterInputCliente1 = new FormControl();
+  
+	public ordensimplificada1List: Ordensimplificada [];
+  public ordensimplificada1: Ordensimplificada;
+	public ordensimplificada1Aux: Ordensimplificada;
 
-	public busquedaOrdensimplificada='';
-	filterInputOrdensimplificada = new FormControl();
+	public busquedaOrdensimplificada1='';
+	filterInputOrdensimplificada1 = new FormControl();
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private etiquetaasignadaService: EtiquetaasignadaService
-	,private clienteService: ClienteService
-	,private ordensimplificadaService: OrdensimplificadaService
+        ,private clienteService: ClienteService
+        ,private ordensimplificadaService: OrdensimplificadaService
 ){
 
-
-  	 this.filterInputCliente.valueChanges.subscribe(busquedaCliente => {
-     this.busquedaCliente = busquedaCliente;
+  	 this.filterInputCliente1.valueChanges.subscribe(busquedaCliente => {
+     this.busquedaCliente1 = busquedaCliente;
 	   });
-  	 this.filterInputOrdensimplificada.valueChanges.subscribe(busquedaOrdensimplificada => {
-     this.busquedaOrdensimplificada = busquedaOrdensimplificada;
+  	 this.filterInputOrdensimplificada1.valueChanges.subscribe(busquedaOrdensimplificada => {
+     this.busquedaOrdensimplificada1 = busquedaOrdensimplificada;
 	   });
 
 	}
 
     ngOnInit() {
       
-	  // Get data user
+	    // Get data user
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
       this.token = this.user.token;
@@ -92,107 +92,33 @@ export class EtiquetaasignadaManageComponent implements OnInit {
     loadEtiquetaasignadas() {
       this.etiquetaasignadaService.getAllEtiquetaasignada().subscribe(data => {
 
-		var datePipe = new DatePipe('en-US');
-
         if (data) {
 
           this.etiquetaasignadaList = data;
 
-			this.etiquetaasignadaList.forEach(element => {
-
-				//Atributocliente
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
-				this.clienteService.getClienteById(element.clienteId).subscribe(dataAux => {
-					if (dataAux) {
-						this.clienteAux = dataAux;
-						element.clienteItem = this.clienteAux.nombre;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
-			this.etiquetaasignadaList.forEach(element => {
-
-				//Atributoordensimplificada
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
-				this.ordensimplificadaService.getOrdensimplificadaById(element.ordensimplificadaId).subscribe(dataAux => {
-					if (dataAux) {
-						this.ordensimplificadaAux = dataAux;
-						element.ordensimplificadaItem = this.ordensimplificadaAux.ordentrabajo+"";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
+          this.etiquetaasignadaList.forEach(element => {
+
+            this.clienteService.getClienteById(element.cliente1Id).subscribe(dataAux => {
+              if (dataAux) {
+                element.cliente1Id = dataAux.clienteId;
+                element.cliente1Item = dataAux.nombre;
+              }	
+            });	
+          
+            this.ordensimplificadaService.getOrdensimplificadaById(element.ordensimplificada1Id).subscribe(dataAux => {
+              if (dataAux) {
+                this.ordensimplificada1Aux = dataAux;
+                element.ordensimplificada1Id = this.ordensimplificada1Aux.ordensimplificadaId;
+                element.ordensimplificada1Item = this.ordensimplificada1Aux.ordentrabajo+"";
+              }	
+            });	
+
+            });
         }
       }, error => {
         swal('Error...', 'An error occurred while calling the etiquetaasignadas.', 'error');
-      });
-    }
+    });
+  }
 
   add(){
     this.etiquetaasignadaService.clear();
