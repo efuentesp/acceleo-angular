@@ -1,0 +1,128 @@
+<!-- principal -->
+<div>
+	<!-- page-title -->
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3>Administrar Cliente Registrado</h3>
+		</div>
+	</div>
+	<!-- ./page-title -->
+
+	<!-- x_panel -->
+	<div class="x_panel">
+		<div class="x_content">
+			<form #clienteMngForm="ngForm" class="editForm" novalidate>
+				
+				<!-- row -->
+				<div class='row'>
+					<div class="col-lg-6">
+						<button *ngIf="createActive" class="btn btn-primary" (click)="add()"><span class="fa fa-plus"></span></button>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Criterios de busqueda..." name="busquedaCliente" [(ngModel)]="busquedaCliente">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+
+				<br/>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							
+							<div class="x_title">
+								<h2>Resultados de la busqueda</h2>
+								<div class="clearfix"></div>
+							</div>
+						
+							<div class="x_content table-responsive">
+								<br/>
+
+								<!-- table -->
+								<table id="datatable" class="table table-striped" style="resizable = true;">
+									<thead>
+										<tr>
+												<th style="max-width:10%">Clave</th>
+												<th style="max-width:10%">Nombre del cliente</th>
+												<th style="max-width:10%" hidden="true">Empresa</th>
+												<th style="max-width:10%">Empresa</th>
+												<th style="max-width:20%">Acciones</th>
+												<th style="max-width:10%"></th>
+												<th style="max-width:10%"></th>
+										
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let cliente of clienteList | filterCliente: busquedaCliente | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCliente'}; let i = index">
+												<td  style="max-width: 10%">{{cliente.clave}}</td>
+												<td  style="max-width: 10%">{{cliente.nombre}}</td>
+												<td  style="max-width: 10%" hidden="true">{{cliente.cliente1Id}}</td>
+												<td  style="max-width: 10%">{{cliente.cliente1Item}}</td>
+												<td style="max-width: 20%">															
+													<div class="container">
+													<button *ngIf="updateActive" class="btn btn-default" (click)="editar(cliente)"><span class="fa fa-pencil"></span></button>
+													<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar(cliente)"><span class="fa fa-trash"></span></button>
+													</div>
+												</td>
+											<td>
+												<!-- <select name="etiquetaasignada" ngModel>
+													<option *ngFor="let etiquetaasignada of etiquetaasignadaSelectList" [ngValue]="etiquetaasignada">
+														{{ etiquetaasignada }}
+													</option>
+												</select> 	 -->
+												<!-- <div class="col">
+													<div ngbDropdown class="d-inline-block">
+														<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+														<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+														<button class="dropdown-item">Action - 1</button>
+														<button class="dropdown-item">Another Action</button>
+														<button class="dropdown-item">Something else is here</button>
+														</div>
+													</div>
+												</div> -->
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="etiquetaasignada" ngbDropdownToggle><i class="fa fa-sitemap"></i> Etiqueta Asignada <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageetiquetaasignada')" >Administrar Etiqueta Asignada</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createetiquetaasignada')">Agregar Etiqueta Asignada</button>
+													</div>
+												</div>
+											</td>	
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="ordensimplificada" ngbDropdownToggle><i class="fa fa-sitemap"></i> Orden de fabricacion <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageordensimplificada')" >Administrar Orden de fabricacion</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createordensimplificada')">Agregar Orden de fabricacion</button>
+													</div>
+												</div>	
+											</td>	
+										</tr>
+									</tbody>
+								</table>
+								<!-- ./table -->
+
+								<div align="row" align="right">
+									<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
+										<pagination-controls (pageChange)="page = $event" id="paginationTableCliente" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+										</pagination-controls>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.row -->
+
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.x_panel -->
+</div>
+<!-- /.principal -->
