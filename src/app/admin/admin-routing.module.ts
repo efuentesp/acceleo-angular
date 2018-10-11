@@ -16,73 +16,70 @@ import { AuthorityManageComponent } from './authority/manageAuthority/manage-aut
 import { AuthorityCreateComponent } from './authority/createAuthority/authority-create.component';
 import { AuthorityEditComponent } from './authority/editAuthority/authority-edit.component';
 
-// Planta
-import { PlantaManageComponent}       from './planta/manageplanta/planta-manage.component';
-import { PlantaCreateComponent}       from './planta/createplanta/planta-create.component';
-import { PlantaEditComponent}         from './planta/editplanta/planta-edit.component';
+// Documento
+import { DocumentoManageComponent}       from './documento/managedocumento/documento-manage.component';
+import { DocumentoCreateComponent}       from './documento/createdocumento/documento-create.component';
+import { DocumentoEditComponent}         from './documento/editdocumento/documento-edit.component';
 
-// Aportacion
-import { AportacionManageComponent}       from './aportacion/manageaportacion/aportacion-manage.component';
-import { AportacionCreateComponent}       from './aportacion/createaportacion/aportacion-create.component';
-import { AportacionEditComponent}         from './aportacion/editaportacion/aportacion-edit.component';
+// Evento
+import { EventoManageComponent}       from './evento/manageevento/evento-manage.component';
+import { EventoCreateComponent}       from './evento/createevento/evento-create.component';
+import { EventoEditComponent}         from './evento/editevento/evento-edit.component';
 
-// Interes
-import { InteresManageComponent}       from './interes/manageinteres/interes-manage.component';
-import { InteresCreateComponent}       from './interes/createinteres/interes-create.component';
-import { InteresEditComponent}         from './interes/editinteres/interes-edit.component';
+// Posicion
+import { PosicionManageComponent}       from './posicion/manageposicion/posicion-manage.component';
+import { PosicionCreateComponent}       from './posicion/createposicion/posicion-create.component';
+import { PosicionEditComponent}         from './posicion/editposicion/posicion-edit.component';
 
-// Empresa
-import { EmpresaManageComponent}       from './empresa/manageempresa/empresa-manage.component';
-import { EmpresaCreateComponent}       from './empresa/createempresa/empresa-create.component';
-import { EmpresaEditComponent}         from './empresa/editempresa/empresa-edit.component';
+// Reclutador
+import { ReclutadorManageComponent}       from './reclutador/managereclutador/reclutador-manage.component';
+import { ReclutadorCreateComponent}       from './reclutador/createreclutador/reclutador-create.component';
+import { ReclutadorEditComponent}         from './reclutador/editreclutador/reclutador-edit.component';
 
-// Departamento
-import { DepartamentoManageComponent}       from './departamento/managedepartamento/departamento-manage.component';
-import { DepartamentoCreateComponent}       from './departamento/createdepartamento/departamento-create.component';
-import { DepartamentoEditComponent}         from './departamento/editdepartamento/departamento-edit.component';
+// Filial
+import { FilialManageComponent}       from './filial/managefilial/filial-manage.component';
+import { FilialCreateComponent}       from './filial/createfilial/filial-create.component';
+import { FilialEditComponent}         from './filial/editfilial/filial-edit.component';
 
-// Cuentadeahorro
-import { CuentadeahorroManageComponent}       from './cuentadeahorro/managecuentadeahorro/cuentadeahorro-manage.component';
-import { CuentadeahorroCreateComponent}       from './cuentadeahorro/createcuentadeahorro/cuentadeahorro-create.component';
-import { CuentadeahorroEditComponent}         from './cuentadeahorro/editcuentadeahorro/cuentadeahorro-edit.component';
+// Direccion
+import { DireccionManageComponent}       from './direccion/managedireccion/direccion-manage.component';
+import { DireccionCreateComponent}       from './direccion/createdireccion/direccion-create.component';
+import { DireccionEditComponent}         from './direccion/editdireccion/direccion-edit.component';
 
-// Beneficiario
-import { BeneficiarioManageComponent}       from './beneficiario/managebeneficiario/beneficiario-manage.component';
-import { BeneficiarioCreateComponent}       from './beneficiario/createbeneficiario/beneficiario-create.component';
-import { BeneficiarioEditComponent}         from './beneficiario/editbeneficiario/beneficiario-edit.component';
+// Usuario
+import { UsuarioManageComponent}       from './usuario/manageusuario/usuario-manage.component';
+import { UsuarioCreateComponent}       from './usuario/createusuario/usuario-create.component';
+import { UsuarioEditComponent}         from './usuario/editusuario/usuario-edit.component';
 
-// Tasadeinteres
-import { TasadeinteresManageComponent}       from './tasadeinteres/managetasadeinteres/tasadeinteres-manage.component';
-import { TasadeinteresCreateComponent}       from './tasadeinteres/createtasadeinteres/tasadeinteres-create.component';
-import { TasadeinteresEditComponent}         from './tasadeinteres/edittasadeinteres/tasadeinteres-edit.component';
+// Permiso
+import { PermisoManageComponent}       from './permiso/managepermiso/permiso-manage.component';
+import { PermisoCreateComponent}       from './permiso/createpermiso/permiso-create.component';
+import { PermisoEditComponent}         from './permiso/editpermiso/permiso-edit.component';
 
-// Socio
-import { SocioManageComponent}       from './socio/managesocio/socio-manage.component';
-import { SocioCreateComponent}       from './socio/createsocio/socio-create.component';
-import { SocioEditComponent}         from './socio/editsocio/socio-edit.component';
+// Puesto
+import { PuestoManageComponent}       from './puesto/managepuesto/puesto-manage.component';
+import { PuestoCreateComponent}       from './puesto/createpuesto/puesto-create.component';
+import { PuestoEditComponent}         from './puesto/editpuesto/puesto-edit.component';
 
-// Domicilio
-import { DomicilioManageComponent}       from './domicilio/managedomicilio/domicilio-manage.component';
-import { DomicilioCreateComponent}       from './domicilio/createdomicilio/domicilio-create.component';
-import { DomicilioEditComponent}         from './domicilio/editdomicilio/domicilio-edit.component';
+// Rol
+import { RolManageComponent}       from './rol/managerol/rol-manage.component';
+import { RolCreateComponent}       from './rol/createrol/rol-create.component';
+import { RolEditComponent}         from './rol/editrol/rol-edit.component';
 
-// Perfil
-import { PerfilManageComponent}       from './perfil/manageperfil/perfil-manage.component';
-import { PerfilCreateComponent}       from './perfil/createperfil/perfil-create.component';
-import { PerfilEditComponent}         from './perfil/editperfil/perfil-edit.component';
+// Trayectoria
+import { TrayectoriaManageComponent}       from './trayectoria/managetrayectoria/trayectoria-manage.component';
+import { TrayectoriaCreateComponent}       from './trayectoria/createtrayectoria/trayectoria-create.component';
+import { TrayectoriaEditComponent}         from './trayectoria/edittrayectoria/trayectoria-edit.component';
 
-// Cuentabancaria
-import { CuentabancariaManageComponent}       from './cuentabancaria/managecuentabancaria/cuentabancaria-manage.component';
-import { CuentabancariaCreateComponent}       from './cuentabancaria/createcuentabancaria/cuentabancaria-create.component';
-import { CuentabancariaEditComponent}         from './cuentabancaria/editcuentabancaria/cuentabancaria-edit.component';
+// Candidato
+import { CandidatoManageComponent}       from './candidato/managecandidato/candidato-manage.component';
+import { CandidatoCreateComponent}       from './candidato/createcandidato/candidato-create.component';
+import { CandidatoEditComponent}         from './candidato/editcandidato/candidato-edit.component';
 
-// Wizard
-import { ClienteComponent } 					from './wizardcliente/createcliente/cliente.component';
-import { ResultComponent } 						from './wizardcliente/result/result.component';
-import { AddressComponent } 					from './wizardcliente/address/address.component';
-import { WorkComponent } 						from './wizardcliente/work/work.component';
-import { PersonalComponent } 					from './wizardcliente/personal/personal.component';
-import { ClienteManageComponent } 				from './wizardcliente/managecliente/cliente-manage.component';
+// Solicitud
+import { SolicitudManageComponent}       from './solicitud/managesolicitud/solicitud-manage.component';
+import { SolicitudCreateComponent}       from './solicitud/createsolicitud/solicitud-create.component';
+import { SolicitudEditComponent}         from './solicitud/editsolicitud/solicitud-edit.component';
 
 
 const adminRoutes: Routes = [
@@ -97,62 +94,57 @@ const adminRoutes: Routes = [
         children: [
         
 		// Com.softtek.acceleo.demo
-		// Wizard
-		{ path: 'createcliente',  component: ClienteComponent}, 
-		{ path: 'managecliente',  component: ClienteManageComponent},
-		{ path: 'personal',  component: PersonalComponent},
-		{ path: 'work',  component: WorkComponent},
-		{ path: 'address',  component: AddressComponent},
-		{ path: 'result',  component: ResultComponent},
-
-		// Entities
-		{ path: 'createplanta',  component: PlantaCreateComponent},  
-		{ path: 'manageplanta',  component: PlantaManageComponent},  
-		{ path: 'editplanta',  component: PlantaEditComponent},  
+		{ path: 'createdocumento',  component: DocumentoCreateComponent},  
+		{ path: 'managedocumento',  component: DocumentoManageComponent},  
+		{ path: 'editdocumento',  component: DocumentoEditComponent},  
 			
-		{ path: 'createaportacion',  component: AportacionCreateComponent},  
-		{ path: 'manageaportacion',  component: AportacionManageComponent},  
-		{ path: 'editaportacion',  component: AportacionEditComponent},  
+		{ path: 'createevento',  component: EventoCreateComponent},  
+		{ path: 'manageevento',  component: EventoManageComponent},  
+		{ path: 'editevento',  component: EventoEditComponent},  
 			
-		{ path: 'createinteres',  component: InteresCreateComponent},  
-		{ path: 'manageinteres',  component: InteresManageComponent},  
-		{ path: 'editinteres',  component: InteresEditComponent},  
+		{ path: 'createposicion',  component: PosicionCreateComponent},  
+		{ path: 'manageposicion',  component: PosicionManageComponent},  
+		{ path: 'editposicion',  component: PosicionEditComponent},  
 			
-		{ path: 'createempresa',  component: EmpresaCreateComponent},  
-		{ path: 'manageempresa',  component: EmpresaManageComponent},  
-		{ path: 'editempresa',  component: EmpresaEditComponent},  
+		{ path: 'createreclutador',  component: ReclutadorCreateComponent},  
+		{ path: 'managereclutador',  component: ReclutadorManageComponent},  
+		{ path: 'editreclutador',  component: ReclutadorEditComponent},  
 			
-		{ path: 'createdepartamento',  component: DepartamentoCreateComponent},  
-		{ path: 'managedepartamento',  component: DepartamentoManageComponent},  
-		{ path: 'editdepartamento',  component: DepartamentoEditComponent},  
+		{ path: 'createfilial',  component: FilialCreateComponent},  
+		{ path: 'managefilial',  component: FilialManageComponent},  
+		{ path: 'editfilial',  component: FilialEditComponent},  
 			
-		{ path: 'createcuentadeahorro',  component: CuentadeahorroCreateComponent},  
-		{ path: 'managecuentadeahorro',  component: CuentadeahorroManageComponent},  
-		{ path: 'editcuentadeahorro',  component: CuentadeahorroEditComponent},  
+		{ path: 'createdireccion',  component: DireccionCreateComponent},  
+		{ path: 'managedireccion',  component: DireccionManageComponent},  
+		{ path: 'editdireccion',  component: DireccionEditComponent},  
 			
-		{ path: 'createbeneficiario',  component: BeneficiarioCreateComponent},  
-		{ path: 'managebeneficiario',  component: BeneficiarioManageComponent},  
-		{ path: 'editbeneficiario',  component: BeneficiarioEditComponent},  
+		{ path: 'createusuario',  component: UsuarioCreateComponent},  
+		{ path: 'manageusuario',  component: UsuarioManageComponent},  
+		{ path: 'editusuario',  component: UsuarioEditComponent},  
 			
-		{ path: 'createtasadeinteres',  component: TasadeinteresCreateComponent},  
-		{ path: 'managetasadeinteres',  component: TasadeinteresManageComponent},  
-		{ path: 'edittasadeinteres',  component: TasadeinteresEditComponent},  
+		{ path: 'createpermiso',  component: PermisoCreateComponent},  
+		{ path: 'managepermiso',  component: PermisoManageComponent},  
+		{ path: 'editpermiso',  component: PermisoEditComponent},  
 			
-		{ path: 'createsocio',  component: SocioCreateComponent},  
-		{ path: 'managesocio',  component: SocioManageComponent},  
-		{ path: 'editsocio',  component: SocioEditComponent},  
+		{ path: 'createpuesto',  component: PuestoCreateComponent},  
+		{ path: 'managepuesto',  component: PuestoManageComponent},  
+		{ path: 'editpuesto',  component: PuestoEditComponent},  
 			
-		{ path: 'createdomicilio',  component: DomicilioCreateComponent},  
-		{ path: 'managedomicilio',  component: DomicilioManageComponent},  
-		{ path: 'editdomicilio',  component: DomicilioEditComponent},  
+		{ path: 'createrol',  component: RolCreateComponent},  
+		{ path: 'managerol',  component: RolManageComponent},  
+		{ path: 'editrol',  component: RolEditComponent},  
 			
-		{ path: 'createperfil',  component: PerfilCreateComponent},  
-		{ path: 'manageperfil',  component: PerfilManageComponent},  
-		{ path: 'editperfil',  component: PerfilEditComponent},  
+		{ path: 'createtrayectoria',  component: TrayectoriaCreateComponent},  
+		{ path: 'managetrayectoria',  component: TrayectoriaManageComponent},  
+		{ path: 'edittrayectoria',  component: TrayectoriaEditComponent},  
 			
-		{ path: 'createcuentabancaria',  component: CuentabancariaCreateComponent},  
-		{ path: 'managecuentabancaria',  component: CuentabancariaManageComponent},  
-		{ path: 'editcuentabancaria',  component: CuentabancariaEditComponent},  
+		{ path: 'createcandidato',  component: CandidatoCreateComponent},  
+		{ path: 'managecandidato',  component: CandidatoManageComponent},  
+		{ path: 'editcandidato',  component: CandidatoEditComponent},  
+			
+		{ path: 'createsolicitud',  component: SolicitudCreateComponent},  
+		{ path: 'managesolicitud',  component: SolicitudManageComponent},  
+		{ path: 'editsolicitud',  component: SolicitudEditComponent},  
 			
 
 		  // Manage

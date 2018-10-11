@@ -1,0 +1,91 @@
+<div>
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3 *ngIf="flagDelete">Eliminar Reclutador</h3>
+			<h3 *ngIf="flag && !flagDelete">Actualizar Reclutador</h3>
+		</div>
+	</div>
+
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>Datos del Reclutador</h2>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="x_content">
+			<!-- start form for validation -->
+			<form #reclutadorForm="ngForm" id="reclutadorForm" class="form-horizontal form-label-left" (ngSubmit)="reclutadorForm.valid && save()" novalidate>
+				<input class="form-control" #reclutadorId="ngModel" reclutadorId="reclutadorId" name="reclutadorId" type="hidden" [(ngModel)]="reclutador.reclutadorId">
+				
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="nombre">Reclutador<span class="required">*</span></label>
+							<input class="form-control col-md-12"   #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="reclutador.nombre" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !nombre.valid}">
+							<label class="control-label" for="nombre">Reclutador<span class="required">*</span></label>
+							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="reclutador.nombre" required>
+							<div *ngIf="reclutadorForm.submitted && !nombre.valid" class="help-block">Reclutador es requerido</div>
+						</div>
+					</div>
+				
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
+							<input class="form-control col-md-12"   #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidopaterno" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !apellidopaterno.valid}">
+							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
+							<input class="form-control col-md-12" #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidopaterno" required>
+							<div *ngIf="reclutadorForm.submitted && !apellidopaterno.valid" class="help-block">Apellido Paterno es requerido</div>
+						</div>
+					</div>
+				
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
+							<input class="form-control col-md-12"   #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !apellidomaterno.valid}">
+							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
+							<input class="form-control col-md-12" #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" required>
+							<div *ngIf="reclutadorForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
+						</div>
+					</div>
+				
+					<div class="form-group">
+						<label class="control-label" for="es">Género<span class="required">*</span></label>
+						
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="mas" name="mas" [(ngModel)]="reclutador.generoId"  disabled="true" disabled> Masculino </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="mas" name="mas" [(ngModel)]="reclutador.generoId"> Masculino </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="fem" name="fem" [(ngModel)]="reclutador.generoId"  disabled="true" disabled> Femenino </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="fem" name="fem" [(ngModel)]="reclutador.generoId"> Femenino </div>
+					</div>
+				
+
+
+				<div class="ln_solid"></div>
+
+				<div class="col-sm-12">
+					<div class="input-group">
+						<div *ngIf="flagDelete">
+							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+							<button class="btn btn-link" (click)="return(reclutadorForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="flag && !flagDelete">
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-link" (click)="return(reclutadorForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- end form for validation -->
+		</div>
+	</div>
+</div>

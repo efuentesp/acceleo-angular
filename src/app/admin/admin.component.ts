@@ -5,9 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Authority } from '../user/authorities.component.model';
 
 @Component({
-  templateUrl: 'admin.components.html',
-	styleUrls: ['./admin.component.css']
-
+  templateUrl: 'admin.components.html'
 })
 export class AdminComponent {
 
@@ -18,46 +16,45 @@ export class AdminComponent {
   public username: string;
 
 // Menu activation
-
-// Wizard cliente
-private cliente_mgmnt: boolean = false;
-private cliente: boolean = false;
-// Planta
-  private planta_mgmnt: boolean = false;
-  private planta: boolean = false;
-// Aportacion
-  private aportacion_mgmnt: boolean = false;
-  private aportacion: boolean = false;
-// Interes
-  private interes_mgmnt: boolean = false;
-  private interes: boolean = false;
-// Empresa
-  private empresa_mgmnt: boolean = false;
-  private empresa: boolean = false;
-// Departamento
-  private departamento_mgmnt: boolean = false;
-  private departamento: boolean = false;
-// Cuentadeahorro
-  private cuentadeahorro_mgmnt: boolean = false;
-  private cuentadeahorro: boolean = false;
-// Beneficiario
-  private beneficiario_mgmnt: boolean = false;
-  private beneficiario: boolean = false;
-// Tasadeinteres
-  private tasadeinteres_mgmnt: boolean = false;
-  private tasadeinteres: boolean = false;
-// Socio
-  private socio_mgmnt: boolean = false;
-  private socio: boolean = false;
-// Domicilio
-  private domicilio_mgmnt: boolean = false;
-  private domicilio: boolean = false;
-// Perfil
-  private perfil_mgmnt: boolean = false;
-  private perfil: boolean = false;
-// Cuentabancaria
-  private cuentabancaria_mgmnt: boolean = false;
-  private cuentabancaria: boolean = false;
+// Documento
+  private documento_mgmnt: boolean = false;
+  private documento: boolean = false;
+// Evento
+  private evento_mgmnt: boolean = false;
+  private evento: boolean = false;
+// Posicion
+  private posicion_mgmnt: boolean = false;
+  private posicion: boolean = false;
+// Reclutador
+  private reclutador_mgmnt: boolean = false;
+  private reclutador: boolean = false;
+// Filial
+  private filial_mgmnt: boolean = false;
+  private filial: boolean = false;
+// Direccion
+  private direccion_mgmnt: boolean = false;
+  private direccion: boolean = false;
+// Usuario
+  private usuario_mgmnt: boolean = false;
+  private usuario: boolean = false;
+// Permiso
+  private permiso_mgmnt: boolean = false;
+  private permiso: boolean = false;
+// Puesto
+  private puesto_mgmnt: boolean = false;
+  private puesto: boolean = false;
+// Rol
+  private rol_mgmnt: boolean = false;
+  private rol: boolean = false;
+// Trayectoria
+  private trayectoria_mgmnt: boolean = false;
+  private trayectoria: boolean = false;
+// Candidato
+  private candidato_mgmnt: boolean = false;
+  private candidato: boolean = false;
+// Solicitud
+  private solicitud_mgmnt: boolean = false;
+  private solicitud: boolean = false;
 
 
   // Admin
@@ -97,92 +94,95 @@ private cliente: boolean = false;
   buildMenu(authorities){
     authorities.forEach(element => {
 
-      // Wizard
-      this.cliente = true;
-      this.cliente_mgmnt = true;
-
-      if (element.authority == 'ROLE_PLANTASEARCH'){
-        this.planta_mgmnt = true;
+      if (element.authority == 'ROLE_DOCUMENTOSEARCH'){
+        this.documento_mgmnt = true;
       }
-      if (element.authority == 'ROLE_PLANTACREATE'){
-        this.planta = true;
+      if (element.authority == 'ROLE_DOCUMENTOCREATE'){
+        this.documento = true;
       }
 
-      if (element.authority == 'ROLE_APORTACIONSEARCH'){
-        this.aportacion_mgmnt = true;
+      if (element.authority == 'ROLE_EVENTOSEARCH'){
+        this.evento_mgmnt = true;
       }
-      if (element.authority == 'ROLE_APORTACIONCREATE'){
-        this.aportacion = true;
-      }
-
-      if (element.authority == 'ROLE_INTERESSEARCH'){
-        this.interes_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_INTERESCREATE'){
-        this.interes = true;
+      if (element.authority == 'ROLE_EVENTOCREATE'){
+        this.evento = true;
       }
 
-      if (element.authority == 'ROLE_EMPRESASEARCH'){
-        this.empresa_mgmnt = true;
+      if (element.authority == 'ROLE_POSICIONSEARCH'){
+        this.posicion_mgmnt = true;
       }
-      if (element.authority == 'ROLE_EMPRESACREATE'){
-        this.empresa = true;
-      }
-
-      if (element.authority == 'ROLE_DEPARTAMENTOSEARCH'){
-        this.departamento_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_DEPARTAMENTOCREATE'){
-        this.departamento = true;
+      if (element.authority == 'ROLE_POSICIONCREATE'){
+        this.posicion = true;
       }
 
-      if (element.authority == 'ROLE_CUENTADEAHORROSEARCH'){
-        this.cuentadeahorro_mgmnt = true;
+      if (element.authority == 'ROLE_RECLUTADORSEARCH'){
+        this.reclutador_mgmnt = true;
       }
-      if (element.authority == 'ROLE_CUENTADEAHORROCREATE'){
-        this.cuentadeahorro = true;
-      }
-
-      if (element.authority == 'ROLE_BENEFICIARIOSEARCH'){
-        this.beneficiario_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_BENEFICIARIOCREATE'){
-        this.beneficiario = true;
+      if (element.authority == 'ROLE_RECLUTADORCREATE'){
+        this.reclutador = true;
       }
 
-      if (element.authority == 'ROLE_TASADEINTERESSEARCH'){
-        this.tasadeinteres_mgmnt = true;
+      if (element.authority == 'ROLE_FILIALSEARCH'){
+        this.filial_mgmnt = true;
       }
-      if (element.authority == 'ROLE_TASADEINTERESCREATE'){
-        this.tasadeinteres = true;
-      }
-
-      if (element.authority == 'ROLE_SOCIOSEARCH'){
-        this.socio_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_SOCIOCREATE'){
-        this.socio = true;
+      if (element.authority == 'ROLE_FILIALCREATE'){
+        this.filial = true;
       }
 
-      if (element.authority == 'ROLE_DOMICILIOSEARCH'){
-        this.domicilio_mgmnt = true;
+      if (element.authority == 'ROLE_DIRECCIONSEARCH'){
+        this.direccion_mgmnt = true;
       }
-      if (element.authority == 'ROLE_DOMICILIOCREATE'){
-        this.domicilio = true;
-      }
-
-      if (element.authority == 'ROLE_PERFILSEARCH'){
-        this.perfil_mgmnt = true;
-      }
-      if (element.authority == 'ROLE_PERFILCREATE'){
-        this.perfil = true;
+      if (element.authority == 'ROLE_DIRECCIONCREATE'){
+        this.direccion = true;
       }
 
-      if (element.authority == 'ROLE_CUENTABANCARIASEARCH'){
-        this.cuentabancaria_mgmnt = true;
+      if (element.authority == 'ROLE_USUARIOSEARCH'){
+        this.usuario_mgmnt = true;
       }
-      if (element.authority == 'ROLE_CUENTABANCARIACREATE'){
-        this.cuentabancaria = true;
+      if (element.authority == 'ROLE_USUARIOCREATE'){
+        this.usuario = true;
+      }
+
+      if (element.authority == 'ROLE_PERMISOSEARCH'){
+        this.permiso_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_PERMISOCREATE'){
+        this.permiso = true;
+      }
+
+      if (element.authority == 'ROLE_PUESTOSEARCH'){
+        this.puesto_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_PUESTOCREATE'){
+        this.puesto = true;
+      }
+
+      if (element.authority == 'ROLE_ROLSEARCH'){
+        this.rol_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_ROLCREATE'){
+        this.rol = true;
+      }
+
+      if (element.authority == 'ROLE_TRAYECTORIASEARCH'){
+        this.trayectoria_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_TRAYECTORIACREATE'){
+        this.trayectoria = true;
+      }
+
+      if (element.authority == 'ROLE_CANDIDATOSEARCH'){
+        this.candidato_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_CANDIDATOCREATE'){
+        this.candidato = true;
+      }
+
+      if (element.authority == 'ROLE_SOLICITUDSEARCH'){
+        this.solicitud_mgmnt = true;
+      }
+      if (element.authority == 'ROLE_SOLICITUDCREATE'){
+        this.solicitud = true;
       }
 
  

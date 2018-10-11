@@ -1,0 +1,116 @@
+<!-- principal -->
+<div>
+	<!-- page-title -->
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3>Administrar Posición</h3>
+		</div>
+	</div>
+	<!-- ./page-title -->
+
+	<!-- x_panel -->
+	<div class="x_panel">
+		<div class="x_content">
+			<form #posicionMngForm="ngForm" class="editForm" novalidate>
+				
+				<!-- row -->
+				<div class='row'>
+					<div class="col-lg-6">
+						<button *ngIf="createActive" class="btn btn-primary" (click)="add()"><span class="fa fa-plus"></span></button>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Criterios de busqueda..." name="busquedaPosicion" [(ngModel)]="busquedaPosicion">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+
+				<br/>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							
+							<div class="x_title">
+								<h2>Resultados de la busqueda</h2>
+								<div class="clearfix"></div>
+							</div>
+						
+							<div class="x_content table-responsive">
+								<br/>
+
+								<!-- table -->
+								<table id="datatable" class="table table-striped" style="resizable = true;">
+									<thead>
+										<tr>
+												<th style="max-width:10%" hidden="true">Filial</th>
+												<th style="max-width:10%">Filial</th>
+												<th style="max-width:10%" hidden="true">Puesto</th>
+												<th style="max-width:10%">Puesto</th>
+												<th style="max-width:10%">Nombre de la posición</th>
+												<th style="max-width:10%">Descripción de la vacante</th>
+												<th style="max-width:10%">Fecha de alta</th>
+												<th style="max-width:10%">Responsable de la posición</th>
+												<th style="max-width:10%">Presupuesto para la posición</th>
+												<th style="max-width:10%">Número de vacantes</th>
+												<th style="max-width:10%" hidden="true">Tipo de posición</th>
+												<th style="max-width:10%">Tipo de posición</th>
+												<th style="max-width:10%" hidden="true">Reclutador</th>
+												<th style="max-width:10%">Reclutador</th>
+												<th style="max-width:10%" hidden="true">Estatus</th>
+												<th style="max-width:10%">Estatus</th>
+										<th style="max-width:20%">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let posicion of posicionList | filterPosicion: busquedaPosicion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePosicion'}; let i = index" (click)="setClickedRowPosicion(i, posicion)" >
+												<td  style="max-width: 10%" hidden="true">{{posicion.filialId}}</td>
+												<td  style="max-width: 10%">{{posicion.filialItem}}</td>
+												<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
+												<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
+												<td  style="max-width: 10%">{{posicion.nombre}}</td>
+												<td  style="max-width: 10%">{{posicion.descripcion}}</td>
+												<td  style="max-width: 10%">{{posicion.fecha}}</td>
+												<td  style="max-width: 10%">{{posicion.contacto}}</td>
+												<td  style="max-width: 10%">{{posicion.salario}}</td>
+												<td  style="max-width: 10%">{{posicion.vacantes}}</td>
+												<td  style="max-width: 10%" hidden="true">{{posicion.tiponominaId}}</td>
+												<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
+												<td  style="max-width: 10%" hidden="true">{{posicion.reclutadorId}}</td>
+												<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
+												<td  style="max-width: 10%" hidden="true">{{posicion.estatusposicionId}}</td>
+												<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
+											<td style="max-width: 20%">															
+												<div class="container">
+												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(posicion)"><span class="fa fa-pencil"></span></button>
+												<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar(posicion)"><span class="fa fa-trash"></span></button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- ./table -->
+
+								<div align="row" align="right">
+									<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
+										<pagination-controls (pageChange)="page = $event" id="paginationTablePosicion" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+										</pagination-controls>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.row -->
+
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.x_panel -->
+</div>
+<!-- /.principal -->

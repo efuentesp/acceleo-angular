@@ -1,0 +1,73 @@
+<div>
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+			<h3 *ngIf="flagDelete">Eliminar Puesto</h3>
+			<h3 *ngIf="flag && !flagDelete">Actualizar Puesto</h3>
+		</div>
+	</div>
+
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>Datos del Puesto</h2>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="x_content">
+			<!-- start form for validation -->
+			<form #puestoForm="ngForm" id="puestoForm" class="form-horizontal form-label-left" (ngSubmit)="puestoForm.valid && save()" novalidate>
+				<input class="form-control" #puestoId="ngModel" puestoId="puestoId" name="puestoId" type="hidden" [(ngModel)]="puesto.puestoId">
+					<div class="form-group">
+						<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
+						
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="a" name="a" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Promotor de cambaceo </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="a" [(ngModel)]="puesto.puestosId"> Promotor de cambaceo </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="b" name="b" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Valuador </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="b" name="b" [(ngModel)]="puesto.puestosId"> Valuador </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Mecanógrafo </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="puesto.puestosId"> Mecanógrafo </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d" name="d" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Expendedor </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d" name="d" [(ngModel)]="puesto.puestosId"> Expendedor </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e" name="e" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Almacenista </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e" name="e" [(ngModel)]="puesto.puestosId"> Almacenista </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="f" name="f" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Mozo </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="f" name="f" [(ngModel)]="puesto.puestosId"> Mozo </div>
+						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="g" name="g" [(ngModel)]="puesto.puestosId"  disabled="true" disabled> Cajero </div>		
+						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="g" name="g" [(ngModel)]="puesto.puestosId"> Cajero </div>
+					</div>
+				
+				
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="descripcion">Descripción<span class="required">*</span></label>
+							<input class="form-control col-md-12"   #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="puesto.descripcion" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': puestoForm.submitted && !descripcion.valid}">
+							<label class="control-label" for="descripcion">Descripción<span class="required">*</span></label>
+							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="puesto.descripcion" required>
+							<div *ngIf="puestoForm.submitted && !descripcion.valid" class="help-block">Descripción es requerido</div>
+						</div>
+					</div>
+				
+
+
+				<div class="ln_solid"></div>
+
+				<div class="col-sm-12">
+					<div class="input-group">
+						<div *ngIf="flagDelete">
+							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
+							<button class="btn btn-link" (click)="return(puestoForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+						<div *ngIf="flag && !flagDelete">
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-link" (click)="return(puestoForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- end form for validation -->
+		</div>
+	</div>
+</div>
