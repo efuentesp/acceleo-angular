@@ -31,7 +31,7 @@
                                             <td style="width:250px"> {{adminPermiso.nombrePrivilege | uppercase}}</td>
                                            
                                             <div *ngFor="let configAuthority of adminPermiso.lstConfigAuthority; let j = index" style="float: left;">
-                                                <td *ngIf="configAuthority.nameAuthority == 'ADMIN'"><input type="checkbox" disabled class="control control--checkbox" [checked] = "configAuthority.enabled"  (change)= "saveData(adminPermiso, configAuthority, $event)" name="[k][j]" value="adminPermiso.idAuthority" /></td>       
+                                                <td *ngIf="configAuthority.nameAuthority == 'ADMIN'"><input type="checkbox" class="control control--checkbox" [checked] = "configAuthority.enabled"  (change)= "saveData(adminPermiso, configAuthority, $event)" name="[k][j]" value="adminPermiso.idAuthority" /></td>       
                                                 <td *ngIf="configAuthority.nameAuthority != 'ADMIN'"><input type="checkbox" class="control control--checkbox" [checked] = "configAuthority.enabled"  (change)= "saveData(adminPermiso, configAuthority, $event)" name="[k][j]" value="adminPermiso.idAuthority" /></td>
                                             </div>
                                             </tr>

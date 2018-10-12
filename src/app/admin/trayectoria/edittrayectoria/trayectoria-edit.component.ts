@@ -141,7 +141,7 @@ delete(){
 		  this.trayectoria.candidatoId = candidato.candidatoId;
 		  this.trayectoria.candidatoItem = candidato.
 						nombre+ "";
-						nombre+ "";
+						
 	    	}else{
             this.candidatoService.clear();
 			this.trayectoria.candidatoId = null;
@@ -155,7 +155,7 @@ loadItemCandidato(trayectoria){
       this.candidato = data;
       this.trayectoria.candidatoItem = this.candidato.
 						nombre+ "";
-						nombre+ "";
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the candidatos.', 'error');
@@ -182,7 +182,7 @@ loadItemCandidato(trayectoria){
 		  this.trayectoria.documentoId = documento.documentoId;
 		  this.trayectoria.documentoItem = documento.
 						nombre+ "";
-						nombre+ "";
+					
 	    	}else{
             this.documentoService.clear();
 			this.trayectoria.documentoId = null;
@@ -196,7 +196,7 @@ loadItemDocumento(trayectoria){
       this.documento = data;
       this.trayectoria.documentoItem = this.documento.
 						nombre+ "";
-						nombre+ "";
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the documentos.', 'error');

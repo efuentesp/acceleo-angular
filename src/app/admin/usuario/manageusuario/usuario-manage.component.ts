@@ -88,14 +88,7 @@ export class UsuarioManageComponent implements OnInit {
 
 			this.usuarioList.forEach(element => {
 
-				Atributorol
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
+	
 
 				this.rolService.getRolById(element.rolId).subscribe(dataAux => {
 					if (dataAux) {

@@ -109,9 +109,9 @@ save(){
 		  if (posicion.checked){
 		  this.posicionService.setPosicion(posicion);
 		  this.evento.posicionId = posicion.posicionId;
-		  this.evento.posicionItem = posicion.
-						nombre+ "";
-						nombre+ "";
+		  this.evento.posicionItem = posicion.posicionItem;
+						// nombre+ "";
+						// nombre+ "";
 	    	}else{
             this.posicionService.clear();
 			this.evento.posicionId = null;
@@ -140,9 +140,9 @@ save(){
 		  if (candidato.checked){
 		  this.candidatoService.setCandidato(candidato);
 		  this.evento.candidatoId = candidato.candidatoId;
-		  this.evento.candidatoItem = candidato.
-						nombre+ "";
-						nombre+ "";
+		  this.evento.candidatoItem = candidato.candidatoItem;
+						// nombre+ "";
+						// nombre+ "";
 	    	}else{
             this.candidatoService.clear();
 			this.evento.candidatoId = null;

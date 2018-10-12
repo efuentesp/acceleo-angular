@@ -88,20 +88,20 @@ export class PermisoManageComponent implements OnInit {
 
 			this.permisoList.forEach(element => {
 
-				Atributorol
+			// 	Atributorol
 
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
+			// //let datePipe     = new DatePipe('en-US');
+			// //let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
+      //       //element.fecha    = fechaDate;
+      //       //element.fechaAux = this.parse(fechaDate);
 
 
 
 				this.rolService.getRolById(element.rolId).subscribe(dataAux => {
 					if (dataAux) {
 						this.rolAux = dataAux;
-						element.rolItem = this.rolAux.
-						nombre+ "";
+						element.rolItem = this.rolAux.rolItem;
+						// nombre+ "";
 
 
 

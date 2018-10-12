@@ -32,8 +32,176 @@
 
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
+                <li>
+                  <a *ngIf="posicion_mgmnt" routerLink="./manageposicion" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Administrar Posición 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="posicion" routerLink="./createposicion" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Agregar Posición 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="usuario_mgmnt" routerLink="./manageusuario" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Administrar Usuario 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="usuario" routerLink="./createusuario" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Agregar Usuario 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="direccion_mgmnt" routerLink="./managedireccion" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Administrar Direccion 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="direccion" routerLink="./createdireccion" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Agregar Direccion 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="domicilio_mgmnt" routerLink="./managedomicilio" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Administrar Domicilio 
+                  </a>
+                </li>
+                <li>
+                  <a *ngIf="domicilio" routerLink="./createdomicilio" routerLinkActive="active">
+                  <i class="fa fa-edit"></i> 
+                  Agregar Domicilio 
+                  </a>
+                </li>
+                <li>
+                    <a *ngIf="permiso_mgmnt" routerLink="./managepermiso" routerLinkActive="active">
+                    <i class="fa fa-edit"></i> 
+                    Administrar Permiso 
+                    </a>
+                  </li>
+                  <li>
+                    <a *ngIf="permiso" routerLink="./createpermiso" routerLinkActive="active">
+                    <i class="fa fa-edit"></i> 
+                    Agregar Permiso 
+                    </a>
+                  </li>
+                  <li>
+                    <a *ngIf="documento_mgmnt" routerLink="./managedocumento" routerLinkActive="active">
+                    <i class="fa fa-edit"></i> 
+                    Administrar Documento Probatorio
+                    </a>
+                  </li>
+                  <li>
+                    <a *ngIf="documento" routerLink="./createdocumento" routerLinkActive="active">
+                    <i class="fa fa-edit"></i> 
+                    Agregar Documento Probatorio 
+                    </a>
+                  </li>
+                  <li>
+                      <a *ngIf="puesto_mgmnt" routerLink="./managepuesto" routerLinkActive="active">
+                      <i class="fa fa-edit"></i> 
+                      Administrar Puesto
+                      </a>
+                    </li>
+                    <li>
+                      <a *ngIf="puesto" routerLink="./createpuesto" routerLinkActive="active">
+                      <i class="fa fa-edit"></i> 
+                      Agregar Puesto 
+                      </a>
+                    </li>
+                    <li>
+                        <a *ngIf="evento_mgmnt" routerLink="./manageevento" routerLinkActive="active">
+                        <i class="fa fa-edit"></i> 
+                        Administrar Evento
+                        </a>
+                      </li>
+                      <li>
+                        <a *ngIf="evento" routerLink="./createevento" routerLinkActive="active">
+                        <i class="fa fa-edit"></i> 
+                        Agregar Evento 
+                        </a>
+                      </li>
+                      <li>
+                          <a *ngIf="candidato_mgmnt" routerLink="./managecandidato" routerLinkActive="active">
+                          <i class="fa fa-edit"></i> 
+                          Administrar Candidato
+                          </a>
+                        </li>
+                        <li>
+                          <a *ngIf="candidato" routerLink="./createcandidato" routerLinkActive="active">
+                          <i class="fa fa-edit"></i> 
+                          Agregar Candidato 
+                          </a>
+                        </li>
+                        <li>
+                            <a *ngIf="trayectoria_mgmnt" routerLink="./managetrayectoria" routerLinkActive="active">
+                            <i class="fa fa-edit"></i> 
+                            Administrar Trayectoria
+                            </a>
+                          </li>
+                          <li>
+                            <a *ngIf="trayectoria" routerLink="./createtrayectoria" routerLinkActive="active">
+                            <i class="fa fa-edit"></i> 
+                            Agregar Trayectoria 
+                            </a>
+                          </li>
+                          <li>
+                            <a *ngIf="rol_mgmnt" routerLink="./managerol" routerLinkActive="active">
+                            <i class="fa fa-edit"></i> 
+                            Administrar Rol
+                            </a>
+                          </li>
+                          <li>
+                            <a *ngIf="rol" routerLink="./createrol" routerLinkActive="active">
+                            <i class="fa fa-edit"></i> 
+                            Agregar Rol 
+                            </a>
+                          </li>
+                          <li>
+                              <a *ngIf="solicitud_mgmnt" routerLink="./managesolicitud" routerLinkActive="active">
+                              <i class="fa fa-edit"></i> 
+                              Administrar Solicitud de empleo
+                              </a>
+                            </li>
+                            <li>
+                              <a *ngIf="solicitud" routerLink="./createsolicitud" routerLinkActive="active">
+                              <i class="fa fa-edit"></i> 
+                              Agregar Solicitud de empleo 
+                              </a>
+                            </li>
+                            <li>
+                                <a *ngIf="filial_mgmnt" routerLink="./managefilial" routerLinkActive="active">
+                                <i class="fa fa-edit"></i> 
+                                Administrar Filial
+                                </a>
+                              </li>
+                              <li>
+                                <a *ngIf="filial" routerLink="./createfilial" routerLinkActive="active">
+                                <i class="fa fa-edit"></i> 
+                                Agregar Filial
+                                </a>
+                              </li>
+                              <li>
+                                  <a *ngIf="reclutador_mgmnt" routerLink="./managereclutador" routerLinkActive="active">
+                                  <i class="fa fa-edit"></i> 
+                                  Administrar Reclutador
+                                  </a>
+                                </li>
+                                <li>
+                                  <a *ngIf="reclutador" routerLink="./createreclutador" routerLinkActive="active">
+                                  <i class="fa fa-edit"></i> 
+                                  Agregar Reclutador
+                                  </a>
+                                </li>
 
-              <li><a><i class="fa fa-home"></i> Posición <span class="fa fa-chevron-down"></span></a>
+              <!-- <li><a><i class="fa fa-home"></i> Posición <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="posicion_mgmnt">
                     <a routerLink="./manageposicion" >
@@ -46,8 +214,8 @@
                       </a>
                   </li>
                 </ul>
-			   </li>
-              <li><a><i class="fa fa-home"></i> Usuario <span class="fa fa-chevron-down"></span></a>
+			   </li> -->
+              <!-- <li><a><i class="fa fa-home"></i> Usuario <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="usuario_mgmnt">
                     <a routerLink="./manageusuario" >
@@ -60,8 +228,8 @@
                       </a>
                   </li>
                 </ul>
-			   </li>
-              <li><a><i class="fa fa-home"></i> Domicilio <span class="fa fa-chevron-down"></span></a>
+			        </li> -->
+              <!-- <li><a><i class="fa fa-home"></i> Domicilio <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="direccion_mgmnt">
                     <a routerLink="./managedireccion" >
@@ -74,8 +242,8 @@
                       </a>
                   </li>
                 </ul>
-			   </li>
-              <li><a><i class="fa fa-home"></i> Permiso <span class="fa fa-chevron-down"></span></a>
+			   </li> -->
+              <!-- <li><a><i class="fa fa-home"></i> Permiso <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="permiso_mgmnt">
                     <a routerLink="./managepermiso" >
@@ -88,8 +256,8 @@
                       </a>
                   </li>
                 </ul>
-			   </li>
-              <li><a><i class="fa fa-home"></i> Documento Probatorio <span class="fa fa-chevron-down"></span></a>
+			   </li> -->
+              <!-- <li><a><i class="fa fa-home"></i> Documento Probatorio <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="documento_mgmnt">
                     <a routerLink="./managedocumento" >
@@ -102,8 +270,8 @@
                       </a>
                   </li>
                 </ul>
-			   </li>
-              <li><a><i class="fa fa-home"></i> Puesto <span class="fa fa-chevron-down"></span></a>
+			   </li> -->
+              <!-- <li><a><i class="fa fa-home"></i> Puesto <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="puesto_mgmnt">
                     <a routerLink="./managepuesto" >
@@ -214,7 +382,7 @@
                       </a>
                   </li>
                 </ul>
-			   </li>
+			   </li> -->
 
                 <!-- /entities -->  
                 </ul>

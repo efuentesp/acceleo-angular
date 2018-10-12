@@ -4,15 +4,17 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { CandidatoService }                                  from '../../candidato/candidato.component.service';
 import { Candidato }                                         from '../../candidato/candidato.component.model';
+import { CustomNgbDateParserFormatter } from '../../dateformat.component';
 
-import { SolicitudService }                                  from '../../solicitud/solicitud.component.service';
-import { Solicitud }                                         from '../../solicitud/solicitud.component.model';
-import { EventoService }                                  from '../../evento/evento.component.service';
-import { Evento }                                         from '../../evento/evento.component.model';
+
+// import { SolicitudService }                                  from '../../solicitud/solicitud.component.service';
+// import { Solicitud }                                         from '../../solicitud/solicitud.component.model';
+// import { EventoService }                                  from '../../evento/evento.component.service';
+// import { Evento }                                         from '../../evento/evento.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -23,23 +25,27 @@ import { Evento }                                         from '../../evento/eve
 export class CandidatoEditComponent implements OnInit {
 
 	public title = 'Editar Candidato';
+    
     public candidato: Candidato;
- 	public candidatoList: Candidato;
+    public candidatoList: Candidato;
+     
     public form: any;
     public user: User;
     public valueName: string;
     public token: string;
 
-	public flag: boolean;
+	  public flag: boolean;
     public flagDelete: boolean;
 
-	public solicitudList: Solicitud;
-    public solicitud: Solicitud;
+    public date: NgbDateStruct;  
 
-	public busquedaSolicitud='';
-	filterInputSolicitud = new FormControl();
-	public eventoList: Evento;
-    public evento: Evento;
+	// public solicitudList: Solicitud;
+  //   public solicitud: Solicitud;
+
+	// public busquedaSolicitud='';
+	// filterInputSolicitud = new FormControl();
+	// public eventoList: Evento;
+  //   public evento: Evento;
 
 	public busquedaEvento='';
 	filterInputEvento = new FormControl();
@@ -48,36 +54,39 @@ export class CandidatoEditComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
-				private candidatoService: CandidatoService
-	,private solicitudService: SolicitudService
-	,private eventoService: EventoService
+        private candidatoService: CandidatoService,
+        private customParser: CustomNgbDateParserFormatter,
+        private datePipe: DatePipe
+	// ,private solicitudService: SolicitudService
+	// ,private eventoService: EventoService
 ){
 
- 	 this.filterInputSolicitud.valueChanges.subscribe(busquedaSolicitud => {
-     this.busquedaSolicitud = busquedaSolicitud;
-   });
- 	 this.filterInputEvento.valueChanges.subscribe(busquedaEvento => {
-     this.busquedaEvento = busquedaEvento;
-   });
+ 	//  this.filterInputSolicitud.valueChanges.subscribe(busquedaSolicitud => {
+  //    this.busquedaSolicitud = busquedaSolicitud;
+  //  });
+ 	//  this.filterInputEvento.valueChanges.subscribe(busquedaEvento => {
+  //    this.busquedaEvento = busquedaEvento;
+  //  });
 
 	}	
 
     ngOnInit() {
         
         this.flag = this.candidatoService.getEdit();
-        this.candidato = this.candidatoService.getCandidato();
         this.flagDelete = this.candidatoService.getDelete();
+        this.getCandidato();
+       
         
-		this.loadSolicituds();
-		this.loadItemSolicitud(this.candidato);
-		this.loadEventos();
-		this.loadItemEvento(this.candidato);
+		// this.loadSolicituds();
+		// this.loadItemSolicitud(this.candidato);
+		// this.loadEventos();
+		// this.loadItemEvento(this.candidato);
 
     }  
 
 save(){
 	
-	this.candidato.fecha = this.parserFormatter.format(this.candidato.fechaAux);
+	//this.candidato.fecha = this.parserFormatter.format(this.candidato.fechaAux);
 
    this.candidatoService.saveCandidato(this.candidato).subscribe(res => {
      if (res.status == 201 || res.status == 200){
@@ -123,87 +132,93 @@ delete(){
   });
 }
 
-	loadSolicituds(){
-  		this.solicitudService.getAllSolicitud().subscribe(data => {
-    	if (data) {
-      	this.solicitudList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Solicituds.', 'error');
-  	});
-}
+getCandidato(){
 
- setClickedRowSolicitud(index,solicitud){
+  this.candidato = this.candidatoService.getCandidato();
+  this.candidato.fechaAux = this.customParser.parse(this.datePipe.transform(this.candidato.fecha,"yyyy-MM-dd"));
+
+}
+// 	loadSolicituds(){
+//   		this.solicitudService.getAllSolicitud().subscribe(data => {
+//     	if (data) {
+//       	this.solicitudList = data;
+//     	}
+//   		}, error => {
+//     	swal('Error...', 'An error occurred while calling the Solicituds.', 'error');
+//   	});
+// }
+
+//  setClickedRowSolicitud(index,solicitud){
 	      
-		  solicitud.checked = !solicitud.checked;
+// 		  solicitud.checked = !solicitud.checked;
 
-		  if (solicitud.checked){
-		  this.solicitudService.setSolicitud(solicitud);
-		  this.candidato.solicitudId = solicitud.solicitudId;
-		  this.candidato.solicitudItem = solicitud.
-						correo+ "";
-						nombre+ "";
-	    	}else{
-            this.solicitudService.clear();
-			this.candidato.solicitudId = null;
-		    this.candidato.solicitudItem = "";
-		}
-}
+// 		  if (solicitud.checked){
+// 		  this.solicitudService.setSolicitud(solicitud);
+// 		  this.candidato.solicitudId = solicitud.solicitudId;
+// 		  this.candidato.solicitudItem = solicitud.solicitudItem;
+// 						// correo+ "";
+// 						// nombre+ "";
+// 	    	}else{
+//             this.solicitudService.clear();
+// 			this.candidato.solicitudId = null;
+// 		    this.candidato.solicitudItem = "";
+// 		}
+// }
 
-loadItemSolicitud(candidato){
-  this.solicitudService.getSolicitudById(candidato.solicitudId).subscribe(data => {
-    if (data) {
-      this.solicitud = data;
-      this.candidato.solicitudItem = this.solicitud.
-						correo+ "";
-						nombre+ "";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the solicituds.', 'error');
-  });
+// loadItemSolicitud(candidato){
+//   this.solicitudService.getSolicitudById(candidato.solicitudId).subscribe(data => {
+//     if (data) {
+//       this.solicitud = data;
+//       this.candidato.solicitudItem = this.solicitud.solicitudItem;
+// 						// correo+ "";
+// 						// nombre+ "";
+//     }
+//     }, error => {
+//     swal('Error...', 'An error occurred while calling the solicituds.', 'error');
+//   });
 
-}
+// }
 
-	loadEventos(){
-  		this.eventoService.getAllEvento().subscribe(data => {
-    	if (data) {
-      	this.eventoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Eventos.', 'error');
-  	});
-}
+// 	loadEventos(){
+//   		this.eventoService.getAllEvento().subscribe(data => {
+//     	if (data) {
+//       	this.eventoList = data;
+//     	}
+//   		}, error => {
+//     	swal('Error...', 'An error occurred while calling the Eventos.', 'error');
+//   	});
+// }
 
- setClickedRowEvento(index,evento){
+//  setClickedRowEvento(index,evento){
 	      
-		  evento.checked = !evento.checked;
+// 		  evento.checked = !evento.checked;
 
-		  if (evento.checked){
-		  this.eventoService.setEvento(evento);
-		  this.candidato.eventoId = evento.eventoId;
-		  this.candidato.eventoItem = evento.
-						correo+ "";
-						nombre+ "";
-	    	}else{
-            this.eventoService.clear();
-			this.candidato.eventoId = null;
-		    this.candidato.eventoItem = "";
-		}
-}
+// 		  if (evento.checked){
+// 		  this.eventoService.setEvento(evento);
+// 		  this.candidato.eventoId = evento.eventoId;
+// 		  this.candidato.eventoItem = evento.eventoItem;
+// 						// correo+ "";
+// 						// nombre+ "";
+// 	    	}else{
+//             this.eventoService.clear();
+// 			this.candidato.eventoId = null;
+// 		    this.candidato.eventoItem = "";
+// 		}
+// }
 
-loadItemEvento(candidato){
-  this.eventoService.getEventoById(candidato.eventoId).subscribe(data => {
-    if (data) {
-      this.evento = data;
-      this.candidato.eventoItem = this.evento.
-						correo+ "";
-						nombre+ "";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the eventos.', 'error');
-  });
+// loadItemEvento(candidato){
+//   this.eventoService.getEventoById(candidato.eventoId).subscribe(data => {
+//     if (data) {
+//       this.evento = data;
+//       this.candidato.eventoItem = this.evento.eventoItem;
+// 						// correo+ "";
+// 						// nombre+ "";
+//     }
+//     }, error => {
+//     swal('Error...', 'An error occurred while calling the eventos.', 'error');
+//   });
 
-}
+// }
 
 
 

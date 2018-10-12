@@ -181,10 +181,7 @@ delete(){
 		  this.posicion.filialId = filial.filialId;
 		  this.posicion.filialItem = filial.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
 	    	}else{
             this.filialService.clear();
 			this.posicion.filialId = null;
@@ -198,10 +195,7 @@ loadItemFilial(posicion){
       this.filial = data;
       this.posicion.filialItem = this.filial.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the filials.', 'error');
@@ -228,10 +222,7 @@ loadItemFilial(posicion){
 		  this.posicion.puestoId = puesto.puestoId;
 		  this.posicion.puestoItem = puesto.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+					
 	    	}else{
             this.puestoService.clear();
 			this.posicion.puestoId = null;
@@ -243,12 +234,9 @@ loadItemPuesto(posicion){
   this.puestoService.getPuestoById(posicion.puestoId).subscribe(data => {
     if (data) {
       this.puesto = data;
-      this.posicion.puestoItem = this.puesto.
-						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+      this.posicion.puestoItem = this.puesto.puestoItem;
+						// nombre+ "";
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the puestos.', 'error');
@@ -275,10 +263,7 @@ loadItemPuesto(posicion){
 		  this.posicion.reclutadorId = reclutador.reclutadorId;
 		  this.posicion.reclutadorItem = reclutador.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+					
 	    	}else{
             this.reclutadorService.clear();
 			this.posicion.reclutadorId = null;
@@ -292,10 +277,7 @@ loadItemReclutador(posicion){
       this.reclutador = data;
       this.posicion.reclutadorItem = this.reclutador.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the reclutadors.', 'error');
@@ -322,10 +304,7 @@ loadItemReclutador(posicion){
 		  this.posicion.solicitudId = solicitud.solicitudId;
 		  this.posicion.solicitudItem = solicitud.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
 	    	}else{
             this.solicitudService.clear();
 			this.posicion.solicitudId = null;
@@ -337,12 +316,8 @@ loadItemSolicitud(posicion){
   this.solicitudService.getSolicitudById(posicion.solicitudId).subscribe(data => {
     if (data) {
       this.solicitud = data;
-      this.posicion.solicitudItem = this.solicitud.
-						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+      this.posicion.solicitudItem = this.solicitud.solicitudItem;
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the solicituds.', 'error');
@@ -369,10 +344,7 @@ loadItemSolicitud(posicion){
 		  this.posicion.eventoId = evento.eventoId;
 		  this.posicion.eventoItem = evento.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
 	    	}else{
             this.eventoService.clear();
 			this.posicion.eventoId = null;
@@ -386,10 +358,7 @@ loadItemEvento(posicion){
       this.evento = data;
       this.posicion.eventoItem = this.evento.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the eventos.', 'error');

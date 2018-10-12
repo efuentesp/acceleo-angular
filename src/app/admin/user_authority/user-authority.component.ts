@@ -43,18 +43,7 @@ export class UserAuthorityComponent implements OnInit {
         swal('Error...', 'An error occurred while calling the users.', 'error');
       });
     }
-    // save(user){
-    //   this.userService.saveUser(this.user).subscribe(res => {
-    //     if (res.status == 201){
-    //       swal('Success...', 'User save successfully.', 'success');
-    //     }else{
-    //       swal('Error...', 'User save unsuccessfully.', 'error');
-    //     }
-
-    //   } );
-    // }
-	
-
+   
   add(){
     this.router.navigate(['/user']);
   }

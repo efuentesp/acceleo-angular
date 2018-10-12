@@ -153,10 +153,7 @@ save(){
 		  this.posicion.filialId = filial.filialId;
 		  this.posicion.filialItem = filial.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+					
 	    	}else{
             this.filialService.clear();
 			this.posicion.filialId = null;
@@ -187,10 +184,7 @@ save(){
 		  this.posicion.puestoId = puesto.puestoId;
 		  this.posicion.puestoItem = puesto.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
 	    	}else{
             this.puestoService.clear();
 			this.posicion.puestoId = null;
@@ -221,10 +215,7 @@ save(){
 		  this.posicion.reclutadorId = reclutador.reclutadorId;
 		  this.posicion.reclutadorItem = reclutador.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
 	    	}else{
             this.reclutadorService.clear();
 			this.posicion.reclutadorId = null;
@@ -255,10 +246,7 @@ save(){
 		  this.posicion.solicitudId = solicitud.solicitudId;
 		  this.posicion.solicitudItem = solicitud.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+					
 	    	}else{
             this.solicitudService.clear();
 			this.posicion.solicitudId = null;
@@ -289,10 +277,7 @@ save(){
 		  this.posicion.eventoId = evento.eventoId;
 		  this.posicion.eventoItem = evento.
 						nombre+ "";
-						nombre+ "";
-						nombre+ "";
-						correo+ "";
-						nombre+ "";
+						
 	    	}else{
             this.eventoService.clear();
 			this.posicion.eventoId = null;

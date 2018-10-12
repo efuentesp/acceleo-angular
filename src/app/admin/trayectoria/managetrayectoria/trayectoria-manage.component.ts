@@ -100,15 +100,6 @@ export class TrayectoriaManageComponent implements OnInit {
 
 			this.trayectoriaList.forEach(element => {
 
-				Atributocandidato
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
 				this.candidatoService.getCandidatoById(element.candidatoId).subscribe(dataAux => {
 					if (dataAux) {
 						this.candidatoAux = dataAux;
@@ -143,33 +134,11 @@ export class TrayectoriaManageComponent implements OnInit {
 
 
 
-						nombre+ "";
-
-
-
-
-
-
-
-
-
-
-
-
 				}	
 			});	
 		});
 
 			this.trayectoriaList.forEach(element => {
-
-				Atributodocumento
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
 
 				this.documentoService.getDocumentoById(element.documentoId).subscribe(dataAux => {
 					if (dataAux) {
@@ -200,21 +169,6 @@ export class TrayectoriaManageComponent implements OnInit {
 	      if (element.tipotrayectoriaId == 'g'){
 	          element.tipotrayectoriaItem = 'Curso';
 	      }
-
-
-
-
-
-						nombre+ "";
-
-
-
-
-
-
-
-
-
 
 
 

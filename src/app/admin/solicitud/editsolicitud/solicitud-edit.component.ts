@@ -141,7 +141,7 @@ delete(){
 		  this.solicitud.posicionId = posicion.posicionId;
 		  this.solicitud.posicionItem = posicion.
 						nombre+ "";
-						nombre+ "";
+						
 	    	}else{
             this.posicionService.clear();
 			this.solicitud.posicionId = null;
@@ -155,7 +155,7 @@ loadItemPosicion(solicitud){
       this.posicion = data;
       this.solicitud.posicionItem = this.posicion.
 						nombre+ "";
-						nombre+ "";
+					
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the posicions.', 'error');
@@ -182,7 +182,7 @@ loadItemPosicion(solicitud){
 		  this.solicitud.candidatoId = candidato.candidatoId;
 		  this.solicitud.candidatoItem = candidato.
 						nombre+ "";
-						nombre+ "";
+					
 	    	}else{
             this.candidatoService.clear();
 			this.solicitud.candidatoId = null;
@@ -196,7 +196,7 @@ loadItemCandidato(solicitud){
       this.candidato = data;
       this.solicitud.candidatoItem = this.candidato.
 						nombre+ "";
-						nombre+ "";
+						
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the candidatos.', 'error');

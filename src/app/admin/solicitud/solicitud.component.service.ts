@@ -76,7 +76,7 @@ export class SolicitudService {
 		candidatoId: this.solicitud.candidatoId,
 		candidatoItem: this.solicitud.candidatoItem,
 		fecha: this.solicitud.fecha,
-		fechaAux: this.solicitud.fechaAux,
+		// fechaAux: this.solicitud.fechaAux,
 		estatussolicitudId: this.solicitud.estatussolicitudId,
 		estatussolicitudItem: this.solicitud.estatussolicitudItem,
 		solicitudId: this.solicitud.solicitudId,
@@ -96,7 +96,7 @@ setSolicitud(solicitud: Solicitud) {
 		this.solicitud.candidatoId = solicitud.candidatoId;
 		this.solicitud.candidatoItem = solicitud.candidatoItem;
 		this.solicitud.fecha = solicitud.fecha;
-		this.solicitud.fechaAux = solicitud.fechaAux;
+		// this.solicitud.fechaAux = solicitud.fechaAux;
 		this.solicitud.estatussolicitudId = solicitud.estatussolicitudId;
 		this.solicitud.estatussolicitudItem = solicitud.estatussolicitudItem;
 		this.solicitud.solicitudId = solicitud.solicitudId;
@@ -123,7 +123,7 @@ setSolicitud(solicitud: Solicitud) {
 			this.solicitud.candidatoId = null;
 			this.solicitud.candidatoItem = null;
 		this.solicitud.fecha = '';
-		this.solicitud.fechaAux = null;
+		// this.solicitud.fechaAux = null;
 			this.solicitud.estatussolicitudId = null;
 			this.solicitud.estatussolicitudItem = null;
 			this.solicitud.solicitudId = null;

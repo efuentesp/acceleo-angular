@@ -88,38 +88,12 @@ export class DireccionManageComponent implements OnInit {
 
 			this.direccionList.forEach(element => {
 
-				Atributocandidato
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
+	
 				this.candidatoService.getCandidatoById(element.candidatoId).subscribe(dataAux => {
 					if (dataAux) {
 						this.candidatoAux = dataAux;
-						element.candidatoItem = this.candidatoAux.
-						nombre+ "";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            element.candidatoItem = this.candidatoAux.candidatoItem;
+            // nombre+ "";
 
 
 				}	

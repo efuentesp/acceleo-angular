@@ -136,23 +136,14 @@ export class PosicionManageComponent implements OnInit {
 
 			this.posicionList.forEach(element => {
 
-				Atributofilial
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
-
-
 				this.filialService.getFilialById(element.filialId).subscribe(dataAux => {
 					if (dataAux) {
 						this.filialAux = dataAux;
-						element.filialItem = this.filialAux.
-						nombre+ "";
+						element.filialItem = this.filialAux.filialItem;
+						// nombre+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -178,7 +169,7 @@ export class PosicionManageComponent implements OnInit {
 	          element.tiponominaItem = 'Sindicalizado';
 	      }
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -195,10 +186,10 @@ export class PosicionManageComponent implements OnInit {
 	          element.estatusposicionItem = 'En pausa';
 	      }
 
-						correo+ "";
+						// correo+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -216,24 +207,16 @@ export class PosicionManageComponent implements OnInit {
 		});
 
 			this.posicionList.forEach(element => {
-
-				Atributopuesto
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
-
 
 
 				this.puestoService.getPuestoById(element.puestoId).subscribe(dataAux => {
 					if (dataAux) {
 						this.puestoAux = dataAux;
-						element.puestoItem = this.puestoAux.
-						nombre+ "";
+						element.puestoItem = this.puestoAux.puestoItem;
+						// nombre+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -259,7 +242,7 @@ export class PosicionManageComponent implements OnInit {
 	          element.tiponominaItem = 'Sindicalizado';
 	      }
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -276,10 +259,10 @@ export class PosicionManageComponent implements OnInit {
 	          element.estatusposicionItem = 'En pausa';
 	      }
 
-						correo+ "";
+						// correo+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -298,23 +281,17 @@ export class PosicionManageComponent implements OnInit {
 
 			this.posicionList.forEach(element => {
 
-				Atributoreclutador
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
 
 
 
 				this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(dataAux => {
 					if (dataAux) {
 						this.reclutadorAux = dataAux;
-						element.reclutadorItem = this.reclutadorAux.
-						nombre+ "";
+						element.reclutadorItem = this.reclutadorAux.reclutadorItem;
+						// nombre+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -340,7 +317,7 @@ export class PosicionManageComponent implements OnInit {
 	          element.tiponominaItem = 'Sindicalizado';
 	      }
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -357,10 +334,10 @@ export class PosicionManageComponent implements OnInit {
 	          element.estatusposicionItem = 'En pausa';
 	      }
 
-						correo+ "";
+						// correo+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -379,23 +356,18 @@ export class PosicionManageComponent implements OnInit {
 
 			this.posicionList.forEach(element => {
 
-				Atributosolicitud
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
+			
 
 
 
 				this.solicitudService.getSolicitudById(element.solicitudId).subscribe(dataAux => {
 					if (dataAux) {
 						this.solicitudAux = dataAux;
-						element.solicitudItem = this.solicitudAux.
-						nombre+ "";
+						element.solicitudItem = this.solicitudAux.solicitudItem;
+						// nombre+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -421,7 +393,7 @@ export class PosicionManageComponent implements OnInit {
 	          element.tiponominaItem = 'Sindicalizado';
 	      }
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -438,10 +410,10 @@ export class PosicionManageComponent implements OnInit {
 	          element.estatusposicionItem = 'En pausa';
 	      }
 
-						correo+ "";
+						// correo+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -460,23 +432,18 @@ export class PosicionManageComponent implements OnInit {
 
 			this.posicionList.forEach(element => {
 
-				Atributoevento
-
-			//let datePipe     = new DatePipe('en-US');
-			//let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-            //element.fecha    = fechaDate;
-            //element.fechaAux = this.parse(fechaDate);
+			
 
 
 
 				this.eventoService.getEventoById(element.eventoId).subscribe(dataAux => {
 					if (dataAux) {
 						this.eventoAux = dataAux;
-						element.eventoItem = this.eventoAux.
-						nombre+ "";
+						element.eventoItem = this.eventoAux.eventoItem;
+						// nombre+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -502,7 +469,7 @@ export class PosicionManageComponent implements OnInit {
 	          element.tiponominaItem = 'Sindicalizado';
 	      }
 
-						nombre+ "";
+						// nombre+ "";
 
 
 
@@ -519,10 +486,10 @@ export class PosicionManageComponent implements OnInit {
 	          element.estatusposicionItem = 'En pausa';
 	      }
 
-						correo+ "";
+						// correo+ "";
 
 
-						nombre+ "";
+						// nombre+ "";
 
 
 

@@ -1,9 +1,9 @@
 import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
+import { CommonModule, DatePipe }   from '@angular/common';
 import { HttpModule, Http }   from '@angular/http'; 
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { NgxPaginationModule}  from 'ngx-pagination';
-
+import { NgbModal, NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { AdminComponent }           from './admin.component';
 import { AdminDashboardComponent }  from './admin-dashboard.component';
 
@@ -112,6 +112,8 @@ import { SolicitudCreateComponent } from './solicitud/createsolicitud/solicitud-
 import { SolicitudEditComponent } from './solicitud/editsolicitud/solicitud-edit.component';
 import { SearchSolicitudPipe } from './pipe/solicitud.filter.pipe';
 import { SolicitudService } from './solicitud/solicitud.component.service';
+import { CustomNgbDateParserFormatter } from './dateformat.component';
+
 
 
 @NgModule({
@@ -123,7 +125,8 @@ import { SolicitudService } from './solicitud/solicitud.component.service';
 	ReactiveFormsModule,
 	FormsModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   declarations: [
     DocumentoCreateComponent,
@@ -206,8 +209,13 @@ import { SolicitudService } from './solicitud/solicitud.component.service';
     SolicitudService,
     ManagePrivilegeService,
     UserService,
-    AuthorityService
-]
+    AuthorityService,
+    {
+        provide: NgbDateParserFormatter, useFactory: () => new CustomNgbDateParserFormatter('dd/MM/yyyy')
+    },
+    DatePipe
+],
+bootstrap: [AdminComponent]
 })
 export class AdminModule {}
 

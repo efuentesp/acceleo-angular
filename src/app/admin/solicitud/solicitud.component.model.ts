@@ -13,7 +13,7 @@ export class Solicitud {
 	posicionItem: string = '';
 	candidatoId: number = null;
 	candidatoItem: string = '';
-	fecha: date = null;
+	fecha: string = '';
 	estatussolicitudId: string = '';
 	estatussolicitudItem: string = '';	
 }

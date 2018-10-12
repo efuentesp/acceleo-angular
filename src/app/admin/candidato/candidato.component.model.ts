@@ -5,7 +5,7 @@ export class Candidato {
 	candidatoId: number = null;
 	candidatoItem: string = '';
 
-	fecha: string = '';
+	fecha: Date = null;
 	fechaAux: NgbDateStruct = null;
 	apellidomaterno: string = '';
 	nombre: string = '';

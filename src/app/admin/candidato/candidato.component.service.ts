@@ -118,7 +118,7 @@ setCandidato(candidato: Candidato) {
 
     clear() {
 
-			this.candidato.fecha = '';  
+			this.candidato.fecha = null;  
 			this.candidato.fechaAux = null;    
 			this.candidato.apellidomaterno = '';    
 			this.candidato.nombre = '';    

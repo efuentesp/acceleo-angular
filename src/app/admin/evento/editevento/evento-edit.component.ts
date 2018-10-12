@@ -140,9 +140,9 @@ delete(){
 		  if (posicion.checked){
 		  this.posicionService.setPosicion(posicion);
 		  this.evento.posicionId = posicion.posicionId;
-		  this.evento.posicionItem = posicion.
-						nombre+ "";
-						nombre+ "";
+		  this.evento.posicionItem = posicion.posicionItem;
+						// nombre+ "";
+						// nombre+ "";
 	    	}else{
             this.posicionService.clear();
 			this.evento.posicionId = null;
@@ -154,9 +154,9 @@ loadItemPosicion(evento){
   this.posicionService.getPosicionById(evento.posicionId).subscribe(data => {
     if (data) {
       this.posicion = data;
-      this.evento.posicionItem = this.posicion.
-						nombre+ "";
-						nombre+ "";
+      this.evento.posicionItem = this.posicion.posicionItem;
+						// nombre+ "";
+						// nombre+ "";
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the posicions.', 'error');
@@ -181,9 +181,9 @@ loadItemPosicion(evento){
 		  if (candidato.checked){
 		  this.candidatoService.setCandidato(candidato);
 		  this.evento.candidatoId = candidato.candidatoId;
-		  this.evento.candidatoItem = candidato.
-						nombre+ "";
-						nombre+ "";
+		  this.evento.candidatoItem = candidato.candidatoItem;
+						// nombre+ "";
+						// nombre+ "";
 	    	}else{
             this.candidatoService.clear();
 			this.evento.candidatoId = null;
@@ -195,9 +195,9 @@ loadItemCandidato(evento){
   this.candidatoService.getCandidatoById(evento.candidatoId).subscribe(data => {
     if (data) {
       this.candidato = data;
-      this.evento.candidatoItem = this.candidato.
-						nombre+ "";
-						nombre+ "";
+      this.evento.candidatoItem = this.candidato.candidatoItem;
+						// nombre+ "";
+						// nombre+ "";
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the candidatos.', 'error');

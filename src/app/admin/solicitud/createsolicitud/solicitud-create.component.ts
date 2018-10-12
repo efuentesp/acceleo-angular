@@ -92,7 +92,7 @@ save(){
     	if (data) {
       	
 		this.posicionList = data;
-// Cambios por cada modal
+
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the Posicions.', 'error');
@@ -110,7 +110,7 @@ save(){
 		  this.solicitud.posicionId = posicion.posicionId;
 		  this.solicitud.posicionItem = posicion.
 						nombre+ "";
-						nombre+ "";
+						
 	    	}else{
             this.posicionService.clear();
 			this.solicitud.posicionId = null;
@@ -141,7 +141,7 @@ save(){
 		  this.solicitud.candidatoId = candidato.candidatoId;
 		  this.solicitud.candidatoItem = candidato.
 						nombre+ "";
-						nombre+ "";
+						
 	    	}else{
             this.candidatoService.clear();
 			this.solicitud.candidatoId = null;

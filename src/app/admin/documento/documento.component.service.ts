@@ -101,7 +101,7 @@ setDocumento(documento: Documento) {
 			this.documento.nombre = '';    
 			this.documento.descripcion = '';    
 
-		this.documento.size = '';
+		// this.documento.size = '';
 			this.documento.documentoId = null;
 			this.documento.documentoItem = null;
     }

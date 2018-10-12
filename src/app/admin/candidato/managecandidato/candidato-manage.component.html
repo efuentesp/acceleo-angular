@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Candidato</h3>
+			<h3>Candidato</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,19 +47,19 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%">Candidato</th>
-												<th style="max-width:10%">Apellido Paterno</th>
-												<th style="max-width:10%">Apellido Materno</th>
-												<th style="max-width:10%">Fecha de nacimiento</th>
+											<th style="max-width:10%">Candidato</th>	
+											<th style="max-width:10%">Apellido Paterno</th>	
+											<th style="max-width:10%">Apellido Materno</th>	
+											<th style="max-width:10%">Fecha de nacimiento</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let candidato of candidatoList | filterCandidato: busquedaCandidato | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCandidato'}; let i = index" (click)="setClickedRowCandidato(i, candidato)" >
-												<td  style="max-width: 10%">{{candidato.nombre}}</td>
-												<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
-												<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
-												<td  style="max-width: 10%">{{candidato.fecha}}</td>
+										<tr *ngFor="let candidato of candidatoList | filterCandidato: busquedaCandidato | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCandidato'}; let i = index">
+											<td  style="max-width: 10%">{{candidato.nombre}}</td>
+											<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
+											<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
+											<td  style="max-width: 10%">{{candidato.fecha | date: 'dd/MM/yyyy'}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(candidato)"><span class="fa fa-pencil"></span></button>
@@ -90,3 +90,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

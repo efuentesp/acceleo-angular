@@ -110,7 +110,7 @@ save(){
 		  this.trayectoria.candidatoId = candidato.candidatoId;
 		  this.trayectoria.candidatoItem = candidato.
 						nombre+ "";
-						nombre+ "";
+						
 	    	}else{
             this.candidatoService.clear();
 			this.trayectoria.candidatoId = null;
@@ -141,7 +141,7 @@ save(){
 		  this.trayectoria.documentoId = documento.documentoId;
 		  this.trayectoria.documentoItem = documento.
 						nombre+ "";
-						nombre+ "";
+						
 	    	}else{
             this.documentoService.clear();
 			this.trayectoria.documentoId = null;

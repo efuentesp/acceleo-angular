@@ -83,31 +83,6 @@ export class EventoService {
 		comentarios: this.evento.comentarios,
 		feedback: this.evento.feedback,
 		fechareal: this.evento.fechareal,
-		fecharealAux: this.evento.fecharealAux,
-		responsablereal: this.evento.responsablereal,
-		notas: this.evento.notas,
-		comentarios: this.evento.comentarios,
-		feedback: this.evento.feedback,
-		fechareal: this.evento.fechareal,
-		fecharealAux: this.evento.fecharealAux,
-		responsablereal: this.evento.responsablereal,
-		notas: this.evento.notas,
-		comentarios: this.evento.comentarios,
-		feedback: this.evento.feedback,
-		fechareal: this.evento.fechareal,
-		fecharealAux: this.evento.fecharealAux,
-		responsablereal: this.evento.responsablereal,
-		notas: this.evento.notas,
-		comentarios: this.evento.comentarios,
-		feedback: this.evento.feedback,
-		fechareal: this.evento.fechareal,
-		fecharealAux: this.evento.fecharealAux,
-		responsablereal: this.evento.responsablereal,
-		notas: this.evento.notas,
-		comentarios: this.evento.comentarios,
-		feedback: this.evento.feedback,
-		fechareal: this.evento.fechareal,
-		fecharealAux: this.evento.fecharealAux,
 		estatuseventoId: this.evento.estatuseventoId,
 		estatuseventoItem: this.evento.estatuseventoItem,
 		eventoId: this.evento.eventoId,
@@ -134,31 +109,6 @@ setEvento(evento: Evento) {
 		this.evento.comentarios = evento.comentarios;
 		this.evento.feedback = evento.feedback;
 		this.evento.fechareal = evento.fechareal;
-		this.evento.fecharealAux = evento.fecharealAux;
-		this.evento.responsablereal = evento.responsablereal;
-		this.evento.notas = evento.notas;
-		this.evento.comentarios = evento.comentarios;
-		this.evento.feedback = evento.feedback;
-		this.evento.fechareal = evento.fechareal;
-		this.evento.fecharealAux = evento.fecharealAux;
-		this.evento.responsablereal = evento.responsablereal;
-		this.evento.notas = evento.notas;
-		this.evento.comentarios = evento.comentarios;
-		this.evento.feedback = evento.feedback;
-		this.evento.fechareal = evento.fechareal;
-		this.evento.fecharealAux = evento.fecharealAux;
-		this.evento.responsablereal = evento.responsablereal;
-		this.evento.notas = evento.notas;
-		this.evento.comentarios = evento.comentarios;
-		this.evento.feedback = evento.feedback;
-		this.evento.fechareal = evento.fechareal;
-		this.evento.fecharealAux = evento.fecharealAux;
-		this.evento.responsablereal = evento.responsablereal;
-		this.evento.notas = evento.notas;
-		this.evento.comentarios = evento.comentarios;
-		this.evento.feedback = evento.feedback;
-		this.evento.fechareal = evento.fechareal;
-		this.evento.fecharealAux = evento.fecharealAux;
 		this.evento.estatuseventoId = evento.estatuseventoId;
 		this.evento.estatuseventoItem = evento.estatuseventoItem;
 		this.evento.eventoId = evento.eventoId;
@@ -176,51 +126,25 @@ setEvento(evento: Evento) {
 
     clear() {
 
-			this.evento.nombre = '';    
-			this.evento.fecha = '';  
-			this.evento.fechaAux = null;    
-			this.evento.responsable = '';    
-
-			this.evento.tipoeventoId = null;
-			this.evento.tipoeventoItem = null;
-			this.evento.posicionId = null;
-			this.evento.posicionItem = null;
-			this.evento.candidatoId = null;
-			this.evento.candidatoItem = null;
-			this.evento.responsablereal = '';
-			this.evento.notas = '';
-			this.evento.comentarios = '';
-			this.evento.feedback = '';
+		this.evento.nombre = '';    
+		this.evento.fecha = '';  
+		this.evento.fechaAux = null;    
+		this.evento.responsable = '';    
+		this.evento.tipoeventoId = null;
+		this.evento.tipoeventoItem = null;
+		this.evento.posicionId = null;
+		this.evento.posicionItem = null;
+		this.evento.candidatoId = null;
+		this.evento.candidatoItem = null;
+		this.evento.responsablereal = '';
+		this.evento.notas = '';
+		this.evento.comentarios = '';
+		this.evento.feedback = '';
 		this.evento.fechareal = '';
-		this.evento.fecharealAux = null;
-			this.evento.responsablereal = '';
-			this.evento.notas = '';
-			this.evento.comentarios = '';
-			this.evento.feedback = '';
-		this.evento.fechareal = '';
-		this.evento.fecharealAux = null;
-			this.evento.responsablereal = '';
-			this.evento.notas = '';
-			this.evento.comentarios = '';
-			this.evento.feedback = '';
-		this.evento.fechareal = '';
-		this.evento.fecharealAux = null;
-			this.evento.responsablereal = '';
-			this.evento.notas = '';
-			this.evento.comentarios = '';
-			this.evento.feedback = '';
-		this.evento.fechareal = '';
-		this.evento.fecharealAux = null;
-			this.evento.responsablereal = '';
-			this.evento.notas = '';
-			this.evento.comentarios = '';
-			this.evento.feedback = '';
-		this.evento.fechareal = '';
-		this.evento.fecharealAux = null;
-			this.evento.estatuseventoId = null;
-			this.evento.estatuseventoItem = null;
-			this.evento.eventoId = null;
-			this.evento.eventoItem = null;
+		this.evento.estatuseventoId = null;
+		this.evento.estatuseventoItem = null;
+		this.evento.eventoId = null;
+		this.evento.eventoItem = null;
     }
 
     setEdit(flag){
