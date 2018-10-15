@@ -6,3 +6,8 @@
 .nav.child_menu  {
     display: block;
 }
+
+#sidebar-menu {
+    height: 70rem;
+    overflow-y : scroll;
+}

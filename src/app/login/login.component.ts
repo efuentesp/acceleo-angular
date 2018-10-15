@@ -12,6 +12,7 @@ export class LoginComponent {
   loading = false;
   private user = new User();
   error = '';
+  version : string = '';
 
   constructor(public authenticationService: AuthenticationService, public router: Router) {
   
@@ -19,6 +20,7 @@ export class LoginComponent {
 
   ngOnInit() {
     this.authenticationService.logout();
+    this.version = "Versión 1.0.0.1";
   }
 
   login() {
