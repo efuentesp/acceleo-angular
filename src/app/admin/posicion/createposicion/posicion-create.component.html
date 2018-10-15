@@ -53,6 +53,7 @@
 					<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="posicion.descripcion" required>
 					<div *ngIf="posicionForm.submitted && !descripcion.valid" class="help-block">Descripción de la vacante es requerido</div>
 				</div>
+				<!--<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !fechaAux.valid}">-->
 				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !fechaAux.valid}">
 					<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
@@ -63,7 +64,7 @@
 							</button>
 						</span>
 					</div>
-					<div *ngIf="posicionForm.submitted && !fechaAux.valid" class="help-block">Fecha de alta es requerido</div>
+					<!--<div *ngIf="posicionForm.submitted && !fechaAux.valid" class="help-block">Fecha de alta es requerido</div>-->
 				</div>
 				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !contacto.valid}">
 					<label class="control-label" for="contacto">Responsable de la posición<span class="required">*</span></label>
@@ -139,13 +140,11 @@
 												<tr>
 													<th style="max-width:10%"></th>
 													<th style="max-width:10%">Nombre</th>
-													<th style="max-width:10%">Ubicacion</th>
 													<th style="max-width:10%">Ciudad</th>
 													<th style="max-width:10%">Estado</th>
 													<th style="max-width:10%">Telefono</th>
 													<th style="max-width:10%">Sitio</th>
 													<th style="max-width:10%">Contacto</th>
-													<th style="max-width:10%">Notas</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -154,13 +153,11 @@
 														<input type="radio" name="filialId" [checked]="filial.checked" value="{{filial.filialId}}" (click)="setClickedRowFilial(i, filial)">
 													</td>
 													<td  style="max-width: 10%">{{filial.nombre}}</td>
-													<td  style="max-width: 10%">{{filial.ubicacion}}</td>
 													<td  style="max-width: 10%">{{filial.ciudad}}</td>
 													<td  style="max-width: 10%">{{filial.estado}}</td>
 													<td  style="max-width: 10%">{{filial.telefono}}</td>
 													<td  style="max-width: 10%">{{filial.sitio}}</td>
 													<td  style="max-width: 10%">{{filial.contacto}}</td>
-													<td  style="max-width: 10%">{{filial.notas}}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -273,7 +270,6 @@
 													<th style="max-width:10%">Nombre</th>
 													<th style="max-width:10%">ApellidoPaterno</th>
 													<th style="max-width:10%">ApellidoMaterno</th>
-													<th style="max-width:10%">Es</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -284,7 +280,6 @@
 													<td  style="max-width: 10%">{{reclutador.nombre}}</td>
 													<td  style="max-width: 10%">{{reclutador.apellidopaterno}}</td>
 													<td  style="max-width: 10%">{{reclutador.apellidomaterno}}</td>
-													<td  style="max-width: 10%">{{reclutador.es}}</td>
 												</tr>
 											</tbody>
 										</table>

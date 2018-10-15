@@ -57,7 +57,7 @@
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
-						<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !fecha.valid}">
+						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de nacimiento<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
 								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
@@ -67,7 +67,7 @@
 									</button>
 								</span>
 							</div>
-							<div *ngIf="candidatoForm.submitted && !fechaAux.valid" class="help-block">Fecha de nacimiento o formato invalido</div>
+							
 						</div>
 					</div>
 					<div *ngIf="flagDelete">
