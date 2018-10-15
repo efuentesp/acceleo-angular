@@ -57,7 +57,11 @@ export class UserManageComponent implements OnInit {
 
     ngOnInit() {
 
-     
+        // // Get data user
+        // this.userAdmin = JSON.parse(localStorage.getItem('currentUser'));
+        // this.valueName = this.userAdmin.username;
+        // this.token = this.user.token;
+        
         this.userService.setEdit(false);
         this.userService.setDelete(false);
 

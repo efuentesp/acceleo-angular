@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class ReclutadorService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Reclutador', reclutador);
+
 		if (!reclutador.reclutadorId){
             return this.http.post(this.env.api + "/reclutador", reclutador, opts).pipe(map(res => res));
         }else{
@@ -68,27 +71,31 @@ export class ReclutadorService {
 
     getReclutador(): Reclutador {
         var reclutador: Reclutador = {
-		apellidomaterno: this.reclutador.apellidomaterno, 
-		nombre: this.reclutador.nombre, 
-		apellidopaterno: this.reclutador.apellidopaterno, 
-		generoId: this.reclutador.generoId,
-		generoItem: this.reclutador.generoItem,
+		nombre: this.reclutador.nombre,
+		apellidopaterno: this.reclutador.apellidopaterno,
+		apellidomaterno: this.reclutador.apellidomaterno,
+		
+			generoId: this.reclutador.generoId,
+			generoItem: this.reclutador.generoItem,
 		reclutadorId: this.reclutador.reclutadorId,
 		reclutadorItem: this.reclutador.reclutadorItem	
+		
         };
         return reclutador;
     }
 
 setReclutador(reclutador: Reclutador) {
        
-		this.isReclutadorFormValid = true;
-		this.reclutador.apellidomaterno = reclutador.apellidomaterno;  
-		this.reclutador.nombre = reclutador.nombre;  
-		this.reclutador.apellidopaterno = reclutador.apellidopaterno;  
-		this.reclutador.generoId = reclutador.generoId;
-		this.reclutador.generoItem = reclutador.generoItem;
+        this.isReclutadorFormValid = true;
+this.reclutador.nombre = reclutador.nombre;
+this.reclutador.apellidopaterno = reclutador.apellidopaterno;
+this.reclutador.apellidomaterno = reclutador.apellidomaterno;
+this.reclutador.generoId = reclutador.generoId;
+this.reclutador.generoItem = reclutador.generoItem;
+        
 		this.reclutador.reclutadorId = reclutador.reclutadorId;
 		this.reclutador.reclutadorItem = reclutador.reclutadorItem;
+		
 		this.validateReclutador();
     }
 
@@ -101,15 +108,17 @@ setReclutador(reclutador: Reclutador) {
     }
 
     clear() {
-
-			this.reclutador.apellidomaterno = '';    
-			this.reclutador.nombre = '';    
-			this.reclutador.apellidopaterno = '';    
-
+			this.reclutador.nombre = ''; 
+			this.reclutador.apellidopaterno = ''; 
+			this.reclutador.apellidomaterno = ''; 
+			
 			this.reclutador.generoId = null;
 			this.reclutador.generoItem = null;
+			
+    		
 			this.reclutador.reclutadorId = null;
 			this.reclutador.reclutadorItem = null;
+			
     }
 
     setEdit(flag){

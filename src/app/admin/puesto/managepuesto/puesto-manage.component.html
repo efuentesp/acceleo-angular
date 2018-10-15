@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Puesto</h3>
+			<h3>Puesto</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,17 +47,15 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%" hidden="true">Nombre</th>
-												<th style="max-width:10%">Nombre</th>
-												<th style="max-width:10%">Descripción</th>
+											<th style="max-width:10%">Nombre</th>
+											<th style="max-width:10%">Descripción</th>	
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let puesto of puestoList | filterPuesto: busquedaPuesto | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePuesto'}; let i = index" (click)="setClickedRowPuesto(i, puesto)" >
-												<td  style="max-width: 10%" hidden="true">{{puesto.puestosId}}</td>
-												<td  style="max-width: 10%">{{puesto.puestosItem}}</td>
-												<td  style="max-width: 10%">{{puesto.descripcion}}</td>
+										<tr *ngFor="let puesto of puestoList | filterPuesto: busquedaPuesto | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePuesto'}; let i = index">
+											<td  style="max-width: 10%">{{puesto.puestosItem}}</td>
+											<td  style="max-width: 10%">{{puesto.descripcion}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(puesto)"><span class="fa fa-pencil"></span></button>
@@ -88,3 +86,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

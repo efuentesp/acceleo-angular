@@ -39,16 +39,14 @@ export class FilialManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private filialService: FilialService
+				private filialService:FilialService
 ){
-
-
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -60,44 +58,42 @@ export class FilialManageComponent implements OnInit {
       this.filialService.setEdit(false);
       this.filialService.setDelete(false);
 
-      this.loadFilials();
+      this.loadFilial();
       this.habilita();
 
     }   
-
-    loadFilials() {
-      this.filialService.getAllFilial().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadFilial(){
+    this.filialService.getAllFilial().subscribe(data => {
         if (data) {
-
-          this.filialList = data;
-
+            this.filialList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the filials.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the filials.', 'error');
+    });
+}
 
-  add(){
-    this.filialService.clear();
-    this.router.navigate([ '../createfilial' ], { relativeTo: this.route })
-  }
 
-  editar(filial){
-    this.filialService.setFilial(filial);
-    this.filialService.setEdit(true);
-    this.filialService.setDelete(false);
-    this.router.navigate([ '../editfilial' ], { relativeTo: this.route })
-  }
+add(){
+	this.filialService.clear();
+	this.router.navigate([ '../createfilial' ], { relativeTo: this.route })
+}
 
-  eliminar(filial){
-    this.filialService.setFilial(filial);
-    this.filialService.setEdit(false);
-    this.filialService.setDelete(true);
-    this.router.navigate([ '../editfilial' ], { relativeTo: this.route })
-  }
+
+editar(filial){
+	this.filialService.setFilial(filial);
+	this.filialService.setEdit(true);
+	this.filialService.setDelete(false);
+	this.router.navigate([ '../editfilial' ], { relativeTo: this.route })
+}
+
+
+eliminar(filial){
+	this.filialService.setFilial(filial);
+	this.filialService.setEdit(false);
+	this.filialService.setDelete(true);
+	this.router.navigate([ '../editfilial' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowFilial(index, filial){
@@ -109,18 +105,18 @@ export class FilialManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_FILIALDELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_FILIALCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_FILIALUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_FILIALSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_FILIALDELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_FILIALCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_FILIALUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -147,3 +143,4 @@ export class FilialManageComponent implements OnInit {
   }
 
 }
+

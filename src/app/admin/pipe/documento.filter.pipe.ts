@@ -9,8 +9,10 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 export class SearchDocumentoPipe implements PipeTransform {
       transform(items: any[], busquedaDocumento): any {
         return busquedaDocumento && items ? items.filter(item =>
-			((item.nombre+"").toLowerCase().indexOf((busquedaDocumento+"").toLowerCase()) !== -1) 
-||			((item.descripcion+"").toLowerCase().indexOf((busquedaDocumento+"").toLowerCase()) !== -1) 
+        
+			((item.nombre+"").toLowerCase().indexOf((busquedaDocumento+"").toLowerCase()) !== -1)
+			||
+			((item.descripcion+"").toLowerCase().indexOf((busquedaDocumento+"").toLowerCase()) !== -1)
         ): items;
     }
 }

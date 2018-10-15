@@ -9,8 +9,6 @@ import { User } from '../../user/user.component.model';
 import { PermisoService }                                  from '../../permiso/permiso.component.service';
 import { Permiso }                                         from '../../permiso/permiso.component.model';
 
-import { RolService }                                  from '../../rol/rol.component.service';
-import { Rol }                                         from '../../rol/rol.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
@@ -41,26 +39,14 @@ export class PermisoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public rolList: Rol [];
-    public rol: Rol;
-	public rolAux: Rol;
-
-	public busquedaRol='';
-	filterInputRol = new FormControl();
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private permisoService: PermisoService
-	,private rolService: RolService
+				private permisoService:PermisoService
 ){
-
-
-  	 this.filterInputRol.valueChanges.subscribe(busquedaRol => {
-     this.busquedaRol = busquedaRol;
-	   });
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -72,82 +58,42 @@ export class PermisoManageComponent implements OnInit {
       this.permisoService.setEdit(false);
       this.permisoService.setDelete(false);
 
-      this.loadPermisos();
+      this.loadPermiso();
       this.habilita();
 
     }   
-
-    loadPermisos() {
-      this.permisoService.getAllPermiso().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadPermiso(){
+    this.permisoService.getAllPermiso().subscribe(data => {
         if (data) {
-
-          this.permisoList = data;
-
-			this.permisoList.forEach(element => {
-
-			// 	Atributorol
-
-			// //let datePipe     = new DatePipe('en-US');
-			// //let fechaDate    = datePipe.transform(element.fecha, 'yyyy-MM-dd');
-      //       //element.fecha    = fechaDate;
-      //       //element.fechaAux = this.parse(fechaDate);
-
-
-
-				this.rolService.getRolById(element.rolId).subscribe(dataAux => {
-					if (dataAux) {
-						this.rolAux = dataAux;
-						element.rolItem = this.rolAux.rolItem;
-						// nombre+ "";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
+            this.permisoList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the permisos.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the permisos.', 'error');
+    });
+}
 
-  add(){
-    this.permisoService.clear();
-    this.router.navigate([ '../createpermiso' ], { relativeTo: this.route })
-  }
 
-  editar(permiso){
-    this.permisoService.setPermiso(permiso);
-    this.permisoService.setEdit(true);
-    this.permisoService.setDelete(false);
-    this.router.navigate([ '../editpermiso' ], { relativeTo: this.route })
-  }
+add(){
+	this.permisoService.clear();
+	this.router.navigate([ '../createpermiso' ], { relativeTo: this.route })
+}
 
-  eliminar(permiso){
-    this.permisoService.setPermiso(permiso);
-    this.permisoService.setEdit(false);
-    this.permisoService.setDelete(true);
-    this.router.navigate([ '../editpermiso' ], { relativeTo: this.route })
-  }
+
+editar(permiso){
+	this.permisoService.setPermiso(permiso);
+	this.permisoService.setEdit(true);
+	this.permisoService.setDelete(false);
+	this.router.navigate([ '../editpermiso' ], { relativeTo: this.route })
+}
+
+
+eliminar(permiso){
+	this.permisoService.setPermiso(permiso);
+	this.permisoService.setEdit(false);
+	this.permisoService.setDelete(true);
+	this.router.navigate([ '../editpermiso' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowPermiso(index, permiso){
@@ -159,18 +105,18 @@ export class PermisoManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_PERMISODELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_PERMISOCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_PERMISOUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_PERMISOSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_PERMISODELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_PERMISOCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_PERMISOUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -197,3 +143,4 @@ export class PermisoManageComponent implements OnInit {
   }
 
 }
+

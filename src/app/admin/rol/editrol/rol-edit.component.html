@@ -8,13 +8,14 @@
 
 	<div class="x_panel">
 		<div class="x_title">
-			<h2>Datos del Rol</h2>
+			<h2>Datos de Rol</h2>
 			<div class="clearfix"></div>
 		</div>
 
 		<div class="x_content">
-			<!-- start form for validation -->
-			<form #rolForm="ngForm" id="rolForm" class="form-horizontal form-label-left" (ngSubmit)="rolForm.valid && save()" novalidate>
+			
+			<!-- form -->
+			<form #rolForm="ngForm" id="rolForm" class="form-horizontal form-label-left" (ngSubmit)="rolForm.valid" novalidate>
 				<input class="form-control" #rolId="ngModel" rolId="rolId" name="rolId" type="hidden" [(ngModel)]="rol.rolId">
 					<div *ngIf="flagDelete">
 						<div class="form-group">
@@ -29,12 +30,10 @@
 							<div *ngIf="rolForm.submitted && !clave.valid" class="help-block">Clave del rol es requerido</div>
 						</div>
 					</div>
-				
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -44,7 +43,6 @@
 							<div *ngIf="rolForm.submitted && !nombre.valid" class="help-block">Nombre es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
@@ -58,25 +56,23 @@
 							<div *ngIf="rolForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
 					</div>
-				
-
-
 				<div class="ln_solid"></div>
 
 				<div class="col-sm-12">
 					<div class="input-group">
 						<div *ngIf="flagDelete">
 							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-							<button class="btn btn-link" (click)="return(rolForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<a class="btn btn-link" routerLink="../managerol" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
-							<button class="btn btn-link" (click)="return(rolForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<a class="btn btn-link" routerLink="../managerol" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 					</div>
 				</div>
 			</form>
-			<!-- end form for validation -->
+			<!-- ./form -->
+			
 		</div>
 	</div>
 </div>

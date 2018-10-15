@@ -19,8 +19,6 @@ import { Filial }                                         from '../../filial/fil
 export class FilialEditComponent implements OnInit {
 
 	public title = 'Editar Filial';
-    public filial: Filial;
- 	public filialList: Filial;
     public form: any;
     public user: User;
     public valueName: string;
@@ -29,6 +27,13 @@ export class FilialEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
+	public filialList: Filial [];
+	public filial: Filial;
+    public filialAux: Filial;
+
+	public busquedaFilial='';
+	filterInputFilial = new FormControl();
+
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -36,17 +41,17 @@ export class FilialEditComponent implements OnInit {
 				private parserFormatter: NgbDateParserFormatter,
 				private filialService: FilialService
 ){
-
-
-	}	
+	this.filterInputFilial.valueChanges.subscribe(busquedaFilial => {
+     	this.busquedaFilial = busquedaFilial;
+     });
+     
+}
 
     ngOnInit() {
         
         this.flag = this.filialService.getEdit();
         this.filial = this.filialService.getFilial();
         this.flagDelete = this.filialService.getDelete();
-        
-
     }  
 
 save(){
@@ -96,10 +101,9 @@ delete(){
   });
 }
 
-
-
 return(filial){
   this.location.back();
 }
  
 }
+

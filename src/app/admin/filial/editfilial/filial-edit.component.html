@@ -8,19 +8,19 @@
 
 	<div class="x_panel">
 		<div class="x_title">
-			<h2>Datos del Filial</h2>
+			<h2>Datos de Filial</h2>
 			<div class="clearfix"></div>
 		</div>
 
 		<div class="x_content">
-			<!-- start form for validation -->
-			<form #filialForm="ngForm" id="filialForm" class="form-horizontal form-label-left" (ngSubmit)="filialForm.valid && save()" novalidate>
+			
+			<!-- form -->
+			<form #filialForm="ngForm" id="filialForm" class="form-horizontal form-label-left" (ngSubmit)="filialForm.valid" novalidate>
 				<input class="form-control" #filialId="ngModel" filialId="filialId" name="filialId" type="hidden" [(ngModel)]="filial.filialId">
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="filial.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="filial.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -30,11 +30,10 @@
 							<div *ngIf="filialForm.submitted && !nombre.valid" class="help-block">Nombre es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ubicacion">Ubicación de la filial<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #ubicacion="ngModel" name="ubicacion" maxlength="128" type="text" [(ngModel)]="filial.ubicacion" readonly disabled>
+							<input class="form-control col-md-12" #ubicacion="ngModel" name="ubicacion" maxlength="128" type="text" [(ngModel)]="filial.ubicacion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -44,11 +43,10 @@
 							<div *ngIf="filialForm.submitted && !ubicacion.valid" class="help-block">Ubicación de la filial es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ciudad">Ciudad<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #ciudad="ngModel" name="ciudad" maxlength="128" type="text" [(ngModel)]="filial.ciudad" readonly disabled>
+							<input class="form-control col-md-12" #ciudad="ngModel" name="ciudad" maxlength="128" type="text" [(ngModel)]="filial.ciudad" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -58,11 +56,10 @@
 							<div *ngIf="filialForm.submitted && !ciudad.valid" class="help-block">Ciudad es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="estado">Estado<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #estado="ngModel" name="estado" maxlength="128" type="text" [(ngModel)]="filial.estado" readonly disabled>
+							<input class="form-control col-md-12" #estado="ngModel" name="estado" maxlength="128" type="text" [(ngModel)]="filial.estado" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -72,11 +69,10 @@
 							<div *ngIf="filialForm.submitted && !estado.valid" class="help-block">Estado es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="telefono">Teléfono<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #telefono="ngModel" name="telefono" maxlength="128" type="text" [(ngModel)]="filial.telefono" readonly disabled>
+							<input class="form-control col-md-12" #telefono="ngModel" name="telefono" maxlength="128" type="text" [(ngModel)]="filial.telefono" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -86,11 +82,10 @@
 							<div *ngIf="filialForm.submitted && !telefono.valid" class="help-block">Teléfono es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="sitio">Sitio Web<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #sitio="ngModel" name="sitio" maxlength="128" type="text" [(ngModel)]="filial.sitio" readonly disabled>
+							<input class="form-control col-md-12" #sitio="ngModel" name="sitio" maxlength="128" type="text" [(ngModel)]="filial.sitio" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -100,11 +95,10 @@
 							<div *ngIf="filialForm.submitted && !sitio.valid" class="help-block">Sitio Web es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="contacto">Contacto<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="filial.contacto" readonly disabled>
+							<input class="form-control col-md-12" #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="filial.contacto" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -114,25 +108,36 @@
 							<div *ngIf="filialForm.submitted && !contacto.valid" class="help-block">Contacto es requerido</div>
 						</div>
 					</div>
-				
-
-
+					<div *ngIf="flagDelete">
+						<div class="form-group">
+							<label class="control-label" for="notas">Notas<span class="required">*</span></label>
+							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="filial.notas" readonly disabled>
+						</div>
+					</div>
+					<div *ngIf="!flagDelete">
+						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !notas.valid}">
+							<label class="control-label" for="notas">Notas<span class="required">*</span></label>
+							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="filial.notas" required>
+							<div *ngIf="filialForm.submitted && !notas.valid" class="help-block">Notas es requerido</div>
+						</div>
+					</div>
 				<div class="ln_solid"></div>
 
 				<div class="col-sm-12">
 					<div class="input-group">
 						<div *ngIf="flagDelete">
 							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-							<button class="btn btn-link" (click)="return(filialForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<a class="btn btn-link" routerLink="../managefilial" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
-							<button class="btn btn-link" (click)="return(filialForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<a class="btn btn-link" routerLink="../managefilial" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 					</div>
 				</div>
 			</form>
-			<!-- end form for validation -->
+			<!-- ./form -->
+			
 		</div>
 	</div>
 </div>

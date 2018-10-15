@@ -19,8 +19,6 @@ import { Rol }                                         from '../../rol/rol.compo
 export class RolEditComponent implements OnInit {
 
 	public title = 'Editar Rol';
-    public rol: Rol;
- 	public rolList: Rol;
     public form: any;
     public user: User;
     public valueName: string;
@@ -29,6 +27,13 @@ export class RolEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
+	public rolList: Rol [];
+	public rol: Rol;
+    public rolAux: Rol;
+
+	public busquedaRol='';
+	filterInputRol = new FormControl();
+
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -36,17 +41,17 @@ export class RolEditComponent implements OnInit {
 				private parserFormatter: NgbDateParserFormatter,
 				private rolService: RolService
 ){
-
-
-	}	
+	this.filterInputRol.valueChanges.subscribe(busquedaRol => {
+     	this.busquedaRol = busquedaRol;
+     });
+     
+}
 
     ngOnInit() {
         
         this.flag = this.rolService.getEdit();
         this.rol = this.rolService.getRol();
         this.flagDelete = this.rolService.getDelete();
-        
-
     }  
 
 save(){
@@ -96,10 +101,9 @@ delete(){
   });
 }
 
-
-
 return(rol){
   this.location.back();
 }
  
 }
+

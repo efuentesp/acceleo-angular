@@ -23,8 +23,6 @@ import { Candidato }                                         from '../../candida
 export class EventoEditComponent implements OnInit {
 
 	public title = 'Editar Evento';
-    public evento: Evento;
- 	public eventoList: Evento;
     public form: any;
     public user: User;
     public valueName: string;
@@ -33,51 +31,59 @@ export class EventoEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public posicionList: Posicion;
-    public posicion: Posicion;
+	public eventoList: Evento [];
+	public evento: Evento;
+    public eventoAux: Evento;
 
-	public busquedaPosicion='';
-	filterInputPosicion = new FormControl();
-	public candidatoList: Candidato;
-    public candidato: Candidato;
+	public busquedaEvento='';
+	filterInputEvento = new FormControl();
 
-	public busquedaCandidato='';
-	filterInputCandidato = new FormControl();
+public posicionList: Posicion [];
+	    public posicion: Posicion;
+	    public posicionAux: Posicion;
+	    
+	    public busquedaPosicion='';
+	    filterInputPosicion = new FormControl();
+public candidatoList: Candidato [];
+	    public candidato: Candidato;
+	    public candidatoAux: Candidato;
+	    
+	    public busquedaCandidato='';
+	    filterInputCandidato = new FormControl();
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
 				private eventoService: EventoService
-	,private posicionService: PosicionService
-	,private candidatoService: CandidatoService
+					
+				,private posicionService: PosicionService
+				,private candidatoService: CandidatoService
+					
 ){
-
- 	 this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
-     this.busquedaPosicion = busquedaPosicion;
-   });
- 	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     this.busquedaCandidato = busquedaCandidato;
-   });
-
-	}	
+	this.filterInputEvento.valueChanges.subscribe(busquedaEvento => {
+     	this.busquedaEvento = busquedaEvento;
+     });
+     
+		
+	this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
+		     this.busquedaPosicion = busquedaPosicion;
+		   });
+	this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+		     this.busquedaCandidato = busquedaCandidato;
+		   });
+		
+}
 
     ngOnInit() {
         
         this.flag = this.eventoService.getEdit();
         this.evento = this.eventoService.getEvento();
         this.flagDelete = this.eventoService.getDelete();
-        
-		this.loadPosicions();
-		this.loadItemPosicion(this.evento);
-		this.loadCandidatos();
-		this.loadItemCandidato(this.evento);
-
     }  
 
 save(){
 	
-	this.evento.fecha = this.parserFormatter.format(this.evento.fechaAux);
 
    this.eventoService.saveEvento(this.evento).subscribe(res => {
      if (res.status == 201 || res.status == 200){
@@ -123,92 +129,9 @@ delete(){
   });
 }
 
-	loadPosicions(){
-  		this.posicionService.getAllPosicion().subscribe(data => {
-    	if (data) {
-      	this.posicionList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Posicions.', 'error');
-  	});
-}
-
- setClickedRowPosicion(index,posicion){
-	      
-		  posicion.checked = !posicion.checked;
-
-		  if (posicion.checked){
-		  this.posicionService.setPosicion(posicion);
-		  this.evento.posicionId = posicion.posicionId;
-		  this.evento.posicionItem = posicion.posicionItem;
-						// nombre+ "";
-						// nombre+ "";
-	    	}else{
-            this.posicionService.clear();
-			this.evento.posicionId = null;
-		    this.evento.posicionItem = "";
-		}
-}
-
-loadItemPosicion(evento){
-  this.posicionService.getPosicionById(evento.posicionId).subscribe(data => {
-    if (data) {
-      this.posicion = data;
-      this.evento.posicionItem = this.posicion.posicionItem;
-						// nombre+ "";
-						// nombre+ "";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the posicions.', 'error');
-  });
-
-}
-
-	loadCandidatos(){
-  		this.candidatoService.getAllCandidato().subscribe(data => {
-    	if (data) {
-      	this.candidatoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
-  	});
-}
-
- setClickedRowCandidato(index,candidato){
-	      
-		  candidato.checked = !candidato.checked;
-
-		  if (candidato.checked){
-		  this.candidatoService.setCandidato(candidato);
-		  this.evento.candidatoId = candidato.candidatoId;
-		  this.evento.candidatoItem = candidato.candidatoItem;
-						// nombre+ "";
-						// nombre+ "";
-	    	}else{
-            this.candidatoService.clear();
-			this.evento.candidatoId = null;
-		    this.evento.candidatoItem = "";
-		}
-}
-
-loadItemCandidato(evento){
-  this.candidatoService.getCandidatoById(evento.candidatoId).subscribe(data => {
-    if (data) {
-      this.candidato = data;
-      this.evento.candidatoItem = this.candidato.candidatoItem;
-						// nombre+ "";
-						// nombre+ "";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
-  });
-
-}
-
-
-
 return(evento){
   this.location.back();
 }
  
 }
+

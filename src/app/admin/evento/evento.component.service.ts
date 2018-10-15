@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class EventoService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Evento', evento);
+
 		if (!evento.eventoId){
             return this.http.post(this.env.api + "/evento", evento, opts).pipe(map(res => res));
         }else{
@@ -68,51 +71,56 @@ export class EventoService {
 
     getEvento(): Evento {
         var evento: Evento = {
-		nombre: this.evento.nombre, 
-		fecha: this.evento.fecha, 
-		fechaAux: this.evento.fechaAux, 
-		responsable: this.evento.responsable, 
-		tipoeventoId: this.evento.tipoeventoId,
-		tipoeventoItem: this.evento.tipoeventoItem,
+		
+			tipoeventoId: this.evento.tipoeventoId,
+			tipoeventoItem: this.evento.tipoeventoItem,
+		nombre: this.evento.nombre,
+		
 		posicionId: this.evento.posicionId,
 		posicionItem: this.evento.posicionItem,
+		
 		candidatoId: this.evento.candidatoId,
 		candidatoItem: this.evento.candidatoItem,
-		responsablereal: this.evento.responsablereal,
+		fecha: this.evento.fecha,
+		responsable: this.evento.responsable,
 		notas: this.evento.notas,
-		comentarios: this.evento.comentarios,
-		feedback: this.evento.feedback,
 		fechareal: this.evento.fechareal,
-		estatuseventoId: this.evento.estatuseventoId,
-		estatuseventoItem: this.evento.estatuseventoItem,
+		responsablereal: this.evento.responsablereal,
+		feedback: this.evento.feedback,
+		comentarios: this.evento.comentarios,
+		
+			estatuseventoId: this.evento.estatuseventoId,
+			estatuseventoItem: this.evento.estatuseventoItem,
 		eventoId: this.evento.eventoId,
 		eventoItem: this.evento.eventoItem	
+		
         };
         return evento;
     }
 
 setEvento(evento: Evento) {
        
-		this.isEventoFormValid = true;
-		this.evento.nombre = evento.nombre;  
-		this.evento.fecha = evento.fecha;  
-		this.evento.fechaAux = evento.fechaAux;  
-		this.evento.responsable = evento.responsable;  
-		this.evento.tipoeventoId = evento.tipoeventoId;
-		this.evento.tipoeventoItem = evento.tipoeventoItem;
-		this.evento.posicionId = evento.posicionId;
-		this.evento.posicionItem = evento.posicionItem;
-		this.evento.candidatoId = evento.candidatoId;
-		this.evento.candidatoItem = evento.candidatoItem;
-		this.evento.responsablereal = evento.responsablereal;
-		this.evento.notas = evento.notas;
-		this.evento.comentarios = evento.comentarios;
-		this.evento.feedback = evento.feedback;
-		this.evento.fechareal = evento.fechareal;
-		this.evento.estatuseventoId = evento.estatuseventoId;
-		this.evento.estatuseventoItem = evento.estatuseventoItem;
+        this.isEventoFormValid = true;
+this.evento.tipoeventoId = evento.tipoeventoId;
+this.evento.tipoeventoItem = evento.tipoeventoItem;
+this.evento.nombre = evento.nombre;
+this.evento.posicionId = evento.posicionId;
+this.evento.posicionItem = evento.posicionItem;
+this.evento.candidatoId = evento.candidatoId;
+this.evento.candidatoItem = evento.candidatoItem;
+this.evento.fecha = evento.fecha;
+this.evento.responsable = evento.responsable;
+this.evento.notas = evento.notas;
+this.evento.fechareal = evento.fechareal;
+this.evento.responsablereal = evento.responsablereal;
+this.evento.feedback = evento.feedback;
+this.evento.comentarios = evento.comentarios;
+this.evento.estatuseventoId = evento.estatuseventoId;
+this.evento.estatuseventoItem = evento.estatuseventoItem;
+        
 		this.evento.eventoId = evento.eventoId;
 		this.evento.eventoItem = evento.eventoItem;
+		
 		this.validateEvento();
     }
 
@@ -125,26 +133,32 @@ setEvento(evento: Evento) {
     }
 
     clear() {
-
-		this.evento.nombre = '';    
-		this.evento.fecha = '';  
-		this.evento.fechaAux = null;    
-		this.evento.responsable = '';    
-		this.evento.tipoeventoId = null;
-		this.evento.tipoeventoItem = null;
-		this.evento.posicionId = null;
-		this.evento.posicionItem = null;
-		this.evento.candidatoId = null;
-		this.evento.candidatoItem = null;
-		this.evento.responsablereal = '';
-		this.evento.notas = '';
-		this.evento.comentarios = '';
-		this.evento.feedback = '';
-		this.evento.fechareal = '';
-		this.evento.estatuseventoId = null;
-		this.evento.estatuseventoItem = null;
-		this.evento.eventoId = null;
-		this.evento.eventoItem = null;
+			
+			this.evento.tipoeventoId = null;
+			this.evento.tipoeventoItem = null;
+			
+			this.evento.nombre = ''; 
+			
+			this.evento.posicionId = null;
+			this.evento.posicionItem = null;
+			
+			this.evento.candidatoId = null;
+			this.evento.candidatoItem = null;
+			this.evento.fecha = null; 
+			this.evento.responsable = ''; 
+			this.evento.notas = ''; 
+			this.evento.fechareal = null; 
+			this.evento.responsablereal = ''; 
+			this.evento.feedback = ''; 
+			this.evento.comentarios = ''; 
+			
+			this.evento.estatuseventoId = null;
+			this.evento.estatuseventoItem = null;
+			
+    		
+			this.evento.eventoId = null;
+			this.evento.eventoItem = null;
+			
     }
 
     setEdit(flag){

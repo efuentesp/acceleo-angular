@@ -39,16 +39,14 @@ export class DocumentoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private documentoService: DocumentoService
+				private documentoService:DocumentoService
 ){
-
-
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -60,44 +58,42 @@ export class DocumentoManageComponent implements OnInit {
       this.documentoService.setEdit(false);
       this.documentoService.setDelete(false);
 
-      this.loadDocumentos();
+      this.loadDocumento();
       this.habilita();
 
     }   
-
-    loadDocumentos() {
-      this.documentoService.getAllDocumento().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadDocumento(){
+    this.documentoService.getAllDocumento().subscribe(data => {
         if (data) {
-
-          this.documentoList = data;
-
+            this.documentoList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the documentos.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the documentos.', 'error');
+    });
+}
 
-  add(){
-    this.documentoService.clear();
-    this.router.navigate([ '../createdocumento' ], { relativeTo: this.route })
-  }
 
-  editar(documento){
-    this.documentoService.setDocumento(documento);
-    this.documentoService.setEdit(true);
-    this.documentoService.setDelete(false);
-    this.router.navigate([ '../editdocumento' ], { relativeTo: this.route })
-  }
+add(){
+	this.documentoService.clear();
+	this.router.navigate([ '../createdocumento' ], { relativeTo: this.route })
+}
 
-  eliminar(documento){
-    this.documentoService.setDocumento(documento);
-    this.documentoService.setEdit(false);
-    this.documentoService.setDelete(true);
-    this.router.navigate([ '../editdocumento' ], { relativeTo: this.route })
-  }
+
+editar(documento){
+	this.documentoService.setDocumento(documento);
+	this.documentoService.setEdit(true);
+	this.documentoService.setDelete(false);
+	this.router.navigate([ '../editdocumento' ], { relativeTo: this.route })
+}
+
+
+eliminar(documento){
+	this.documentoService.setDocumento(documento);
+	this.documentoService.setEdit(false);
+	this.documentoService.setDelete(true);
+	this.router.navigate([ '../editdocumento' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowDocumento(index, documento){
@@ -109,18 +105,18 @@ export class DocumentoManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_DOCUMENTODELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_DOCUMENTOCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_DOCUMENTOUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_DOCUMENTOSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_DOCUMENTODELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_DOCUMENTOCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_DOCUMENTOUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -147,3 +143,4 @@ export class DocumentoManageComponent implements OnInit {
   }
 
 }
+

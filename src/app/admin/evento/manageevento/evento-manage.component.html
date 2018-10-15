@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Evento</h3>
+			<h3>Evento</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,33 +47,43 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%" hidden="true">Tipo de Evento</th>
-												<th style="max-width:10%">Tipo de Evento</th>
-												<th style="max-width:10%">Nombre del evento</th>
-												<th style="max-width:10%" hidden="true">Posición</th>
-												<th style="max-width:10%">Posición</th>
-												<th style="max-width:10%" hidden="true">Candidato</th>
-												<th style="max-width:10%">Candidato</th>
-												<th style="max-width:10%">Fecha programada</th>
-												<th style="max-width:10%">Responsable del evento</th>
-												<th style="max-width:10%" hidden="true">Estatus</th>
-												<th style="max-width:10%">Estatus</th>
+											<th style="max-width:10%">Tipo de Evento</th>
+											<th style="max-width:10%">Nombre del evento</th>	
+											<th style="max-width:10%">Posición</th>
+											<th style="max-width:10%">Candidato</th>
+											<th style="max-width:10%">Fecha programada</th>
+											<th style="max-width:10%">Responsable del evento</th>	
+											<th style="max-width:10%">Estatus</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let evento of eventoList | filterEvento: busquedaEvento | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableEvento'}; let i = index" (click)="setClickedRowEvento(i, evento)" >
-												<td  style="max-width: 10%" hidden="true">{{evento.tipoeventoId}}</td>
-												<td  style="max-width: 10%">{{evento.tipoeventoItem}}</td>
-												<td  style="max-width: 10%">{{evento.nombre}}</td>
-												<td  style="max-width: 10%" hidden="true">{{evento.posicionId}}</td>
-												<td  style="max-width: 10%">{{evento.posicionItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{evento.candidatoId}}</td>
-												<td  style="max-width: 10%">{{evento.candidatoItem}}</td>
-												<td  style="max-width: 10%">{{evento.fecha}}</td>
-												<td  style="max-width: 10%">{{evento.responsable}}</td>
-												<td  style="max-width: 10%" hidden="true">{{evento.estatuseventoId}}</td>
-												<td  style="max-width: 10%">{{evento.estatuseventoItem}}</td>
+										<tr *ngFor="let evento of eventoList | filterEvento: busquedaEvento | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableEvento'}; let i = index">
+											<td  style="max-width: 10%">{{evento.tipoeventoItem}}</td>
+											<td  style="max-width: 10%">{{evento.nombre}}</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="posicion" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Posicion <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageposicion', evento)" >Administrar Posicion</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createposicion', evento)">Agregar Posicion</button>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="candidato" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Candidato <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managecandidato', evento)" >Administrar Candidato</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createcandidato', evento)">Agregar Candidato</button>
+													</div>
+												</div>
+											</td>
+											<td  style="max-width: 10%">{{evento.fecha | date: 'dd/MM/yyyy'}}</td>
+											<td  style="max-width: 10%">{{evento.responsable}}</td>
+											<td  style="max-width: 10%">{{evento.estatuseventoItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(evento)"><span class="fa fa-pencil"></span></button>
@@ -104,3 +114,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

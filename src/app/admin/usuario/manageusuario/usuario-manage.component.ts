@@ -9,8 +9,6 @@ import { User } from '../../user/user.component.model';
 import { UsuarioService }                                  from '../../usuario/usuario.component.service';
 import { Usuario }                                         from '../../usuario/usuario.component.model';
 
-import { RolService }                                  from '../../rol/rol.component.service';
-import { Rol }                                         from '../../rol/rol.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
@@ -41,26 +39,14 @@ export class UsuarioManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public rolList: Rol [];
-    public rol: Rol;
-	public rolAux: Rol;
-
-	public busquedaRol='';
-	filterInputRol = new FormControl();
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private usuarioService: UsuarioService
-	,private rolService: RolService
+				private usuarioService:UsuarioService
 ){
-
-
-  	 this.filterInputRol.valueChanges.subscribe(busquedaRol => {
-     this.busquedaRol = busquedaRol;
-	   });
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -72,75 +58,42 @@ export class UsuarioManageComponent implements OnInit {
       this.usuarioService.setEdit(false);
       this.usuarioService.setDelete(false);
 
-      this.loadUsuarios();
+      this.loadUsuario();
       this.habilita();
 
     }   
-
-    loadUsuarios() {
-      this.usuarioService.getAllUsuario().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadUsuario(){
+    this.usuarioService.getAllUsuario().subscribe(data => {
         if (data) {
-
-          this.usuarioList = data;
-
-			this.usuarioList.forEach(element => {
-
-	
-
-				this.rolService.getRolById(element.rolId).subscribe(dataAux => {
-					if (dataAux) {
-						this.rolAux = dataAux;
-						element.rolItem = this.rolAux.
-
-
-
-
-
-
-						nombre+ "";
-
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
+            this.usuarioList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the usuarios.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the usuarios.', 'error');
+    });
+}
 
-  add(){
-    this.usuarioService.clear();
-    this.router.navigate([ '../createusuario' ], { relativeTo: this.route })
-  }
 
-  editar(usuario){
-    this.usuarioService.setUsuario(usuario);
-    this.usuarioService.setEdit(true);
-    this.usuarioService.setDelete(false);
-    this.router.navigate([ '../editusuario' ], { relativeTo: this.route })
-  }
+add(){
+	this.usuarioService.clear();
+	this.router.navigate([ '../createusuario' ], { relativeTo: this.route })
+}
 
-  eliminar(usuario){
-    this.usuarioService.setUsuario(usuario);
-    this.usuarioService.setEdit(false);
-    this.usuarioService.setDelete(true);
-    this.router.navigate([ '../editusuario' ], { relativeTo: this.route })
-  }
+
+editar(usuario){
+	this.usuarioService.setUsuario(usuario);
+	this.usuarioService.setEdit(true);
+	this.usuarioService.setDelete(false);
+	this.router.navigate([ '../editusuario' ], { relativeTo: this.route })
+}
+
+
+eliminar(usuario){
+	this.usuarioService.setUsuario(usuario);
+	this.usuarioService.setEdit(false);
+	this.usuarioService.setDelete(true);
+	this.router.navigate([ '../editusuario' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowUsuario(index, usuario){
@@ -152,18 +105,18 @@ export class UsuarioManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_USUARIODELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_USUARIOCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_USUARIOUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_USUARIOSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_USUARIODELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_USUARIOCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_USUARIOUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -190,3 +143,4 @@ export class UsuarioManageComponent implements OnInit {
   }
 
 }
+

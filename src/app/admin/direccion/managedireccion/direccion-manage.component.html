@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Domicilio</h3>
+			<h3>Domicilio</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,19 +47,19 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%">Calle</th>
-												<th style="max-width:10%">Código Postal</th>
-												<th style="max-width:10%">Ciudad</th>
-												<th style="max-width:10%">Estado</th>
+											<th style="max-width:10%">Calle</th>	
+											<th style="max-width:10%">Código Postal</th>	
+											<th style="max-width:10%">Ciudad</th>	
+											<th style="max-width:10%">Estado</th>	
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let direccion of direccionList | filterDireccion: busquedaDireccion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDireccion'}; let i = index" (click)="setClickedRowDireccion(i, direccion)" >
-												<td  style="max-width: 10%">{{direccion.calle}}</td>
-												<td  style="max-width: 10%">{{direccion.cp}}</td>
-												<td  style="max-width: 10%">{{direccion.ciudad}}</td>
-												<td  style="max-width: 10%">{{direccion.estado}}</td>
+										<tr *ngFor="let direccion of direccionList | filterDireccion: busquedaDireccion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDireccion'}; let i = index">
+											<td  style="max-width: 10%">{{direccion.calle}}</td>
+											<td  style="max-width: 10%">{{direccion.cp}}</td>
+											<td  style="max-width: 10%">{{direccion.ciudad}}</td>
+											<td  style="max-width: 10%">{{direccion.estado}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(direccion)"><span class="fa fa-pencil"></span></button>
@@ -90,3 +90,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

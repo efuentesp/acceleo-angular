@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild}                                     from 
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
-
-import { Location, DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
@@ -24,131 +23,166 @@ import { Candidato }                                         from '../../candida
 export class EventoCreateComponent implements OnInit {
 
     public title = 'Nuevo Evento';
-    public evento: Evento;
-    public form: any;
+    public eventoform: any;
     public user: User;
     public valueName: string;
     public token: string;
-	public datePipe = new DatePipe('en-US');
 
-	public posicionList: Posicion [];
-    public posicion: Posicion;
-    public posicionAux: Posicion;
+public eventoList: Evento [];
+public evento: Evento;
+    public eventoAux: Evento;
 
-	public busquedaPosicion='';
-	filterInputPosicion = new FormControl();
+public busquedaEvento='';
+filterInputEvento = new FormControl();
 
-	public candidatoList: Candidato [];
-    public candidato: Candidato;
-    public candidatoAux: Candidato;
+public posicionList: Posicion [];
+	    public posicion: Posicion;
+	    public posicionAux: Posicion;
+	    
+	    public busquedaPosicion='';
+	    filterInputPosicion = new FormControl();
+public candidatoList: Candidato [];
+	    public candidato: Candidato;
+	    public candidatoAux: Candidato;
+	    
+	    public busquedaCandidato='';
+	    filterInputCandidato = new FormControl();
 
-	public busquedaCandidato='';
-	filterInputCandidato = new FormControl();
-
-
-    constructor(private router: Router,  
-				private route: ActivatedRoute, 
-				private location: Location,
-				private parserFormatter: NgbDateParserFormatter,
-				private eventoService: EventoService
-	,private posicionService: PosicionService
-	,private candidatoService: CandidatoService
+constructor(private router: Router,  
+			private route: ActivatedRoute, 
+			private location: Location,
+			private parserFormatter: NgbDateParserFormatter,
+			private eventoService: EventoService
+			,private posicionService: PosicionService
+			,private candidatoService: CandidatoService
 ){
-  	 this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
-     this.busquedaPosicion = busquedaPosicion;
-   });
-  	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     this.busquedaCandidato = busquedaCandidato;
-   });
-	}
+  	 this.filterInputEvento.valueChanges.subscribe(busquedaEvento => {
+     	this.busquedaEvento = busquedaEvento;
+     });
+     
+		
+	this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
+		     this.busquedaPosicion = busquedaPosicion;
+		   });
+	this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+		     this.busquedaCandidato = busquedaCandidato;
+		   });
+		
+}
 
     ngOnInit() {
 		this.eventoService.clear();
         this.evento = new Evento;
 
-		this.loadPosicions();
-		this.loadCandidatos();
-       
+		//this.loadEvento();
+		this.loadPosicion();
+		this.loadCandidato();
     } 
 
 save(){
 
-	this.evento.fecha = this.parserFormatter.format(this.evento.fechaAux);
-
-   this.eventoService.saveEvento(this.evento).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Evento save successfully.', 'success');
-        this.router.navigate([ '../manageevento' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Evento.', 'error');
-     }else{
-       swal('Error...', 'Evento save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+		this.evento.tipoeventoId ==="" || this.evento.tipoeventoId ===null || 
+		this.evento.nombre ==="" || this.evento.nombre ===null || 
+		this.evento.posicionId ===null ||
+		this.evento.candidatoId ===null ||
+		this.evento.fecha ==="" || this.evento.fecha ===null || 
+		this.evento.responsable ==="" || this.evento.responsable ===null || 
+		this.evento.notas ==="" || this.evento.notas ===null || 
+		this.evento.fechareal ==="" || this.evento.fechareal ===null || 
+		this.evento.responsablereal ==="" || this.evento.responsablereal ===null || 
+		this.evento.feedback ==="" || this.evento.feedback ===null || 
+		this.evento.comentarios ==="" || this.evento.comentarios ===null || 
+		this.evento.estatuseventoId ==="" || this.evento.estatuseventoId ===null || 
+		this.evento.eventoId !== null 
+	){
+		return;
+	}else{
+	   this.eventoService.saveEvento(this.evento).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Evento save successfully.', 'success');
+	        this.router.navigate([ '../manageevento' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar evento.', 'error');
+	     }else{
+	       swal('Error...', 'evento save unsuccessfully.', 'error');
+	     }
+	   } );
+   }
 }
 
-
-	loadPosicions(){
-  		this.posicionService.getAllPosicion().subscribe(data => {
+loadevento(){
+  		this.eventoService.getAllEvento().subscribe(data => {
     	if (data) {
-      	
-		this.posicionList = data;
-// Cambios por cada modal
+			this.eventoList = data;
     	}
   		}, error => {
-    	swal('Error...', 'An error occurred while calling the Posicions.', 'error');
-  	});
-
-
-
+    	swal('Error...', 'An error occurred while calling the Eventos.', 'error');
+  		});
 }
 
- setClickedRowPosicion(index,posicion){
-	      
-		  posicion.checked = !posicion.checked;
-		  if (posicion.checked){
-		  this.posicionService.setPosicion(posicion);
-		  this.evento.posicionId = posicion.posicionId;
-		  this.evento.posicionItem = posicion.posicionItem;
-						// nombre+ "";
-						// nombre+ "";
+setClickedRowEvento(index,evento){	      
+		  evento.checked = !evento.checked;
+		  if (evento.checked){
+		  this.eventoService.setEvento(evento);
+		  this.evento.eventoId = evento.eventoId;
+		  this.evento.eventoItem = evento.nombre;
 	    	}else{
-            this.posicionService.clear();
-			this.evento.posicionId = null;
-		    this.evento.posicionItem = "";
+            this.eventoService.clear();
+			this.evento.eventoId = null;
+		    this.evento.eventoItem = "";
 		}
  }
-
-	loadCandidatos(){
-  		this.candidatoService.getAllCandidato().subscribe(data => {
-    	if (data) {
+ 
+loadPosicion(){
+   		this.posicionService.getAllPosicion().subscribe(data => {
+     	if (data) {
       	
-		this.candidatoList = data;
-// Cambios por cada modal
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
-  	});
+ 		this.posicionList = data;
 
-
-
-}
-
- setClickedRowCandidato(index,candidato){
-	      
-		  candidato.checked = !candidato.checked;
-		  if (candidato.checked){
-		  this.candidatoService.setCandidato(candidato);
-		  this.evento.candidatoId = candidato.candidatoId;
-		  this.evento.candidatoItem = candidato.candidatoItem;
-						// nombre+ "";
-						// nombre+ "";
-	    	}else{
-            this.candidatoService.clear();
-			this.evento.candidatoId = null;
-		    this.evento.candidatoItem = "";
-		}
+     	}
+   		}, error => {
+     	swal('Error...', 'An error occurred while calling the Posicions.', 'error');
+   	});
  }
+
+	  setClickedRowPosicion(index,posicion){
+	 		  posicion.checked = !posicion.checked;
+	 		  if (posicion.checked){
+	 		  this.posicionService.setPosicion(posicion);
+	 		  this.evento.posicionId = posicion.posicionId;
+	 		  this.evento.posicionItem = posicion.nombre;
+	 	    	}else{
+	             this.posicionService.clear();
+	 			this.evento.posicionId = null;
+	 		    this.evento.posicionItem = "";
+	 		}
+	  }
+loadCandidato(){
+   		this.candidatoService.getAllCandidato().subscribe(data => {
+     	if (data) {
+      	
+ 		this.candidatoList = data;
+
+     	}
+   		}, error => {
+     	swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
+   	});
+ }
+
+	  setClickedRowCandidato(index,candidato){
+	 		  candidato.checked = !candidato.checked;
+	 		  if (candidato.checked){
+	 		  this.candidatoService.setCandidato(candidato);
+	 		  this.evento.candidatoId = candidato.candidatoId;
+	 		  this.evento.candidatoItem = candidato.nombre;
+	 	    	}else{
+	             this.candidatoService.clear();
+	 			this.evento.candidatoId = null;
+	 		    this.evento.candidatoItem = "";
+	 		}
+	  }
+ 
 
   return(evento){
       this.location.back();

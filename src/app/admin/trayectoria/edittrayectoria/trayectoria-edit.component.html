@@ -8,56 +8,77 @@
 
 	<div class="x_panel">
 		<div class="x_title">
-			<h2>Datos del Trayectoria</h2>
+			<h2>Datos de Trayectoria</h2>
 			<div class="clearfix"></div>
 		</div>
 
 		<div class="x_content">
-			<!-- start form for validation -->
-			<form #trayectoriaForm="ngForm" id="trayectoriaForm" class="form-horizontal form-label-left" (ngSubmit)="trayectoriaForm.valid && save()" novalidate>
+			
+			<!-- form -->
+			<form #trayectoriaForm="ngForm" id="trayectoriaForm" class="form-horizontal form-label-left" (ngSubmit)="trayectoriaForm.valid" novalidate>
 				<input class="form-control" #trayectoriaId="ngModel" trayectoriaId="trayectoriaId" name="trayectoriaId" type="hidden" [(ngModel)]="trayectoria.trayectoriaId">
 					<div class="form-group" [ngClass]="{ 'has-error': trayectoriaForm.submitted && !candidatoId.valid}">
-						<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>						
+						<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="candidatoId"  [(ngModel)]="trayectoria.candidatoId" #candidatoId="ngModel" required>
-							<input *ngIf="flagDelete"  type="text" class="form-control" name="candidato"Item  [(ngModel)]="trayectoria.candidatoItem"  #candidatoItem="ngModel" placeholder="Candidato..." readonly disabled>
-							<input *ngIf="!flagDelete" type="text" class="form-control" name="candidato"Item  [(ngModel)]="trayectoria.candidatoItem"  #candidatoItem="ngModel" placeholder="Candidato..." readonly>
+							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="trayectoria.candidatoId"    #candidatoId="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="candidatoItem" [(ngModel)]="trayectoria.candidatoItem"  #candidatoItem="ngModel" placeholder="Candidato..." disabled>
 							<span class="input-group-btn">
-								<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCandidato">
-									<em class="fa fa-search"></em>
-								</button>
-								<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCandidato">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCandidato">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
 						<div *ngIf="trayectoriaForm.submitted && !candidatoId.valid" class="help-block">Candidato es requerido</div>
 					</div>
-				
-				
 					<div class="form-group">
-						<label class="control-label" for="trayectoria">Tipo Trayectoria<span class="required">*</span></label>
-						
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="a" name="a" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Estudios </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="a" [(ngModel)]="trayectoria.tipotrayectoriaId"> Estudios </div>
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="b" name="b" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Certificación </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="b" name="b" [(ngModel)]="trayectoria.tipotrayectoriaId"> Certificación </div>
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Experiencia Laboral </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="c" [(ngModel)]="trayectoria.tipotrayectoriaId"> Experiencia Laboral </div>
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="d" name="d" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Interés </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d" name="d" [(ngModel)]="trayectoria.tipotrayectoriaId"> Interés </div>
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="e" name="e" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Habilidad </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e" name="e" [(ngModel)]="trayectoria.tipotrayectoriaId"> Habilidad </div>
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="f" name="f" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Recomendación </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="f" name="f" [(ngModel)]="trayectoria.tipotrayectoriaId"> Recomendación </div>
-						<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="g" name="g" [(ngModel)]="trayectoria.tipotrayectoriaId"  disabled="true" disabled> Curso </div>		
-						<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="g" name="g" [(ngModel)]="trayectoria.tipotrayectoriaId"> Curso </div>
+						<label class="control-label" for="tipotrayectoria">TipoTrayectoria<span class="required">*</span></label>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Estudios
 					</div>
-				
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Estudios
+					</div>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="b" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Certificación
+					</div>
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="b" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Certificación
+					</div>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Experiencia Laboral
+					</div>
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Experiencia Laboral
+					</div>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="d" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Interés
+					</div>
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="d" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Interés
+					</div>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="e" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Habilidad
+					</div>
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="e" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Habilidad
+					</div>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="f" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Recomendación
+					</div>
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="f" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Recomendación
+					</div>
+					<div class="col-md-12" *ngIf="flagDelete">
+					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="g" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Curso
+					</div>
+					<div class="col-md-12" *ngIf="!flagDelete">
+					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="g" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId">Curso
+					</div>
+					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción de la trayectoria<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" readonly disabled>
+							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -67,11 +88,10 @@
 							<div *ngIf="trayectoriaForm.submitted && !descripcion.valid" class="help-block">Descripción de la trayectoria es requerido</div>
 						</div>
 					</div>
-				
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="clave">Palabra clave<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #clave="ngModel" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" readonly disabled>
+							<input class="form-control col-md-12" #clave="ngModel" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
@@ -81,167 +101,169 @@
 							<div *ngIf="trayectoriaForm.submitted && !clave.valid" class="help-block">Palabra clave es requerido</div>
 						</div>
 					</div>
-				
-					<div class="form-group" [ngClass]="{ 'has-error': trayectoriaForm.submitted && !documentoId.valid}">
-						<label class="control-label" for="documento">Documento Probatorio<span class="required">*</span></label>						
+					<div class="form-group">
+						<label class="control-label" for="documento">Documento Probatorio<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="documentoId"  [(ngModel)]="trayectoria.documentoId" #documentoId="ngModel" required>
-							<input *ngIf="flagDelete"  type="text" class="form-control" name="documento"Item  [(ngModel)]="trayectoria.documentoItem"  #documentoItem="ngModel" placeholder="Documento..." readonly disabled>
-							<input *ngIf="!flagDelete" type="text" class="form-control" name="documento"Item  [(ngModel)]="trayectoria.documentoItem"  #documentoItem="ngModel" placeholder="Documento..." readonly>
+							<input type="hidden" class="form-control input-md"  name="documentoId"   [(ngModel)]="trayectoria.documentoId"    #documentoId="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="documentoItem" [(ngModel)]="trayectoria.documentoItem"  #documentoItem="ngModel" placeholder="Documento Probatorio..." disabled>
 							<span class="input-group-btn">
-								<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalDocumento">
-									<em class="fa fa-search"></em>
-								</button>
-								<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalDocumento">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalDocumento">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
-						<div *ngIf="trayectoriaForm.submitted && !documentoId.valid" class="help-block">Documento Probatorio es requerido</div>
-					</div>
-				
-
-<!-- Modal candidato -->
-<div id="modalCandidato" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-	<div class="modal-dialog" style="width:60%">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close">&times;</button>
-				<h4 class="modal-title">Candidato</h4>
-			</div>
-			<div class="modal-body">
-				<div class='row'>
-					<div class="col-lg-6">
-						<br/>
-					</div>
-					<div class="col-lg-6">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..." name="busquedacandidato" [(ngModel)]="busquedaCandidato">
-							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
-							</span>
+					</div>		
+						<!-- Modal Candidato -->
+						<div id="modalCandidato" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+							<div class="modal-dialog" style="width:60%">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close">&times;</button>
+										<h4 class="modal-title">Candidato</h4>
+									</div>
+									<div class="modal-body">
+										<div class='row'>
+											<div class="col-lg-6">
+												<br/>
+											</div>
+											<div class="col-lg-6">
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="Search for..." name="busquedacandidato" [(ngModel)]="busquedaCandidato">
+													<span class="input-group-btn">
+														<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
+													</span>
+												</div>
+											</div>
+										</div>
+						
+										<div class="row">
+										<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
+												<thead>
+													<tr>
+														<th style="max-width:10%"></th>
+														<th style="max-width:10%">Nombre</th>
+														<th style="max-width:10%">ApellidoPaterno</th>
+														<th style="max-width:10%">ApellidoMaterno</th>
+														<th style="max-width:10%">Fecha</th>
+														<th style="max-width:10%">Es</th>
+														<th style="max-width:10%">Estado</th>
+														<th style="max-width:10%">Solicitud</th>
+														<th style="max-width:10%">Evento</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let candidato of candidatoList | filterCandidato: busquedaCandidato | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCandidato'}; let i = index" >
+														<td  style="max-width: 10%">
+															<input type="radio" name="candidatoId" [checked]="candidato.checked" value="{{candidato.candidatoId}}" (click)="setClickedRowCandidato(i, candidato)">
+														</td>
+														<td  style="max-width: 10%">{{candidato.nombre}}</td>
+														<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
+														<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
+														<td  style="max-width: 10%">{{candidato.fecha}}</td>
+														<td  style="max-width: 10%">{{candidato.es}}</td>
+														<td  style="max-width: 10%">{{candidato.estado}}</td>
+														<td  style="max-width: 10%">{{candidato.solicitud}}</td>
+														<td  style="max-width: 10%">{{candidato.evento}}</td>
+													</tr>
+												</tbody>
+											</table>
+						
+												<div align="center" style="margin-top:15px;">
+													<pagination-controls (pageChange)="page = $event" id="paginationTableCandidato" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+														nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+													</pagination-controls>
+												</div>
+						
+											<div class="row">
+												<div class="text-right" style="padding-right:40px">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+													<button type="button" class="btn btn-primary" data-dismiss="modal">Elegir</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-
-				<div class="row">
-				<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
-						<thead>
-							<tr>
-								<th style="max-width:10%"></th>
-										<th style="max-width:10%">Candidato</th>
-										<th style="max-width:10%">Apellido Paterno</th>
-										<th style="max-width:10%">Apellido Materno</th>
-										<th style="max-width:10%">Fecha de nacimiento</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let candidato of candidatoList | filterCandidato: busquedaCandidato | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
-								<td  style="max-width: 10%"><input type="radio" name="candidatoId" [checked]="candidato.checked" value="{{candidato.candidatoId}}" (click)="setClickedRowCandidato(i, candidato)"></td>
-										<td  style="max-width: 10%">{{candidato.nombre}}</td>
-										<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
-										<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
-										<td  style="max-width: 10%">{{candidato.fecha}}</td>
-							</tr>
-						</tbody>
-					</table>
-
-						<div align="center" style="margin-top:15px;">
-							<pagination-controls (pageChange)="page = $event" id="1" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-								nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-							</pagination-controls>
+						<!-- Modal Documento -->
+						<div id="modalDocumento" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
+							<div class="modal-dialog" style="width:60%">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close">&times;</button>
+										<h4 class="modal-title">Documento</h4>
+									</div>
+									<div class="modal-body">
+										<div class='row'>
+											<div class="col-lg-6">
+												<br/>
+											</div>
+											<div class="col-lg-6">
+												<div class="input-group">
+													<input type="text" class="form-control" placeholder="Search for..." name="busquedadocumento" [(ngModel)]="busquedaDocumento">
+													<span class="input-group-btn">
+														<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
+													</span>
+												</div>
+											</div>
+										</div>
+						
+										<div class="row">
+										<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
+												<thead>
+													<tr>
+														<th style="max-width:10%"></th>
+														<th style="max-width:10%">Nombre</th>
+														<th style="max-width:10%">Descripcion</th>
+														<th style="max-width:10%">Size</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let documento of documentoList | filterDocumento: busquedaDocumento | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDocumento'}; let i = index" >
+														<td  style="max-width: 10%">
+															<input type="radio" name="documentoId" [checked]="documento.checked" value="{{documento.documentoId}}" (click)="setClickedRowDocumento(i, documento)">
+														</td>
+														<td  style="max-width: 10%">{{documento.nombre}}</td>
+														<td  style="max-width: 10%">{{documento.descripcion}}</td>
+														<td  style="max-width: 10%">{{documento.size}}</td>
+													</tr>
+												</tbody>
+											</table>
+						
+												<div align="center" style="margin-top:15px;">
+													<pagination-controls (pageChange)="page = $event" id="paginationTableDocumento" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+														nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+													</pagination-controls>
+												</div>
+						
+											<div class="row">
+												<div class="text-right" style="padding-right:40px">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+													<button type="button" class="btn btn-primary" data-dismiss="modal">Elegir</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-
-					<div class="row">
-						<div class="text-right" style="padding-right:40px">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Elegir</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-        
-<!-- Modal documento -->
-<div id="modalDocumento" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-	<div class="modal-dialog" style="width:60%">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close">&times;</button>
-				<h4 class="modal-title">Documento</h4>
-			</div>
-			<div class="modal-body">
-				<div class='row'>
-					<div class="col-lg-6">
-						<br/>
-					</div>
-					<div class="col-lg-6">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..." name="busquedadocumento" [(ngModel)]="busquedaDocumento">
-							<span class="input-group-btn">
-								<button class="btn btn-secondary" type="button"><em class="fa fa-search"></em></button>
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-				<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
-						<thead>
-							<tr>
-								<th style="max-width:10%"></th>
-										<th style="max-width:10%">Nombre del documento</th>
-										<th style="max-width:10%">Descripción del documento</th>
-										<th style="max-width:10%">Tamaño</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let documento of documentoList | filterDocumento: busquedaDocumento | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
-								<td  style="max-width: 10%"><input type="radio" name="documentoId" [checked]="documento.checked" value="{{documento.documentoId}}" (click)="setClickedRowDocumento(i, documento)"></td>
-										<td  style="max-width: 10%">{{documento.nombre}}</td>
-										<td  style="max-width: 10%">{{documento.descripcion}}</td>
-										<td  style="max-width: 10%">{{documento.size}}</td>
-							</tr>
-						</tbody>
-					</table>
-
-						<div align="center" style="margin-top:15px;">
-							<pagination-controls (pageChange)="page = $event" id="1" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-								nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-							</pagination-controls>
-						</div>
-
-					<div class="row">
-						<div class="text-right" style="padding-right:40px">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Elegir</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-        
-
 				<div class="ln_solid"></div>
 
 				<div class="col-sm-12">
 					<div class="input-group">
 						<div *ngIf="flagDelete">
 							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-							<button class="btn btn-link" (click)="return(trayectoriaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<a class="btn btn-link" routerLink="../managetrayectoria" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
-							<button class="btn btn-link" (click)="return(trayectoriaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<a class="btn btn-link" routerLink="../managetrayectoria" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 					</div>
 				</div>
 			</form>
-			<!-- end form for validation -->
+			<!-- ./form -->
+			
 		</div>
 	</div>
 </div>

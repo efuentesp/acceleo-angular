@@ -15,7 +15,7 @@
 		<div class="x_content">
 		
 		<!-- form -->
-		<form #direccionForm="ngForm" id="direccionForm" class="form-horizontal form-label-left" (ngSubmit)="direccionForm.valid && save()" novalidate>
+		<form #direccionForm="ngForm" id="direccionForm" class="form-horizontal form-label-left" (ngSubmit)="direccionForm.valid" novalidate>
 			<input class="form-control" #direccionId="ngModel" direccionId="direccionId" name="direccionId" type="hidden" [(ngModel)]="direccion.direccionId">
 				<div class="form-group" [ngClass]="{ 'has-error': direccionForm.submitted && !candidatoId.valid}">
 					<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
@@ -126,13 +126,9 @@
 		
 		<div class="col-sm-12">
 			<div class="input-group">
-				<div *ngIf="flagDelete">
-					<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-					<button class="btn btn-link" (click)="return(direccionForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-				</div>
-				<div *ngIf="!flag && !flagDelete">
-					<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
-					<button class="btn btn-link" (click)="return(direccionForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+				<div>
+					<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+					<a class="btn btn-link" routerLink="../managedireccion" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 				</div>
 			</div>
 		</div>			

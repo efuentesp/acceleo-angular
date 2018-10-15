@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Posición</h3>
+			<h3>Posición</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,43 +47,60 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%" hidden="true">Filial</th>
-												<th style="max-width:10%">Filial</th>
-												<th style="max-width:10%" hidden="true">Puesto</th>
-												<th style="max-width:10%">Puesto</th>
-												<th style="max-width:10%">Nombre de la posición</th>
-												<th style="max-width:10%">Descripción de la vacante</th>
-												<th style="max-width:10%">Fecha de alta</th>
-												<th style="max-width:10%">Responsable de la posición</th>
-												<th style="max-width:10%">Presupuesto para la posición</th>
-												<th style="max-width:10%">Número de vacantes</th>
-												<th style="max-width:10%" hidden="true">Tipo de posición</th>
-												<th style="max-width:10%">Tipo de posición</th>
-												<th style="max-width:10%" hidden="true">Reclutador</th>
-												<th style="max-width:10%">Reclutador</th>
-												<th style="max-width:10%" hidden="true">Estatus</th>
-												<th style="max-width:10%">Estatus</th>
+											<th style="max-width:10%">Filial</th>
+											<th style="max-width:10%">Puesto</th>
+											<th style="max-width:10%">Nombre de la posición</th>	
+											<th style="max-width:10%">Descripción de la vacante</th>	
+											<th style="max-width:10%">Fecha de alta</th>
+											<th style="max-width:10%">Responsable de la posición</th>	
+											<th style="max-width:10%">Presupuesto para la posición</th>
+											<th style="max-width:10%">Número de vacantes</th>
+											<th style="max-width:10%">Tipo de posición</th>
+											<th style="max-width:10%">Reclutador</th>
+											<th style="max-width:10%">Estatus</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let posicion of posicionList | filterPosicion: busquedaPosicion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePosicion'}; let i = index" (click)="setClickedRowPosicion(i, posicion)" >
-												<td  style="max-width: 10%" hidden="true">{{posicion.filialId}}</td>
-												<td  style="max-width: 10%">{{posicion.filialItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
-												<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
-												<td  style="max-width: 10%">{{posicion.nombre}}</td>
-												<td  style="max-width: 10%">{{posicion.descripcion}}</td>
-												<td  style="max-width: 10%">{{posicion.fecha}}</td>
-												<td  style="max-width: 10%">{{posicion.contacto}}</td>
-												<td  style="max-width: 10%">{{posicion.salario}}</td>
-												<td  style="max-width: 10%">{{posicion.vacantes}}</td>
-												<td  style="max-width: 10%" hidden="true">{{posicion.tiponominaId}}</td>
-												<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{posicion.reclutadorId}}</td>
-												<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{posicion.estatusposicionId}}</td>
-												<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
+										<tr *ngFor="let posicion of posicionList | filterPosicion: busquedaPosicion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePosicion'}; let i = index">
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="filial" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Filial <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managefilial', posicion)" >Administrar Filial</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createfilial', posicion)">Agregar Filial</button>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="puesto" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Puesto <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managepuesto', posicion)" >Administrar Puesto</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createpuesto', posicion)">Agregar Puesto</button>
+													</div>
+												</div>
+											</td>
+											<td  style="max-width: 10%">{{posicion.nombre}}</td>
+											<td  style="max-width: 10%">{{posicion.descripcion}}</td>
+											<td  style="max-width: 10%">{{posicion.fecha | date: 'dd/MM/yyyy'}}</td>
+											<td  style="max-width: 10%">{{posicion.contacto}}</td>
+											<td  style="max-width: 10%">{{posicion.salario}}</td>
+											<td  style="max-width: 10%">{{posicion.vacantes}}</td>
+											<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="reclutador" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Reclutador <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managereclutador', posicion)" >Administrar Reclutador</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createreclutador', posicion)">Agregar Reclutador</button>
+													</div>
+												</div>
+											</td>
+											<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(posicion)"><span class="fa fa-pencil"></span></button>
@@ -114,3 +131,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

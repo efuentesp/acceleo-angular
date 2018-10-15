@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class UsuarioService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Usuario', usuario);
+
 		if (!usuario.usuarioId){
             return this.http.post(this.env.api + "/usuario", usuario, opts).pipe(map(res => res));
         }else{
@@ -68,27 +71,31 @@ export class UsuarioService {
 
     getUsuario(): Usuario {
         var usuario: Usuario = {
-		nombreclave: this.usuario.nombreclave, 
-		password: this.usuario.password, 
-		activo: this.usuario.activo, 
+		nombreclave: this.usuario.nombreclave,
+		password: this.usuario.password,
+		activo: this.usuario.activo,	
+		
 		rolId: this.usuario.rolId,
 		rolItem: this.usuario.rolItem,
 		usuarioId: this.usuario.usuarioId,
 		usuarioItem: this.usuario.usuarioItem	
+		
         };
         return usuario;
     }
 
 setUsuario(usuario: Usuario) {
        
-		this.isUsuarioFormValid = true;
-		this.usuario.nombreclave = usuario.nombreclave;  
-		this.usuario.password = usuario.password;  
-		this.usuario.activo = usuario.activo;  
-		this.usuario.rolId = usuario.rolId;
-		this.usuario.rolItem = usuario.rolItem;
+        this.isUsuarioFormValid = true;
+this.usuario.nombreclave = usuario.nombreclave;
+this.usuario.password = usuario.password;
+this.usuario.activo = usuario.activo;
+this.usuario.rolId = usuario.rolId;
+this.usuario.rolItem = usuario.rolItem;
+        
 		this.usuario.usuarioId = usuario.usuarioId;
 		this.usuario.usuarioItem = usuario.usuarioItem;
+		
 		this.validateUsuario();
     }
 
@@ -101,15 +108,16 @@ setUsuario(usuario: Usuario) {
     }
 
     clear() {
-
-			this.usuario.nombreclave = '';    
-			this.usuario.password = '';    
-			this.usuario.activo = null;    
-
+			this.usuario.nombreclave = ''; 
+			this.usuario.password = ''; 
+			this.usuario.activo = null; 
+			
 			this.usuario.rolId = null;
 			this.usuario.rolItem = null;
+    		
 			this.usuario.usuarioId = null;
 			this.usuario.usuarioItem = null;
+			
     }
 
     setEdit(flag){

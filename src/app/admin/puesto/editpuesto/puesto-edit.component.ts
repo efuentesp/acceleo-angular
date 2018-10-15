@@ -19,8 +19,6 @@ import { Puesto }                                         from '../../puesto/pue
 export class PuestoEditComponent implements OnInit {
 
 	public title = 'Editar Puesto';
-    public puesto: Puesto;
- 	public puestoList: Puesto;
     public form: any;
     public user: User;
     public valueName: string;
@@ -29,24 +27,33 @@ export class PuestoEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
+	public puestoList: Puesto [];
+	public puesto: Puesto;
+    public puestoAux: Puesto;
+
+	public busquedaPuesto='';
+	filterInputPuesto = new FormControl();
+
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
 				private puestoService: PuestoService
+					
 ){
-
-
-	}	
+	this.filterInputPuesto.valueChanges.subscribe(busquedaPuesto => {
+     	this.busquedaPuesto = busquedaPuesto;
+     });
+     
+		
+}
 
     ngOnInit() {
         
         this.flag = this.puestoService.getEdit();
         this.puesto = this.puestoService.getPuesto();
         this.flagDelete = this.puestoService.getDelete();
-        
-
     }  
 
 save(){
@@ -96,10 +103,9 @@ delete(){
   });
 }
 
-
-
 return(puesto){
   this.location.back();
 }
  
 }
+

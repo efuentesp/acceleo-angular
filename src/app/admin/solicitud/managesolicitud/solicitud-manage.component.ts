@@ -9,10 +9,6 @@ import { User } from '../../user/user.component.model';
 import { SolicitudService }                                  from '../../solicitud/solicitud.component.service';
 import { Solicitud }                                         from '../../solicitud/solicitud.component.model';
 
-import { PosicionService }                                  from '../../posicion/posicion.component.service';
-import { Posicion }                                         from '../../posicion/posicion.component.model';
-import { CandidatoService }                                  from '../../candidato/candidato.component.service';
-import { Candidato }                                         from '../../candidato/candidato.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
@@ -43,36 +39,14 @@ export class SolicitudManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public posicionList: Posicion [];
-    public posicion: Posicion;
-	public posicionAux: Posicion;
-
-	public busquedaPosicion='';
-	filterInputPosicion = new FormControl();
-	public candidatoList: Candidato [];
-    public candidato: Candidato;
-	public candidatoAux: Candidato;
-
-	public busquedaCandidato='';
-	filterInputCandidato = new FormControl();
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private solicitudService: SolicitudService
-	,private posicionService: PosicionService
-	,private candidatoService: CandidatoService
+				private solicitudService:SolicitudService
 ){
-
-
-  	 this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
-     this.busquedaPosicion = busquedaPosicion;
-	   });
-  	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     this.busquedaCandidato = busquedaCandidato;
-	   });
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -84,134 +58,42 @@ export class SolicitudManageComponent implements OnInit {
       this.solicitudService.setEdit(false);
       this.solicitudService.setDelete(false);
 
-      this.loadSolicituds();
+      this.loadSolicitud();
       this.habilita();
 
     }   
-
-    loadSolicituds() {
-      this.solicitudService.getAllSolicitud().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadSolicitud(){
+    this.solicitudService.getAllSolicitud().subscribe(data => {
         if (data) {
-
-          this.solicitudList = data;
-
-			this.solicitudList.forEach(element => {
-
-
-				this.posicionService.getPosicionById(element.posicionId).subscribe(dataAux => {
-					if (dataAux) {
-						this.posicionAux = dataAux;
-						element.posicionItem = this.posicionAux.posicionItem;
-						
-
-
-
-
-
-
-	      if (element.estatussolicitudId == 'e1'){
-	          element.estatussolicitudItem = 'Registrada';
-	      }
-	      if (element.estatussolicitudId == 'e2'){
-	          element.estatussolicitudItem = 'Completada';
-	      }
-	      if (element.estatussolicitudId == 'e3'){
-	          element.estatussolicitudItem = 'Cancelada x candidato';
-	      }
-	      if (element.estatussolicitudId == 'e4'){
-	          element.estatussolicitudItem = 'Cancelada x reclutador';
-	      }
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
-			this.solicitudList.forEach(element => {
-
-
-				this.candidatoService.getCandidatoById(element.candidatoId).subscribe(dataAux => {
-					if (dataAux) {
-						this.candidatoAux = dataAux;
-						element.candidatoItem = this.candidatoAux.candidatoItem;
-						// nombre+ "";
-
-
-						// nombre+ "";
-
-
-
-
-
-
-
-
-
-
-
-	      if (element.estatussolicitudId == 'e1'){
-	          element.estatussolicitudItem = 'Registrada';
-	      }
-	      if (element.estatussolicitudId == 'e2'){
-	          element.estatussolicitudItem = 'Completada';
-	      }
-	      if (element.estatussolicitudId == 'e3'){
-	          element.estatussolicitudItem = 'Cancelada x candidato';
-	      }
-	      if (element.estatussolicitudId == 'e4'){
-	          element.estatussolicitudItem = 'Cancelada x reclutador';
-	      }
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
+            this.solicitudList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the solicituds.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the solicituds.', 'error');
+    });
+}
 
-  add(){
-    this.solicitudService.clear();
-    this.router.navigate([ '../createsolicitud' ], { relativeTo: this.route })
-  }
 
-  editar(solicitud){
-    this.solicitudService.setSolicitud(solicitud);
-    this.solicitudService.setEdit(true);
-    this.solicitudService.setDelete(false);
-    this.router.navigate([ '../editsolicitud' ], { relativeTo: this.route })
-  }
+add(){
+	this.solicitudService.clear();
+	this.router.navigate([ '../createsolicitud' ], { relativeTo: this.route })
+}
 
-  eliminar(solicitud){
-    this.solicitudService.setSolicitud(solicitud);
-    this.solicitudService.setEdit(false);
-    this.solicitudService.setDelete(true);
-    this.router.navigate([ '../editsolicitud' ], { relativeTo: this.route })
-  }
+
+editar(solicitud){
+	this.solicitudService.setSolicitud(solicitud);
+	this.solicitudService.setEdit(true);
+	this.solicitudService.setDelete(false);
+	this.router.navigate([ '../editsolicitud' ], { relativeTo: this.route })
+}
+
+
+eliminar(solicitud){
+	this.solicitudService.setSolicitud(solicitud);
+	this.solicitudService.setEdit(false);
+	this.solicitudService.setDelete(true);
+	this.router.navigate([ '../editsolicitud' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowSolicitud(index, solicitud){
@@ -223,18 +105,18 @@ export class SolicitudManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_SOLICITUDDELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_SOLICITUDCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_SOLICITUDUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_SOLICITUDSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_SOLICITUDDELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_SOLICITUDCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_SOLICITUDUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -261,3 +143,4 @@ export class SolicitudManageComponent implements OnInit {
   }
 
 }
+

@@ -9,8 +9,6 @@ import { User } from '../../user/user.component.model';
 import { DireccionService }                                  from '../../direccion/direccion.component.service';
 import { Direccion }                                         from '../../direccion/direccion.component.model';
 
-import { CandidatoService }                                  from '../../candidato/candidato.component.service';
-import { Candidato }                                         from '../../candidato/candidato.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
@@ -41,26 +39,14 @@ export class DireccionManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public candidatoList: Candidato [];
-    public candidato: Candidato;
-	public candidatoAux: Candidato;
-
-	public busquedaCandidato='';
-	filterInputCandidato = new FormControl();
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private direccionService: DireccionService
-	,private candidatoService: CandidatoService
+				private direccionService:DireccionService
 ){
-
-
-  	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     this.busquedaCandidato = busquedaCandidato;
-	   });
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -72,58 +58,42 @@ export class DireccionManageComponent implements OnInit {
       this.direccionService.setEdit(false);
       this.direccionService.setDelete(false);
 
-      this.loadDireccions();
+      this.loadDireccion();
       this.habilita();
 
     }   
-
-    loadDireccions() {
-      this.direccionService.getAllDireccion().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadDireccion(){
+    this.direccionService.getAllDireccion().subscribe(data => {
         if (data) {
-
-          this.direccionList = data;
-
-			this.direccionList.forEach(element => {
-
-	
-				this.candidatoService.getCandidatoById(element.candidatoId).subscribe(dataAux => {
-					if (dataAux) {
-						this.candidatoAux = dataAux;
-            element.candidatoItem = this.candidatoAux.candidatoItem;
-            // nombre+ "";
-
-
-				}	
-			});	
-		});
-
+            this.direccionList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the direccions.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the direccions.', 'error');
+    });
+}
 
-  add(){
-    this.direccionService.clear();
-    this.router.navigate([ '../createdireccion' ], { relativeTo: this.route })
-  }
 
-  editar(direccion){
-    this.direccionService.setDireccion(direccion);
-    this.direccionService.setEdit(true);
-    this.direccionService.setDelete(false);
-    this.router.navigate([ '../editdireccion' ], { relativeTo: this.route })
-  }
+add(){
+	this.direccionService.clear();
+	this.router.navigate([ '../createdireccion' ], { relativeTo: this.route })
+}
 
-  eliminar(direccion){
-    this.direccionService.setDireccion(direccion);
-    this.direccionService.setEdit(false);
-    this.direccionService.setDelete(true);
-    this.router.navigate([ '../editdireccion' ], { relativeTo: this.route })
-  }
+
+editar(direccion){
+	this.direccionService.setDireccion(direccion);
+	this.direccionService.setEdit(true);
+	this.direccionService.setDelete(false);
+	this.router.navigate([ '../editdireccion' ], { relativeTo: this.route })
+}
+
+
+eliminar(direccion){
+	this.direccionService.setDireccion(direccion);
+	this.direccionService.setEdit(false);
+	this.direccionService.setDelete(true);
+	this.router.navigate([ '../editdireccion' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowDireccion(index, direccion){
@@ -135,18 +105,18 @@ export class DireccionManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_DIRECCIONDELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_DIRECCIONCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_DIRECCIONUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_DIRECCIONSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_DIRECCIONDELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_DIRECCIONCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_DIRECCIONUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -173,3 +143,4 @@ export class DireccionManageComponent implements OnInit {
   }
 
 }
+

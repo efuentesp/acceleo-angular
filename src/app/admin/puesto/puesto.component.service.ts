@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class PuestoService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Puesto', puesto);
+
 		if (!puesto.puestoId){
             return this.http.post(this.env.api + "/puesto", puesto, opts).pipe(map(res => res));
         }else{
@@ -68,23 +71,27 @@ export class PuestoService {
 
     getPuesto(): Puesto {
         var puesto: Puesto = {
-		descripcion: this.puesto.descripcion, 
-		puestosId: this.puesto.puestosId,
-		puestosItem: this.puesto.puestosItem,
+		
+			puestosId: this.puesto.puestosId,
+			puestosItem: this.puesto.puestosItem,
+		descripcion: this.puesto.descripcion,
 		puestoId: this.puesto.puestoId,
 		puestoItem: this.puesto.puestoItem	
+		
         };
         return puesto;
     }
 
 setPuesto(puesto: Puesto) {
        
-		this.isPuestoFormValid = true;
-		this.puesto.descripcion = puesto.descripcion;  
-		this.puesto.puestosId = puesto.puestosId;
-		this.puesto.puestosItem = puesto.puestosItem;
+        this.isPuestoFormValid = true;
+this.puesto.puestosId = puesto.puestosId;
+this.puesto.puestosItem = puesto.puestosItem;
+this.puesto.descripcion = puesto.descripcion;
+        
 		this.puesto.puestoId = puesto.puestoId;
 		this.puesto.puestoItem = puesto.puestoItem;
+		
 		this.validatePuesto();
     }
 
@@ -97,13 +104,15 @@ setPuesto(puesto: Puesto) {
     }
 
     clear() {
-
-			this.puesto.descripcion = '';    
-
+			
 			this.puesto.puestosId = null;
 			this.puesto.puestosItem = null;
+			
+			this.puesto.descripcion = ''; 
+    		
 			this.puesto.puestoId = null;
 			this.puesto.puestoItem = null;
+			
     }
 
     setEdit(flag){

@@ -1,17 +1,15 @@
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-
 export class Filial {
 
+	nombre: string = '';
+	ubicacion: string = '';
+	ciudad: string = '';
+	estado: string = '';
+	telefono: string = '';
+	sitio: string = '';
+	contacto: string = '';
+	notas: string = '';
+	
 	filialId: number = null;
 	filialItem: string = '';
 
-	ciudad: string = '';
-	estado: string = '';
-	contacto: string = '';
-	ubicacion: string = '';
-	nombre: string = '';
-	sitio: string = '';
-	telefono: string = '';
-
-	notas: string = '';
 }

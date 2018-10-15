@@ -9,12 +9,7 @@ import { User } from '../../user/user.component.model';
 import { CandidatoService }                                  from '../../candidato/candidato.component.service';
 import { Candidato }                                         from '../../candidato/candidato.component.model';
 
-import { SolicitudService }                                  from '../../solicitud/solicitud.component.service';
-import { Solicitud }                                         from '../../solicitud/solicitud.component.model';
-import { EventoService }                                     from '../../evento/evento.component.service';
-import { Evento }                                            from '../../evento/evento.component.model';
-import { NgbDateStruct, NgbDropdownConfig }                  from '@ng-bootstrap/ng-bootstrap';
-import { CustomNgbDateParserFormatter } from '../../dateformat.component';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
     selector: 'app-view',
@@ -44,34 +39,14 @@ export class CandidatoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public solicitudList: Solicitud [];
-    public solicitud: Solicitud;
-	public solicitudAux: Solicitud;
-
-	public busquedaSolicitud='';
-	filterInputSolicitud = new FormControl();
-	public eventoList: Evento [];
-    public evento: Evento;
-	public eventoAux: Evento;
-
-	public busquedaEvento='';
-	filterInputEvento = new FormControl();
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private candidatoService: CandidatoService
-	,private solicitudService: SolicitudService
-    ,private eventoService: EventoService,
-	config: NgbDropdownConfig,
-	private customParser: CustomNgbDateParserFormatter,
-	private datePipe: DatePipe
+				private candidatoService:CandidatoService
 ){
-
-    config.placement = 'top-left';
-    config.autoClose = false;
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -83,171 +58,42 @@ export class CandidatoManageComponent implements OnInit {
       this.candidatoService.setEdit(false);
       this.candidatoService.setDelete(false);
 
-      this.loadCandidatos();
+      this.loadCandidato();
       this.habilita();
 
     }   
-
-    loadCandidatos() {
-
-	this.candidatoService.getAllCandidato().subscribe(data => {
-
+    
+loadCandidato(){
+    this.candidatoService.getAllCandidato().subscribe(data => {
         if (data) {
-
-          this.candidatoList = data;
-
-			// this.candidatoList.forEach(element => {
-
-			
-				
-
-
-		// 		this.solicitudService.getSolicitudById(element.solicitudId).subscribe(dataAux => {
-		// 			if (dataAux) {
-		// 				this.solicitudAux = dataAux;
-		// 				element.solicitudItem = this.solicitudAux.solicitudItem;
+            this.candidatoList = data;
+        }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+    });
+}
 
 
+add(){
+	this.candidatoService.clear();
+	this.router.navigate([ '../createcandidato' ], { relativeTo: this.route })
+}
 
 
-
-
-
-
-
-	    //   if (element.generoId == 'mas'){
-	    //       element.generoItem = 'Masculino';
-	    //   }
-	    //   if (element.generoId == 'fem'){
-	    //       element.generoItem = 'Femenino';
-	    //   }
-
-
-	    //   if (element.estatuscandidatoId == 'e1'){
-	    //       element.estatuscandidatoItem = 'Contactado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e2'){
-	    //       element.estatuscandidatoItem = 'En proceso de evaluación';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e3'){
-	    //       element.estatuscandidatoItem = 'Ofertado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e4'){
-	    //       element.estatuscandidatoItem = 'En proceso de contratación';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e5'){
-	    //       element.estatuscandidatoItem = 'Contratado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e6'){
-	    //       element.estatuscandidatoItem = 'Rechazado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e7'){
-	    //       element.estatuscandidatoItem = 'Declinó';
-	    //   }
-
-						
-
-
-
-
-
-
-
-
-
-
-
-		// 		}	
-		// 	});	
-		// });
-
-		// 	this.candidatoList.forEach(element => {
-
-			
-
-
-
-		// 		this.eventoService.getEventoById(element.eventoId).subscribe(dataAux => {
-		// 			if (dataAux) {
-		// 				this.eventoAux = dataAux;
-		// 				element.eventoItem = this.eventoAux.eventoItem;
-
-
-
-
-
-
-
-
-
-	    //   if (element.generoId == 'mas'){
-	    //       element.generoItem = 'Masculino';
-	    //   }
-	    //   if (element.generoId == 'fem'){
-	    //       element.generoItem = 'Femenino';
-	    //   }
-
-
-	    //   if (element.estatuscandidatoId == 'e1'){
-	    //       element.estatuscandidatoItem = 'Contactado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e2'){
-	    //       element.estatuscandidatoItem = 'En proceso de evaluación';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e3'){
-	    //       element.estatuscandidatoItem = 'Ofertado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e4'){
-	    //       element.estatuscandidatoItem = 'En proceso de contratación';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e5'){
-	    //       element.estatuscandidatoItem = 'Contratado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e6'){
-	    //       element.estatuscandidatoItem = 'Rechazado';
-	    //   }
-	    //   if (element.estatuscandidatoId == 'e7'){
-	    //       element.estatuscandidatoItem = 'Declinó';
-	    //   }
-
-
-
-
-
-
-
-
-
-
-		 		}	
-		// 	});	
-		// });
-
-    //     }
-    //   }, error => {
-    //     swal('Error...', 'An error occurred while calling the candidatos.', 'error');
-       });
-    }
-
-  add(){
-    this.candidatoService.clear();
-    this.router.navigate([ '../createcandidato' ], { relativeTo: this.route })
-  }
-
-  editar(candidato){
-	candidato.fechaAux = this.customParser.parse(this.datePipe.transform(candidato.fecha,"MM-dd-yyyy"));
+editar(candidato){
 	this.candidatoService.setCandidato(candidato);
-    this.candidatoService.setEdit(true);
-    this.candidatoService.setDelete(false);
-    this.router.navigate([ '../editcandidato' ], { relativeTo: this.route })
-  }
+	this.candidatoService.setEdit(true);
+	this.candidatoService.setDelete(false);
+	this.router.navigate([ '../editcandidato' ], { relativeTo: this.route })
+}
 
-  eliminar(candidato){
-    this.candidatoService.setCandidato(candidato);
-    this.candidatoService.setEdit(false);
-    this.candidatoService.setDelete(true);
-    this.router.navigate([ '../editcandidato' ], { relativeTo: this.route })
-  }
+
+eliminar(candidato){
+	this.candidatoService.setCandidato(candidato);
+	this.candidatoService.setEdit(false);
+	this.candidatoService.setDelete(true);
+	this.router.navigate([ '../editcandidato' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowCandidato(index, candidato){
@@ -259,44 +105,42 @@ export class CandidatoManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_CANDIDATODELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_CANDIDATOCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_CANDIDATOUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_CANDIDATOSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_CANDIDATODELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_CANDIDATOCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_CANDIDATOUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
-//   let ngbDate = this.candidato.fechaAux;
-//   this.candidato.fecha = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
-
-//   // Parse to NgbDateStruct
-//     isNumber(value: any): boolean {
-//       return !isNaN(this.toInteger(value));
-//   }
+  // Parse to NgbDateStruct
+    isNumber(value: any): boolean {
+      return !isNaN(this.toInteger(value));
+  }
  
-//   toInteger(value: any): number {
-//       return parseInt(`${value}`, 10);
-//   }
-//   parse(value: string): NgbDateStruct {
-//     if (value) {
-//         const dateParts = value.trim().split('-');
-//         if (dateParts.length === 1 && this.isNumber(dateParts[0])) {
-//             return {day: this.toInteger(dateParts[0]), month: null, year: null};
-//         } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
-//             return {day: this.toInteger(dateParts[1]), month: this.toInteger(dateParts[0]), year: null};
-//         } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
-//             return {day: this.toInteger(dateParts[2]), month: this.toInteger(dateParts[1]), year: this.toInteger(dateParts[0])};
-//         }
-//     }
-//     return null;
-//   }
+  toInteger(value: any): number {
+      return parseInt(`${value}`, 10);
+  }
+  parse(value: string): NgbDateStruct {
+    if (value) {
+        const dateParts = value.trim().split('-');
+        if (dateParts.length === 1 && this.isNumber(dateParts[0])) {
+            return {day: this.toInteger(dateParts[0]), month: null, year: null};
+        } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
+            return {day: this.toInteger(dateParts[1]), month: this.toInteger(dateParts[0]), year: null};
+        } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+            return {day: this.toInteger(dateParts[2]), month: this.toInteger(dateParts[1]), year: this.toInteger(dateParts[0])};
+        }
+    }
+    return null;
+  }
 
 }
+

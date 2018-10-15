@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Documento Probatorio</h3>
+			<h3>Documento Probatorio</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,17 +47,17 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%">Nombre del documento</th>
-												<th style="max-width:10%">Descripción del documento</th>
-												<th style="max-width:10%">Tamaño</th>
+											<th style="max-width:10%">Nombre del documento</th>	
+											<th style="max-width:10%">Descripción del documento</th>	
+											<th style="max-width:10%">Tamaño</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let documento of documentoList | filterDocumento: busquedaDocumento | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDocumento'}; let i = index" (click)="setClickedRowDocumento(i, documento)" >
-												<td  style="max-width: 10%">{{documento.nombre}}</td>
-												<td  style="max-width: 10%">{{documento.descripcion}}</td>
-												<td  style="max-width: 10%">{{documento.size}}</td>
+										<tr *ngFor="let documento of documentoList | filterDocumento: busquedaDocumento | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableDocumento'}; let i = index">
+											<td  style="max-width: 10%">{{documento.nombre}}</td>
+											<td  style="max-width: 10%">{{documento.descripcion}}</td>
+											<td  style="max-width: 10%">{{documento.size}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(documento)"><span class="fa fa-pencil"></span></button>
@@ -88,3 +88,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

@@ -1,22 +1,19 @@
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-
 export class Candidato {
 
+	nombre: string = '';
+	apellidopaterno: string = '';
+	apellidomaterno: string = '';
+	fecha: string = '';
+	generoId: string = '';
+	generoItem: string = '';
+	estatuscandidatoId: string = '';
+	estatuscandidatoItem: string = '';
+	solicitudId: string = '';
+	solicitudItem: string = '';
+	eventoId: string = '';
+	eventoItem: string = '';
+	
 	candidatoId: number = null;
 	candidatoItem: string = '';
 
-	fecha: Date = null;
-	fechaAux: NgbDateStruct = null;
-	apellidomaterno: string = '';
-	nombre: string = '';
-	apellidopaterno: string = '';
-
-	generoId: string = '';
-	generoItem: string = '';	
-	estatuscandidatoId: string = '';
-	estatuscandidatoItem: string = '';	
-	solicitudId: number = null;
-	solicitudItem: string = '';
-	eventoId: number = null;
-	eventoItem: string = '';
 }

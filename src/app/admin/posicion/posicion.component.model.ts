@@ -1,30 +1,27 @@
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-
 export class Posicion {
 
+	filialId: string = '';
+	filialItem: string = '';
+	puestoId: string = '';
+	puestoItem: string = '';
+	nombre: string = '';
+	descripcion: string = '';
+	fecha: string = '';
+	contacto: string = '';
+	salario: number = null;
+	vacantes: number = null;
+	tiponominaId: string = '';
+	tiponominaItem: string = '';
+	reclutadorId: string = '';
+	reclutadorItem: string = '';
+	estatusposicionId: string = '';
+	estatusposicionItem: string = '';
+	solicitudId: string = '';
+	solicitudItem: string = '';
+	eventoId: string = '';
+	eventoItem: string = '';
+	
 	posicionId: number = null;
 	posicionItem: string = '';
 
-	nombre: string = '';
-	vacantes: number = null;
-	contacto: string = '';
-	salario: string = '';
-	descripcion: string = '';
-	fecha: string = '';
-	fechaAux: NgbDateStruct = null;
-
-	filialId: number = null;
-	filialItem: string = '';
-	puestoId: number = null;
-	puestoItem: string = '';
-	tiponominaId: string = '';
-	tiponominaItem: string = '';	
-	reclutadorId: number = null;
-	reclutadorItem: string = '';
-	estatusposicionId: string = '';
-	estatusposicionItem: string = '';	
-	solicitudId: number = null;
-	solicitudItem: string = '';
-	eventoId: number = null;
-	eventoItem: string = '';
 }

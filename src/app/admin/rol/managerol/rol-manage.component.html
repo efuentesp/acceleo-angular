@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Rol</h3>
+			<h3>Rol</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,17 +47,17 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%">Clave del rol</th>
-												<th style="max-width:10%">Nombre</th>
-												<th style="max-width:10%">Activo</th>
+											<th style="max-width:10%">Clave del rol</th>
+											<th style="max-width:10%">Nombre</th>	
+											<th style="max-width:10%">Activo</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let rol of rolList | filterRol: busquedaRol | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableRol'}; let i = index" (click)="setClickedRowRol(i, rol)" >
-												<td  style="max-width: 10%">{{rol.clave}}</td>
-												<td  style="max-width: 10%">{{rol.nombre}}</td>
-												<td  style="max-width: 10%">{{rol.activo}}</td>
+										<tr *ngFor="let rol of rolList | filterRol: busquedaRol | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableRol'}; let i = index">
+											<td  style="max-width: 10%">{{rol.clave}}</td>
+											<td  style="max-width: 10%">{{rol.nombre}}</td>
+											<td  style="max-width: 10%">{{rol.activo}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(rol)"><span class="fa fa-pencil"></span></button>
@@ -88,3 +88,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

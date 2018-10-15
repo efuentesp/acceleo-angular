@@ -9,10 +9,6 @@ import { User } from '../../user/user.component.model';
 import { EventoService }                                  from '../../evento/evento.component.service';
 import { Evento }                                         from '../../evento/evento.component.model';
 
-import { PosicionService }                                  from '../../posicion/posicion.component.service';
-import { Posicion }                                         from '../../posicion/posicion.component.model';
-import { CandidatoService }                                  from '../../candidato/candidato.component.service';
-import { Candidato }                                         from '../../candidato/candidato.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
@@ -43,36 +39,14 @@ export class EventoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-	public posicionList: Posicion [];
-    public posicion: Posicion;
-	public posicionAux: Posicion;
-
-	public busquedaPosicion='';
-	filterInputPosicion = new FormControl();
-	public candidatoList: Candidato [];
-    public candidato: Candidato;
-	public candidatoAux: Candidato;
-
-	public busquedaCandidato='';
-	filterInputCandidato = new FormControl();
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private eventoService: EventoService
-	,private posicionService: PosicionService
-	,private candidatoService: CandidatoService
+				private eventoService:EventoService
 ){
-
-
-  	 this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
-     this.busquedaPosicion = busquedaPosicion;
-	   });
-  	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     this.busquedaCandidato = busquedaCandidato;
-	   });
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -84,210 +58,42 @@ export class EventoManageComponent implements OnInit {
       this.eventoService.setEdit(false);
       this.eventoService.setDelete(false);
 
-      this.loadEventos();
+      this.loadEvento();
       this.habilita();
 
     }   
-
-    loadEventos() {
-      this.eventoService.getAllEvento().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadEvento(){
+    this.eventoService.getAllEvento().subscribe(data => {
         if (data) {
-
-          this.eventoList = data;
-
-			this.eventoList.forEach(element => {
-
-			
-
-
-
-				this.posicionService.getPosicionById(element.posicionId).subscribe(dataAux => {
-					if (dataAux) {
-						this.posicionAux = dataAux;
-						element.posicionItem = this.posicionAux.posicionItem;
-
-	      if (element.tipoeventoId == 'a'){
-	          element.tipoeventoItem = 'Llamada telefónica';
-	      }
-	      if (element.tipoeventoId == 'b'){
-	          element.tipoeventoItem = 'Contacto por eMail';
-	      }
-	      if (element.tipoeventoId == 'c'){
-	          element.tipoeventoItem = 'Entrevista';
-	      }
-	      if (element.tipoeventoId == 'd'){
-	          element.tipoeventoItem = 'Examen';
-	      }
-	      if (element.tipoeventoId == 'e'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 1';
-	      }
-	      if (element.tipoeventoId == 'f'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 2';
-	      }
-	      if (element.tipoeventoId == 'g'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 3';
-	      }
-	      if (element.tipoeventoId == 'h'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 4';
-	      }
-	      if (element.tipoeventoId == 'i'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 5';
-	      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	      if (element.estatuseventoId == 'e1'){
-	          element.estatuseventoItem = 'Agendado';
-	      }
-	      if (element.estatuseventoId == 'e2'){
-	          element.estatuseventoItem = 'Realizado';
-	      }
-	      if (element.estatuseventoId == 'e3'){
-	          element.estatuseventoItem = 'Pedido por candidato';
-	      }
-	      if (element.estatuseventoId == 'e4'){
-	          element.estatuseventoItem = 'Perdido por NMP';
-	      }
-	      if (element.estatuseventoId == 'e5'){
-	          element.estatuseventoItem = 'Cancelado por candidato';
-	      }
-	      if (element.estatuseventoId == 'e6'){
-	          element.estatuseventoItem = 'Cancelado por NMP';
-	      }
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
-			this.eventoList.forEach(element => {
-
-
-
-
-				this.candidatoService.getCandidatoById(element.candidatoId).subscribe(dataAux => {
-					if (dataAux) {
-						this.candidatoAux = dataAux;
-						element.candidatoItem = this.candidatoAux.candidatoItem;
-
-	      if (element.tipoeventoId == 'a'){
-	          element.tipoeventoItem = 'Llamada telefónica';
-	      }
-	      if (element.tipoeventoId == 'b'){
-	          element.tipoeventoItem = 'Contacto por eMail';
-	      }
-	      if (element.tipoeventoId == 'c'){
-	          element.tipoeventoItem = 'Entrevista';
-	      }
-	      if (element.tipoeventoId == 'd'){
-	          element.tipoeventoItem = 'Examen';
-	      }
-	      if (element.tipoeventoId == 'e'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 1';
-	      }
-	      if (element.tipoeventoId == 'f'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 2';
-	      }
-	      if (element.tipoeventoId == 'g'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 3';
-	      }
-	      if (element.tipoeventoId == 'h'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 4';
-	      }
-	      if (element.tipoeventoId == 'i'){
-	          element.tipoeventoItem = 'AutorizaciónNivel 5';
-	      }
-
-
-
-
-
-
-
-
-
-
-
-	      if (element.estatuseventoId == 'e1'){
-	          element.estatuseventoItem = 'Agendado';
-	      }
-	      if (element.estatuseventoId == 'e2'){
-	          element.estatuseventoItem = 'Realizado';
-	      }
-	      if (element.estatuseventoId == 'e3'){
-	          element.estatuseventoItem = 'Pedido por candidato';
-	      }
-	      if (element.estatuseventoId == 'e4'){
-	          element.estatuseventoItem = 'Perdido por NMP';
-	      }
-	      if (element.estatuseventoId == 'e5'){
-	          element.estatuseventoItem = 'Cancelado por candidato';
-	      }
-	      if (element.estatuseventoId == 'e6'){
-	          element.estatuseventoItem = 'Cancelado por NMP';
-	      }
-
-
-
-
-
-
-
-
-
-
-
-				}	
-			});	
-		});
-
+            this.eventoList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the eventos.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the eventos.', 'error');
+    });
+}
 
-  add(){
-    this.eventoService.clear();
-    this.router.navigate([ '../createevento' ], { relativeTo: this.route })
-  }
 
-  editar(evento){
-    this.eventoService.setEvento(evento);
-    this.eventoService.setEdit(true);
-    this.eventoService.setDelete(false);
-    this.router.navigate([ '../editevento' ], { relativeTo: this.route })
-  }
+add(){
+	this.eventoService.clear();
+	this.router.navigate([ '../createevento' ], { relativeTo: this.route })
+}
 
-  eliminar(evento){
-    this.eventoService.setEvento(evento);
-    this.eventoService.setEdit(false);
-    this.eventoService.setDelete(true);
-    this.router.navigate([ '../editevento' ], { relativeTo: this.route })
-  }
+
+editar(evento){
+	this.eventoService.setEvento(evento);
+	this.eventoService.setEdit(true);
+	this.eventoService.setDelete(false);
+	this.router.navigate([ '../editevento' ], { relativeTo: this.route })
+}
+
+
+eliminar(evento){
+	this.eventoService.setEvento(evento);
+	this.eventoService.setEdit(false);
+	this.eventoService.setDelete(true);
+	this.router.navigate([ '../editevento' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowEvento(index, evento){
@@ -299,18 +105,18 @@ export class EventoManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_EVENTODELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_EVENTOCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_EVENTOUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_EVENTOSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_EVENTODELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_EVENTOCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_EVENTOUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -337,3 +143,4 @@ export class EventoManageComponent implements OnInit {
   }
 
 }
+

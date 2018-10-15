@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class SolicitudService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Solicitud', solicitud);
+
 		if (!solicitud.solicitudId){
             return this.http.post(this.env.api + "/solicitud", solicitud, opts).pipe(map(res => res));
         }else{
@@ -68,39 +71,43 @@ export class SolicitudService {
 
     getSolicitud(): Solicitud {
         var solicitud: Solicitud = {
-		correo: this.solicitud.correo, 
-		telefono: this.solicitud.telefono, 
-		salario: this.solicitud.salario, 
+		
 		posicionId: this.solicitud.posicionId,
 		posicionItem: this.solicitud.posicionItem,
+		
 		candidatoId: this.solicitud.candidatoId,
 		candidatoItem: this.solicitud.candidatoItem,
 		fecha: this.solicitud.fecha,
-		// fechaAux: this.solicitud.fechaAux,
-		estatussolicitudId: this.solicitud.estatussolicitudId,
-		estatussolicitudItem: this.solicitud.estatussolicitudItem,
+		salario: this.solicitud.salario,
+		correo: this.solicitud.correo,
+		telefono: this.solicitud.telefono,
+		
+			estatussolicitudId: this.solicitud.estatussolicitudId,
+			estatussolicitudItem: this.solicitud.estatussolicitudItem,
 		solicitudId: this.solicitud.solicitudId,
 		solicitudItem: this.solicitud.solicitudItem	
+		
         };
         return solicitud;
     }
 
 setSolicitud(solicitud: Solicitud) {
        
-		this.isSolicitudFormValid = true;
-		this.solicitud.correo = solicitud.correo;  
-		this.solicitud.telefono = solicitud.telefono;  
-		this.solicitud.salario = solicitud.salario;  
-		this.solicitud.posicionId = solicitud.posicionId;
-		this.solicitud.posicionItem = solicitud.posicionItem;
-		this.solicitud.candidatoId = solicitud.candidatoId;
-		this.solicitud.candidatoItem = solicitud.candidatoItem;
-		this.solicitud.fecha = solicitud.fecha;
-		// this.solicitud.fechaAux = solicitud.fechaAux;
-		this.solicitud.estatussolicitudId = solicitud.estatussolicitudId;
-		this.solicitud.estatussolicitudItem = solicitud.estatussolicitudItem;
+        this.isSolicitudFormValid = true;
+this.solicitud.posicionId = solicitud.posicionId;
+this.solicitud.posicionItem = solicitud.posicionItem;
+this.solicitud.candidatoId = solicitud.candidatoId;
+this.solicitud.candidatoItem = solicitud.candidatoItem;
+this.solicitud.fecha = solicitud.fecha;
+this.solicitud.salario = solicitud.salario;
+this.solicitud.correo = solicitud.correo;
+this.solicitud.telefono = solicitud.telefono;
+this.solicitud.estatussolicitudId = solicitud.estatussolicitudId;
+this.solicitud.estatussolicitudItem = solicitud.estatussolicitudItem;
+        
 		this.solicitud.solicitudId = solicitud.solicitudId;
 		this.solicitud.solicitudItem = solicitud.solicitudItem;
+		
 		this.validateSolicitud();
     }
 
@@ -113,21 +120,24 @@ setSolicitud(solicitud: Solicitud) {
     }
 
     clear() {
-
-			this.solicitud.correo = '';    
-			this.solicitud.telefono = '';    
-			this.solicitud.salario = '';  
-
+			
 			this.solicitud.posicionId = null;
 			this.solicitud.posicionItem = null;
+			
 			this.solicitud.candidatoId = null;
 			this.solicitud.candidatoItem = null;
-		this.solicitud.fecha = '';
-		// this.solicitud.fechaAux = null;
+			this.solicitud.fecha = null; 
+			this.solicitud.salario = null; 
+			this.solicitud.correo = ''; 
+			this.solicitud.telefono = ''; 
+			
 			this.solicitud.estatussolicitudId = null;
 			this.solicitud.estatussolicitudItem = null;
+			
+    		
 			this.solicitud.solicitudId = null;
 			this.solicitud.solicitudItem = null;
+			
     }
 
     setEdit(flag){

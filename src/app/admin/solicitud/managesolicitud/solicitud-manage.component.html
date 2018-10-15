@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Solicitud de empleo</h3>
+			<h3>Solicitud de empleo</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,31 +47,43 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%" hidden="true">Posición</th>
-												<th style="max-width:10%">Posición</th>
-												<th style="max-width:10%" hidden="true">Candidato</th>
-												<th style="max-width:10%">Candidato</th>
-												<th style="max-width:10%">Fecha de alta</th>
-												<th style="max-width:10%">Expectativa económica</th>
-												<th style="max-width:10%">Correo electrónico</th>
-												<th style="max-width:10%">Teléfono</th>
-												<th style="max-width:10%" hidden="true">Estatus</th>
-												<th style="max-width:10%">Estatus</th>
+											<th style="max-width:10%">Posición</th>
+											<th style="max-width:10%">Candidato</th>
+											<th style="max-width:10%">Fecha de alta</th>
+											<th style="max-width:10%">Expectativa económica</th>
+											<th style="max-width:10%">Correo electrónico</th>	
+											<th style="max-width:10%">Teléfono</th>	
+											<th style="max-width:10%">Estatus</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let solicitud of solicitudList | filterSolicitud: busquedaSolicitud | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSolicitud'}; let i = index" (click)="setClickedRowSolicitud(i, solicitud)" >
-												<td  style="max-width: 10%" hidden="true">{{solicitud.posicionId}}</td>
-												<td  style="max-width: 10%">{{solicitud.posicionItem}}</td>
-												<td  style="max-width: 10%" hidden="true">{{solicitud.candidatoId}}</td>
-												<td  style="max-width: 10%">{{solicitud.candidatoItem}}</td>
-												<td  style="max-width: 10%">{{solicitud.fecha}}</td>
-												<td  style="max-width: 10%">{{solicitud.salario}}</td>
-												<td  style="max-width: 10%">{{solicitud.correo}}</td>
-												<td  style="max-width: 10%">{{solicitud.telefono}}</td>
-												<td  style="max-width: 10%" hidden="true">{{solicitud.estatussolicitudId}}</td>
-												<td  style="max-width: 10%">{{solicitud.estatussolicitudItem}}</td>
+										<tr *ngFor="let solicitud of solicitudList | filterSolicitud: busquedaSolicitud | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSolicitud'}; let i = index">
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="posicion" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Posicion <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageposicion', solicitud)" >Administrar Posicion</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createposicion', solicitud)">Agregar Posicion</button>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="candidato" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Candidato <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managecandidato', solicitud)" >Administrar Candidato</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createcandidato', solicitud)">Agregar Candidato</button>
+													</div>
+												</div>
+											</td>
+											<td  style="max-width: 10%">{{solicitud.fecha | date: 'dd/MM/yyyy'}}</td>
+											<td  style="max-width: 10%">{{solicitud.salario}}</td>
+											<td  style="max-width: 10%">{{solicitud.correo}}</td>
+											<td  style="max-width: 10%">{{solicitud.telefono}}</td>
+											<td  style="max-width: 10%">{{solicitud.estatussolicitudItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(solicitud)"><span class="fa fa-pencil"></span></button>
@@ -102,3 +114,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

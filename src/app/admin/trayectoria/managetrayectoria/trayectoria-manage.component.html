@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Trayectoria</h3>
+			<h3>Trayectoria</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,17 +47,15 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%" hidden="true">Tipo Trayectoria</th>
-												<th style="max-width:10%">Tipo Trayectoria</th>
-												<th style="max-width:10%">Palabra clave</th>
+											<th style="max-width:10%">Tipo Trayectoria</th>
+											<th style="max-width:10%">Palabra clave</th>	
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let trayectoria of trayectoriaList | filterTrayectoria: busquedaTrayectoria | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableTrayectoria'}; let i = index" (click)="setClickedRowTrayectoria(i, trayectoria)" >
-												<td  style="max-width: 10%" hidden="true">{{trayectoria.tipotrayectoriaId}}</td>
-												<td  style="max-width: 10%">{{trayectoria.tipotrayectoriaItem}}</td>
-												<td  style="max-width: 10%">{{trayectoria.clave}}</td>
+										<tr *ngFor="let trayectoria of trayectoriaList | filterTrayectoria: busquedaTrayectoria | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableTrayectoria'}; let i = index">
+											<td  style="max-width: 10%">{{trayectoria.tipotrayectoriaItem}}</td>
+											<td  style="max-width: 10%">{{trayectoria.clave}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(trayectoria)"><span class="fa fa-pencil"></span></button>
@@ -88,3 +86,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

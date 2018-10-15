@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class DireccionService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Direccion', direccion);
+
 		if (!direccion.direccionId){
             return this.http.post(this.env.api + "/direccion", direccion, opts).pipe(map(res => res));
         }else{
@@ -68,29 +71,33 @@ export class DireccionService {
 
     getDireccion(): Direccion {
         var direccion: Direccion = {
-		cp: this.direccion.cp, 
-		ciudad: this.direccion.ciudad, 
-		calle: this.direccion.calle, 
-		estado: this.direccion.estado, 
+		
 		candidatoId: this.direccion.candidatoId,
 		candidatoItem: this.direccion.candidatoItem,
+		calle: this.direccion.calle,
+		cp: this.direccion.cp,
+		ciudad: this.direccion.ciudad,
+		estado: this.direccion.estado,
 		direccionId: this.direccion.direccionId,
 		direccionItem: this.direccion.direccionItem	
+		
         };
         return direccion;
     }
 
 setDireccion(direccion: Direccion) {
        
-		this.isDireccionFormValid = true;
-		this.direccion.cp = direccion.cp;  
-		this.direccion.ciudad = direccion.ciudad;  
-		this.direccion.calle = direccion.calle;  
-		this.direccion.estado = direccion.estado;  
-		this.direccion.candidatoId = direccion.candidatoId;
-		this.direccion.candidatoItem = direccion.candidatoItem;
+        this.isDireccionFormValid = true;
+this.direccion.candidatoId = direccion.candidatoId;
+this.direccion.candidatoItem = direccion.candidatoItem;
+this.direccion.calle = direccion.calle;
+this.direccion.cp = direccion.cp;
+this.direccion.ciudad = direccion.ciudad;
+this.direccion.estado = direccion.estado;
+        
 		this.direccion.direccionId = direccion.direccionId;
 		this.direccion.direccionItem = direccion.direccionItem;
+		
 		this.validateDireccion();
     }
 
@@ -103,16 +110,17 @@ setDireccion(direccion: Direccion) {
     }
 
     clear() {
-
-			this.direccion.cp = '';    
-			this.direccion.ciudad = '';    
-			this.direccion.calle = '';    
-			this.direccion.estado = '';    
-
+			
 			this.direccion.candidatoId = null;
 			this.direccion.candidatoItem = null;
+			this.direccion.calle = ''; 
+			this.direccion.cp = ''; 
+			this.direccion.ciudad = ''; 
+			this.direccion.estado = ''; 
+    		
 			this.direccion.direccionId = null;
 			this.direccion.direccionItem = null;
+			
     }
 
     setEdit(flag){

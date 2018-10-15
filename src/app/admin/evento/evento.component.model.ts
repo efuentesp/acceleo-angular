@@ -1,26 +1,23 @@
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-
 export class Evento {
 
+	tipoeventoId: string = '';
+	tipoeventoItem: string = '';
+	nombre: string = '';
+	posicionId: string = '';
+	posicionItem: string = '';
+	candidatoId: string = '';
+	candidatoItem: string = '';
+	fecha: string = '';
+	responsable: string = '';
+	notas: string = '';
+	fechareal: string = '';
+	responsablereal: string = '';
+	feedback: string = '';
+	comentarios: string = '';
+	estatuseventoId: string = '';
+	estatuseventoItem: string = '';
+	
 	eventoId: number = null;
 	eventoItem: string = '';
 
-	nombre: string = '';
-	fecha: string = '';
-	fechaAux: NgbDateStruct = null;
-	responsable: string = '';
-
-	tipoeventoId: string = '';
-	tipoeventoItem: string = '';	
-	posicionId: number = null;
-	posicionItem: string = '';
-	candidatoId: number = null;
-	candidatoItem: string = '';
-	responsablereal: string = '';
-	notas: string = '';
-	comentarios: string = '';
-	feedback: string = '';
-	fechareal: string = '';
-	estatuseventoId: string = '';
-	estatuseventoItem: string = '';	
 }

@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class TrayectoriaService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Trayectoria', trayectoria);
+
 		if (!trayectoria.trayectoriaId){
             return this.http.post(this.env.api + "/trayectoria", trayectoria, opts).pipe(map(res => res));
         }else{
@@ -68,33 +71,39 @@ export class TrayectoriaService {
 
     getTrayectoria(): Trayectoria {
         var trayectoria: Trayectoria = {
-		descripcion: this.trayectoria.descripcion, 
-		clave: this.trayectoria.clave, 
+		
 		candidatoId: this.trayectoria.candidatoId,
 		candidatoItem: this.trayectoria.candidatoItem,
-		tipotrayectoriaId: this.trayectoria.tipotrayectoriaId,
-		tipotrayectoriaItem: this.trayectoria.tipotrayectoriaItem,
+		
+			tipotrayectoriaId: this.trayectoria.tipotrayectoriaId,
+			tipotrayectoriaItem: this.trayectoria.tipotrayectoriaItem,
+		descripcion: this.trayectoria.descripcion,
+		clave: this.trayectoria.clave,
+		
 		documentoId: this.trayectoria.documentoId,
 		documentoItem: this.trayectoria.documentoItem,
 		trayectoriaId: this.trayectoria.trayectoriaId,
 		trayectoriaItem: this.trayectoria.trayectoriaItem	
+		
         };
         return trayectoria;
     }
 
 setTrayectoria(trayectoria: Trayectoria) {
        
-		this.isTrayectoriaFormValid = true;
-		this.trayectoria.descripcion = trayectoria.descripcion;  
-		this.trayectoria.clave = trayectoria.clave;  
-		this.trayectoria.candidatoId = trayectoria.candidatoId;
-		this.trayectoria.candidatoItem = trayectoria.candidatoItem;
-		this.trayectoria.tipotrayectoriaId = trayectoria.tipotrayectoriaId;
-		this.trayectoria.tipotrayectoriaItem = trayectoria.tipotrayectoriaItem;
-		this.trayectoria.documentoId = trayectoria.documentoId;
-		this.trayectoria.documentoItem = trayectoria.documentoItem;
+        this.isTrayectoriaFormValid = true;
+this.trayectoria.candidatoId = trayectoria.candidatoId;
+this.trayectoria.candidatoItem = trayectoria.candidatoItem;
+this.trayectoria.tipotrayectoriaId = trayectoria.tipotrayectoriaId;
+this.trayectoria.tipotrayectoriaItem = trayectoria.tipotrayectoriaItem;
+this.trayectoria.descripcion = trayectoria.descripcion;
+this.trayectoria.clave = trayectoria.clave;
+this.trayectoria.documentoId = trayectoria.documentoId;
+this.trayectoria.documentoItem = trayectoria.documentoItem;
+        
 		this.trayectoria.trayectoriaId = trayectoria.trayectoriaId;
 		this.trayectoria.trayectoriaItem = trayectoria.trayectoriaItem;
+		
 		this.validateTrayectoria();
     }
 
@@ -107,18 +116,22 @@ setTrayectoria(trayectoria: Trayectoria) {
     }
 
     clear() {
-
-			this.trayectoria.descripcion = '';    
-			this.trayectoria.clave = '';    
-
+			
 			this.trayectoria.candidatoId = null;
 			this.trayectoria.candidatoItem = null;
+			
 			this.trayectoria.tipotrayectoriaId = null;
 			this.trayectoria.tipotrayectoriaItem = null;
+			
+			this.trayectoria.descripcion = ''; 
+			this.trayectoria.clave = ''; 
+			
 			this.trayectoria.documentoId = null;
 			this.trayectoria.documentoItem = null;
+    		
 			this.trayectoria.trayectoriaId = null;
 			this.trayectoria.trayectoriaItem = null;
+			
     }
 
     setEdit(flag){

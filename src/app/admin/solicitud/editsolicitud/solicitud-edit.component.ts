@@ -23,8 +23,6 @@ import { Candidato }                                         from '../../candida
 export class SolicitudEditComponent implements OnInit {
 
 	public title = 'Editar Solicitud';
-    public solicitud: Solicitud;
- 	public solicitudList: Solicitud;
     public form: any;
     public user: User;
     public valueName: string;
@@ -33,46 +31,53 @@ export class SolicitudEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public posicionList: Posicion;
-    public posicion: Posicion;
+	public solicitudList: Solicitud [];
+	public solicitud: Solicitud;
+    public solicitudAux: Solicitud;
 
-	public busquedaPosicion='';
-	filterInputPosicion = new FormControl();
-	public candidatoList: Candidato;
-    public candidato: Candidato;
+	public busquedaSolicitud='';
+	filterInputSolicitud = new FormControl();
 
-	public busquedaCandidato='';
-	filterInputCandidato = new FormControl();
+public posicionList: Posicion [];
+	    public posicion: Posicion;
+	    public posicionAux: Posicion;
+	    
+	    public busquedaPosicion='';
+	    filterInputPosicion = new FormControl();
+public candidatoList: Candidato [];
+	    public candidato: Candidato;
+	    public candidatoAux: Candidato;
+	    
+	    public busquedaCandidato='';
+	    filterInputCandidato = new FormControl();
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
 				private solicitudService: SolicitudService
-	,private posicionService: PosicionService
-	,private candidatoService: CandidatoService
+				,private posicionService: PosicionService
+				,private candidatoService: CandidatoService
+					
 ){
-
- 	 this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
-     this.busquedaPosicion = busquedaPosicion;
-   });
- 	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     this.busquedaCandidato = busquedaCandidato;
-   });
-
-	}	
+	this.filterInputSolicitud.valueChanges.subscribe(busquedaSolicitud => {
+     	this.busquedaSolicitud = busquedaSolicitud;
+     });
+     
+	this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
+		     this.busquedaPosicion = busquedaPosicion;
+		   });
+	this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+		     this.busquedaCandidato = busquedaCandidato;
+		   });
+		
+}
 
     ngOnInit() {
         
         this.flag = this.solicitudService.getEdit();
         this.solicitud = this.solicitudService.getSolicitud();
         this.flagDelete = this.solicitudService.getDelete();
-        
-		this.loadPosicions();
-		this.loadItemPosicion(this.solicitud);
-		this.loadCandidatos();
-		this.loadItemCandidato(this.solicitud);
-
     }  
 
 save(){
@@ -122,92 +127,9 @@ delete(){
   });
 }
 
-	loadPosicions(){
-  		this.posicionService.getAllPosicion().subscribe(data => {
-    	if (data) {
-      	this.posicionList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Posicions.', 'error');
-  	});
-}
-
- setClickedRowPosicion(index,posicion){
-	      
-		  posicion.checked = !posicion.checked;
-
-		  if (posicion.checked){
-		  this.posicionService.setPosicion(posicion);
-		  this.solicitud.posicionId = posicion.posicionId;
-		  this.solicitud.posicionItem = posicion.
-						nombre+ "";
-						
-	    	}else{
-            this.posicionService.clear();
-			this.solicitud.posicionId = null;
-		    this.solicitud.posicionItem = "";
-		}
-}
-
-loadItemPosicion(solicitud){
-  this.posicionService.getPosicionById(solicitud.posicionId).subscribe(data => {
-    if (data) {
-      this.posicion = data;
-      this.solicitud.posicionItem = this.posicion.
-						nombre+ "";
-					
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the posicions.', 'error');
-  });
-
-}
-
-	loadCandidatos(){
-  		this.candidatoService.getAllCandidato().subscribe(data => {
-    	if (data) {
-      	this.candidatoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
-  	});
-}
-
- setClickedRowCandidato(index,candidato){
-	      
-		  candidato.checked = !candidato.checked;
-
-		  if (candidato.checked){
-		  this.candidatoService.setCandidato(candidato);
-		  this.solicitud.candidatoId = candidato.candidatoId;
-		  this.solicitud.candidatoItem = candidato.
-						nombre+ "";
-					
-	    	}else{
-            this.candidatoService.clear();
-			this.solicitud.candidatoId = null;
-		    this.solicitud.candidatoItem = "";
-		}
-}
-
-loadItemCandidato(solicitud){
-  this.candidatoService.getCandidatoById(solicitud.candidatoId).subscribe(data => {
-    if (data) {
-      this.candidato = data;
-      this.solicitud.candidatoItem = this.candidato.
-						nombre+ "";
-						
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
-  });
-
-}
-
-
-
 return(solicitud){
   this.location.back();
 }
  
 }
+

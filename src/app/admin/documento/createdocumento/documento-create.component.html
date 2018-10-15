@@ -15,7 +15,7 @@
 		<div class="x_content">
 		
 		<!-- form -->
-		<form #documentoForm="ngForm" id="documentoForm" class="form-horizontal form-label-left" (ngSubmit)="documentoForm.valid && save()" novalidate>
+		<form #documentoForm="ngForm" id="documentoForm" class="form-horizontal form-label-left" (ngSubmit)="documentoForm.valid" novalidate>
 			<input class="form-control" #documentoId="ngModel" documentoId="documentoId" name="documentoId" type="hidden" [(ngModel)]="documento.documentoId">
 				<div class="form-group" [ngClass]="{ 'has-error': documentoForm.submitted && !nombre.valid}">
 					<label class="control-label" for="nombre">Nombre del documento<span class="required">*</span></label>
@@ -35,13 +35,9 @@
 		
 		<div class="col-sm-12">
 			<div class="input-group">
-				<div *ngIf="flagDelete">
-					<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-					<button class="btn btn-link" (click)="return(documentoForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
-				</div>
-				<div *ngIf="!flag && !flagDelete">
-					<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
-					<button class="btn btn-link" (click)="return(documentoForm)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+				<div>
+					<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+					<a class="btn btn-link" routerLink="../managedocumento" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 				</div>
 			</div>
 		</div>			

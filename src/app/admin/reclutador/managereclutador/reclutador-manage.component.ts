@@ -39,16 +39,14 @@ export class ReclutadorManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private reclutadorService: ReclutadorService
+				private reclutadorService:ReclutadorService
 ){
-
-
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -60,44 +58,42 @@ export class ReclutadorManageComponent implements OnInit {
       this.reclutadorService.setEdit(false);
       this.reclutadorService.setDelete(false);
 
-      this.loadReclutadors();
+      this.loadReclutador();
       this.habilita();
 
     }   
-
-    loadReclutadors() {
-      this.reclutadorService.getAllReclutador().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadReclutador(){
+    this.reclutadorService.getAllReclutador().subscribe(data => {
         if (data) {
-
-          this.reclutadorList = data;
-
+            this.reclutadorList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the reclutadors.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the reclutadors.', 'error');
+    });
+}
 
-  add(){
-    this.reclutadorService.clear();
-    this.router.navigate([ '../createreclutador' ], { relativeTo: this.route })
-  }
 
-  editar(reclutador){
-    this.reclutadorService.setReclutador(reclutador);
-    this.reclutadorService.setEdit(true);
-    this.reclutadorService.setDelete(false);
-    this.router.navigate([ '../editreclutador' ], { relativeTo: this.route })
-  }
+add(){
+	this.reclutadorService.clear();
+	this.router.navigate([ '../createreclutador' ], { relativeTo: this.route })
+}
 
-  eliminar(reclutador){
-    this.reclutadorService.setReclutador(reclutador);
-    this.reclutadorService.setEdit(false);
-    this.reclutadorService.setDelete(true);
-    this.router.navigate([ '../editreclutador' ], { relativeTo: this.route })
-  }
+
+editar(reclutador){
+	this.reclutadorService.setReclutador(reclutador);
+	this.reclutadorService.setEdit(true);
+	this.reclutadorService.setDelete(false);
+	this.router.navigate([ '../editreclutador' ], { relativeTo: this.route })
+}
+
+
+eliminar(reclutador){
+	this.reclutadorService.setReclutador(reclutador);
+	this.reclutadorService.setEdit(false);
+	this.reclutadorService.setDelete(true);
+	this.router.navigate([ '../editreclutador' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowReclutador(index, reclutador){
@@ -109,18 +105,18 @@ export class ReclutadorManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_RECLUTADORDELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_RECLUTADORCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_RECLUTADORUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_RECLUTADORSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_RECLUTADORDELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_RECLUTADORCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_RECLUTADORUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -147,3 +143,4 @@ export class ReclutadorManageComponent implements OnInit {
   }
 
 }
+

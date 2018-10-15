@@ -39,16 +39,14 @@ export class RolManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private rolService: RolService
+				private rolService:RolService
 ){
-
-
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -60,44 +58,42 @@ export class RolManageComponent implements OnInit {
       this.rolService.setEdit(false);
       this.rolService.setDelete(false);
 
-      this.loadRols();
+      this.loadRol();
       this.habilita();
 
     }   
-
-    loadRols() {
-      this.rolService.getAllRol().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadRol(){
+    this.rolService.getAllRol().subscribe(data => {
         if (data) {
-
-          this.rolList = data;
-
+            this.rolList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the rols.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the rols.', 'error');
+    });
+}
 
-  add(){
-    this.rolService.clear();
-    this.router.navigate([ '../createrol' ], { relativeTo: this.route })
-  }
 
-  editar(rol){
-    this.rolService.setRol(rol);
-    this.rolService.setEdit(true);
-    this.rolService.setDelete(false);
-    this.router.navigate([ '../editrol' ], { relativeTo: this.route })
-  }
+add(){
+	this.rolService.clear();
+	this.router.navigate([ '../createrol' ], { relativeTo: this.route })
+}
 
-  eliminar(rol){
-    this.rolService.setRol(rol);
-    this.rolService.setEdit(false);
-    this.rolService.setDelete(true);
-    this.router.navigate([ '../editrol' ], { relativeTo: this.route })
-  }
+
+editar(rol){
+	this.rolService.setRol(rol);
+	this.rolService.setEdit(true);
+	this.rolService.setDelete(false);
+	this.router.navigate([ '../editrol' ], { relativeTo: this.route })
+}
+
+
+eliminar(rol){
+	this.rolService.setRol(rol);
+	this.rolService.setEdit(false);
+	this.rolService.setDelete(true);
+	this.router.navigate([ '../editrol' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowRol(index, rol){
@@ -109,18 +105,18 @@ export class RolManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_ROLDELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_ROLCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_ROLUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_ROLSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_ROLDELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_ROLCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_ROLUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -147,3 +143,4 @@ export class RolManageComponent implements OnInit {
   }
 
 }
+

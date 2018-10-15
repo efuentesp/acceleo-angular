@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class PosicionService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Posicion', posicion);
+
 		if (!posicion.posicionId){
             return this.http.post(this.env.api + "/posicion", posicion, opts).pipe(map(res => res));
         }else{
@@ -68,59 +71,67 @@ export class PosicionService {
 
     getPosicion(): Posicion {
         var posicion: Posicion = {
-		nombre: this.posicion.nombre, 
-		vacantes: this.posicion.vacantes, 
-		contacto: this.posicion.contacto, 
-		salario: this.posicion.salario, 
-		descripcion: this.posicion.descripcion, 
-		fecha: this.posicion.fecha, 
-		fechaAux: this.posicion.fechaAux, 
+		
 		filialId: this.posicion.filialId,
 		filialItem: this.posicion.filialItem,
+		
 		puestoId: this.posicion.puestoId,
 		puestoItem: this.posicion.puestoItem,
-		tiponominaId: this.posicion.tiponominaId,
-		tiponominaItem: this.posicion.tiponominaItem,
+		nombre: this.posicion.nombre,
+		descripcion: this.posicion.descripcion,
+		fecha: this.posicion.fecha,
+		contacto: this.posicion.contacto,
+		salario: this.posicion.salario,
+		vacantes: this.posicion.vacantes,	
+		
+			tiponominaId: this.posicion.tiponominaId,
+			tiponominaItem: this.posicion.tiponominaItem,
+		
 		reclutadorId: this.posicion.reclutadorId,
 		reclutadorItem: this.posicion.reclutadorItem,
-		estatusposicionId: this.posicion.estatusposicionId,
-		estatusposicionItem: this.posicion.estatusposicionItem,
+		
+			estatusposicionId: this.posicion.estatusposicionId,
+			estatusposicionItem: this.posicion.estatusposicionItem,
+		
 		solicitudId: this.posicion.solicitudId,
 		solicitudItem: this.posicion.solicitudItem,
+		
 		eventoId: this.posicion.eventoId,
 		eventoItem: this.posicion.eventoItem,
 		posicionId: this.posicion.posicionId,
 		posicionItem: this.posicion.posicionItem	
+		
         };
         return posicion;
     }
 
 setPosicion(posicion: Posicion) {
        
-		this.isPosicionFormValid = true;
-		this.posicion.nombre = posicion.nombre;  
-		this.posicion.vacantes = posicion.vacantes;  
-		this.posicion.contacto = posicion.contacto;  
-		this.posicion.salario = posicion.salario;  
-		this.posicion.descripcion = posicion.descripcion;  
-		this.posicion.fecha = posicion.fecha;  
-		this.posicion.fechaAux = posicion.fechaAux;  
-		this.posicion.filialId = posicion.filialId;
-		this.posicion.filialItem = posicion.filialItem;
-		this.posicion.puestoId = posicion.puestoId;
-		this.posicion.puestoItem = posicion.puestoItem;
-		this.posicion.tiponominaId = posicion.tiponominaId;
-		this.posicion.tiponominaItem = posicion.tiponominaItem;
-		this.posicion.reclutadorId = posicion.reclutadorId;
-		this.posicion.reclutadorItem = posicion.reclutadorItem;
-		this.posicion.estatusposicionId = posicion.estatusposicionId;
-		this.posicion.estatusposicionItem = posicion.estatusposicionItem;
-		this.posicion.solicitudId = posicion.solicitudId;
-		this.posicion.solicitudItem = posicion.solicitudItem;
-		this.posicion.eventoId = posicion.eventoId;
-		this.posicion.eventoItem = posicion.eventoItem;
+        this.isPosicionFormValid = true;
+this.posicion.filialId = posicion.filialId;
+this.posicion.filialItem = posicion.filialItem;
+this.posicion.puestoId = posicion.puestoId;
+this.posicion.puestoItem = posicion.puestoItem;
+this.posicion.nombre = posicion.nombre;
+this.posicion.descripcion = posicion.descripcion;
+this.posicion.fecha = posicion.fecha;
+this.posicion.contacto = posicion.contacto;
+this.posicion.salario = posicion.salario;
+this.posicion.vacantes = posicion.vacantes;
+this.posicion.tiponominaId = posicion.tiponominaId;
+this.posicion.tiponominaItem = posicion.tiponominaItem;
+this.posicion.reclutadorId = posicion.reclutadorId;
+this.posicion.reclutadorItem = posicion.reclutadorItem;
+this.posicion.estatusposicionId = posicion.estatusposicionId;
+this.posicion.estatusposicionItem = posicion.estatusposicionItem;
+this.posicion.solicitudId = posicion.solicitudId;
+this.posicion.solicitudItem = posicion.solicitudItem;
+this.posicion.eventoId = posicion.eventoId;
+this.posicion.eventoItem = posicion.eventoItem;
+        
 		this.posicion.posicionId = posicion.posicionId;
 		this.posicion.posicionItem = posicion.posicionItem;
+		
 		this.validatePosicion();
     }
 
@@ -133,31 +144,39 @@ setPosicion(posicion: Posicion) {
     }
 
     clear() {
-
-			this.posicion.nombre = '';    
-			this.posicion.vacantes = null;    
-			this.posicion.contacto = '';    
-			this.posicion.salario = '';  
-			this.posicion.descripcion = '';    
-			this.posicion.fecha = '';  
-			this.posicion.fechaAux = null;    
-
+			
 			this.posicion.filialId = null;
 			this.posicion.filialItem = null;
+			
 			this.posicion.puestoId = null;
 			this.posicion.puestoItem = null;
+			this.posicion.nombre = ''; 
+			this.posicion.descripcion = ''; 
+			this.posicion.fecha = null; 
+			this.posicion.contacto = ''; 
+			this.posicion.salario = null; 
+			this.posicion.vacantes = null; 
+			
 			this.posicion.tiponominaId = null;
 			this.posicion.tiponominaItem = null;
+			
+			
 			this.posicion.reclutadorId = null;
 			this.posicion.reclutadorItem = null;
+			
 			this.posicion.estatusposicionId = null;
 			this.posicion.estatusposicionItem = null;
+			
+			
 			this.posicion.solicitudId = null;
 			this.posicion.solicitudItem = null;
+			
 			this.posicion.eventoId = null;
 			this.posicion.eventoItem = null;
+    		
 			this.posicion.posicionId = null;
 			this.posicion.posicionItem = null;
+			
     }
 
     setEdit(flag){

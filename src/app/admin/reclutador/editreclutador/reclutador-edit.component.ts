@@ -19,8 +19,6 @@ import { Reclutador }                                         from '../../reclut
 export class ReclutadorEditComponent implements OnInit {
 
 	public title = 'Editar Reclutador';
-    public reclutador: Reclutador;
- 	public reclutadorList: Reclutador;
     public form: any;
     public user: User;
     public valueName: string;
@@ -29,24 +27,33 @@ export class ReclutadorEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
+	public reclutadorList: Reclutador [];
+	public reclutador: Reclutador;
+    public reclutadorAux: Reclutador;
+
+	public busquedaReclutador='';
+	filterInputReclutador = new FormControl();
+
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
 				private reclutadorService: ReclutadorService
+					
 ){
-
-
-	}	
+	this.filterInputReclutador.valueChanges.subscribe(busquedaReclutador => {
+     	this.busquedaReclutador = busquedaReclutador;
+     });
+     
+		
+}
 
     ngOnInit() {
         
         this.flag = this.reclutadorService.getEdit();
         this.reclutador = this.reclutadorService.getReclutador();
         this.flagDelete = this.reclutadorService.getDelete();
-        
-
     }  
 
 save(){
@@ -96,10 +103,9 @@ delete(){
   });
 }
 
-
-
 return(reclutador){
   this.location.back();
 }
  
 }
+

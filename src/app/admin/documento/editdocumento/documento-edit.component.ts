@@ -19,8 +19,6 @@ import { Documento }                                         from '../../documen
 export class DocumentoEditComponent implements OnInit {
 
 	public title = 'Editar Documento';
-    public documento: Documento;
- 	public documentoList: Documento;
     public form: any;
     public user: User;
     public valueName: string;
@@ -29,6 +27,13 @@ export class DocumentoEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
+	public documentoList: Documento [];
+	public documento: Documento;
+    public documentoAux: Documento;
+
+	public busquedaDocumento='';
+	filterInputDocumento = new FormControl();
+
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -36,17 +41,17 @@ export class DocumentoEditComponent implements OnInit {
 				private parserFormatter: NgbDateParserFormatter,
 				private documentoService: DocumentoService
 ){
-
-
-	}	
+	this.filterInputDocumento.valueChanges.subscribe(busquedaDocumento => {
+     	this.busquedaDocumento = busquedaDocumento;
+     });
+     
+}
 
     ngOnInit() {
         
         this.flag = this.documentoService.getEdit();
         this.documento = this.documentoService.getDocumento();
         this.flagDelete = this.documentoService.getDelete();
-        
-
     }  
 
 save(){
@@ -96,10 +101,9 @@ delete(){
   });
 }
 
-
-
 return(documento){
   this.location.back();
 }
  
 }
+

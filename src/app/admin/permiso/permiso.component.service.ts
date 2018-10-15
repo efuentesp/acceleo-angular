@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class PermisoService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Permiso', permiso);
+
 		if (!permiso.permisoId){
             return this.http.post(this.env.api + "/permiso", permiso, opts).pipe(map(res => res));
         }else{
@@ -68,27 +71,31 @@ export class PermisoService {
 
     getPermiso(): Permiso {
         var permiso: Permiso = {
-		ruta: this.permiso.ruta, 
-		funcion: this.permiso.funcion, 
-		nivelpermiso: this.permiso.nivelpermiso, 
+		
 		rolId: this.permiso.rolId,
 		rolItem: this.permiso.rolItem,
+		funcion: this.permiso.funcion,
+		ruta: this.permiso.ruta,
+		nivelpermiso: this.permiso.nivelpermiso,
 		permisoId: this.permiso.permisoId,
 		permisoItem: this.permiso.permisoItem	
+		
         };
         return permiso;
     }
 
 setPermiso(permiso: Permiso) {
        
-		this.isPermisoFormValid = true;
-		this.permiso.ruta = permiso.ruta;  
-		this.permiso.funcion = permiso.funcion;  
-		this.permiso.nivelpermiso = permiso.nivelpermiso;  
-		this.permiso.rolId = permiso.rolId;
-		this.permiso.rolItem = permiso.rolItem;
+        this.isPermisoFormValid = true;
+this.permiso.rolId = permiso.rolId;
+this.permiso.rolItem = permiso.rolItem;
+this.permiso.funcion = permiso.funcion;
+this.permiso.ruta = permiso.ruta;
+this.permiso.nivelpermiso = permiso.nivelpermiso;
+        
 		this.permiso.permisoId = permiso.permisoId;
 		this.permiso.permisoItem = permiso.permisoItem;
+		
 		this.validatePermiso();
     }
 
@@ -101,15 +108,16 @@ setPermiso(permiso: Permiso) {
     }
 
     clear() {
-
-			this.permiso.ruta = '';    
-			this.permiso.funcion = '';    
-			this.permiso.nivelpermiso = '';    
-
+			
 			this.permiso.rolId = null;
 			this.permiso.rolItem = null;
+			this.permiso.funcion = ''; 
+			this.permiso.ruta = ''; 
+			this.permiso.nivelpermiso = ''; 
+    		
 			this.permiso.permisoId = null;
 			this.permiso.permisoItem = null;
+			
     }
 
     setEdit(flag){

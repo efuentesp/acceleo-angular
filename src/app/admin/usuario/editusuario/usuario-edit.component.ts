@@ -21,8 +21,6 @@ import { Rol }                                         from '../../rol/rol.compo
 export class UsuarioEditComponent implements OnInit {
 
 	public title = 'Editar Usuario';
-    public usuario: Usuario;
- 	public usuarioList: Usuario;
     public form: any;
     public user: User;
     public valueName: string;
@@ -31,35 +29,41 @@ export class UsuarioEditComponent implements OnInit {
 	public flag: boolean;
     public flagDelete: boolean;
 
-	public rolList: Rol;
-    public rol: Rol;
+	public usuarioList: Usuario [];
+	public usuario: Usuario;
+    public usuarioAux: Usuario;
 
-	public busquedaRol='';
-	filterInputRol = new FormControl();
+	public busquedaUsuario='';
+	filterInputUsuario = new FormControl();
+
+public rolList: Rol [];
+	    public rol: Rol;
+	    public rolAux: Rol;
+	    
+	    public busquedaRol='';
+	    filterInputRol = new FormControl();
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parserFormatter: NgbDateParserFormatter,
 				private usuarioService: UsuarioService
-	,private rolService: RolService
+				,private rolService: RolService
 ){
-
- 	 this.filterInputRol.valueChanges.subscribe(busquedaRol => {
-     this.busquedaRol = busquedaRol;
-   });
-
-	}	
+	this.filterInputUsuario.valueChanges.subscribe(busquedaUsuario => {
+     	this.busquedaUsuario = busquedaUsuario;
+     });
+     
+	this.filterInputRol.valueChanges.subscribe(busquedaRol => {
+		     this.busquedaRol = busquedaRol;
+		   });
+}
 
     ngOnInit() {
         
         this.flag = this.usuarioService.getEdit();
         this.usuario = this.usuarioService.getUsuario();
         this.flagDelete = this.usuarioService.getDelete();
-        
-		this.loadRols();
-		this.loadItemRol(this.usuario);
-
     }  
 
 save(){
@@ -109,49 +113,9 @@ delete(){
   });
 }
 
-	loadRols(){
-  		this.rolService.getAllRol().subscribe(data => {
-    	if (data) {
-      	this.rolList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Rols.', 'error');
-  	});
-}
-
- setClickedRowRol(index,rol){
-	      
-		  rol.checked = !rol.checked;
-
-		  if (rol.checked){
-		  this.rolService.setRol(rol);
-		  this.usuario.rolId = rol.rolId;
-		  this.usuario.rolItem = rol.
-						nombre+ "";
-	    	}else{
-            this.rolService.clear();
-			this.usuario.rolId = null;
-		    this.usuario.rolItem = "";
-		}
-}
-
-loadItemRol(usuario){
-  this.rolService.getRolById(usuario.rolId).subscribe(data => {
-    if (data) {
-      this.rol = data;
-      this.usuario.rolItem = this.rol.
-						nombre+ "";
-    }
-    }, error => {
-    swal('Error...', 'An error occurred while calling the rols.', 'error');
-  });
-
-}
-
-
-
 return(usuario){
   this.location.back();
 }
  
 }
+

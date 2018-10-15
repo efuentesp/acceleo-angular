@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class RolService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Rol', rol);
+
 		if (!rol.rolId){
             return this.http.post(this.env.api + "/rol", rol, opts).pipe(map(res => res));
         }else{
@@ -68,23 +71,26 @@ export class RolService {
 
     getRol(): Rol {
         var rol: Rol = {
-		nombre: this.rol.nombre, 
-		clave: this.rol.clave, 
-		activo: this.rol.activo, 
+		clave: this.rol.clave,	
+		nombre: this.rol.nombre,
+		activo: this.rol.activo,	
 		rolId: this.rol.rolId,
 		rolItem: this.rol.rolItem	
+		
         };
         return rol;
     }
 
 setRol(rol: Rol) {
        
-		this.isRolFormValid = true;
-		this.rol.nombre = rol.nombre;  
-		this.rol.clave = rol.clave;  
-		this.rol.activo = rol.activo;  
+        this.isRolFormValid = true;
+this.rol.clave = rol.clave;
+this.rol.nombre = rol.nombre;
+this.rol.activo = rol.activo;
+        
 		this.rol.rolId = rol.rolId;
 		this.rol.rolItem = rol.rolItem;
+		
 		this.validateRol();
     }
 
@@ -97,13 +103,13 @@ setRol(rol: Rol) {
     }
 
     clear() {
-
-			this.rol.nombre = '';    
-			this.rol.clave = null;    
-			this.rol.activo = null;    
-
+			this.rol.clave = null; 
+			this.rol.nombre = ''; 
+			this.rol.activo = null; 
+    		
 			this.rol.rolId = null;
 			this.rol.rolItem = null;
+			
     }
 
     setEdit(flag){

@@ -39,16 +39,14 @@ export class PuestoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
 
-
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private puestoService: PuestoService
+				private puestoService:PuestoService
 ){
-
-
-
-	}
+	
+	
+}
 
     ngOnInit() {
       
@@ -60,44 +58,42 @@ export class PuestoManageComponent implements OnInit {
       this.puestoService.setEdit(false);
       this.puestoService.setDelete(false);
 
-      this.loadPuestos();
+      this.loadPuesto();
       this.habilita();
 
     }   
-
-    loadPuestos() {
-      this.puestoService.getAllPuesto().subscribe(data => {
-
-		var datePipe = new DatePipe('en-US');
-
+    
+loadPuesto(){
+    this.puestoService.getAllPuesto().subscribe(data => {
         if (data) {
-
-          this.puestoList = data;
-
+            this.puestoList = data;
         }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the puestos.', 'error');
-      });
-    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the puestos.', 'error');
+    });
+}
 
-  add(){
-    this.puestoService.clear();
-    this.router.navigate([ '../createpuesto' ], { relativeTo: this.route })
-  }
 
-  editar(puesto){
-    this.puestoService.setPuesto(puesto);
-    this.puestoService.setEdit(true);
-    this.puestoService.setDelete(false);
-    this.router.navigate([ '../editpuesto' ], { relativeTo: this.route })
-  }
+add(){
+	this.puestoService.clear();
+	this.router.navigate([ '../createpuesto' ], { relativeTo: this.route })
+}
 
-  eliminar(puesto){
-    this.puestoService.setPuesto(puesto);
-    this.puestoService.setEdit(false);
-    this.puestoService.setDelete(true);
-    this.router.navigate([ '../editpuesto' ], { relativeTo: this.route })
-  }
+
+editar(puesto){
+	this.puestoService.setPuesto(puesto);
+	this.puestoService.setEdit(true);
+	this.puestoService.setDelete(false);
+	this.router.navigate([ '../editpuesto' ], { relativeTo: this.route })
+}
+
+
+eliminar(puesto){
+	this.puestoService.setPuesto(puesto);
+	this.puestoService.setEdit(false);
+	this.puestoService.setDelete(true);
+	this.router.navigate([ '../editpuesto' ], { relativeTo: this.route })
+}
 
   // Select row
   setClickedRowPuesto(index, puesto){
@@ -109,18 +105,18 @@ export class PuestoManageComponent implements OnInit {
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_PUESTODELETE'){
-        this.deleteActive = true;
-      }
-      if (element.authority == 'ROLE_PUESTOCREATE'){
-        this.createActive = true;
-      }
-      if (element.authority == 'ROLE_PUESTOUPDATE'){
-        this.updateActive = true;
-      }
-      if (element.authority == 'ROLE_PUESTOSEARCH'){
-        this.searchActive = true;
-      }
+if (element.authority == 'ROLE_PUESTODELETE'){
+	this.deleteActive = true;
+}
+if (element.authority == 'ROLE_PUESTOCREATE'){
+this.createActive = true;
+}
+if (element.authority == 'ROLE_PUESTOUPDATE'){
+	this.updateActive = true;
+}
+if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+	this.searchActive = true;
+}
     });
   }
 
@@ -147,3 +143,4 @@ export class PuestoManageComponent implements OnInit {
   }
 
 }
+

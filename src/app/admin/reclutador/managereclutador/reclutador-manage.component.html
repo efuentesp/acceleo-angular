@@ -3,7 +3,7 @@
 	<!-- page-title -->
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
-			<h3>Administrar Reclutador</h3>
+			<h3>Reclutador</h3>
 		</div>
 	</div>
 	<!-- ./page-title -->
@@ -47,17 +47,17 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-												<th style="max-width:10%">Reclutador</th>
-												<th style="max-width:10%">Apellido Paterno</th>
-												<th style="max-width:10%">Apellido Materno</th>
+											<th style="max-width:10%">Reclutador</th>	
+											<th style="max-width:10%">Apellido Paterno</th>	
+											<th style="max-width:10%">Apellido Materno</th>	
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let reclutador of reclutadorList | filterReclutador: busquedaReclutador | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableReclutador'}; let i = index" (click)="setClickedRowReclutador(i, reclutador)" >
-												<td  style="max-width: 10%">{{reclutador.nombre}}</td>
-												<td  style="max-width: 10%">{{reclutador.apellidopaterno}}</td>
-												<td  style="max-width: 10%">{{reclutador.apellidomaterno}}</td>
+										<tr *ngFor="let reclutador of reclutadorList | filterReclutador: busquedaReclutador | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableReclutador'}; let i = index">
+											<td  style="max-width: 10%">{{reclutador.nombre}}</td>
+											<td  style="max-width: 10%">{{reclutador.apellidopaterno}}</td>
+											<td  style="max-width: 10%">{{reclutador.apellidomaterno}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(reclutador)"><span class="fa fa-pencil"></span></button>
@@ -88,3 +88,5 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
+
+

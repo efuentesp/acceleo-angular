@@ -1,6 +1,7 @@
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,6 +38,8 @@ export class FilialService {
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
+        console.log('Filial', filial);
+
 		if (!filial.filialId){
             return this.http.post(this.env.api + "/filial", filial, opts).pipe(map(res => res));
         }else{
@@ -68,33 +71,36 @@ export class FilialService {
 
     getFilial(): Filial {
         var filial: Filial = {
-		ciudad: this.filial.ciudad, 
-		estado: this.filial.estado, 
-		contacto: this.filial.contacto, 
-		ubicacion: this.filial.ubicacion, 
-		nombre: this.filial.nombre, 
-		sitio: this.filial.sitio, 
-		telefono: this.filial.telefono, 
+		nombre: this.filial.nombre,
+		ubicacion: this.filial.ubicacion,
+		ciudad: this.filial.ciudad,
+		estado: this.filial.estado,
+		telefono: this.filial.telefono,
+		sitio: this.filial.sitio,
+		contacto: this.filial.contacto,
 		notas: this.filial.notas,
 		filialId: this.filial.filialId,
 		filialItem: this.filial.filialItem	
+		
         };
         return filial;
     }
 
 setFilial(filial: Filial) {
        
-		this.isFilialFormValid = true;
-		this.filial.ciudad = filial.ciudad;  
-		this.filial.estado = filial.estado;  
-		this.filial.contacto = filial.contacto;  
-		this.filial.ubicacion = filial.ubicacion;  
-		this.filial.nombre = filial.nombre;  
-		this.filial.sitio = filial.sitio;  
-		this.filial.telefono = filial.telefono;  
-		this.filial.notas = filial.notas;
+        this.isFilialFormValid = true;
+this.filial.nombre = filial.nombre;
+this.filial.ubicacion = filial.ubicacion;
+this.filial.ciudad = filial.ciudad;
+this.filial.estado = filial.estado;
+this.filial.telefono = filial.telefono;
+this.filial.sitio = filial.sitio;
+this.filial.contacto = filial.contacto;
+this.filial.notas = filial.notas;
+        
 		this.filial.filialId = filial.filialId;
 		this.filial.filialItem = filial.filialItem;
+		
 		this.validateFilial();
     }
 
@@ -107,18 +113,18 @@ setFilial(filial: Filial) {
     }
 
     clear() {
-
-			this.filial.ciudad = '';    
-			this.filial.estado = '';    
-			this.filial.contacto = '';    
-			this.filial.ubicacion = '';    
-			this.filial.nombre = '';    
-			this.filial.sitio = '';    
-			this.filial.telefono = '';    
-
-			this.filial.notas = '';
+			this.filial.nombre = ''; 
+			this.filial.ubicacion = ''; 
+			this.filial.ciudad = ''; 
+			this.filial.estado = ''; 
+			this.filial.telefono = ''; 
+			this.filial.sitio = ''; 
+			this.filial.contacto = ''; 
+			this.filial.notas = ''; 
+    		
 			this.filial.filialId = null;
 			this.filial.filialItem = null;
+			
     }
 
     setEdit(flag){

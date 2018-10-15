@@ -15,7 +15,7 @@
 		<div class="x_content">
 			
 			<!-- form -->
-			<form #candidatoForm="ngForm" id="candidatoForm" class="form-horizontal form-label-left" (ngSubmit)="candidatoForm.valid && save()" novalidate>
+			<form #candidatoForm="ngForm" id="candidatoForm" class="form-horizontal form-label-left" (ngSubmit)="candidatoForm.valid" novalidate>
 				<input class="form-control" #candidatoId="ngModel" candidatoId="candidatoId" name="candidatoId" type="hidden" [(ngModel)]="candidato.candidatoId">
 					<div *ngIf="flagDelete">
 						<div class="form-group">
@@ -149,11 +149,11 @@
 					<div class="input-group">
 						<div *ngIf="flagDelete">
 							<button class="btn btn-danger" (click)="delete()"><span style="margin-right:10px;"  class="fa fa-trash"></span>Eliminar</button>
-							<button class="btn btn-link" (click)="return(ordensimplificadaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<a class="btn btn-link" routerLink="../managecandidato" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
-							<button class="btn btn-link" (click)="return(ordensimplificadaForm)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
+							<button class="btn btn-primary" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<a class="btn btn-link" routerLink="../managecandidato" ><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</a>
 						</div>
 					</div>
 				</div>
