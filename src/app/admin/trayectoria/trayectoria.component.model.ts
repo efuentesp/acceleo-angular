@@ -1,3 +1,5 @@
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class Trayectoria {
 
 	candidatoId: string = '';

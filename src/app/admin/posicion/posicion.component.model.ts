@@ -1,3 +1,5 @@
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class Posicion {
 
 	filialId: string = '';
@@ -7,6 +9,7 @@ export class Posicion {
 	nombre: string = '';
 	descripcion: string = '';
 	fecha: string = '';
+	fechaAux: NgbDateStruct = null;
 	contacto: string = '';
 	salario: number = null;
 	vacantes: number = null;

@@ -79,6 +79,8 @@ public candidatoList: Candidato [];
         
         this.flag = this.eventoService.getEdit();
         this.evento = this.eventoService.getEvento();
+    		this.evento.fechaAux = this.parserFormatter.parse(this.evento.fecha);
+    		this.evento.fecharealAux = this.parserFormatter.parse(this.evento.fechareal);
         this.flagDelete = this.eventoService.getDelete();
     }  
 

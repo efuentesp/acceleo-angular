@@ -1,3 +1,5 @@
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class Solicitud {
 
 	posicionId: string = '';
@@ -5,6 +7,7 @@ export class Solicitud {
 	candidatoId: string = '';
 	candidatoItem: string = '';
 	fecha: string = '';
+	fechaAux: NgbDateStruct = null;
 	salario: number = null;
 	correo: string = '';
 	telefono: string = '';

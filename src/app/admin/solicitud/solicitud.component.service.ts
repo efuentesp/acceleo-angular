@@ -78,6 +78,7 @@ export class SolicitudService {
 		candidatoId: this.solicitud.candidatoId,
 		candidatoItem: this.solicitud.candidatoItem,
 		fecha: this.solicitud.fecha,
+		fechaAux: this.solicitud.fechaAux,
 		salario: this.solicitud.salario,
 		correo: this.solicitud.correo,
 		telefono: this.solicitud.telefono,
@@ -99,6 +100,7 @@ this.solicitud.posicionItem = solicitud.posicionItem;
 this.solicitud.candidatoId = solicitud.candidatoId;
 this.solicitud.candidatoItem = solicitud.candidatoItem;
 this.solicitud.fecha = solicitud.fecha;
+this.solicitud.fechaAux = solicitud.fechaAux;
 this.solicitud.salario = solicitud.salario;
 this.solicitud.correo = solicitud.correo;
 this.solicitud.telefono = solicitud.telefono;
@@ -127,6 +129,7 @@ this.solicitud.estatussolicitudItem = solicitud.estatussolicitudItem;
 			this.solicitud.candidatoId = null;
 			this.solicitud.candidatoItem = null;
 			this.solicitud.fecha = null; 
+			this.solicitud.fechaAux = null; 
 			this.solicitud.salario = null; 
 			this.solicitud.correo = ''; 
 			this.solicitud.telefono = ''; 

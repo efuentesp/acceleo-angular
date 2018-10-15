@@ -75,6 +75,7 @@ export class CandidatoService {
 		apellidopaterno: this.candidato.apellidopaterno,
 		apellidomaterno: this.candidato.apellidomaterno,
 		fecha: this.candidato.fecha,
+		fechaAux: this.candidato.fechaAux,
 		
 			generoId: this.candidato.generoId,
 			generoItem: this.candidato.generoItem,
@@ -101,6 +102,7 @@ this.candidato.nombre = candidato.nombre;
 this.candidato.apellidopaterno = candidato.apellidopaterno;
 this.candidato.apellidomaterno = candidato.apellidomaterno;
 this.candidato.fecha = candidato.fecha;
+this.candidato.fechaAux = candidato.fechaAux;
 this.candidato.generoId = candidato.generoId;
 this.candidato.generoItem = candidato.generoItem;
 this.candidato.estatuscandidatoId = candidato.estatuscandidatoId;
@@ -129,6 +131,7 @@ this.candidato.eventoItem = candidato.eventoItem;
 			this.candidato.apellidopaterno = ''; 
 			this.candidato.apellidomaterno = ''; 
 			this.candidato.fecha = null; 
+			this.candidato.fechaAux = null; 
 			
 			this.candidato.generoId = null;
 			this.candidato.generoItem = null;

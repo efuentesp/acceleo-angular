@@ -1,3 +1,5 @@
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class Evento {
 
 	tipoeventoId: string = '';
@@ -8,9 +10,11 @@ export class Evento {
 	candidatoId: string = '';
 	candidatoItem: string = '';
 	fecha: string = '';
+	fechaAux: NgbDateStruct = null;
 	responsable: string = '';
 	notas: string = '';
 	fechareal: string = '';
+	fecharealAux: NgbDateStruct = null;
 	responsablereal: string = '';
 	feedback: string = '';
 	comentarios: string = '';

@@ -82,9 +82,11 @@ export class EventoService {
 		candidatoId: this.evento.candidatoId,
 		candidatoItem: this.evento.candidatoItem,
 		fecha: this.evento.fecha,
+		fechaAux: this.evento.fechaAux,
 		responsable: this.evento.responsable,
 		notas: this.evento.notas,
 		fechareal: this.evento.fechareal,
+		fecharealAux: this.evento.fecharealAux,
 		responsablereal: this.evento.responsablereal,
 		feedback: this.evento.feedback,
 		comentarios: this.evento.comentarios,
@@ -109,9 +111,11 @@ this.evento.posicionItem = evento.posicionItem;
 this.evento.candidatoId = evento.candidatoId;
 this.evento.candidatoItem = evento.candidatoItem;
 this.evento.fecha = evento.fecha;
+this.evento.fechaAux = evento.fechaAux;
 this.evento.responsable = evento.responsable;
 this.evento.notas = evento.notas;
 this.evento.fechareal = evento.fechareal;
+this.evento.fecharealAux = evento.fecharealAux;
 this.evento.responsablereal = evento.responsablereal;
 this.evento.feedback = evento.feedback;
 this.evento.comentarios = evento.comentarios;
@@ -145,9 +149,11 @@ this.evento.estatuseventoItem = evento.estatuseventoItem;
 			this.evento.candidatoId = null;
 			this.evento.candidatoItem = null;
 			this.evento.fecha = null; 
+			this.evento.fechaAux = null; 
 			this.evento.responsable = ''; 
 			this.evento.notas = ''; 
 			this.evento.fechareal = null; 
+			this.evento.fecharealAux = null; 
 			this.evento.responsablereal = ''; 
 			this.evento.feedback = ''; 
 			this.evento.comentarios = ''; 

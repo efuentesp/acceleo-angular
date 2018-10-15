@@ -80,6 +80,7 @@ export class PosicionService {
 		nombre: this.posicion.nombre,
 		descripcion: this.posicion.descripcion,
 		fecha: this.posicion.fecha,
+		fechaAux: this.posicion.fechaAux,
 		contacto: this.posicion.contacto,
 		salario: this.posicion.salario,
 		vacantes: this.posicion.vacantes,	
@@ -115,6 +116,7 @@ this.posicion.puestoItem = posicion.puestoItem;
 this.posicion.nombre = posicion.nombre;
 this.posicion.descripcion = posicion.descripcion;
 this.posicion.fecha = posicion.fecha;
+this.posicion.fechaAux = posicion.fechaAux;
 this.posicion.contacto = posicion.contacto;
 this.posicion.salario = posicion.salario;
 this.posicion.vacantes = posicion.vacantes;
@@ -153,6 +155,7 @@ this.posicion.eventoItem = posicion.eventoItem;
 			this.posicion.nombre = ''; 
 			this.posicion.descripcion = ''; 
 			this.posicion.fecha = null; 
+			this.posicion.fechaAux = null; 
 			this.posicion.contacto = ''; 
 			this.posicion.salario = null; 
 			this.posicion.vacantes = null; 

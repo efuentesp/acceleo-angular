@@ -55,6 +55,7 @@ export class CandidatoEditComponent implements OnInit {
         
         this.flag = this.candidatoService.getEdit();
         this.candidato = this.candidatoService.getCandidato();
+    		this.candidato.fechaAux = this.parserFormatter.parse(this.candidato.fecha);
         this.flagDelete = this.candidatoService.getDelete();
     }  
 

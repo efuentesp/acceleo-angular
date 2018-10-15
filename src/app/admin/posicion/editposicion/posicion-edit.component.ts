@@ -91,6 +91,7 @@ public reclutadorList: Reclutador [];
         
         this.flag = this.posicionService.getEdit();
         this.posicion = this.posicionService.getPosicion();
+    		this.posicion.fechaAux = this.parserFormatter.parse(this.posicion.fecha);
         this.flagDelete = this.posicionService.getDelete();
     }  
 
