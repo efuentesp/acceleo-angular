@@ -67,6 +67,36 @@ loadPosicion(){
     this.posicionService.getAllPosicion().subscribe(data => {
         if (data) {
             this.posicionList = data;
+				
+				
+			this.posicionList.forEach(element => {
+			        if (element.tiponominaId == 'a'){
+			            element.tiponominaItem = "Externo";
+			        }		
+			        if (element.tiponominaId == 'b'){
+			            element.tiponominaItem = "Interno";
+			        }		
+			        if (element.tiponominaId == 'c'){
+			            element.tiponominaItem = "Sindicalizado";
+			        }		
+			});
+				
+			this.posicionList.forEach(element => {
+			        if (element.estatusposicionId == 'e1'){
+			            element.estatusposicionItem = "Abierta";
+			        }		
+			        if (element.estatusposicionId == 'e2'){
+			            element.estatusposicionItem = "Cerrada";
+			        }		
+			        if (element.estatusposicionId == 'e3'){
+			            element.estatusposicionItem = "Cancelada";
+			        }		
+			        if (element.estatusposicionId == 'e4'){
+			            element.estatusposicionItem = "En pausa";
+			        }		
+			});
+				
+				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the posicions.', 'error');
@@ -141,6 +171,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

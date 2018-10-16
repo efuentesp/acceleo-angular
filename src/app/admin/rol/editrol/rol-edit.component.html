@@ -29,7 +29,7 @@
 							<input class="form-control col-md-12" #clave="ngModel" name="clave" maxlength="128" type="number" [(ngModel)]="rol.clave" required>
 							<div *ngIf="rolForm.submitted && !clave.valid" class="help-block">Clave del rol es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
@@ -42,7 +42,7 @@
 							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" required>
 							<div *ngIf="rolForm.submitted && !nombre.valid" class="help-block">Nombre es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
@@ -55,7 +55,7 @@
 							<input class="form-control col-md-12" #activo="ngModel" name="activo" maxlength="128" type="number" [(ngModel)]="rol.activo" required>
 							<div *ngIf="rolForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
-					</div>
+					</div>	
 				<div class="ln_solid"></div>
 
 				<div class="col-sm-12">

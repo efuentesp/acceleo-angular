@@ -82,8 +82,6 @@ save(){
 
 	if (
 		this.solicitud.posicionId ===null ||
-		this.solicitud.candidatoId ===null ||
-		this.solicitud.fecha ==="" || this.solicitud.fecha ===null || 
 		this.solicitud.salario ===null ||
 		this.solicitud.correo ==="" || this.solicitud.correo ===null || 
 		this.solicitud.telefono ==="" || this.solicitud.telefono ===null || 

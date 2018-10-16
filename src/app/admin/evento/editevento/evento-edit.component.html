@@ -86,7 +86,7 @@
 							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="evento.nombre" required>
 							<div *ngIf="eventoForm.submitted && !nombre.valid" class="help-block">Nombre del evento es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !posicionId.valid}">
 						<label class="control-label" for="posicion">Posición<span class="required">*</span></label>
 						<div class="input-group">
@@ -138,7 +138,7 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="responsable">Responsable del evento<span class="required">*</span></label>
@@ -151,23 +151,23 @@
 							<input class="form-control col-md-12" #responsable="ngModel" name="responsable" maxlength="128" type="text" [(ngModel)]="evento.responsable" required>
 							<div *ngIf="eventoForm.submitted && !responsable.valid" class="help-block">Responsable del evento es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="notas">Comentarios<span class="required">*</span></label>
+							<label class="control-label" for="notas">Comentarios</label>
 							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
-						<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !notas.valid}">
-							<label class="control-label" for="notas">Comentarios<span class="required">*</span></label>
+						<div class="form-group">
+							<label class="control-label" for="notas">Comentarios</label>
 							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas" required>
 							<div *ngIf="eventoForm.submitted && !notas.valid" class="help-block">Comentarios es requerido</div>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="fechareal">Fecha real<span class="required">*</span></label>
+							<label class="control-label" for="fechareal">Fecha real</label>
 							<div class="input-group col-md-12">	
 								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fecharealAux" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" required>
 								<span class="input-group-btn">
@@ -181,7 +181,7 @@
 					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="fechareal">Fecha real<span class="required">*</span></label>
+							<label class="control-label" for="fechareal">Fecha real</label>
 							<div class="input-group col-md-12">	
 								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fecharealAux" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" readonly disabled>
 								<span class="input-group-btn">
@@ -191,42 +191,42 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="responsablereal">Responsable real<span class="required">*</span></label>
+							<label class="control-label" for="responsablereal">Responsable real</label>
 							<input class="form-control col-md-12" #responsablereal="ngModel" name="responsablereal" maxlength="128" type="text" [(ngModel)]="evento.responsablereal" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
-						<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !responsablereal.valid}">
-							<label class="control-label" for="responsablereal">Responsable real<span class="required">*</span></label>
+						<div class="form-group">
+							<label class="control-label" for="responsablereal">Responsable real</label>
 							<input class="form-control col-md-12" #responsablereal="ngModel" name="responsablereal" maxlength="128" type="text" [(ngModel)]="evento.responsablereal" required>
 							<div *ngIf="eventoForm.submitted && !responsablereal.valid" class="help-block">Responsable real es requerido</div>
 						</div>
 					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="feedback">Feedback<span class="required">*</span></label>
+							<label class="control-label" for="feedback">Feedback</label>
 							<input class="form-control col-md-12" #feedback="ngModel" name="feedback" maxlength="128" type="text" [(ngModel)]="evento.feedback" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
-						<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !feedback.valid}">
-							<label class="control-label" for="feedback">Feedback<span class="required">*</span></label>
+						<div class="form-group">
+							<label class="control-label" for="feedback">Feedback</label>
 							<input class="form-control col-md-12" #feedback="ngModel" name="feedback" maxlength="128" type="text" [(ngModel)]="evento.feedback" required>
 							<div *ngIf="eventoForm.submitted && !feedback.valid" class="help-block">Feedback es requerido</div>
 						</div>
 					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="comentarios">Comentarios del responsable<span class="required">*</span></label>
+							<label class="control-label" for="comentarios">Comentarios del responsable</label>
 							<input class="form-control col-md-12" #comentarios="ngModel" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
-						<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !comentarios.valid}">
-							<label class="control-label" for="comentarios">Comentarios del responsable<span class="required">*</span></label>
+						<div class="form-group">
+							<label class="control-label" for="comentarios">Comentarios del responsable</label>
 							<input class="form-control col-md-12" #comentarios="ngModel" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios" required>
 							<div *ngIf="eventoForm.submitted && !comentarios.valid" class="help-block">Comentarios del responsable es requerido</div>
 						</div>

@@ -67,6 +67,39 @@ loadCandidato(){
     this.candidatoService.getAllCandidato().subscribe(data => {
         if (data) {
             this.candidatoList = data;
+			this.candidatoList.forEach(element => {
+			        if (element.generoId == 'mas'){
+			            element.generoItem = "Masculino";
+			        }		
+			        if (element.generoId == 'fem'){
+			            element.generoItem = "Femenino";
+			        }		
+			});
+			this.candidatoList.forEach(element => {
+			        if (element.estatuscandidatoId == 'e1'){
+			            element.estatuscandidatoItem = "Contactado";
+			        }		
+			        if (element.estatuscandidatoId == 'e2'){
+			            element.estatuscandidatoItem = "En proceso de evaluación";
+			        }		
+			        if (element.estatuscandidatoId == 'e3'){
+			            element.estatuscandidatoItem = "Ofertado";
+			        }		
+			        if (element.estatuscandidatoId == 'e4'){
+			            element.estatuscandidatoItem = "En proceso de contratación";
+			        }		
+			        if (element.estatuscandidatoId == 'e5'){
+			            element.estatuscandidatoItem = "Contratado";
+			        }		
+			        if (element.estatuscandidatoId == 'e6'){
+			            element.estatuscandidatoItem = "Rechazado";
+			        }		
+			        if (element.estatuscandidatoId == 'e7'){
+			            element.estatuscandidatoItem = "Declinó";
+			        }		
+			});
+				
+				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the candidatos.', 'error');
@@ -141,6 +174,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

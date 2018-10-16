@@ -85,14 +85,8 @@ save(){
 		this.evento.tipoeventoId ==="" || this.evento.tipoeventoId ===null || 
 		this.evento.nombre ==="" || this.evento.nombre ===null || 
 		this.evento.posicionId ===null ||
-		this.evento.candidatoId ===null ||
 		this.evento.fecha ==="" || this.evento.fecha ===null || 
 		this.evento.responsable ==="" || this.evento.responsable ===null || 
-		this.evento.notas ==="" || this.evento.notas ===null || 
-		this.evento.fechareal ==="" || this.evento.fechareal ===null || 
-		this.evento.responsablereal ==="" || this.evento.responsablereal ===null || 
-		this.evento.feedback ==="" || this.evento.feedback ===null || 
-		this.evento.comentarios ==="" || this.evento.comentarios ===null || 
 		this.evento.estatuseventoId ==="" || this.evento.estatuseventoId ===null || 
 		this.evento.eventoId !== null 
 	){

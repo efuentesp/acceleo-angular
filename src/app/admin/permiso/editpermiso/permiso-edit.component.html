@@ -42,7 +42,7 @@
 							<input class="form-control col-md-12" #funcion="ngModel" name="funcion" maxlength="128" type="text" [(ngModel)]="permiso.funcion" required>
 							<div *ngIf="permisoForm.submitted && !funcion.valid" class="help-block">Funcion es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ruta">Ruta<span class="required">*</span></label>
@@ -55,7 +55,7 @@
 							<input class="form-control col-md-12" #ruta="ngModel" name="ruta" maxlength="128" type="text" [(ngModel)]="permiso.ruta" required>
 							<div *ngIf="permisoForm.submitted && !ruta.valid" class="help-block">Ruta es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nivelpermiso">Permiso<span class="required">*</span></label>
@@ -68,7 +68,7 @@
 							<input class="form-control col-md-12" #nivelpermiso="ngModel" name="nivelpermiso" maxlength="128" type="text" [(ngModel)]="permiso.nivelpermiso" required>
 							<div *ngIf="permisoForm.submitted && !nivelpermiso.valid" class="help-block">Permiso es requerido</div>
 						</div>
-					</div>
+					</div>	
 						<!-- Modal Rol -->
 						<div id="modalRol" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 							<div class="modal-dialog" style="width:60%">

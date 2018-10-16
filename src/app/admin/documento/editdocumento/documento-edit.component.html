@@ -29,7 +29,7 @@
 							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="documento.nombre" required>
 							<div *ngIf="documentoForm.submitted && !nombre.valid" class="help-block">Nombre del documento es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción del documento<span class="required">*</span></label>
@@ -42,18 +42,17 @@
 							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="documento.descripcion" required>
 							<div *ngIf="documentoForm.submitted && !descripcion.valid" class="help-block">Descripción del documento es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="size">Tamaño<span class="required">*</span></label>
+							<label class="control-label" for="size">Tamaño</label>
 							<input class="form-control col-md-12"   #size="ngModel" name="size" maxlength="128" type="number" [(ngModel)]="documento.size" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
-						<div class="form-group" [ngClass]="{ 'has-error': documentoForm.submitted && !size.valid}">
-							<label class="control-label" for="size">Tamaño<span class="required">*</span></label>
+						<div class="form-group">
+							<label class="control-label" for="size">Tamaño</label>
 							<input class="form-control col-md-12" #size="ngModel" name="size" maxlength="128" type="number" [(ngModel)]="documento.size" required>
-							<div *ngIf="documentoForm.submitted && !size.valid" class="help-block">Tamaño es requerido</div>
 						</div>
 					</div>
 				<div class="ln_solid"></div>

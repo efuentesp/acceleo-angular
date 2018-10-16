@@ -67,6 +67,22 @@ loadSolicitud(){
     this.solicitudService.getAllSolicitud().subscribe(data => {
         if (data) {
             this.solicitudList = data;
+				
+				
+			this.solicitudList.forEach(element => {
+			        if (element.estatussolicitudId == 'e1'){
+			            element.estatussolicitudItem = "Registrada";
+			        }		
+			        if (element.estatussolicitudId == 'e2'){
+			            element.estatussolicitudItem = "Completada";
+			        }		
+			        if (element.estatussolicitudId == 'e3'){
+			            element.estatussolicitudItem = "Cancelada x candidato";
+			        }		
+			        if (element.estatussolicitudId == 'e4'){
+			            element.estatussolicitudItem = "Cancelada x reclutador";
+			        }		
+			});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the solicituds.', 'error');
@@ -141,6 +157,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

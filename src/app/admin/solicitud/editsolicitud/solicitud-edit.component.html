@@ -44,7 +44,7 @@
 					</div>		
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
+							<label class="control-label" for="fecha">Fecha de alta</label>
 							<div class="input-group col-md-12">	
 								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="solicitud.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
 								<span class="input-group-btn">
@@ -58,7 +58,7 @@
 					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
-							<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
+							<label class="control-label" for="fecha">Fecha de alta</label>
 							<div class="input-group col-md-12">	
 								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="solicitud.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
 								<span class="input-group-btn">
@@ -68,7 +68,7 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="salario">Expectativa económica<span class="required">*</span></label>
@@ -81,7 +81,7 @@
 							<input class="form-control col-md-12" #salario="ngModel" name="salario" maxlength="128" type="number" [(ngModel)]="solicitud.salario" required>
 							<div *ngIf="solicitudForm.submitted && !salario.valid" class="help-block">Expectativa económica es requerido</div>
 						</div>
-					</div>	
+					</div>		
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="correo">Correo electrónico<span class="required">*</span></label>
@@ -94,7 +94,7 @@
 							<input class="form-control col-md-12" #correo="ngModel" name="correo" maxlength="128" type="text" [(ngModel)]="solicitud.correo" required>
 							<div *ngIf="solicitudForm.submitted && !correo.valid" class="help-block">Correo electrónico es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="telefono">Teléfono<span class="required">*</span></label>
@@ -107,7 +107,7 @@
 							<input class="form-control col-md-12" #telefono="ngModel" name="telefono" maxlength="128" type="text" [(ngModel)]="solicitud.telefono" required>
 							<div *ngIf="solicitudForm.submitted && !telefono.valid" class="help-block">Teléfono es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div class="form-group">
 						<label class="control-label" for="estatussolicitud">EstatusSolicitud<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">

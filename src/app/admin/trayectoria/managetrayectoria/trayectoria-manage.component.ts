@@ -67,6 +67,31 @@ loadTrayectoria(){
     this.trayectoriaService.getAllTrayectoria().subscribe(data => {
         if (data) {
             this.trayectoriaList = data;
+				
+			this.trayectoriaList.forEach(element => {
+			        if (element.tipotrayectoriaId == 'a'){
+			            element.tipotrayectoriaItem = "Estudios";
+			        }		
+			        if (element.tipotrayectoriaId == 'b'){
+			            element.tipotrayectoriaItem = "Certificación";
+			        }		
+			        if (element.tipotrayectoriaId == 'c'){
+			            element.tipotrayectoriaItem = "Experiencia Laboral";
+			        }		
+			        if (element.tipotrayectoriaId == 'd'){
+			            element.tipotrayectoriaItem = "Interés";
+			        }		
+			        if (element.tipotrayectoriaId == 'e'){
+			            element.tipotrayectoriaItem = "Habilidad";
+			        }		
+			        if (element.tipotrayectoriaId == 'f'){
+			            element.tipotrayectoriaItem = "Recomendación";
+			        }		
+			        if (element.tipotrayectoriaId == 'g'){
+			            element.tipotrayectoriaItem = "Curso";
+			        }		
+			});
+				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the trayectorias.', 'error');
@@ -141,6 +166,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

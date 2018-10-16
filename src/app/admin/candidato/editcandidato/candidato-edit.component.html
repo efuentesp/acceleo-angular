@@ -29,7 +29,7 @@
 							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="candidato.nombre" required>
 							<div *ngIf="candidatoForm.submitted && !nombre.valid" class="help-block">Candidato es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
@@ -42,7 +42,7 @@
 							<input class="form-control col-md-12" #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidopaterno" required>
 							<div *ngIf="candidatoForm.submitted && !apellidopaterno.valid" class="help-block">Apellido Paterno es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
@@ -55,7 +55,7 @@
 							<input class="form-control col-md-12" #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidomaterno" required>
 							<div *ngIf="candidatoForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de nacimiento<span class="required">*</span></label>
@@ -82,7 +82,7 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div>	
 					<div class="form-group">
 						<label class="control-label" for="genero">Genero<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">

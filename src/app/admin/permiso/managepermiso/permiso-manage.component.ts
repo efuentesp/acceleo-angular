@@ -67,6 +67,7 @@ loadPermiso(){
     this.permisoService.getAllPermiso().subscribe(data => {
         if (data) {
             this.permisoList = data;
+				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the permisos.', 'error');
@@ -141,6 +142,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

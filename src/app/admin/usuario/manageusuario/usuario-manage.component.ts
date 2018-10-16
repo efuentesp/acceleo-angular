@@ -67,6 +67,7 @@ loadUsuario(){
     this.usuarioService.getAllUsuario().subscribe(data => {
         if (data) {
             this.usuarioList = data;
+				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the usuarios.', 'error');
@@ -141,6 +142,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

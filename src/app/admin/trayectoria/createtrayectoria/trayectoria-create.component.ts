@@ -85,7 +85,6 @@ save(){
 		this.trayectoria.tipotrayectoriaId ==="" || this.trayectoria.tipotrayectoriaId ===null || 
 		this.trayectoria.descripcion ==="" || this.trayectoria.descripcion ===null || 
 		this.trayectoria.clave ==="" || this.trayectoria.clave ===null || 
-		this.trayectoria.documentoId ===null ||
 		this.trayectoria.trayectoriaId !== null 
 	){
 		return;

@@ -67,6 +67,7 @@ loadDireccion(){
     this.direccionService.getAllDireccion().subscribe(data => {
         if (data) {
             this.direccionList = data;
+				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the direccions.', 'error');
@@ -141,6 +142,4 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
-
 }
-

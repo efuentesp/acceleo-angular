@@ -56,7 +56,6 @@ save(){
 	if (
 		this.documento.nombre ==="" || this.documento.nombre ===null || 
 		this.documento.descripcion ==="" || this.documento.descripcion ===null || 
-		this.documento.size ===null || 
 		this.documento.documentoId !== null 
 	){
 		return;

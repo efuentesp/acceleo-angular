@@ -29,7 +29,7 @@
 							<input class="form-control col-md-12" #nombreclave="ngModel" name="nombreclave" maxlength="128" type="text" [(ngModel)]="usuario.nombreclave" required>
 							<div *ngIf="usuarioForm.submitted && !nombreclave.valid" class="help-block">Nombre Clave es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="password">Password<span class="required">*</span></label>
@@ -42,7 +42,7 @@
 							<input class="form-control col-md-12" #password="ngModel" name="password" maxlength="128" type="text" [(ngModel)]="usuario.password" required>
 							<div *ngIf="usuarioForm.submitted && !password.valid" class="help-block">Password es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
@@ -55,7 +55,7 @@
 							<input class="form-control col-md-12" #activo="ngModel" name="activo" maxlength="128" type="number" [(ngModel)]="usuario.activo" required>
 							<div *ngIf="usuarioForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div class="form-group" [ngClass]="{ 'has-error': usuarioForm.submitted && !rolId.valid}">
 						<label class="control-label" for="rol">Rol<span class="required">*</span></label>
 						<div class="input-group">

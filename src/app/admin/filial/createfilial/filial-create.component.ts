@@ -61,7 +61,6 @@ save(){
 		this.filial.telefono ==="" || this.filial.telefono ===null || 
 		this.filial.sitio ==="" || this.filial.sitio ===null || 
 		this.filial.contacto ==="" || this.filial.contacto ===null || 
-		this.filial.notas ==="" || this.filial.notas ===null || 
 		this.filial.filialId !== null 
 	){
 		return;

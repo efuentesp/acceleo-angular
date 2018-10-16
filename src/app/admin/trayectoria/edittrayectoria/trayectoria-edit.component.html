@@ -87,7 +87,7 @@
 							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" required>
 							<div *ngIf="trayectoriaForm.submitted && !descripcion.valid" class="help-block">Descripción de la trayectoria es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="clave">Palabra clave<span class="required">*</span></label>
@@ -100,7 +100,7 @@
 							<input class="form-control col-md-12" #clave="ngModel" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" required>
 							<div *ngIf="trayectoriaForm.submitted && !clave.valid" class="help-block">Palabra clave es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div class="form-group">
 						<label class="control-label" for="documento">Documento Probatorio<span class="required">*</span></label>
 						<div class="input-group">

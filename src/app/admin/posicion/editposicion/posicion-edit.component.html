@@ -55,7 +55,7 @@
 							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="posicion.nombre" required>
 							<div *ngIf="posicionForm.submitted && !nombre.valid" class="help-block">Nombre de la posición es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción de la vacante<span class="required">*</span></label>
@@ -68,7 +68,7 @@
 							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="posicion.descripcion" required>
 							<div *ngIf="posicionForm.submitted && !descripcion.valid" class="help-block">Descripción de la vacante es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
@@ -95,7 +95,7 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="contacto">Responsable de la posición<span class="required">*</span></label>
@@ -108,7 +108,7 @@
 							<input class="form-control col-md-12" #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="posicion.contacto" required>
 							<div *ngIf="posicionForm.submitted && !contacto.valid" class="help-block">Responsable de la posición es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="salario">Presupuesto para la posición<span class="required">*</span></label>
@@ -121,7 +121,7 @@
 							<input class="form-control col-md-12" #salario="ngModel" name="salario" maxlength="128" type="number" [(ngModel)]="posicion.salario" required>
 							<div *ngIf="posicionForm.submitted && !salario.valid" class="help-block">Presupuesto para la posición es requerido</div>
 						</div>
-					</div>	
+					</div>		
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="vacantes">Número de vacantes<span class="required">*</span></label>
@@ -134,7 +134,7 @@
 							<input class="form-control col-md-12" #vacantes="ngModel" name="vacantes" maxlength="128" type="number" [(ngModel)]="posicion.vacantes" required>
 							<div *ngIf="posicionForm.submitted && !vacantes.valid" class="help-block">Número de vacantes es requerido</div>
 						</div>
-					</div>
+					</div>	
 					<div class="form-group">
 						<label class="control-label" for="tiponomina">TipoNomina<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
