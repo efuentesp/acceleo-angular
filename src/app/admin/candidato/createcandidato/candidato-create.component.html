@@ -45,15 +45,15 @@
 					</div>
 					<!--<div *ngIf="candidatoForm.submitted && !fechaAux.valid" class="help-block">Fecha de nacimiento es requerido</div>-->
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !generoId.valid}">
-					<label class="control-label" for="genero">Genero<span class="required">*</span></label>
+				<div class="form-group" id="genero" [ngClass]="{ 'has-error': candidatoForm.submitted && !generoId.valid}">
+					<label class="control-label" for="genero">Género<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="mas" name="genero" [(ngModel)]="candidato.generoId" required>Masculino</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fem" name="genero" [(ngModel)]="candidato.generoId" required>Femenino</div>		
 					<input type="hidden" class="form-control input-md"  name="generoId"  [(ngModel)]="candidato.generoId"    #generoId="ngModel" required>
 					<div *ngIf="candidatoForm.submitted && !generoId.valid" class="help-block">Genero es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !estatuscandidatoId.valid}">
-					<label class="control-label" for="estatuscandidato">EstatusCandidato<span class="required">*</span></label>
+				<div class="form-group" id="estatuscandidato" [ngClass]="{ 'has-error': candidatoForm.submitted && !estatuscandidatoId.valid}">
+					<label class="control-label" for="estatuscandidato">Estatus<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" required>Contactado</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" required>En proceso de evaluación</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" required>Ofertado</div>		

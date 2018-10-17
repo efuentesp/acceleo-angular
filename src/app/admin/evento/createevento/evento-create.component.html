@@ -17,8 +17,8 @@
 		<!-- form -->
 		<form #eventoForm="ngForm" id="eventoForm" class="form-horizontal form-label-left" (ngSubmit)="eventoForm.valid" novalidate>
 			<input class="form-control" #eventoId="ngModel" eventoId="eventoId" name="eventoId" type="hidden" [(ngModel)]="evento.eventoId">
-				<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !tipoeventoId.valid}">
-					<label class="control-label" for="tipoevento">TipoEvento<span class="required">*</span></label>
+				<div class="form-group" id="tipoevento" [ngClass]="{ 'has-error': eventoForm.submitted && !tipoeventoId.valid}">
+					<label class="control-label" for="tipoevento">Tipo de Evento<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="a" name="tipoevento" [(ngModel)]="evento.tipoeventoId" required>Llamada telefónica</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b" name="tipoevento" [(ngModel)]="evento.tipoeventoId" required>Contacto por eMail</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="c" name="tipoevento" [(ngModel)]="evento.tipoeventoId" required>Entrevista</div>		
@@ -36,7 +36,7 @@
 					<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="evento.nombre" required>
 					<div *ngIf="eventoForm.submitted && !nombre.valid" class="help-block">Nombre del evento es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !posicionId.valid}">
+				<div class="form-group" id="posicion" [ngClass]="{ 'has-error': eventoForm.submitted && !posicionId.valid}">
 					<label class="control-label" for="posicion">Posición<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="posicionId"   [(ngModel)]="evento.posicionId"    #posicionId="ngModel" required>
@@ -49,7 +49,7 @@
 					</div>
 					<div *ngIf="eventoForm.submitted && !posicionId.valid" class="help-block">Posición es requerido</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="candidato">
 					<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="evento.candidatoId"    #candidatoId="ngModel" required>
@@ -106,8 +106,8 @@
 					<label class="control-label" for="comentarios">Comentarios del responsable</label>
 					<input class="form-control col-md-12" #comentarios="ngModel" id="comentarios" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios">
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !estatuseventoId.valid}">
-					<label class="control-label" for="estatusevento">EstatusEvento<span class="required">*</span></label>
+				<div class="form-group" id="estatusevento" [ngClass]="{ 'has-error': eventoForm.submitted && !estatuseventoId.valid}">
+					<label class="control-label" for="estatusevento">Estatus<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estatusevento" [(ngModel)]="evento.estatuseventoId" required>Agendado</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estatusevento" [(ngModel)]="evento.estatuseventoId" required>Realizado</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estatusevento" [(ngModel)]="evento.estatuseventoId" required>Pedido por candidato</div>		

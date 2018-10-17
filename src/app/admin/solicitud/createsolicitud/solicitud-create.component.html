@@ -17,7 +17,7 @@
 		<!-- form -->
 		<form #solicitudForm="ngForm" id="solicitudForm" class="form-horizontal form-label-left" (ngSubmit)="solicitudForm.valid" novalidate>
 			<input class="form-control" #solicitudId="ngModel" solicitudId="solicitudId" name="solicitudId" type="hidden" [(ngModel)]="solicitud.solicitudId">
-				<div class="form-group" [ngClass]="{ 'has-error': solicitudForm.submitted && !posicionId.valid}">
+				<div class="form-group" id="posicion" [ngClass]="{ 'has-error': solicitudForm.submitted && !posicionId.valid}">
 					<label class="control-label" for="posicion">Posición<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="posicionId"   [(ngModel)]="solicitud.posicionId"    #posicionId="ngModel" required>
@@ -30,7 +30,7 @@
 					</div>
 					<div *ngIf="solicitudForm.submitted && !posicionId.valid" class="help-block">Posición es requerido</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="candidato">
 					<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="solicitud.candidatoId"    #candidatoId="ngModel" required>
@@ -68,8 +68,8 @@
 					<input class="form-control col-md-12" #telefono="ngModel" id="telefono" name="telefono" maxlength="128" type="text" [(ngModel)]="solicitud.telefono" required>
 					<div *ngIf="solicitudForm.submitted && !telefono.valid" class="help-block">Teléfono es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': solicitudForm.submitted && !estatussolicitudId.valid}">
-					<label class="control-label" for="estatussolicitud">EstatusSolicitud<span class="required">*</span></label>
+				<div class="form-group" id="estatussolicitud" [ngClass]="{ 'has-error': solicitudForm.submitted && !estatussolicitudId.valid}">
+					<label class="control-label" for="estatussolicitud">Estatus<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estatussolicitud" [(ngModel)]="solicitud.estatussolicitudId" required>Registrada</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estatussolicitud" [(ngModel)]="solicitud.estatussolicitudId" required>Completada</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estatussolicitud" [(ngModel)]="solicitud.estatussolicitudId" required>Cancelada x candidato</div>		

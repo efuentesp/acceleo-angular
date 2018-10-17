@@ -32,8 +32,8 @@
 					<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" required>
 					<div *ngIf="reclutadorForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !generoId.valid}">
-					<label class="control-label" for="genero">Genero<span class="required">*</span></label>
+				<div class="form-group" id="genero" [ngClass]="{ 'has-error': reclutadorForm.submitted && !generoId.valid}">
+					<label class="control-label" for="genero">Género<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="mas" name="genero" [(ngModel)]="reclutador.generoId" required>Masculino</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="fem" name="genero" [(ngModel)]="reclutador.generoId" required>Femenino</div>		
 					<input type="hidden" class="form-control input-md"  name="generoId"  [(ngModel)]="reclutador.generoId"    #generoId="ngModel" required>

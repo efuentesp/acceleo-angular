@@ -17,7 +17,7 @@
 		<!-- form -->
 		<form #direccionForm="ngForm" id="direccionForm" class="form-horizontal form-label-left" (ngSubmit)="direccionForm.valid" novalidate>
 			<input class="form-control" #direccionId="ngModel" direccionId="direccionId" name="direccionId" type="hidden" [(ngModel)]="direccion.direccionId">
-				<div class="form-group" [ngClass]="{ 'has-error': direccionForm.submitted && !candidatoId.valid}">
+				<div class="form-group" id="candidato" [ngClass]="{ 'has-error': direccionForm.submitted && !candidatoId.valid}">
 					<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="direccion.candidatoId"    #candidatoId="ngModel" required>

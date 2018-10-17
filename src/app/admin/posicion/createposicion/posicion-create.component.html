@@ -17,7 +17,7 @@
 		<!-- form -->
 		<form #posicionForm="ngForm" id="posicionForm" class="form-horizontal form-label-left" (ngSubmit)="posicionForm.valid" novalidate>
 			<input class="form-control" #posicionId="ngModel" posicionId="posicionId" name="posicionId" type="hidden" [(ngModel)]="posicion.posicionId">
-				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !filialId.valid}">
+				<div class="form-group" id="filial" [ngClass]="{ 'has-error': posicionForm.submitted && !filialId.valid}">
 					<label class="control-label" for="filial">Filial<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="filialId"   [(ngModel)]="posicion.filialId"    #filialId="ngModel" required>
@@ -30,7 +30,7 @@
 					</div>
 					<div *ngIf="posicionForm.submitted && !filialId.valid" class="help-block">Filial es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !puestoId.valid}">
+				<div class="form-group" id="puesto" [ngClass]="{ 'has-error': posicionForm.submitted && !puestoId.valid}">
 					<label class="control-label" for="puesto">Puesto<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="puestoId"   [(ngModel)]="posicion.puestoId"    #puestoId="ngModel" required>
@@ -81,15 +81,15 @@
 					<input class="form-control col-md-12" #vacantes="ngModel" id="vacantes" name="vacantes" maxlength="128" type="number" [(ngModel)]="posicion.vacantes" required>
 					<div *ngIf="posicionForm.submitted && !vacantes.valid" class="help-block">Número de vacantes es requerido</div>
 				</div>		
-				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !tiponominaId.valid}">
-					<label class="control-label" for="tiponomina">TipoNomina<span class="required">*</span></label>
+				<div class="form-group" id="tiponomina" [ngClass]="{ 'has-error': posicionForm.submitted && !tiponominaId.valid}">
+					<label class="control-label" for="tiponomina">Tipo de posición<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="a" name="tiponomina" [(ngModel)]="posicion.tiponominaId" required>Externo</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="b" name="tiponomina" [(ngModel)]="posicion.tiponominaId" required>Interno</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="c" name="tiponomina" [(ngModel)]="posicion.tiponominaId" required>Sindicalizado</div>		
 					<input type="hidden" class="form-control input-md"  name="tiponominaId"  [(ngModel)]="posicion.tiponominaId"    #tiponominaId="ngModel" required>
 					<div *ngIf="posicionForm.submitted && !tiponominaId.valid" class="help-block">TipoNomina es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !reclutadorId.valid}">
+				<div class="form-group" id="reclutador" [ngClass]="{ 'has-error': posicionForm.submitted && !reclutadorId.valid}">
 					<label class="control-label" for="reclutador">Reclutador<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="reclutadorId"   [(ngModel)]="posicion.reclutadorId"    #reclutadorId="ngModel" required>
@@ -102,8 +102,8 @@
 					</div>
 					<div *ngIf="posicionForm.submitted && !reclutadorId.valid" class="help-block">Reclutador es requerido</div>
 				</div>
-				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !estatusposicionId.valid}">
-					<label class="control-label" for="estatusposicion">EstatusPosicion<span class="required">*</span></label>
+				<div class="form-group" id="estatusposicion" [ngClass]="{ 'has-error': posicionForm.submitted && !estatusposicionId.valid}">
+					<label class="control-label" for="estatusposicion">Estatus<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estatusposicion" [(ngModel)]="posicion.estatusposicionId" required>Abierta</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estatusposicion" [(ngModel)]="posicion.estatusposicionId" required>Cerrada</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e3" name="estatusposicion" [(ngModel)]="posicion.estatusposicionId" required>Cancelada</div>		
