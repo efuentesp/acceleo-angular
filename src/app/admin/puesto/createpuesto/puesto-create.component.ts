@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { PuestoService }                                  from '../../puesto/puesto.component.service';
 import { Puesto }                                         from '../../puesto/puesto.component.model';
@@ -18,15 +19,15 @@ import { Puesto }                                         from '../../puesto/pue
 
 export class PuestoCreateComponent implements OnInit {
 
-    public title = 'Nuevo Puesto';
-    public puestoform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Puesto';
+   public puestoform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public puestoList: Puesto [];
 public puesto: Puesto;
-    public puestoAux: Puesto;
+public puestoAux: Puesto;
 
 public busquedaPuesto='';
 filterInputPuesto = new FormControl();
@@ -35,29 +36,24 @@ filterInputPuesto = new FormControl();
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private puestoService: PuestoService
 ){
   	 this.filterInputPuesto.valueChanges.subscribe(busquedaPuesto => {
-     	this.busquedaPuesto = busquedaPuesto;
-     });
-     
-		
+  	  	this.busquedaPuesto = busquedaPuesto;
+  	  });
 }
 
-    ngOnInit() {
-		this.puestoService.clear();
-        this.puesto = new Puesto;
-
-		//this.loadPuesto();
-    } 
+ngOnInit() {
+	this.puestoService.clear();
+	      this.puesto = new Puesto;
+} 
 
 save(){
-
 	if (
-		this.puesto.puestosId ==="" || this.puesto.puestosId ===null || 
-		this.puesto.descripcion ==="" || this.puesto.descripcion ===null || 
-		this.puesto.puestoId !== null 
+	this.puesto.puestosId ==="" || this.puesto.puestosId ===null || 
+	this.puesto.descripcion ==="" || this.puesto.descripcion ===null || 
+		this.puesto.puestoId === null 
 	){
 		return;
 	}else{
@@ -71,35 +67,8 @@ save(){
 	       swal('Error...', 'puesto save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadpuesto(){
-  		this.puestoService.getAllPuesto().subscribe(data => {
-    	if (data) {
-			this.puestoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Puestos.', 'error');
-  		});
-}
 
-setClickedRowPuesto(index,puesto){	      
-		  puesto.checked = !puesto.checked;
-		  if (puesto.checked){
-		  this.puestoService.setPuesto(puesto);
-		  this.puesto.puestoId = puesto.puestoId;
-		  this.puesto.puestoItem = puesto.nombre;
-	    	}else{
-            this.puestoService.clear();
-			this.puesto.puestoId = null;
-		    this.puesto.puestoItem = "";
-		}
- }
- 
- 
-
-  return(puesto){
-      this.location.back();
-  }
 }

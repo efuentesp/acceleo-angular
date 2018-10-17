@@ -8,7 +8,7 @@ export class Usuario {
 	rolId: string = '';
 	rolItem: string = '';
 	
-	usuarioId: number = null;
+	usuarioId: string = '';
 	usuarioItem: string = '';
 
 }

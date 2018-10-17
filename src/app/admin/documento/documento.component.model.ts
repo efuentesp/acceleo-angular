@@ -6,7 +6,7 @@ export class Documento {
 	descripcion: string = '';
 	size: number = null;
 	
-	documentoId: number = null;
+	documentoId: string = '';
 	documentoItem: string = '';
 
 }

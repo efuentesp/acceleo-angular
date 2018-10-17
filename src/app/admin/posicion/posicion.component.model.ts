@@ -24,7 +24,7 @@ export class Posicion {
 	eventoId: string = '';
 	eventoItem: string = '';
 	
-	posicionId: number = null;
+	posicionId: string = '';
 	posicionItem: string = '';
 
 }

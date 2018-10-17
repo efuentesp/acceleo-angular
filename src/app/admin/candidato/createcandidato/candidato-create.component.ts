@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { CandidatoService }                                  from '../../candidato/candidato.component.service';
 import { Candidato }                                         from '../../candidato/candidato.component.model';
@@ -18,15 +19,15 @@ import { Candidato }                                         from '../../candida
 
 export class CandidatoCreateComponent implements OnInit {
 
-    public title = 'Nuevo Candidato';
-    public candidatoform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Candidato';
+   public candidatoform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public candidatoList: Candidato [];
 public candidato: Candidato;
-    public candidatoAux: Candidato;
+public candidatoAux: Candidato;
 
 public busquedaCandidato='';
 filterInputCandidato = new FormControl();
@@ -35,37 +36,32 @@ filterInputCandidato = new FormControl();
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private candidatoService: CandidatoService
 ){
   	 this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-     	this.busquedaCandidato = busquedaCandidato;
-     });
-     
-		
-		
+  	  	this.busquedaCandidato = busquedaCandidato;
+  	  });
 }
 
-    ngOnInit() {
-		this.candidatoService.clear();
-        this.candidato = new Candidato;
-
-		//this.loadCandidato();
-    } 
+ngOnInit() {
+	this.candidatoService.clear();
+	      this.candidato = new Candidato;
+} 
 
 save(){
-
 	if (
-		this.candidato.nombre ==="" || this.candidato.nombre ===null || 
-		this.candidato.apellidopaterno ==="" || this.candidato.apellidopaterno ===null || 
-		this.candidato.apellidomaterno ==="" || this.candidato.apellidomaterno ===null || 
-		this.candidato.fecha ==="" || this.candidato.fecha ===null || 
-		this.candidato.generoId ==="" || this.candidato.generoId ===null || 
-		this.candidato.estatuscandidatoId ==="" || this.candidato.estatuscandidatoId ===null || 
-		this.candidato.candidatoId !== null 
+	this.candidato.nombre ==="" || this.candidato.nombre ===null || 
+	this.candidato.apellidopaterno ==="" || this.candidato.apellidopaterno ===null || 
+	this.candidato.apellidomaterno ==="" || this.candidato.apellidomaterno ===null || 
+	this.candidato.fechaAux ===null || 
+	this.candidato.generoId ==="" || this.candidato.generoId ===null || 
+	this.candidato.estatuscandidatoId ==="" || this.candidato.estatuscandidatoId ===null || 
+		this.candidato.candidatoId === null 
 	){
 		return;
 	}else{
+	   this.candidato.fecha = this.parseFormat.format(this.candidato.fechaAux);
 	   this.candidatoService.saveCandidato(this.candidato).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Candidato save successfully.', 'success');
@@ -76,35 +72,8 @@ save(){
 	       swal('Error...', 'candidato save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadcandidato(){
-  		this.candidatoService.getAllCandidato().subscribe(data => {
-    	if (data) {
-			this.candidatoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
-  		});
-}
 
-setClickedRowCandidato(index,candidato){	      
-		  candidato.checked = !candidato.checked;
-		  if (candidato.checked){
-		  this.candidatoService.setCandidato(candidato);
-		  this.candidato.candidatoId = candidato.candidatoId;
-		  this.candidato.candidatoItem = candidato.nombre;
-	    	}else{
-            this.candidatoService.clear();
-			this.candidato.candidatoId = null;
-		    this.candidato.candidatoItem = "";
-		}
- }
- 
- 
-
-  return(candidato){
-      this.location.back();
-  }
 }

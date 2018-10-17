@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { PermisoService }                                  from '../../permiso/permiso.component.service';
 import { Permiso }                                         from '../../permiso/permiso.component.model';
@@ -20,58 +21,54 @@ import { Rol }                                         from '../../rol/rol.compo
 
 export class PermisoCreateComponent implements OnInit {
 
-    public title = 'Nuevo Permiso';
-    public permisoform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Permiso';
+   public permisoform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public permisoList: Permiso [];
 public permiso: Permiso;
-    public permisoAux: Permiso;
+public permisoAux: Permiso;
 
 public busquedaPermiso='';
 filterInputPermiso = new FormControl();
 
 public rolList: Rol [];
-	    public rol: Rol;
-	    public rolAux: Rol;
-	    
-	    public busquedaRol='';
-	    filterInputRol = new FormControl();
+public rol: Rol;
+public rolAux: Rol;
+
+public busquedaRol='';
+filterInputRol = new FormControl();
 
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private permisoService: PermisoService
 			,private rolService: RolService
 ){
   	 this.filterInputPermiso.valueChanges.subscribe(busquedaPermiso => {
-     	this.busquedaPermiso = busquedaPermiso;
-     });
-     
+  	  	this.busquedaPermiso = busquedaPermiso;
+  	  });
 	this.filterInputRol.valueChanges.subscribe(busquedaRol => {
-		     this.busquedaRol = busquedaRol;
-		   });
+	    this.busquedaRol = busquedaRol;
+	  });
 }
 
-    ngOnInit() {
-		this.permisoService.clear();
-        this.permiso = new Permiso;
-
-		//this.loadPermiso();
-		this.loadRol();
-    } 
+ngOnInit() {
+	this.permisoService.clear();
+	      this.permiso = new Permiso;
+	this.loadRol();
+} 
 
 save(){
-
 	if (
-		this.permiso.rolId ===null ||
-		this.permiso.funcion ==="" || this.permiso.funcion ===null || 
-		this.permiso.ruta ==="" || this.permiso.ruta ===null || 
-		this.permiso.nivelpermiso ==="" || this.permiso.nivelpermiso ===null || 
-		this.permiso.permisoId !== null 
+	this.permiso.rolId === null ||
+	this.permiso.funcion ==="" || this.permiso.funcion ===null || 
+	this.permiso.ruta ==="" || this.permiso.ruta ===null || 
+	this.permiso.nivelpermiso ==="" || this.permiso.nivelpermiso ===null || 
+		this.permiso.permisoId === null 
 	){
 		return;
 	}else{
@@ -85,59 +82,30 @@ save(){
 	       swal('Error...', 'permiso save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadpermiso(){
-  		this.permisoService.getAllPermiso().subscribe(data => {
-    	if (data) {
-			this.permisoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Permisos.', 'error');
-  		});
-}
-
-setClickedRowPermiso(index,permiso){	      
-		  permiso.checked = !permiso.checked;
-		  if (permiso.checked){
-		  this.permisoService.setPermiso(permiso);
-		  this.permiso.permisoId = permiso.permisoId;
-		  this.permiso.permisoItem = permiso.funcion;
-	    	}else{
-            this.permisoService.clear();
-			this.permiso.permisoId = null;
-		    this.permiso.permisoItem = "";
-		}
- }
- 
 loadRol(){
-   		this.rolService.getAllRol().subscribe(data => {
-     	if (data) {
-      	
+	this.rolService.getAllRol().subscribe(data => {
+   		if (data) {
  		this.rolList = data;
-
-     	}
-   		}, error => {
-     	swal('Error...', 'An error occurred while calling the Rols.', 'error');
-   	});
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Rols.', 'error');
+	});
  }
 
-	  setClickedRowRol(index,rol){
-	 		  rol.checked = !rol.checked;
-	 		  if (rol.checked){
-	 		  this.rolService.setRol(rol);
-	 		  this.permiso.rolId = rol.rolId;
-	 		  this.permiso.rolItem = rol.nombre;
-	 	    	}else{
-	             this.rolService.clear();
-	 			this.permiso.rolId = null;
-	 		    this.permiso.rolItem = "";
-	 		}
-	  }
- 
+ setClickedRowRol(index,rol){
+ 	  rol.checked = !rol.checked;
+ 	  if (rol.checked){
+	 	  this.rolService.setRol(rol);
+this.permiso.rolId = rol.rolId;
+this.permiso.rolItem = rol.nombre;
+ 	  }else{
+ 	      this.rolService.clear();
+this.permiso.rolId = "";
+this.permiso.rolItem = "";
+ 	   }
+ }
 
-  return(permiso){
-      this.location.back();
-  }
 }

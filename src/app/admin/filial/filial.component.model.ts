@@ -11,7 +11,7 @@ export class Filial {
 	contacto: string = '';
 	notas: string = '';
 	
-	filialId: number = null;
+	filialId: string = '';
 	filialItem: string = '';
 
 }

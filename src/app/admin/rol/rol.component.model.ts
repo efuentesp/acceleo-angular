@@ -6,7 +6,7 @@ export class Rol {
 	nombre: string = '';
 	activo: number = null;
 	
-	rolId: number = null;
+	rolId: string = '';
 	rolItem: string = '';
 
 }

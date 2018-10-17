@@ -21,7 +21,7 @@ export class Evento {
 	estatuseventoId: string = '';
 	estatuseventoItem: string = '';
 	
-	eventoId: number = null;
+	eventoId: string = '';
 	eventoItem: string = '';
 
 }

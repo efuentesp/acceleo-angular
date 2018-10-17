@@ -8,7 +8,7 @@ export class Permiso {
 	ruta: string = '';
 	nivelpermiso: string = '';
 	
-	permisoId: number = null;
+	permisoId: string = '';
 	permisoItem: string = '';
 
 }

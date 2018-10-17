@@ -14,7 +14,7 @@ export class Solicitud {
 	estatussolicitudId: string = '';
 	estatussolicitudItem: string = '';
 	
-	solicitudId: number = null;
+	solicitudId: string = '';
 	solicitudItem: string = '';
 
 }

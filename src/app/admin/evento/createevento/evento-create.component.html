@@ -65,7 +65,7 @@
 				<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !fechaAux.valid}">
 					<label class="control-label" for="fecha">Fecha programada<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+						<input class="form-control" id="fecha" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
 						<span class="input-group-btn">
 							<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
 								<em class="fa fa-calendar"></em>
@@ -86,7 +86,7 @@
 				<div class="form-group">
 					<label class="control-label" for="fechareal">Fecha real</label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fecharealAux" maxlength="10" minlength="10" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker">
+						<input class="form-control" id="fechareal" placeholder="dd/MM/yyyy" name="fecharealAux" maxlength="10" minlength="10" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker">
 						<span class="input-group-btn">
 							<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle()" type="button">
 								<em class="fa fa-calendar"></em>
@@ -117,12 +117,13 @@
 					<input type="hidden" class="form-control input-md"  name="estatuseventoId"  [(ngModel)]="evento.estatuseventoId"    #estatuseventoId="ngModel" required>
 					<div *ngIf="eventoForm.submitted && !estatuseventoId.valid" class="help-block">EstatusEvento es requerido</div>
 				</div>
+						
 					<!-- Modal Posicion -->
 					<div id="modalPosicion" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-						<div class="modal-dialog" style="width:60%">
+						<div class="modal-dialog" style="width:60%" >
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close">&times;</button>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Posicion</h4>
 								</div>
 								<div class="modal-body">
@@ -163,17 +164,22 @@
 													<td  style="max-width: 10%">
 														<input type="radio" name="posicionId" [checked]="posicion.checked" value="{{posicion.posicionId}}" (click)="setClickedRowPosicion(i, posicion)">
 													</td>
-													<td  style="max-width: 10%">{{posicion.filial}}</td>
-													<td  style="max-width: 10%">{{posicion.puesto}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.filialId}}</td>
+													<td  style="max-width: 10%">{{posicion.filialItem}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
+													<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
 													<td  style="max-width: 10%">{{posicion.nombre}}</td>
 													<td  style="max-width: 10%">{{posicion.descripcion}}</td>
 													<td  style="max-width: 10%">{{posicion.fecha}}</td>
 													<td  style="max-width: 10%">{{posicion.contacto}}</td>
 													<td  style="max-width: 10%">{{posicion.salario}}</td>
 													<td  style="max-width: 10%">{{posicion.vacantes}}</td>
-													<td  style="max-width: 10%">{{posicion.tipo}}</td>
-													<td  style="max-width: 10%">{{posicion.reclutador}}</td>
-													<td  style="max-width: 10%">{{posicion.estado}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.tiponominaId}}</td>
+													<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.reclutadorId}}</td>
+													<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.estatusposicionId}}</td>
+													<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -197,10 +203,10 @@
 					</div>
 					<!-- Modal Candidato -->
 					<div id="modalCandidato" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-						<div class="modal-dialog" style="width:60%">
+						<div class="modal-dialog" style="width:60%" >
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close">&times;</button>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Candidato</h4>
 								</div>
 								<div class="modal-body">
@@ -259,6 +265,7 @@
 							</div>
 						</div>
 					</div>
+						
 		<div class="ln_solid"></div>
 		
 		<div class="col-sm-12">

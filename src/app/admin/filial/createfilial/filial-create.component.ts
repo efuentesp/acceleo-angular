@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { FilialService }                                  from '../../filial/filial.component.service';
 import { Filial }                                         from '../../filial/filial.component.model';
@@ -18,15 +19,15 @@ import { Filial }                                         from '../../filial/fil
 
 export class FilialCreateComponent implements OnInit {
 
-    public title = 'Nuevo Filial';
-    public filialform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Filial';
+   public filialform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public filialList: Filial [];
 public filial: Filial;
-    public filialAux: Filial;
+public filialAux: Filial;
 
 public busquedaFilial='';
 filterInputFilial = new FormControl();
@@ -35,33 +36,29 @@ filterInputFilial = new FormControl();
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private filialService: FilialService
 ){
   	 this.filterInputFilial.valueChanges.subscribe(busquedaFilial => {
-     	this.busquedaFilial = busquedaFilial;
-     });
-     
+  	  	this.busquedaFilial = busquedaFilial;
+  	  });
 }
 
-    ngOnInit() {
-		this.filialService.clear();
-        this.filial = new Filial;
-
-		//this.loadFilial();
-    } 
+ngOnInit() {
+	this.filialService.clear();
+	      this.filial = new Filial;
+} 
 
 save(){
-
 	if (
-		this.filial.nombre ==="" || this.filial.nombre ===null || 
-		this.filial.ubicacion ==="" || this.filial.ubicacion ===null || 
-		this.filial.ciudad ==="" || this.filial.ciudad ===null || 
-		this.filial.estado ==="" || this.filial.estado ===null || 
-		this.filial.telefono ==="" || this.filial.telefono ===null || 
-		this.filial.sitio ==="" || this.filial.sitio ===null || 
-		this.filial.contacto ==="" || this.filial.contacto ===null || 
-		this.filial.filialId !== null 
+	this.filial.nombre ==="" || this.filial.nombre ===null || 
+	this.filial.ubicacion ==="" || this.filial.ubicacion ===null || 
+	this.filial.ciudad ==="" || this.filial.ciudad ===null || 
+	this.filial.estado ==="" || this.filial.estado ===null || 
+	this.filial.telefono ==="" || this.filial.telefono ===null || 
+	this.filial.sitio ==="" || this.filial.sitio ===null || 
+	this.filial.contacto ==="" || this.filial.contacto ===null || 
+		this.filial.filialId === null 
 	){
 		return;
 	}else{
@@ -75,35 +72,8 @@ save(){
 	       swal('Error...', 'filial save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadfilial(){
-  		this.filialService.getAllFilial().subscribe(data => {
-    	if (data) {
-			this.filialList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Filials.', 'error');
-  		});
-}
 
-setClickedRowFilial(index,filial){	      
-		  filial.checked = !filial.checked;
-		  if (filial.checked){
-		  this.filialService.setFilial(filial);
-		  this.filial.filialId = filial.filialId;
-		  this.filial.filialItem = filial.nombre;
-	    	}else{
-            this.filialService.clear();
-			this.filial.filialId = null;
-		    this.filial.filialItem = "";
-		}
- }
- 
- 
-
-  return(filial){
-      this.location.back();
-  }
 }

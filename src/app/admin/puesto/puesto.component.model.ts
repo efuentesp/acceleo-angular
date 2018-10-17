@@ -6,7 +6,7 @@ export class Puesto {
 	puestosItem: string = '';
 	descripcion: string = '';
 	
-	puestoId: number = null;
+	puestoId: string = '';
 	puestoItem: string = '';
 
 }

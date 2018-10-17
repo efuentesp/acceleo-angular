@@ -8,7 +8,7 @@ export class Reclutador {
 	generoId: string = '';
 	generoItem: string = '';
 	
-	reclutadorId: number = null;
+	reclutadorId: string = '';
 	reclutadorItem: string = '';
 
 }

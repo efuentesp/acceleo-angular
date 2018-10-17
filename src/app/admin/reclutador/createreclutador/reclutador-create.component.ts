@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { ReclutadorService }                                  from '../../reclutador/reclutador.component.service';
 import { Reclutador }                                         from '../../reclutador/reclutador.component.model';
@@ -18,15 +19,15 @@ import { Reclutador }                                         from '../../reclut
 
 export class ReclutadorCreateComponent implements OnInit {
 
-    public title = 'Nuevo Reclutador';
-    public reclutadorform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Reclutador';
+   public reclutadorform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public reclutadorList: Reclutador [];
 public reclutador: Reclutador;
-    public reclutadorAux: Reclutador;
+public reclutadorAux: Reclutador;
 
 public busquedaReclutador='';
 filterInputReclutador = new FormControl();
@@ -35,31 +36,26 @@ filterInputReclutador = new FormControl();
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private reclutadorService: ReclutadorService
 ){
   	 this.filterInputReclutador.valueChanges.subscribe(busquedaReclutador => {
-     	this.busquedaReclutador = busquedaReclutador;
-     });
-     
-		
+  	  	this.busquedaReclutador = busquedaReclutador;
+  	  });
 }
 
-    ngOnInit() {
-		this.reclutadorService.clear();
-        this.reclutador = new Reclutador;
-
-		//this.loadReclutador();
-    } 
+ngOnInit() {
+	this.reclutadorService.clear();
+	      this.reclutador = new Reclutador;
+} 
 
 save(){
-
 	if (
-		this.reclutador.nombre ==="" || this.reclutador.nombre ===null || 
-		this.reclutador.apellidopaterno ==="" || this.reclutador.apellidopaterno ===null || 
-		this.reclutador.apellidomaterno ==="" || this.reclutador.apellidomaterno ===null || 
-		this.reclutador.generoId ==="" || this.reclutador.generoId ===null || 
-		this.reclutador.reclutadorId !== null 
+	this.reclutador.nombre ==="" || this.reclutador.nombre ===null || 
+	this.reclutador.apellidopaterno ==="" || this.reclutador.apellidopaterno ===null || 
+	this.reclutador.apellidomaterno ==="" || this.reclutador.apellidomaterno ===null || 
+	this.reclutador.generoId ==="" || this.reclutador.generoId ===null || 
+		this.reclutador.reclutadorId === null 
 	){
 		return;
 	}else{
@@ -73,35 +69,8 @@ save(){
 	       swal('Error...', 'reclutador save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadreclutador(){
-  		this.reclutadorService.getAllReclutador().subscribe(data => {
-    	if (data) {
-			this.reclutadorList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Reclutadors.', 'error');
-  		});
-}
 
-setClickedRowReclutador(index,reclutador){	      
-		  reclutador.checked = !reclutador.checked;
-		  if (reclutador.checked){
-		  this.reclutadorService.setReclutador(reclutador);
-		  this.reclutador.reclutadorId = reclutador.reclutadorId;
-		  this.reclutador.reclutadorItem = reclutador.nombre;
-	    	}else{
-            this.reclutadorService.clear();
-			this.reclutador.reclutadorId = null;
-		    this.reclutador.reclutadorItem = "";
-		}
- }
- 
- 
-
-  return(reclutador){
-      this.location.back();
-  }
 }

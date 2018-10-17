@@ -11,7 +11,7 @@ export class Trayectoria {
 	documentoId: string = '';
 	documentoItem: string = '';
 	
-	trayectoriaId: number = null;
+	trayectoriaId: string = '';
 	trayectoriaItem: string = '';
 
 }

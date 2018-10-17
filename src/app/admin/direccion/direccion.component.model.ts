@@ -9,7 +9,7 @@ export class Direccion {
 	ciudad: string = '';
 	estado: string = '';
 	
-	direccionId: number = null;
+	direccionId: string = '';
 	direccionItem: string = '';
 
 }

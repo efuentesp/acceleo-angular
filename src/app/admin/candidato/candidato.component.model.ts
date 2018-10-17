@@ -16,7 +16,7 @@ export class Candidato {
 	eventoId: string = '';
 	eventoItem: string = '';
 	
-	candidatoId: number = null;
+	candidatoId: string = '';
 	candidatoItem: string = '';
 
 }

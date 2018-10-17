@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { UsuarioService }                                  from '../../usuario/usuario.component.service';
 import { Usuario }                                         from '../../usuario/usuario.component.model';
@@ -20,58 +21,54 @@ import { Rol }                                         from '../../rol/rol.compo
 
 export class UsuarioCreateComponent implements OnInit {
 
-    public title = 'Nuevo Usuario';
-    public usuarioform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Usuario';
+   public usuarioform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public usuarioList: Usuario [];
 public usuario: Usuario;
-    public usuarioAux: Usuario;
+public usuarioAux: Usuario;
 
 public busquedaUsuario='';
 filterInputUsuario = new FormControl();
 
 public rolList: Rol [];
-	    public rol: Rol;
-	    public rolAux: Rol;
-	    
-	    public busquedaRol='';
-	    filterInputRol = new FormControl();
+public rol: Rol;
+public rolAux: Rol;
+
+public busquedaRol='';
+filterInputRol = new FormControl();
 
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private usuarioService: UsuarioService
 			,private rolService: RolService
 ){
   	 this.filterInputUsuario.valueChanges.subscribe(busquedaUsuario => {
-     	this.busquedaUsuario = busquedaUsuario;
-     });
-     
+  	  	this.busquedaUsuario = busquedaUsuario;
+  	  });
 	this.filterInputRol.valueChanges.subscribe(busquedaRol => {
-		     this.busquedaRol = busquedaRol;
-		   });
+	    this.busquedaRol = busquedaRol;
+	  });
 }
 
-    ngOnInit() {
-		this.usuarioService.clear();
-        this.usuario = new Usuario;
-
-		//this.loadUsuario();
-		this.loadRol();
-    } 
+ngOnInit() {
+	this.usuarioService.clear();
+	      this.usuario = new Usuario;
+	this.loadRol();
+} 
 
 save(){
-
 	if (
-		this.usuario.nombreclave ==="" || this.usuario.nombreclave ===null || 
-		this.usuario.password ==="" || this.usuario.password ===null || 
-		this.usuario.activo ===null || 
-		this.usuario.rolId ===null ||
-		this.usuario.usuarioId !== null 
+	this.usuario.nombreclave ==="" || this.usuario.nombreclave ===null || 
+	this.usuario.password ==="" || this.usuario.password ===null || 
+	this.usuario.activo ===null || 
+	this.usuario.rolId === null ||
+		this.usuario.usuarioId === null 
 	){
 		return;
 	}else{
@@ -85,59 +82,30 @@ save(){
 	       swal('Error...', 'usuario save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadusuario(){
-  		this.usuarioService.getAllUsuario().subscribe(data => {
-    	if (data) {
-			this.usuarioList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Usuarios.', 'error');
-  		});
-}
-
-setClickedRowUsuario(index,usuario){	      
-		  usuario.checked = !usuario.checked;
-		  if (usuario.checked){
-		  this.usuarioService.setUsuario(usuario);
-		  this.usuario.usuarioId = usuario.usuarioId;
-		  this.usuario.usuarioItem = usuario.nombreClave;
-	    	}else{
-            this.usuarioService.clear();
-			this.usuario.usuarioId = null;
-		    this.usuario.usuarioItem = "";
-		}
- }
- 
 loadRol(){
-   		this.rolService.getAllRol().subscribe(data => {
-     	if (data) {
-      	
+	this.rolService.getAllRol().subscribe(data => {
+   		if (data) {
  		this.rolList = data;
-
-     	}
-   		}, error => {
-     	swal('Error...', 'An error occurred while calling the Rols.', 'error');
-   	});
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Rols.', 'error');
+	});
  }
 
-	  setClickedRowRol(index,rol){
-	 		  rol.checked = !rol.checked;
-	 		  if (rol.checked){
-	 		  this.rolService.setRol(rol);
-	 		  this.usuario.rolId = rol.rolId;
-	 		  this.usuario.rolItem = rol.nombre;
-	 	    	}else{
-	             this.rolService.clear();
-	 			this.usuario.rolId = null;
-	 		    this.usuario.rolItem = "";
-	 		}
-	  }
- 
+ setClickedRowRol(index,rol){
+ 	  rol.checked = !rol.checked;
+ 	  if (rol.checked){
+	 	  this.rolService.setRol(rol);
+this.usuario.rolId = rol.rolId;
+this.usuario.rolItem = rol.nombre;
+ 	  }else{
+ 	      this.rolService.clear();
+this.usuario.rolId = "";
+this.usuario.rolItem = "";
+ 	   }
+ }
 
-  return(usuario){
-      this.location.back();
-  }
 }

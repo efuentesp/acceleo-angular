@@ -57,7 +57,7 @@
 				<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !fechaAux.valid}">
 					<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="posicion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+						<input class="form-control" id="fecha" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="posicion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
 						<span class="input-group-btn">
 							<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
 								<em class="fa fa-calendar"></em>
@@ -113,10 +113,10 @@
 				</div>
 					<!-- Modal Filial -->
 					<div id="modalFilial" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-						<div class="modal-dialog" style="width:60%">
+						<div class="modal-dialog" style="width:60%" >
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close">&times;</button>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Filial</h4>
 								</div>
 								<div class="modal-body">
@@ -181,10 +181,10 @@
 					</div>
 					<!-- Modal Puesto -->
 					<div id="modalPuesto" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-						<div class="modal-dialog" style="width:60%">
+						<div class="modal-dialog" style="width:60%" >
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close">&times;</button>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Puesto</h4>
 								</div>
 								<div class="modal-body">
@@ -216,7 +216,8 @@
 													<td  style="max-width: 10%">
 														<input type="radio" name="puestoId" [checked]="puesto.checked" value="{{puesto.puestoId}}" (click)="setClickedRowPuesto(i, puesto)">
 													</td>
-													<td  style="max-width: 10%">{{puesto.nombre}}</td>
+													<td  style="max-width: 10%" hidden="true">{{puesto.puestosId}}</td>
+													<td  style="max-width: 10%">{{puesto.puestosItem}}</td>
 													<td  style="max-width: 10%">{{puesto.descripcion}}</td>
 												</tr>
 											</tbody>
@@ -239,12 +240,13 @@
 							</div>
 						</div>
 					</div>
+						
 					<!-- Modal Reclutador -->
 					<div id="modalReclutador" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
-						<div class="modal-dialog" style="width:60%">
+						<div class="modal-dialog" style="width:60%" >
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close">&times;</button>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Reclutador</h4>
 								</div>
 								<div class="modal-body">
@@ -301,6 +303,7 @@
 							</div>
 						</div>
 					</div>
+						
 		<div class="ln_solid"></div>
 		
 		<div class="col-sm-12">

@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { DocumentoService }                                  from '../../documento/documento.component.service';
 import { Documento }                                         from '../../documento/documento.component.model';
@@ -18,15 +19,15 @@ import { Documento }                                         from '../../documen
 
 export class DocumentoCreateComponent implements OnInit {
 
-    public title = 'Nuevo Documento';
-    public documentoform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Documento';
+   public documentoform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public documentoList: Documento [];
 public documento: Documento;
-    public documentoAux: Documento;
+public documentoAux: Documento;
 
 public busquedaDocumento='';
 filterInputDocumento = new FormControl();
@@ -35,28 +36,24 @@ filterInputDocumento = new FormControl();
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private documentoService: DocumentoService
 ){
   	 this.filterInputDocumento.valueChanges.subscribe(busquedaDocumento => {
-     	this.busquedaDocumento = busquedaDocumento;
-     });
-     
+  	  	this.busquedaDocumento = busquedaDocumento;
+  	  });
 }
 
-    ngOnInit() {
-		this.documentoService.clear();
-        this.documento = new Documento;
-
-		//this.loadDocumento();
-    } 
+ngOnInit() {
+	this.documentoService.clear();
+	      this.documento = new Documento;
+} 
 
 save(){
-
 	if (
-		this.documento.nombre ==="" || this.documento.nombre ===null || 
-		this.documento.descripcion ==="" || this.documento.descripcion ===null || 
-		this.documento.documentoId !== null 
+	this.documento.nombre ==="" || this.documento.nombre ===null || 
+	this.documento.descripcion ==="" || this.documento.descripcion ===null || 
+		this.documento.documentoId === null 
 	){
 		return;
 	}else{
@@ -70,35 +67,8 @@ save(){
 	       swal('Error...', 'documento save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loaddocumento(){
-  		this.documentoService.getAllDocumento().subscribe(data => {
-    	if (data) {
-			this.documentoList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Documentos.', 'error');
-  		});
-}
 
-setClickedRowDocumento(index,documento){	      
-		  documento.checked = !documento.checked;
-		  if (documento.checked){
-		  this.documentoService.setDocumento(documento);
-		  this.documento.documentoId = documento.documentoId;
-		  this.documento.documentoItem = documento.nombre;
-	    	}else{
-            this.documentoService.clear();
-			this.documento.documentoId = null;
-		    this.documento.documentoItem = "";
-		}
- }
- 
- 
-
-  return(documento){
-      this.location.back();
-  }
 }

@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { RolService }                                  from '../../rol/rol.component.service';
 import { Rol }                                         from '../../rol/rol.component.model';
@@ -18,15 +19,15 @@ import { Rol }                                         from '../../rol/rol.compo
 
 export class RolCreateComponent implements OnInit {
 
-    public title = 'Nuevo Rol';
-    public rolform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Rol';
+   public rolform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public rolList: Rol [];
 public rol: Rol;
-    public rolAux: Rol;
+public rolAux: Rol;
 
 public busquedaRol='';
 filterInputRol = new FormControl();
@@ -35,29 +36,25 @@ filterInputRol = new FormControl();
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private rolService: RolService
 ){
   	 this.filterInputRol.valueChanges.subscribe(busquedaRol => {
-     	this.busquedaRol = busquedaRol;
-     });
-     
+  	  	this.busquedaRol = busquedaRol;
+  	  });
 }
 
-    ngOnInit() {
-		this.rolService.clear();
-        this.rol = new Rol;
-
-		//this.loadRol();
-    } 
+ngOnInit() {
+	this.rolService.clear();
+	      this.rol = new Rol;
+} 
 
 save(){
-
 	if (
-		this.rol.clave ===null || 
-		this.rol.nombre ==="" || this.rol.nombre ===null || 
-		this.rol.activo ===null || 
-		this.rol.rolId !== null 
+	this.rol.clave ===null || 
+	this.rol.nombre ==="" || this.rol.nombre ===null || 
+	this.rol.activo ===null || 
+		this.rol.rolId === null 
 	){
 		return;
 	}else{
@@ -71,35 +68,8 @@ save(){
 	       swal('Error...', 'rol save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loadrol(){
-  		this.rolService.getAllRol().subscribe(data => {
-    	if (data) {
-			this.rolList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Rols.', 'error');
-  		});
-}
 
-setClickedRowRol(index,rol){	      
-		  rol.checked = !rol.checked;
-		  if (rol.checked){
-		  this.rolService.setRol(rol);
-		  this.rol.rolId = rol.rolId;
-		  this.rol.rolItem = rol.nombre;
-	    	}else{
-            this.rolService.clear();
-			this.rol.rolId = null;
-		    this.rol.rolItem = "";
-		}
- }
- 
- 
-
-  return(rol){
-      this.location.back();
-  }
 }

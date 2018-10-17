@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl }                 from 
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { DireccionService }                                  from '../../direccion/direccion.component.service';
 import { Direccion }                                         from '../../direccion/direccion.component.model';
@@ -20,59 +21,55 @@ import { Candidato }                                         from '../../candida
 
 export class DireccionCreateComponent implements OnInit {
 
-    public title = 'Nuevo Direccion';
-    public direccionform: any;
-    public user: User;
-    public valueName: string;
-    public token: string;
+   public title = 'Nuevo Direccion';
+   public direccionform: any;
+   public user: User;
+   public valueName: string;
+   public token: string;
 
 public direccionList: Direccion [];
 public direccion: Direccion;
-    public direccionAux: Direccion;
+public direccionAux: Direccion;
 
 public busquedaDireccion='';
 filterInputDireccion = new FormControl();
 
 public candidatoList: Candidato [];
-	    public candidato: Candidato;
-	    public candidatoAux: Candidato;
-	    
-	    public busquedaCandidato='';
-	    filterInputCandidato = new FormControl();
+public candidato: Candidato;
+public candidatoAux: Candidato;
+
+public busquedaCandidato='';
+filterInputCandidato = new FormControl();
 
 constructor(private router: Router,  
 			private route: ActivatedRoute, 
 			private location: Location,
-			private parserFormatter: NgbDateParserFormatter,
+			private parseFormat: CustomNgbDateParserFormatter,
 			private direccionService: DireccionService
 			,private candidatoService: CandidatoService
 ){
   	 this.filterInputDireccion.valueChanges.subscribe(busquedaDireccion => {
-     	this.busquedaDireccion = busquedaDireccion;
-     });
-     
+  	  	this.busquedaDireccion = busquedaDireccion;
+  	  });
 	this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
-		     this.busquedaCandidato = busquedaCandidato;
-		   });
+	    this.busquedaCandidato = busquedaCandidato;
+	  });
 }
 
-    ngOnInit() {
-		this.direccionService.clear();
-        this.direccion = new Direccion;
-
-		//this.loadDireccion();
-		this.loadCandidato();
-    } 
+ngOnInit() {
+	this.direccionService.clear();
+	      this.direccion = new Direccion;
+	this.loadCandidato();
+} 
 
 save(){
-
 	if (
-		this.direccion.candidatoId ===null ||
-		this.direccion.calle ==="" || this.direccion.calle ===null || 
-		this.direccion.cp ==="" || this.direccion.cp ===null || 
-		this.direccion.ciudad ==="" || this.direccion.ciudad ===null || 
-		this.direccion.estado ==="" || this.direccion.estado ===null || 
-		this.direccion.direccionId !== null 
+	this.direccion.candidatoId === null ||
+	this.direccion.calle ==="" || this.direccion.calle ===null || 
+	this.direccion.cp ==="" || this.direccion.cp ===null || 
+	this.direccion.ciudad ==="" || this.direccion.ciudad ===null || 
+	this.direccion.estado ==="" || this.direccion.estado ===null || 
+		this.direccion.direccionId === null 
 	){
 		return;
 	}else{
@@ -86,59 +83,61 @@ save(){
 	       swal('Error...', 'direccion save unsuccessfully.', 'error');
 	     }
 	   } );
-   }
+	}
 }
 
-loaddireccion(){
-  		this.direccionService.getAllDireccion().subscribe(data => {
-    	if (data) {
-			this.direccionList = data;
-    	}
-  		}, error => {
-    	swal('Error...', 'An error occurred while calling the Direccions.', 'error');
-  		});
-}
-
-setClickedRowDireccion(index,direccion){	      
-		  direccion.checked = !direccion.checked;
-		  if (direccion.checked){
-		  this.direccionService.setDireccion(direccion);
-		  this.direccion.direccionId = direccion.direccionId;
-		  this.direccion.direccionItem = direccion.cP;
-	    	}else{
-            this.direccionService.clear();
-			this.direccion.direccionId = null;
-		    this.direccion.direccionItem = "";
-		}
- }
- 
 loadCandidato(){
-   		this.candidatoService.getAllCandidato().subscribe(data => {
-     	if (data) {
-      	
+	this.candidatoService.getAllCandidato().subscribe(data => {
+   		if (data) {
  		this.candidatoList = data;
-
-     	}
-   		}, error => {
-     	swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
-   	});
+ 		this.candidatoList.forEach(element => {
+ 		      	if (element.generoId == 'mas'){
+ 		      	    element.generoItem = "Masculino";
+ 		      	}		
+ 		      	if (element.generoId == 'fem'){
+ 		      	    element.generoItem = "Femenino";
+ 		      	}		
+ 		});
+ 		this.candidatoList.forEach(element => {
+ 		      	if (element.estatuscandidatoId == 'e1'){
+ 		      	    element.estatuscandidatoItem = "Contactado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e2'){
+ 		      	    element.estatuscandidatoItem = "En proceso de evaluación";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e3'){
+ 		      	    element.estatuscandidatoItem = "Ofertado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e4'){
+ 		      	    element.estatuscandidatoItem = "En proceso de contratación";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e5'){
+ 		      	    element.estatuscandidatoItem = "Contratado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e6'){
+ 		      	    element.estatuscandidatoItem = "Rechazado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e7'){
+ 		      	    element.estatuscandidatoItem = "Declinó";
+ 		      	}		
+ 		});
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
+	});
  }
 
-	  setClickedRowCandidato(index,candidato){
-	 		  candidato.checked = !candidato.checked;
-	 		  if (candidato.checked){
-	 		  this.candidatoService.setCandidato(candidato);
-	 		  this.direccion.candidatoId = candidato.candidatoId;
-	 		  this.direccion.candidatoItem = candidato.nombre;
-	 	    	}else{
-	             this.candidatoService.clear();
-	 			this.direccion.candidatoId = null;
-	 		    this.direccion.candidatoItem = "";
-	 		}
-	  }
- 
+ setClickedRowCandidato(index,candidato){
+ 	  candidato.checked = !candidato.checked;
+ 	  if (candidato.checked){
+	 	  this.candidatoService.setCandidato(candidato);
+this.direccion.candidatoId = candidato.candidatoId;
+this.direccion.candidatoItem = candidato.nombre;
+ 	  }else{
+ 	      this.candidatoService.clear();
+this.direccion.candidatoId = "";
+this.direccion.candidatoItem = "";
+ 	   }
+ }
 
-  return(direccion){
-      this.location.back();
-  }
 }
