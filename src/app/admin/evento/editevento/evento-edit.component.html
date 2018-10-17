@@ -17,8 +17,8 @@
 			<!-- form -->
 			<form #eventoForm="ngForm" id="eventoForm" class="form-horizontal form-label-left" (ngSubmit)="eventoForm.valid" novalidate>
 				<input class="form-control" #eventoId="ngModel" eventoId="eventoId" name="eventoId" type="hidden" [(ngModel)]="evento.eventoId">
-					<div class="form-group">
-						<label class="control-label" for="tipoevento">TipoEvento<span class="required">*</span></label>
+					<div class="form-group" id="tipoevento">
+						<label class="control-label" for="tipoevento">Tipo de Evento<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="tipoevento" [(ngModel)]="evento.tipoeventoId" disabled="true" disabled>Llamada telefónica
 					</div>
@@ -87,7 +87,7 @@
 							<div *ngIf="eventoForm.submitted && !nombre.valid" class="help-block">Nombre del evento es requerido</div>
 						</div>
 					</div>	
-					<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !posicionId.valid}">
+					<div class="form-group" id="posicion" [ngClass]="{ 'has-error': eventoForm.submitted && !posicionId.valid}">
 						<label class="control-label" for="posicion">Posición<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="posicionId"   [(ngModel)]="evento.posicionId"    #posicionId="ngModel" required>
@@ -100,8 +100,8 @@
 						</div>
 						<div *ngIf="eventoForm.submitted && !posicionId.valid" class="help-block">Posición es requerido</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
+					<div class="form-group" id="candidato">
+						<label class="control-label" for="candidato">Candidato</label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="evento.candidatoId"    #candidatoId="ngModel" required>
 							<input type="text"   class="form-control input-md"  name="candidatoItem" [(ngModel)]="evento.candidatoItem"  #candidatoItem="ngModel" placeholder="Candidato..." disabled>
@@ -231,8 +231,8 @@
 							<div *ngIf="eventoForm.submitted && !comentarios.valid" class="help-block">Comentarios del responsable es requerido</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="estatusevento">EstatusEvento<span class="required">*</span></label>
+					<div class="form-group" id="estatusevento">
+						<label class="control-label" for="estatusevento">Estatus<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="e1" name="estatusevento" [(ngModel)]="evento.estatuseventoId" disabled="true" disabled>Agendado
 					</div>

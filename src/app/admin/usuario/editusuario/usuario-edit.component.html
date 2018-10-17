@@ -56,7 +56,7 @@
 							<div *ngIf="usuarioForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
 					</div>	
-					<div class="form-group" [ngClass]="{ 'has-error': usuarioForm.submitted && !rolId.valid}">
+					<div class="form-group" id="rol" [ngClass]="{ 'has-error': usuarioForm.submitted && !rolId.valid}">
 						<label class="control-label" for="rol">Rol<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="rolId"   [(ngModel)]="usuario.rolId"    #rolId="ngModel" required>

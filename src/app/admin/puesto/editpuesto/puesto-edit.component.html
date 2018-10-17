@@ -17,8 +17,8 @@
 			<!-- form -->
 			<form #puestoForm="ngForm" id="puestoForm" class="form-horizontal form-label-left" (ngSubmit)="puestoForm.valid" novalidate>
 				<input class="form-control" #puestoId="ngModel" puestoId="puestoId" name="puestoId" type="hidden" [(ngModel)]="puesto.puestoId">
-					<div class="form-group">
-						<label class="control-label" for="puestos">Puestos<span class="required">*</span></label>
+					<div class="form-group" id="puestos">
+						<label class="control-label" for="puestos">Nombre<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="puestos" [(ngModel)]="puesto.puestosId" disabled="true" disabled>Promotor de cambaceo
 					</div>

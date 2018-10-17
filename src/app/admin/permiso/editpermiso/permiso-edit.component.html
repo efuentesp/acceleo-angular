@@ -17,7 +17,7 @@
 			<!-- form -->
 			<form #permisoForm="ngForm" id="permisoForm" class="form-horizontal form-label-left" (ngSubmit)="permisoForm.valid" novalidate>
 				<input class="form-control" #permisoId="ngModel" permisoId="permisoId" name="permisoId" type="hidden" [(ngModel)]="permiso.permisoId">
-					<div class="form-group" [ngClass]="{ 'has-error': permisoForm.submitted && !rolId.valid}">
+					<div class="form-group" id="rol" [ngClass]="{ 'has-error': permisoForm.submitted && !rolId.valid}">
 						<label class="control-label" for="rol">Rol<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="rolId"   [(ngModel)]="permiso.rolId"    #rolId="ngModel" required>

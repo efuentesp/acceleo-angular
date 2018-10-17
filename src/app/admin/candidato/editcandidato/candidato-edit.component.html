@@ -83,8 +83,8 @@
 							</div>
 						</div>
 					</div>	
-					<div class="form-group">
-						<label class="control-label" for="genero">Genero<span class="required">*</span></label>
+					<div class="form-group" id="genero">
+						<label class="control-label" for="genero">Género<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="mas" name="genero" [(ngModel)]="candidato.generoId" disabled="true" disabled>Masculino
 					</div>
@@ -98,8 +98,8 @@
 					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="fem" name="genero" [(ngModel)]="candidato.generoId">Femenino
 					</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="estatuscandidato">EstatusCandidato<span class="required">*</span></label>
+					<div class="form-group" id="estatuscandidato">
+						<label class="control-label" for="estatuscandidato">Estatus<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="e1" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" disabled="true" disabled>Contactado
 					</div>

@@ -17,7 +17,7 @@
 			<!-- form -->
 			<form #trayectoriaForm="ngForm" id="trayectoriaForm" class="form-horizontal form-label-left" (ngSubmit)="trayectoriaForm.valid" novalidate>
 				<input class="form-control" #trayectoriaId="ngModel" trayectoriaId="trayectoriaId" name="trayectoriaId" type="hidden" [(ngModel)]="trayectoria.trayectoriaId">
-					<div class="form-group" [ngClass]="{ 'has-error': trayectoriaForm.submitted && !candidatoId.valid}">
+					<div class="form-group" id="candidato" [ngClass]="{ 'has-error': trayectoriaForm.submitted && !candidatoId.valid}">
 						<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="trayectoria.candidatoId"    #candidatoId="ngModel" required>
@@ -30,8 +30,8 @@
 						</div>
 						<div *ngIf="trayectoriaForm.submitted && !candidatoId.valid" class="help-block">Candidato es requerido</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="tipotrayectoria">TipoTrayectoria<span class="required">*</span></label>
+					<div class="form-group" id="tipotrayectoria">
+						<label class="control-label" for="tipotrayectoria">Tipo Trayectoria<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="a" name="tipotrayectoria" [(ngModel)]="trayectoria.tipotrayectoriaId" disabled="true" disabled>Estudios
 					</div>
@@ -101,8 +101,8 @@
 							<div *ngIf="trayectoriaForm.submitted && !clave.valid" class="help-block">Palabra clave es requerido</div>
 						</div>
 					</div>	
-					<div class="form-group">
-						<label class="control-label" for="documento">Documento Probatorio<span class="required">*</span></label>
+					<div class="form-group" id="documento">
+						<label class="control-label" for="documento">Documento Probatorio</label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="documentoId"   [(ngModel)]="trayectoria.documentoId"    #documentoId="ngModel" required>
 							<input type="text"   class="form-control input-md"  name="documentoItem" [(ngModel)]="trayectoria.documentoItem"  #documentoItem="ngModel" placeholder="Documento Probatorio..." disabled>

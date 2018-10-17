@@ -56,8 +56,8 @@
 							<div *ngIf="reclutadorForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 						</div>
 					</div>	
-					<div class="form-group">
-						<label class="control-label" for="genero">Genero<span class="required">*</span></label>
+					<div class="form-group" id="genero">
+						<label class="control-label" for="genero">Género<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="mas" name="genero" [(ngModel)]="reclutador.generoId" disabled="true" disabled>Masculino
 					</div>
