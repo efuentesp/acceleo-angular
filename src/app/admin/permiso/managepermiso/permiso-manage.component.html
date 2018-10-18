@@ -56,16 +56,7 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let permiso of permisoList | filterPermiso: busquedaPermiso | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePermiso'}; let i = index">
-											<td>
-												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="rol" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Rol <i class="fa fa-caret-down"></i></button>
-													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('managerol', permiso)" >Administrar Rol</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createrol', permiso)">Agregar Rol</button>
-													</div>
-												</div>
-											</td>
+											<td  style="max-width: 10%">{{permiso.rolItem}}</td>
 											<td  style="max-width: 10%">{{permiso.funcion}}</td>
 											<td  style="max-width: 10%">{{permiso.ruta}}</td>
 											<td  style="max-width: 10%">{{permiso.nivelpermiso}}</td>
@@ -99,5 +90,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

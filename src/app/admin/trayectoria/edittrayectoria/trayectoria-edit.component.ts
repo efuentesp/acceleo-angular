@@ -81,6 +81,8 @@ public documentoList: Documento [];
         this.flag = this.trayectoriaService.getEdit();
         this.trayectoria = this.trayectoriaService.getTrayectoria();
         this.flagDelete = this.trayectoriaService.getDelete();
+        	this.loadCandidato();
+        	this.loadDocumento();
     }  
 
 save(){

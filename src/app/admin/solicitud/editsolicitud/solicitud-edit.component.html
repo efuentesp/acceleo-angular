@@ -17,7 +17,20 @@
 			<!-- form -->
 			<form #solicitudForm="ngForm" id="solicitudForm" class="form-horizontal form-label-left" (ngSubmit)="solicitudForm.valid" novalidate>
 				<input class="form-control" #solicitudId="ngModel" solicitudId="solicitudId" name="solicitudId" type="hidden" [(ngModel)]="solicitud.solicitudId">
-					<div class="form-group" id="posicion" [ngClass]="{ 'has-error': solicitudForm.submitted && !posicionId.valid}">
+					<div *ngIf="flagDelete" class="form-group" id="posicion">
+						<label class="control-label" for="posicion">Posición<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="posicionId"   [(ngModel)]="solicitud.posicionId"    #posicionId="ngModel">
+							<input type="text"   class="form-control input-md"  name="posicionItem" [(ngModel)]="solicitud.posicionItem"  #posicionItem="ngModel" placeholder="Posición..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalPosicion" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="solicitudForm.submitted && !posicionId.valid" class="help-block">Posición es requerido</div>
+					</div>
+					<div *ngIf="!flagDelete" class="form-group" id="posicion" [ngClass]="{ 'has-error': solicitudForm.submitted && !posicionId.valid}">
 						<label class="control-label" for="posicion">Posición<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="posicionId"   [(ngModel)]="solicitud.posicionId"    #posicionId="ngModel" required>
@@ -30,7 +43,19 @@
 						</div>
 						<div *ngIf="solicitudForm.submitted && !posicionId.valid" class="help-block">Posición es requerido</div>
 					</div>
-					<div class="form-group" id="candidato">
+					<div *ngIf="flagDelete" class="form-group" id="candidato">
+						<label class="control-label" for="candidato">Candidato</label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="solicitud.candidatoId"    #candidatoId="ngModel">
+							<input type="text"   class="form-control input-md"  name="candidatoItem" [(ngModel)]="solicitud.candidatoItem"  #candidatoItem="ngModel" placeholder="Candidato..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCandidato" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+					</div>	
+					<div *ngIf="!flagDelete" class="form-group" id="candidato">
 						<label class="control-label" for="candidato">Candidato</label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="solicitud.candidatoId"    #candidatoId="ngModel" required>
@@ -174,8 +199,6 @@
 														<th style="max-width:10%">Tipo</th>
 														<th style="max-width:10%">Reclutador</th>
 														<th style="max-width:10%">Estado</th>
-														<th style="max-width:10%">Solicitud</th>
-														<th style="max-width:10%">Evento</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -183,19 +206,22 @@
 														<td  style="max-width: 10%">
 															<input type="radio" name="posicionId" [checked]="posicion.checked" value="{{posicion.posicionId}}" (click)="setClickedRowPosicion(i, posicion)">
 														</td>
-														<td  style="max-width: 10%">{{posicion.filial}}</td>
-														<td  style="max-width: 10%">{{posicion.puesto}}</td>
+														<td  style="max-width: 10%" hidden="true">{{posicion.filialId}}</td>
+														<td  style="max-width: 10%">{{posicion.filialItem}}</td>
+														<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
+														<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
 														<td  style="max-width: 10%">{{posicion.nombre}}</td>
 														<td  style="max-width: 10%">{{posicion.descripcion}}</td>
 														<td  style="max-width: 10%">{{posicion.fecha}}</td>
 														<td  style="max-width: 10%">{{posicion.contacto}}</td>
 														<td  style="max-width: 10%">{{posicion.salario}}</td>
 														<td  style="max-width: 10%">{{posicion.vacantes}}</td>
-														<td  style="max-width: 10%">{{posicion.tipo}}</td>
-														<td  style="max-width: 10%">{{posicion.reclutador}}</td>
-														<td  style="max-width: 10%">{{posicion.estado}}</td>
-														<td  style="max-width: 10%">{{posicion.solicitud}}</td>
-														<td  style="max-width: 10%">{{posicion.evento}}</td>
+														<td  style="max-width: 10%" hidden="true">{{posicion.tiponominaId}}</td>
+														<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
+														<td  style="max-width: 10%" hidden="true">{{posicion.reclutadorId}}</td>
+														<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
+														<td  style="max-width: 10%" hidden="true">{{posicion.estatusposicionId}}</td>
+														<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
 													</tr>
 												</tbody>
 											</table>
@@ -249,10 +275,6 @@
 														<th style="max-width:10%">ApellidoPaterno</th>
 														<th style="max-width:10%">ApellidoMaterno</th>
 														<th style="max-width:10%">Fecha</th>
-														<th style="max-width:10%">Es</th>
-														<th style="max-width:10%">Estado</th>
-														<th style="max-width:10%">Solicitud</th>
-														<th style="max-width:10%">Evento</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -264,10 +286,6 @@
 														<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
 														<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
 														<td  style="max-width: 10%">{{candidato.fecha}}</td>
-														<td  style="max-width: 10%">{{candidato.es}}</td>
-														<td  style="max-width: 10%">{{candidato.estado}}</td>
-														<td  style="max-width: 10%">{{candidato.solicitud}}</td>
-														<td  style="max-width: 10%">{{candidato.evento}}</td>
 													</tr>
 												</tbody>
 											</table>

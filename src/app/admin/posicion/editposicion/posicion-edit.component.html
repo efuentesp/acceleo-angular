@@ -17,7 +17,20 @@
 			<!-- form -->
 			<form #posicionForm="ngForm" id="posicionForm" class="form-horizontal form-label-left" (ngSubmit)="posicionForm.valid" novalidate>
 				<input class="form-control" #posicionId="ngModel" posicionId="posicionId" name="posicionId" type="hidden" [(ngModel)]="posicion.posicionId">
-					<div class="form-group" id="filial" [ngClass]="{ 'has-error': posicionForm.submitted && !filialId.valid}">
+					<div *ngIf="flagDelete" class="form-group" id="filial">
+						<label class="control-label" for="filial">Filial<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="filialId"   [(ngModel)]="posicion.filialId"    #filialId="ngModel">
+							<input type="text"   class="form-control input-md"  name="filialItem" [(ngModel)]="posicion.filialItem"  #filialItem="ngModel" placeholder="Filial..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalFilial" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="posicionForm.submitted && !filialId.valid" class="help-block">Filial es requerido</div>
+					</div>
+					<div *ngIf="!flagDelete" class="form-group" id="filial" [ngClass]="{ 'has-error': posicionForm.submitted && !filialId.valid}">
 						<label class="control-label" for="filial">Filial<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="filialId"   [(ngModel)]="posicion.filialId"    #filialId="ngModel" required>
@@ -30,7 +43,20 @@
 						</div>
 						<div *ngIf="posicionForm.submitted && !filialId.valid" class="help-block">Filial es requerido</div>
 					</div>
-					<div class="form-group" id="puesto" [ngClass]="{ 'has-error': posicionForm.submitted && !puestoId.valid}">
+					<div *ngIf="flagDelete" class="form-group" id="puesto">
+						<label class="control-label" for="puesto">Puesto<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="puestoId"   [(ngModel)]="posicion.puestoId"    #puestoId="ngModel">
+							<input type="text"   class="form-control input-md"  name="puestoItem" [(ngModel)]="posicion.puestoItem"  #puestoItem="ngModel" placeholder="Puesto..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalPuesto" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="posicionForm.submitted && !puestoId.valid" class="help-block">Puesto es requerido</div>
+					</div>
+					<div *ngIf="!flagDelete" class="form-group" id="puesto" [ngClass]="{ 'has-error': posicionForm.submitted && !puestoId.valid}">
 						<label class="control-label" for="puesto">Puesto<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="puestoId"   [(ngModel)]="posicion.puestoId"    #puestoId="ngModel" required>
@@ -156,7 +182,20 @@
 					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="c" name="tiponomina" [(ngModel)]="posicion.tiponominaId">Sindicalizado
 					</div>
 					</div>
-					<div class="form-group" id="reclutador" [ngClass]="{ 'has-error': posicionForm.submitted && !reclutadorId.valid}">
+					<div *ngIf="flagDelete" class="form-group" id="reclutador">
+						<label class="control-label" for="reclutador">Reclutador<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="reclutadorId"   [(ngModel)]="posicion.reclutadorId"    #reclutadorId="ngModel">
+							<input type="text"   class="form-control input-md"  name="reclutadorItem" [(ngModel)]="posicion.reclutadorItem"  #reclutadorItem="ngModel" placeholder="Reclutador..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalReclutador" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="posicionForm.submitted && !reclutadorId.valid" class="help-block">Reclutador es requerido</div>
+					</div>
+					<div *ngIf="!flagDelete" class="form-group" id="reclutador" [ngClass]="{ 'has-error': posicionForm.submitted && !reclutadorId.valid}">
 						<label class="control-label" for="reclutador">Reclutador<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="reclutadorId"   [(ngModel)]="posicion.reclutadorId"    #reclutadorId="ngModel" required>
@@ -225,13 +264,11 @@
 													<tr>
 														<th style="max-width:10%"></th>
 														<th style="max-width:10%">Nombre</th>
-														<th style="max-width:10%">Ubicacion</th>
 														<th style="max-width:10%">Ciudad</th>
 														<th style="max-width:10%">Estado</th>
 														<th style="max-width:10%">Telefono</th>
 														<th style="max-width:10%">Sitio</th>
 														<th style="max-width:10%">Contacto</th>
-														<th style="max-width:10%">Notas</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -240,13 +277,11 @@
 															<input type="radio" name="filialId" [checked]="filial.checked" value="{{filial.filialId}}" (click)="setClickedRowFilial(i, filial)">
 														</td>
 														<td  style="max-width: 10%">{{filial.nombre}}</td>
-														<td  style="max-width: 10%">{{filial.ubicacion}}</td>
 														<td  style="max-width: 10%">{{filial.ciudad}}</td>
 														<td  style="max-width: 10%">{{filial.estado}}</td>
 														<td  style="max-width: 10%">{{filial.telefono}}</td>
 														<td  style="max-width: 10%">{{filial.sitio}}</td>
 														<td  style="max-width: 10%">{{filial.contacto}}</td>
-														<td  style="max-width: 10%">{{filial.notas}}</td>
 													</tr>
 												</tbody>
 											</table>
@@ -305,7 +340,8 @@
 														<td  style="max-width: 10%">
 															<input type="radio" name="puestoId" [checked]="puesto.checked" value="{{puesto.puestoId}}" (click)="setClickedRowPuesto(i, puesto)">
 														</td>
-														<td  style="max-width: 10%">{{puesto.nombre}}</td>
+														<td  style="max-width: 10%" hidden="true">{{puesto.puestosId}}</td>
+														<td  style="max-width: 10%">{{puesto.puestosItem}}</td>
 														<td  style="max-width: 10%">{{puesto.descripcion}}</td>
 													</tr>
 												</tbody>
@@ -359,7 +395,6 @@
 														<th style="max-width:10%">Nombre</th>
 														<th style="max-width:10%">ApellidoPaterno</th>
 														<th style="max-width:10%">ApellidoMaterno</th>
-														<th style="max-width:10%">Es</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -370,7 +405,6 @@
 														<td  style="max-width: 10%">{{reclutador.nombre}}</td>
 														<td  style="max-width: 10%">{{reclutador.apellidopaterno}}</td>
 														<td  style="max-width: 10%">{{reclutador.apellidomaterno}}</td>
-														<td  style="max-width: 10%">{{reclutador.es}}</td>
 													</tr>
 												</tbody>
 											</table>

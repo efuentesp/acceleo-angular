@@ -48,6 +48,7 @@
 									<thead>
 										<tr>
 											<th style="max-width:10%">Nombre Clave</th>	
+											<th style="max-width:10%">Password</th>	
 											<th style="max-width:10%">Activo</th>
 											<th style="max-width:10%">Rol</th>
 										<th style="max-width:20%">Acciones</th>
@@ -56,17 +57,9 @@
 									<tbody>
 										<tr *ngFor="let usuario of usuarioList | filterUsuario: busquedaUsuario | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableUsuario'}; let i = index">
 											<td  style="max-width: 10%">{{usuario.nombreclave}}</td>
+											<td  style="max-width: 10%">{{usuario.password}}</td>
 											<td  style="max-width: 10%">{{usuario.activo}}</td>
-											<td>
-												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="rol" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Rol <i class="fa fa-caret-down"></i></button>
-													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('managerol', usuario)" >Administrar Rol</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createrol', usuario)">Agregar Rol</button>
-													</div>
-												</div>
-											</td>
+											<td  style="max-width: 10%">{{usuario.rolItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(usuario)"><span class="fa fa-pencil"></span></button>
@@ -97,5 +90,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

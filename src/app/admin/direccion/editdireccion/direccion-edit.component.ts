@@ -67,6 +67,7 @@ public candidatoList: Candidato [];
         this.flag = this.direccionService.getEdit();
         this.direccion = this.direccionService.getDireccion();
         this.flagDelete = this.direccionService.getDelete();
+        	this.loadCandidato();
     }  
 
 save(){

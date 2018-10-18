@@ -58,31 +58,15 @@
 											<th style="max-width:10%">Tipo de posición</th>
 											<th style="max-width:10%">Reclutador</th>
 											<th style="max-width:10%">Estatus</th>
+											<th style="max-width:10%">Solicitud</th>
+											<th style="max-width:10%">Evento</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let posicion of posicionList | filterPosicion: busquedaPosicion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePosicion'}; let i = index">
-											<td>
-												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="filial" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Filial <i class="fa fa-caret-down"></i></button>
-													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('managefilial', posicion)" >Administrar Filial</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createfilial', posicion)">Agregar Filial</button>
-													</div>
-												</div>
-											</td>
-											<td>
-												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="puesto" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Puesto <i class="fa fa-caret-down"></i></button>
-													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('managepuesto', posicion)" >Administrar Puesto</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createpuesto', posicion)">Agregar Puesto</button>
-													</div>
-												</div>
-											</td>
+											<td  style="max-width: 10%">{{posicion.filialItem}}</td>
+											<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
 											<td  style="max-width: 10%">{{posicion.nombre}}</td>
 											<td  style="max-width: 10%">{{posicion.descripcion}}</td>
 											<td  style="max-width: 10%">{{posicion.fecha | date: 'dd/MM/yyyy'}}</td>
@@ -90,17 +74,28 @@
 											<td  style="max-width: 10%">{{posicion.salario}}</td>
 											<td  style="max-width: 10%">{{posicion.vacantes}}</td>
 											<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
+											<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
+											<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
 											<td>
 												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="reclutador" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Reclutador <i class="fa fa-caret-down"></i></button>
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="solicitud" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Solicitud <i class="fa fa-caret-down"></i></button>
 													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('managereclutador', posicion)" >Administrar Reclutador</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createreclutador', posicion)">Agregar Reclutador</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managesolicitud', posicion)" >Administrar Solicitud</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createsolicitud', posicion)">Agregar Solicitud</button>
 													</div>
 												</div>
 											</td>
-											<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="evento" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Evento <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageevento', posicion)" >Administrar Evento</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createevento', posicion)">Agregar Evento</button>
+													</div>
+												</div>
+											</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(posicion)"><span class="fa fa-pencil"></span></button>
@@ -131,5 +126,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

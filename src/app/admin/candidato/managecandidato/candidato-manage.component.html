@@ -51,6 +51,10 @@
 											<th style="max-width:10%">Apellido Paterno</th>	
 											<th style="max-width:10%">Apellido Materno</th>	
 											<th style="max-width:10%">Fecha de nacimiento</th>
+											<th style="max-width:10%">Género</th>
+											<th style="max-width:10%">Estatus</th>
+											<th style="max-width:10%">Solicitudes</th>
+											<th style="max-width:10%">Eventos</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
@@ -60,6 +64,28 @@
 											<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
 											<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
 											<td  style="max-width: 10%">{{candidato.fecha | date: 'dd/MM/yyyy'}}</td>
+											<td  style="max-width: 10%">{{candidato.generoItem}}</td>
+											<td  style="max-width: 10%">{{candidato.estatuscandidatoItem}}</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="solicitud" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Solicitud <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('managesolicitud', candidato)" >Administrar Solicitud</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createsolicitud', candidato)">Agregar Solicitud</button>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div ngbDropdown class="d-inline-block">
+													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="evento" ngbDropdownToggle>
+													<i class="fa fa-sitemap"></i> Evento <i class="fa fa-caret-down"></i></button>
+													<div ngbDropdownMenu>
+														<button class="dropdown-item" style="width: 170px" (click)="go('manageevento', candidato)" >Administrar Evento</button>
+														<button class="dropdown-item" style="width: 170px" (click)="go('createevento', candidato)">Agregar Evento</button>
+													</div>
+												</div>
+											</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(candidato)"><span class="fa fa-pencil"></span></button>
@@ -90,5 +116,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

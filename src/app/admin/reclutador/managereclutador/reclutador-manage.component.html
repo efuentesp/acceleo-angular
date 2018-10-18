@@ -50,6 +50,7 @@
 											<th style="max-width:10%">Reclutador</th>	
 											<th style="max-width:10%">Apellido Paterno</th>	
 											<th style="max-width:10%">Apellido Materno</th>	
+											<th style="max-width:10%">Género</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
@@ -58,6 +59,7 @@
 											<td  style="max-width: 10%">{{reclutador.nombre}}</td>
 											<td  style="max-width: 10%">{{reclutador.apellidopaterno}}</td>
 											<td  style="max-width: 10%">{{reclutador.apellidomaterno}}</td>
+											<td  style="max-width: 10%">{{reclutador.generoItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(reclutador)"><span class="fa fa-pencil"></span></button>
@@ -88,5 +90,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

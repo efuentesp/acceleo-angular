@@ -17,7 +17,20 @@
 			<!-- form -->
 			<form #direccionForm="ngForm" id="direccionForm" class="form-horizontal form-label-left" (ngSubmit)="direccionForm.valid" novalidate>
 				<input class="form-control" #direccionId="ngModel" direccionId="direccionId" name="direccionId" type="hidden" [(ngModel)]="direccion.direccionId">
-					<div class="form-group" id="candidato" [ngClass]="{ 'has-error': direccionForm.submitted && !candidatoId.valid}">
+					<div *ngIf="flagDelete" class="form-group" id="candidato">
+						<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="direccion.candidatoId"    #candidatoId="ngModel">
+							<input type="text"   class="form-control input-md"  name="candidatoItem" [(ngModel)]="direccion.candidatoItem"  #candidatoItem="ngModel" placeholder="Candidato..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalCandidato" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="direccionForm.submitted && !candidatoId.valid" class="help-block">Candidato es requerido</div>
+					</div>
+					<div *ngIf="!flagDelete" class="form-group" id="candidato" [ngClass]="{ 'has-error': direccionForm.submitted && !candidatoId.valid}">
 						<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="direccion.candidatoId"    #candidatoId="ngModel" required>
@@ -114,10 +127,6 @@
 														<th style="max-width:10%">ApellidoPaterno</th>
 														<th style="max-width:10%">ApellidoMaterno</th>
 														<th style="max-width:10%">Fecha</th>
-														<th style="max-width:10%">Es</th>
-														<th style="max-width:10%">Estado</th>
-														<th style="max-width:10%">Solicitud</th>
-														<th style="max-width:10%">Evento</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -129,10 +138,6 @@
 														<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
 														<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
 														<td  style="max-width: 10%">{{candidato.fecha}}</td>
-														<td  style="max-width: 10%">{{candidato.es}}</td>
-														<td  style="max-width: 10%">{{candidato.estado}}</td>
-														<td  style="max-width: 10%">{{candidato.solicitud}}</td>
-														<td  style="max-width: 10%">{{candidato.evento}}</td>
 													</tr>
 												</tbody>
 											</table>

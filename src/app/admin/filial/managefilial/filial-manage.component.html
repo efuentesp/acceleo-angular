@@ -48,22 +48,26 @@
 									<thead>
 										<tr>
 											<th style="max-width:10%">Nombre</th>	
+											<th style="max-width:10%">Ubicación de la filial</th>	
 											<th style="max-width:10%">Ciudad</th>	
 											<th style="max-width:10%">Estado</th>	
 											<th style="max-width:10%">Teléfono</th>	
 											<th style="max-width:10%">Sitio Web</th>	
 											<th style="max-width:10%">Contacto</th>	
+											<th style="max-width:10%">Notas</th>	
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let filial of filialList | filterFilial: busquedaFilial | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableFilial'}; let i = index">
 											<td  style="max-width: 10%">{{filial.nombre}}</td>
+											<td  style="max-width: 10%">{{filial.ubicacion}}</td>
 											<td  style="max-width: 10%">{{filial.ciudad}}</td>
 											<td  style="max-width: 10%">{{filial.estado}}</td>
 											<td  style="max-width: 10%">{{filial.telefono}}</td>
 											<td  style="max-width: 10%">{{filial.sitio}}</td>
 											<td  style="max-width: 10%">{{filial.contacto}}</td>
+											<td  style="max-width: 10%">{{filial.notas}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(filial)"><span class="fa fa-pencil"></span></button>
@@ -94,5 +98,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

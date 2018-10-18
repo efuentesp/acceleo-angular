@@ -59,26 +59,8 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let solicitud of solicitudList | filterSolicitud: busquedaSolicitud | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSolicitud'}; let i = index">
-											<td>
-												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="posicion" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Posicion <i class="fa fa-caret-down"></i></button>
-													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('manageposicion', solicitud)" >Administrar Posicion</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createposicion', solicitud)">Agregar Posicion</button>
-													</div>
-												</div>
-											</td>
-											<td>
-												<div ngbDropdown class="d-inline-block">
-													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="candidato" ngbDropdownToggle>
-													<i class="fa fa-sitemap"></i> Candidato <i class="fa fa-caret-down"></i></button>
-													<div ngbDropdownMenu>
-														<button class="dropdown-item" style="width: 170px" (click)="go('managecandidato', solicitud)" >Administrar Candidato</button>
-														<button class="dropdown-item" style="width: 170px" (click)="go('createcandidato', solicitud)">Agregar Candidato</button>
-													</div>
-												</div>
-											</td>
+											<td  style="max-width: 10%">{{solicitud.posicionItem}}</td>
+											<td  style="max-width: 10%">{{solicitud.candidatoItem}}</td>
 											<td  style="max-width: 10%">{{solicitud.fecha | date: 'dd/MM/yyyy'}}</td>
 											<td  style="max-width: 10%">{{solicitud.salario}}</td>
 											<td  style="max-width: 10%">{{solicitud.correo}}</td>
@@ -114,5 +96,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 

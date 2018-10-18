@@ -83,6 +83,8 @@ public candidatoList: Candidato [];
         this.solicitud = this.solicitudService.getSolicitud();
     		this.solicitud.fechaAux = this.parserFormatter.parse(this.solicitud.fecha);
         this.flagDelete = this.solicitudService.getDelete();
+        	this.loadPosicion();
+        	this.loadCandidato();
     }  
 
 save(){

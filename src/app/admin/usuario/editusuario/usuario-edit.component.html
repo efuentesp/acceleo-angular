@@ -56,7 +56,20 @@
 							<div *ngIf="usuarioForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
 					</div>	
-					<div class="form-group" id="rol" [ngClass]="{ 'has-error': usuarioForm.submitted && !rolId.valid}">
+					<div *ngIf="flagDelete" class="form-group" id="rol">
+						<label class="control-label" for="rol">Rol<span class="required">*</span></label>
+						<div class="input-group">
+							<input type="hidden" class="form-control input-md"  name="rolId"   [(ngModel)]="usuario.rolId"    #rolId="ngModel">
+							<input type="text"   class="form-control input-md"  name="rolItem" [(ngModel)]="usuario.rolItem"  #rolItem="ngModel" placeholder="Rol..." disabled>
+							<span class="input-group-btn">
+								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalRol" disabled>
+									<em class="fa fa-search"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="usuarioForm.submitted && !rolId.valid" class="help-block">Rol es requerido</div>
+					</div>
+					<div *ngIf="!flagDelete" class="form-group" id="rol" [ngClass]="{ 'has-error': usuarioForm.submitted && !rolId.valid}">
 						<label class="control-label" for="rol">Rol<span class="required">*</span></label>
 						<div class="input-group">
 							<input type="hidden" class="form-control input-md"  name="rolId"   [(ngModel)]="usuario.rolId"    #rolId="ngModel" required>

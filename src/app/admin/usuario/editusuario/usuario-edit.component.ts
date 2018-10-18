@@ -67,6 +67,7 @@ public rolList: Rol [];
         this.flag = this.usuarioService.getEdit();
         this.usuario = this.usuarioService.getUsuario();
         this.flagDelete = this.usuarioService.getDelete();
+        	this.loadRol();
     }  
 
 save(){

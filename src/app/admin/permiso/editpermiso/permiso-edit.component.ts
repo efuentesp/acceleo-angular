@@ -67,6 +67,7 @@ public rolList: Rol [];
         this.flag = this.permisoService.getEdit();
         this.permiso = this.permisoService.getPermiso();
         this.flagDelete = this.permisoService.getDelete();
+        	this.loadRol();
     }  
 
 save(){

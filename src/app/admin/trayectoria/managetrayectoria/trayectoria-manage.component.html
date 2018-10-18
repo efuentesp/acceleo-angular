@@ -47,15 +47,21 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
+											<th style="max-width:10%">Candidato</th>
 											<th style="max-width:10%">Tipo Trayectoria</th>
+											<th style="max-width:10%">Descripción de la trayectoria</th>	
 											<th style="max-width:10%">Palabra clave</th>	
+											<th style="max-width:10%">Documento Probatorio</th>
 										<th style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let trayectoria of trayectoriaList | filterTrayectoria: busquedaTrayectoria | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableTrayectoria'}; let i = index">
+											<td  style="max-width: 10%">{{trayectoria.candidatoItem}}</td>
 											<td  style="max-width: 10%">{{trayectoria.tipotrayectoriaItem}}</td>
+											<td  style="max-width: 10%">{{trayectoria.descripcion}}</td>
 											<td  style="max-width: 10%">{{trayectoria.clave}}</td>
+											<td  style="max-width: 10%">{{trayectoria.documentoItem}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(trayectoria)"><span class="fa fa-pencil"></span></button>
@@ -86,5 +92,4 @@
 	<!-- /.x_panel -->
 </div>
 <!-- /.principal -->
-
 
