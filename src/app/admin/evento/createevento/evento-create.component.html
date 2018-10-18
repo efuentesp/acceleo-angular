@@ -62,10 +62,10 @@
 					</div>
 				</div>		
 				<!--<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !fechaAux.valid}">-->
-				<div class="form-group" id="fecha">
+				<div class="form-group">
 					<label class="control-label" for="fecha">Fecha programada<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
+						<input class="form-control" placeholder="dd/MM/yyyy" id="fecha" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
 						<span class="input-group-btn">
 							<button class="btn btn-outline-secondary" (click)="fechaAux.toggle(); changeFecha(false);" type="button">
 								<em class="fa fa-calendar"></em>
@@ -83,10 +83,10 @@
 					<label class="control-label" for="notas">Comentarios</label>
 					<input class="form-control col-md-12" #notas="ngModel" id="notas" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas">
 				</div>
-				<div class="form-group" id="fechareal">
+				<div class="form-group">
 					<label class="control-label" for="fechareal">Fecha real</label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fecharealAux" maxlength="10" minlength="10" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" (change)="changeFechareal(true)">
+						<input class="form-control" placeholder="dd/MM/yyyy" id="fechareal" name="fecharealAux" maxlength="10" minlength="10" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" (change)="changeFechareal(true)">
 						<span class="input-group-btn">
 							<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle(); changeFechareal(false);" type="button">
 								<em class="fa fa-calendar"></em>

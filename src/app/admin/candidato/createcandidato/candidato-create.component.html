@@ -33,10 +33,10 @@
 					<div *ngIf="candidatoForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 				</div>
 				<!--<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !fechaAux.valid}">-->
-				<div class="form-group" id="fecha">
+				<div class="form-group">
 					<label class="control-label" for="fecha">Fecha de nacimiento<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
+						<input class="form-control" placeholder="dd/MM/yyyy" id="fecha" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
 						<span class="input-group-btn">
 							<button class="btn btn-outline-secondary" (click)="fechaAux.toggle(); changeFecha(false);" type="button">
 								<em class="fa fa-calendar"></em>
