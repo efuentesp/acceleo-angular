@@ -11,6 +11,9 @@ import { Usuario }                                         from '../../usuario/u
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { RolService }                                  from '../../rol/rol.component.service';
+import { Rol }                                         from '../../rol/rol.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './usuario-manage.component.html',
@@ -28,10 +31,18 @@ export class UsuarioManageComponent implements OnInit {
     public usuarioList: Usuario [];
     public usuario: Usuario;
 
-  	public busquedausuario='';
-    public filterInputusuario = new FormControl();
+  	public busquedaUsuario='';
+    public filterInputUsuario = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public rolList: Rol [];
+	public rol: Rol;
+	public rolAux: Rol;
+	
+	public busquedaRol='';
+	filterInputRol = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +54,14 @@ export class UsuarioManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private usuarioService:UsuarioService
+				,private rolService: RolService
 ){
-	
-	
+			this.filterInputUsuario.valueChanges.subscribe(busquedaUsuario => {
+		  	  	this.busquedaUsuario = busquedaUsuario;
+		  	  });
+			this.filterInputRol.valueChanges.subscribe(busquedaRol => {
+			    this.busquedaRol = busquedaRol;
+			  });
 }
 
     ngOnInit() {
@@ -67,7 +83,13 @@ loadUsuario(){
     this.usuarioService.getAllUsuario().subscribe(data => {
         if (data) {
             this.usuarioList = data;
-				
+			this.usuarioList.forEach(element => {
+			    this.rolService.getRolById(element.rolId).subscribe(data => {
+			        if (data){
+			            element.rolItem = data.nombre;
+			        }
+			    });
+			});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the usuarios.', 'error');

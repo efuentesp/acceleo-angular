@@ -11,6 +11,11 @@ import { Solicitud }                                         from '../../solicit
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { PosicionService }                                  from '../../posicion/posicion.component.service';
+import { Posicion }                                         from '../../posicion/posicion.component.model';
+import { CandidatoService }                                  from '../../candidato/candidato.component.service';
+import { Candidato }                                         from '../../candidato/candidato.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './solicitud-manage.component.html',
@@ -28,10 +33,24 @@ export class SolicitudManageComponent implements OnInit {
     public solicitudList: Solicitud [];
     public solicitud: Solicitud;
 
-  	public busquedasolicitud='';
-    public filterInputsolicitud = new FormControl();
+  	public busquedaSolicitud='';
+    public filterInputSolicitud = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public posicionList: Posicion [];
+	public posicion: Posicion;
+	public posicionAux: Posicion;
+	
+	public busquedaPosicion='';
+	filterInputPosicion = new FormControl();
+	public candidatoList: Candidato [];
+	public candidato: Candidato;
+	public candidatoAux: Candidato;
+	
+	public busquedaCandidato='';
+	filterInputCandidato = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +62,18 @@ export class SolicitudManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private solicitudService:SolicitudService
+				,private posicionService: PosicionService
+				,private candidatoService: CandidatoService
 ){
-	
-	
+			this.filterInputSolicitud.valueChanges.subscribe(busquedaSolicitud => {
+		  	  	this.busquedaSolicitud = busquedaSolicitud;
+		  	  });
+			this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
+			    this.busquedaPosicion = busquedaPosicion;
+			  });
+			this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+			    this.busquedaCandidato = busquedaCandidato;
+			  });
 }
 
     ngOnInit() {
@@ -67,8 +95,20 @@ loadSolicitud(){
     this.solicitudService.getAllSolicitud().subscribe(data => {
         if (data) {
             this.solicitudList = data;
-				
-				
+			this.solicitudList.forEach(element => {
+			    this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+			        if (data){
+			            element.posicionItem = data.nombre;
+			        }
+			    });
+			});
+			this.solicitudList.forEach(element => {
+			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+			        if (data){
+			            element.candidatoItem = data.nombre;
+			        }
+			    });
+			});
 			this.solicitudList.forEach(element => {
 			        if (element.estatussolicitudId == 'e1'){
 			            element.estatussolicitudItem = "Registrada";

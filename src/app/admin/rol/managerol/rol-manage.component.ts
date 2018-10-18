@@ -11,6 +11,7 @@ import { Rol }                                         from '../../rol/rol.compo
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component ({
     selector: 'app-view',
     templateUrl: './rol-manage.component.html',
@@ -28,10 +29,12 @@ export class RolManageComponent implements OnInit {
     public rolList: Rol [];
     public rol: Rol;
 
-  	public busquedarol='';
-    public filterInputrol = new FormControl();
+  	public busquedaRol='';
+    public filterInputRol = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
 
     // Buttons 
     private searchActive: boolean = false;
@@ -44,8 +47,9 @@ export class RolManageComponent implements OnInit {
 				private location: Location,
 				private rolService:RolService
 ){
-	
-	
+			this.filterInputRol.valueChanges.subscribe(busquedaRol => {
+		  	  	this.busquedaRol = busquedaRol;
+		  	  });
 }
 
     ngOnInit() {

@@ -11,6 +11,7 @@ import { Reclutador }                                         from '../../reclut
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component ({
     selector: 'app-view',
     templateUrl: './reclutador-manage.component.html',
@@ -28,10 +29,12 @@ export class ReclutadorManageComponent implements OnInit {
     public reclutadorList: Reclutador [];
     public reclutador: Reclutador;
 
-  	public busquedareclutador='';
-    public filterInputreclutador = new FormControl();
+  	public busquedaReclutador='';
+    public filterInputReclutador = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
 
     // Buttons 
     private searchActive: boolean = false;
@@ -44,8 +47,9 @@ export class ReclutadorManageComponent implements OnInit {
 				private location: Location,
 				private reclutadorService:ReclutadorService
 ){
-	
-	
+			this.filterInputReclutador.valueChanges.subscribe(busquedaReclutador => {
+		  	  	this.busquedaReclutador = busquedaReclutador;
+		  	  });
 }
 
     ngOnInit() {

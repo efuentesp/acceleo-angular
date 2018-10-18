@@ -11,6 +11,7 @@ import { Candidato }                                         from '../../candida
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component ({
     selector: 'app-view',
     templateUrl: './candidato-manage.component.html',
@@ -28,10 +29,12 @@ export class CandidatoManageComponent implements OnInit {
     public candidatoList: Candidato [];
     public candidato: Candidato;
 
-  	public busquedacandidato='';
-    public filterInputcandidato = new FormControl();
+  	public busquedaCandidato='';
+    public filterInputCandidato = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
 
     // Buttons 
     private searchActive: boolean = false;
@@ -44,8 +47,9 @@ export class CandidatoManageComponent implements OnInit {
 				private location: Location,
 				private candidatoService:CandidatoService
 ){
-	
-	
+			this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+		  	  	this.busquedaCandidato = busquedaCandidato;
+		  	  });
 }
 
     ngOnInit() {
@@ -98,8 +102,6 @@ loadCandidato(){
 			            element.estatuscandidatoItem = "Declinó";
 			        }		
 			});
-				
-				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the candidatos.', 'error');

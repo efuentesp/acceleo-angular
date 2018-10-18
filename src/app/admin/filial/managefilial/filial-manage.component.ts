@@ -11,6 +11,7 @@ import { Filial }                                         from '../../filial/fil
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component ({
     selector: 'app-view',
     templateUrl: './filial-manage.component.html',
@@ -28,10 +29,12 @@ export class FilialManageComponent implements OnInit {
     public filialList: Filial [];
     public filial: Filial;
 
-  	public busquedafilial='';
-    public filterInputfilial = new FormControl();
+  	public busquedaFilial='';
+    public filterInputFilial = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
 
     // Buttons 
     private searchActive: boolean = false;
@@ -44,8 +47,9 @@ export class FilialManageComponent implements OnInit {
 				private location: Location,
 				private filialService:FilialService
 ){
-	
-	
+			this.filterInputFilial.valueChanges.subscribe(busquedaFilial => {
+		  	  	this.busquedaFilial = busquedaFilial;
+		  	  });
 }
 
     ngOnInit() {

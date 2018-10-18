@@ -11,6 +11,9 @@ import { Direccion }                                         from '../../direcci
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { CandidatoService }                                  from '../../candidato/candidato.component.service';
+import { Candidato }                                         from '../../candidato/candidato.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './direccion-manage.component.html',
@@ -28,10 +31,18 @@ export class DireccionManageComponent implements OnInit {
     public direccionList: Direccion [];
     public direccion: Direccion;
 
-  	public busquedadireccion='';
-    public filterInputdireccion = new FormControl();
+  	public busquedaDireccion='';
+    public filterInputDireccion = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public candidatoList: Candidato [];
+	public candidato: Candidato;
+	public candidatoAux: Candidato;
+	
+	public busquedaCandidato='';
+	filterInputCandidato = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +54,14 @@ export class DireccionManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private direccionService:DireccionService
+				,private candidatoService: CandidatoService
 ){
-	
-	
+			this.filterInputDireccion.valueChanges.subscribe(busquedaDireccion => {
+		  	  	this.busquedaDireccion = busquedaDireccion;
+		  	  });
+			this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+			    this.busquedaCandidato = busquedaCandidato;
+			  });
 }
 
     ngOnInit() {
@@ -67,7 +83,13 @@ loadDireccion(){
     this.direccionService.getAllDireccion().subscribe(data => {
         if (data) {
             this.direccionList = data;
-				
+			this.direccionList.forEach(element => {
+			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+			        if (data){
+			            element.candidatoItem = data.nombre;
+			        }
+			    });
+			});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the direccions.', 'error');

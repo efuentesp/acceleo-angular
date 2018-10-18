@@ -11,6 +11,11 @@ import { Evento }                                         from '../../evento/eve
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { PosicionService }                                  from '../../posicion/posicion.component.service';
+import { Posicion }                                         from '../../posicion/posicion.component.model';
+import { CandidatoService }                                  from '../../candidato/candidato.component.service';
+import { Candidato }                                         from '../../candidato/candidato.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './evento-manage.component.html',
@@ -28,10 +33,24 @@ export class EventoManageComponent implements OnInit {
     public eventoList: Evento [];
     public evento: Evento;
 
-  	public busquedaevento='';
-    public filterInputevento = new FormControl();
+  	public busquedaEvento='';
+    public filterInputEvento = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public posicionList: Posicion [];
+	public posicion: Posicion;
+	public posicionAux: Posicion;
+	
+	public busquedaPosicion='';
+	filterInputPosicion = new FormControl();
+	public candidatoList: Candidato [];
+	public candidato: Candidato;
+	public candidatoAux: Candidato;
+	
+	public busquedaCandidato='';
+	filterInputCandidato = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +62,18 @@ export class EventoManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private eventoService:EventoService
+				,private posicionService: PosicionService
+				,private candidatoService: CandidatoService
 ){
-	
-	
+			this.filterInputEvento.valueChanges.subscribe(busquedaEvento => {
+		  	  	this.busquedaEvento = busquedaEvento;
+		  	  });
+			this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
+			    this.busquedaPosicion = busquedaPosicion;
+			  });
+			this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+			    this.busquedaCandidato = busquedaCandidato;
+			  });
 }
 
     ngOnInit() {
@@ -96,8 +124,20 @@ loadEvento(){
 			            element.tipoeventoItem = "AutorizaciónNivel 5";
 			        }		
 			});
-				
-				
+			this.eventoList.forEach(element => {
+			    this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+			        if (data){
+			            element.posicionItem = data.nombre;
+			        }
+			    });
+			});
+			this.eventoList.forEach(element => {
+			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+			        if (data){
+			            element.candidatoItem = data.nombre;
+			        }
+			    });
+			});
 			this.eventoList.forEach(element => {
 			        if (element.estatuseventoId == 'e1'){
 			            element.estatuseventoItem = "Agendado";

@@ -11,6 +11,11 @@ import { Trayectoria }                                         from '../../traye
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { CandidatoService }                                  from '../../candidato/candidato.component.service';
+import { Candidato }                                         from '../../candidato/candidato.component.model';
+import { DocumentoService }                                  from '../../documento/documento.component.service';
+import { Documento }                                         from '../../documento/documento.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './trayectoria-manage.component.html',
@@ -28,10 +33,24 @@ export class TrayectoriaManageComponent implements OnInit {
     public trayectoriaList: Trayectoria [];
     public trayectoria: Trayectoria;
 
-  	public busquedatrayectoria='';
-    public filterInputtrayectoria = new FormControl();
+  	public busquedaTrayectoria='';
+    public filterInputTrayectoria = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public candidatoList: Candidato [];
+	public candidato: Candidato;
+	public candidatoAux: Candidato;
+	
+	public busquedaCandidato='';
+	filterInputCandidato = new FormControl();
+	public documentoList: Documento [];
+	public documento: Documento;
+	public documentoAux: Documento;
+	
+	public busquedaDocumento='';
+	filterInputDocumento = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +62,18 @@ export class TrayectoriaManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private trayectoriaService:TrayectoriaService
+				,private candidatoService: CandidatoService
+				,private documentoService: DocumentoService
 ){
-	
-	
+			this.filterInputTrayectoria.valueChanges.subscribe(busquedaTrayectoria => {
+		  	  	this.busquedaTrayectoria = busquedaTrayectoria;
+		  	  });
+			this.filterInputCandidato.valueChanges.subscribe(busquedaCandidato => {
+			    this.busquedaCandidato = busquedaCandidato;
+			  });
+			this.filterInputDocumento.valueChanges.subscribe(busquedaDocumento => {
+			    this.busquedaDocumento = busquedaDocumento;
+			  });
 }
 
     ngOnInit() {
@@ -67,7 +95,13 @@ loadTrayectoria(){
     this.trayectoriaService.getAllTrayectoria().subscribe(data => {
         if (data) {
             this.trayectoriaList = data;
-				
+			this.trayectoriaList.forEach(element => {
+			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+			        if (data){
+			            element.candidatoItem = data.nombre;
+			        }
+			    });
+			});
 			this.trayectoriaList.forEach(element => {
 			        if (element.tipotrayectoriaId == 'a'){
 			            element.tipotrayectoriaItem = "Estudios";
@@ -91,7 +125,13 @@ loadTrayectoria(){
 			            element.tipotrayectoriaItem = "Curso";
 			        }		
 			});
-				
+			this.trayectoriaList.forEach(element => {
+			    this.documentoService.getDocumentoById(element.documentoId).subscribe(data => {
+			        if (data){
+			            element.documentoItem = data.nombre;
+			        }
+			    });
+			});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the trayectorias.', 'error');

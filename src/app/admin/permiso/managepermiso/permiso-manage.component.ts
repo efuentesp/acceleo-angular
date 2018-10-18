@@ -11,6 +11,9 @@ import { Permiso }                                         from '../../permiso/p
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { RolService }                                  from '../../rol/rol.component.service';
+import { Rol }                                         from '../../rol/rol.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './permiso-manage.component.html',
@@ -28,10 +31,18 @@ export class PermisoManageComponent implements OnInit {
     public permisoList: Permiso [];
     public permiso: Permiso;
 
-  	public busquedapermiso='';
-    public filterInputpermiso = new FormControl();
+  	public busquedaPermiso='';
+    public filterInputPermiso = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public rolList: Rol [];
+	public rol: Rol;
+	public rolAux: Rol;
+	
+	public busquedaRol='';
+	filterInputRol = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +54,14 @@ export class PermisoManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private permisoService:PermisoService
+				,private rolService: RolService
 ){
-	
-	
+			this.filterInputPermiso.valueChanges.subscribe(busquedaPermiso => {
+		  	  	this.busquedaPermiso = busquedaPermiso;
+		  	  });
+			this.filterInputRol.valueChanges.subscribe(busquedaRol => {
+			    this.busquedaRol = busquedaRol;
+			  });
 }
 
     ngOnInit() {
@@ -67,7 +83,13 @@ loadPermiso(){
     this.permisoService.getAllPermiso().subscribe(data => {
         if (data) {
             this.permisoList = data;
-				
+			this.permisoList.forEach(element => {
+			    this.rolService.getRolById(element.rolId).subscribe(data => {
+			        if (data){
+			            element.rolItem = data.nombre;
+			        }
+			    });
+			});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the permisos.', 'error');

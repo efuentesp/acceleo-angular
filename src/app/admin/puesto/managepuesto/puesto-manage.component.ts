@@ -11,6 +11,7 @@ import { Puesto }                                         from '../../puesto/pue
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component ({
     selector: 'app-view',
     templateUrl: './puesto-manage.component.html',
@@ -28,10 +29,12 @@ export class PuestoManageComponent implements OnInit {
     public puestoList: Puesto [];
     public puesto: Puesto;
 
-  	public busquedapuesto='';
-    public filterInputpuesto = new FormControl();
+  	public busquedaPuesto='';
+    public filterInputPuesto = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
 
     // Buttons 
     private searchActive: boolean = false;
@@ -44,8 +47,9 @@ export class PuestoManageComponent implements OnInit {
 				private location: Location,
 				private puestoService:PuestoService
 ){
-	
-	
+			this.filterInputPuesto.valueChanges.subscribe(busquedaPuesto => {
+		  	  	this.busquedaPuesto = busquedaPuesto;
+		  	  });
 }
 
     ngOnInit() {

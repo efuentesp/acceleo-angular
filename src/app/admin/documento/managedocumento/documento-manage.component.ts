@@ -11,6 +11,7 @@ import { Documento }                                         from '../../documen
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component ({
     selector: 'app-view',
     templateUrl: './documento-manage.component.html',
@@ -28,10 +29,12 @@ export class DocumentoManageComponent implements OnInit {
     public documentoList: Documento [];
     public documento: Documento;
 
-  	public busquedadocumento='';
-    public filterInputdocumento = new FormControl();
+  	public busquedaDocumento='';
+    public filterInputDocumento = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
 
     // Buttons 
     private searchActive: boolean = false;
@@ -44,8 +47,9 @@ export class DocumentoManageComponent implements OnInit {
 				private location: Location,
 				private documentoService:DocumentoService
 ){
-	
-	
+			this.filterInputDocumento.valueChanges.subscribe(busquedaDocumento => {
+		  	  	this.busquedaDocumento = busquedaDocumento;
+		  	  });
 }
 
     ngOnInit() {

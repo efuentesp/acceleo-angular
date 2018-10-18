@@ -11,6 +11,13 @@ import { Posicion }                                         from '../../posicion
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { FilialService }                                  from '../../filial/filial.component.service';
+import { Filial }                                         from '../../filial/filial.component.model';
+import { PuestoService }                                  from '../../puesto/puesto.component.service';
+import { Puesto }                                         from '../../puesto/puesto.component.model';
+import { ReclutadorService }                                  from '../../reclutador/reclutador.component.service';
+import { Reclutador }                                         from '../../reclutador/reclutador.component.model';
+
 @Component ({
     selector: 'app-view',
     templateUrl: './posicion-manage.component.html',
@@ -28,10 +35,30 @@ export class PosicionManageComponent implements OnInit {
     public posicionList: Posicion [];
     public posicion: Posicion;
 
-  	public busquedaposicion='';
-    public filterInputposicion = new FormControl();
+  	public busquedaPosicion='';
+    public filterInputPosicion = new FormControl();
+    datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+	public filialList: Filial [];
+	public filial: Filial;
+	public filialAux: Filial;
+	
+	public busquedaFilial='';
+	filterInputFilial = new FormControl();
+	public puestoList: Puesto [];
+	public puesto: Puesto;
+	public puestoAux: Puesto;
+	
+	public busquedaPuesto='';
+	filterInputPuesto = new FormControl();
+	public reclutadorList: Reclutador [];
+	public reclutador: Reclutador;
+	public reclutadorAux: Reclutador;
+	
+	public busquedaReclutador='';
+	filterInputReclutador = new FormControl();
 
     // Buttons 
     private searchActive: boolean = false;
@@ -43,9 +70,22 @@ export class PosicionManageComponent implements OnInit {
 				private route: ActivatedRoute, 
 				private location: Location,
 				private posicionService:PosicionService
+				,private filialService: FilialService
+				,private puestoService: PuestoService
+				,private reclutadorService: ReclutadorService
 ){
-	
-	
+			this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
+		  	  	this.busquedaPosicion = busquedaPosicion;
+		  	  });
+			this.filterInputFilial.valueChanges.subscribe(busquedaFilial => {
+			    this.busquedaFilial = busquedaFilial;
+			  });
+			this.filterInputPuesto.valueChanges.subscribe(busquedaPuesto => {
+			    this.busquedaPuesto = busquedaPuesto;
+			  });
+			this.filterInputReclutador.valueChanges.subscribe(busquedaReclutador => {
+			    this.busquedaReclutador = busquedaReclutador;
+			  });
 }
 
     ngOnInit() {
@@ -67,8 +107,20 @@ loadPosicion(){
     this.posicionService.getAllPosicion().subscribe(data => {
         if (data) {
             this.posicionList = data;
-				
-				
+			this.posicionList.forEach(element => {
+			    this.filialService.getFilialById(element.filialId).subscribe(data => {
+			        if (data){
+			            element.filialItem = data.nombre;
+			        }
+			    });
+			});
+			this.posicionList.forEach(element => {
+			    this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
+			        if (data){
+			            element.puestoItem = data.nombre;
+			        }
+			    });
+			});
 			this.posicionList.forEach(element => {
 			        if (element.tiponominaId == 'a'){
 			            element.tiponominaItem = "Externo";
@@ -80,7 +132,13 @@ loadPosicion(){
 			            element.tiponominaItem = "Sindicalizado";
 			        }		
 			});
-				
+			this.posicionList.forEach(element => {
+			    this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
+			        if (data){
+			            element.reclutadorItem = data.nombre;
+			        }
+			    });
+			});
 			this.posicionList.forEach(element => {
 			        if (element.estatusposicionId == 'e1'){
 			            element.estatusposicionItem = "Abierta";
@@ -95,8 +153,6 @@ loadPosicion(){
 			            element.estatusposicionItem = "En pausa";
 			        }		
 			});
-				
-				
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the posicions.', 'error');
