@@ -20,39 +20,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Candidato<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="candidato.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="candidato.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !nombre.valid}">
 							<label class="control-label" for="nombre">Candidato<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="candidato.nombre" required>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="candidato.nombre" required>
 							<div *ngIf="candidatoForm.submitted && !nombre.valid" class="help-block">Candidato es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidopaterno" readonly disabled>
+							<input class="form-control col-md-12" #apellidopaterno="ngModel" id="apellidopaterno" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidopaterno" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !apellidopaterno.valid}">
 							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidopaterno" required>
+							<input class="form-control col-md-12" #apellidopaterno="ngModel" id="apellidopaterno" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidopaterno" required>
 							<div *ngIf="candidatoForm.submitted && !apellidopaterno.valid" class="help-block">Apellido Paterno es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidomaterno" readonly disabled>
+							<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidomaterno" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !apellidomaterno.valid}">
 							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidomaterno" required>
+							<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidomaterno" required>
 							<div *ngIf="candidatoForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 						</div>
 					</div>	
@@ -60,9 +60,9 @@
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de nacimiento<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fecha" name="fechaAux" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
 								<span class="input-group-btn">
-									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle(); changeFecha(false);" type="button">
 										<em class="fa fa-calendar"></em>
 									</button>
 								</span>
@@ -74,7 +74,7 @@
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de nacimiento<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fecha" name="fechaAux" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
 								<span class="input-group-btn">
 									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button" disabled>
 										<em class="fa fa-calendar"></em>

@@ -33,52 +33,52 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="calle">Calle<span class="required">*</span></label>
-							<input class="form-control col-md-12" #calle="ngModel" name="calle" maxlength="128" type="text" [(ngModel)]="direccion.calle" readonly disabled>
+							<input class="form-control col-md-12" #calle="ngModel" id="calle" name="calle" maxlength="128" type="text" [(ngModel)]="direccion.calle" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': direccionForm.submitted && !calle.valid}">
 							<label class="control-label" for="calle">Calle<span class="required">*</span></label>
-							<input class="form-control col-md-12" #calle="ngModel" name="calle" maxlength="128" type="text" [(ngModel)]="direccion.calle" required>
+							<input class="form-control col-md-12" #calle="ngModel" id="calle" name="calle" maxlength="128" type="text" [(ngModel)]="direccion.calle" required>
 							<div *ngIf="direccionForm.submitted && !calle.valid" class="help-block">Calle es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="cp">Código Postal<span class="required">*</span></label>
-							<input class="form-control col-md-12" #cp="ngModel" name="cp" maxlength="128" type="text" [(ngModel)]="direccion.cp" readonly disabled>
+							<input class="form-control col-md-12" #cp="ngModel" id="cp" name="cp" maxlength="128" type="text" [(ngModel)]="direccion.cp" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': direccionForm.submitted && !cp.valid}">
 							<label class="control-label" for="cp">Código Postal<span class="required">*</span></label>
-							<input class="form-control col-md-12" #cp="ngModel" name="cp" maxlength="128" type="text" [(ngModel)]="direccion.cp" required>
+							<input class="form-control col-md-12" #cp="ngModel" id="cp" name="cp" maxlength="128" type="text" [(ngModel)]="direccion.cp" required>
 							<div *ngIf="direccionForm.submitted && !cp.valid" class="help-block">Código Postal es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ciudad">Ciudad<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ciudad="ngModel" name="ciudad" maxlength="128" type="text" [(ngModel)]="direccion.ciudad" readonly disabled>
+							<input class="form-control col-md-12" #ciudad="ngModel" id="ciudad" name="ciudad" maxlength="128" type="text" [(ngModel)]="direccion.ciudad" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': direccionForm.submitted && !ciudad.valid}">
 							<label class="control-label" for="ciudad">Ciudad<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ciudad="ngModel" name="ciudad" maxlength="128" type="text" [(ngModel)]="direccion.ciudad" required>
+							<input class="form-control col-md-12" #ciudad="ngModel" id="ciudad" name="ciudad" maxlength="128" type="text" [(ngModel)]="direccion.ciudad" required>
 							<div *ngIf="direccionForm.submitted && !ciudad.valid" class="help-block">Ciudad es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="estado">Estado<span class="required">*</span></label>
-							<input class="form-control col-md-12" #estado="ngModel" name="estado" maxlength="128" type="text" [(ngModel)]="direccion.estado" readonly disabled>
+							<input class="form-control col-md-12" #estado="ngModel" id="estado" name="estado" maxlength="128" type="text" [(ngModel)]="direccion.estado" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': direccionForm.submitted && !estado.valid}">
 							<label class="control-label" for="estado">Estado<span class="required">*</span></label>
-							<input class="form-control col-md-12" #estado="ngModel" name="estado" maxlength="128" type="text" [(ngModel)]="direccion.estado" required>
+							<input class="form-control col-md-12" #estado="ngModel" id="estado" name="estado" maxlength="128" type="text" [(ngModel)]="direccion.estado" required>
 							<div *ngIf="direccionForm.submitted && !estado.valid" class="help-block">Estado es requerido</div>
 						</div>
 					</div>	

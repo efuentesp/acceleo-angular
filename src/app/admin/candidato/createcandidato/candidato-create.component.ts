@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild}                                     from 
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CustomNgbDateParserFormatter } from '../../../dateformat';
@@ -24,6 +24,7 @@ export class CandidatoCreateComponent implements OnInit {
    public user: User;
    public valueName: string;
    public token: string;
+	   		public changeFormatFecha: boolean = false;
 
 public candidatoList: Candidato [];
 public candidato: Candidato;
@@ -31,6 +32,7 @@ public candidatoAux: Candidato;
 
 public busquedaCandidato='';
 filterInputCandidato = new FormControl();
+datePipe = new DatePipe('en-US');
 
 
 constructor(private router: Router,  
@@ -61,7 +63,11 @@ save(){
 	){
 		return;
 	}else{
-	   this.candidato.fecha = this.parseFormat.format(this.candidato.fechaAux);
+	   if (this.changeFormatFecha){
+	   	this.candidato.fecha = this.parse((this.candidato.fechaAux)+"");
+	   }else{
+	   	this.candidato.fecha = this.parseFormat.format(this.candidato.fechaAux);
+	   }
 	   this.candidatoService.saveCandidato(this.candidato).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Candidato save successfully.', 'success');
@@ -75,5 +81,26 @@ save(){
 	}
 }
 
+changeFecha(value){
+	this.changeFormatFecha = value;
+}
+
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+}
 
 }

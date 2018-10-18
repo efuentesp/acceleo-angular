@@ -20,39 +20,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombreclave">Nombre Clave<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombreclave="ngModel" name="nombreclave" maxlength="128" type="text" [(ngModel)]="usuario.nombreclave" readonly disabled>
+							<input class="form-control col-md-12" #nombreclave="ngModel" id="nombreclave" name="nombreclave" maxlength="128" type="text" [(ngModel)]="usuario.nombreclave" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': usuarioForm.submitted && !nombreclave.valid}">
 							<label class="control-label" for="nombreclave">Nombre Clave<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombreclave="ngModel" name="nombreclave" maxlength="128" type="text" [(ngModel)]="usuario.nombreclave" required>
+							<input class="form-control col-md-12" #nombreclave="ngModel" id="nombreclave" name="nombreclave" maxlength="128" type="text" [(ngModel)]="usuario.nombreclave" required>
 							<div *ngIf="usuarioForm.submitted && !nombreclave.valid" class="help-block">Nombre Clave es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="password">Password<span class="required">*</span></label>
-							<input class="form-control col-md-12" #password="ngModel" name="password" maxlength="128" type="text" [(ngModel)]="usuario.password" readonly disabled>
+							<input class="form-control col-md-12" #password="ngModel" id="password" name="password" maxlength="128" type="text" [(ngModel)]="usuario.password" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': usuarioForm.submitted && !password.valid}">
 							<label class="control-label" for="password">Password<span class="required">*</span></label>
-							<input class="form-control col-md-12" #password="ngModel" name="password" maxlength="128" type="text" [(ngModel)]="usuario.password" required>
+							<input class="form-control col-md-12" #password="ngModel" id="password" name="password" maxlength="128" type="text" [(ngModel)]="usuario.password" required>
 							<div *ngIf="usuarioForm.submitted && !password.valid" class="help-block">Password es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #activo="ngModel" name="activo" maxlength="128" type="number" [(ngModel)]="usuario.activo" readonly disabled>
+							<input class="form-control col-md-12"   #activo="ngModel" id="activo" name="activo" maxlength="128" type="number" [(ngModel)]="usuario.activo" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': usuarioForm.submitted && !activo.valid}">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
-							<input class="form-control col-md-12" #activo="ngModel" name="activo" maxlength="128" type="number" [(ngModel)]="usuario.activo" required>
+							<input class="form-control col-md-12" #activo="ngModel" id="activo" name="activo" maxlength="128" type="number" [(ngModel)]="usuario.activo" required>
 							<div *ngIf="usuarioForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
 					</div>	

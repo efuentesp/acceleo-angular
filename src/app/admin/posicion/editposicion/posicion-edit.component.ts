@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { PosicionService }                                  from '../../posicion/posicion.component.service';
 import { Posicion }                                         from '../../posicion/posicion.component.model';
@@ -29,9 +30,11 @@ export class PosicionEditComponent implements OnInit {
     public user: User;
     public valueName: string;
     public token: string;
+public changeFormatFecha: boolean = false;
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public posicionList: Posicion [];
 	public posicion: Posicion;
@@ -62,6 +65,7 @@ public reclutadorList: Reclutador [];
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private posicionService: PosicionService
 				,private filialService: FilialService
@@ -96,18 +100,38 @@ public reclutadorList: Reclutador [];
     }  
 
 save(){
-	
-
-   this.posicionService.savePosicion(this.posicion).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Posicion save successfully.', 'success');
-        this.router.navigate([ '../manageposicion' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Posicion.', 'error');
-     }else{
-       swal('Error...', 'Posicion save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.posicion.filialId === null ||
+	this.posicion.puestoId === null ||
+	this.posicion.nombre ==="" || this.posicion.nombre ===null || 
+	this.posicion.descripcion ==="" || this.posicion.descripcion ===null || 
+	this.posicion.fechaAux ===null || 
+	this.posicion.contacto ==="" || this.posicion.contacto ===null || 
+	this.posicion.salario ===null || 
+	this.posicion.vacantes ===null || 
+	this.posicion.tiponominaId ==="" || this.posicion.tiponominaId ===null || 
+	this.posicion.reclutadorId === null ||
+	this.posicion.estatusposicionId ==="" || this.posicion.estatusposicionId ===null || 
+		this.posicion.posicionId === null 
+	){
+		return;
+	}else{
+	   if (this.changeFormatFecha){
+	   	this.posicion.fecha = this.parse((this.posicion.fechaAux)+"");
+	   }else{
+	   	this.posicion.fecha = this.parseFormat.format(this.posicion.fechaAux);
+	   }
+	   this.posicionService.savePosicion(this.posicion).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Posicion save successfully.', 'success');
+	        this.router.navigate([ '../manageposicion' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Posicion.', 'error');
+	     }else{
+	       swal('Error...', 'Posicion save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -145,6 +169,125 @@ delete(){
 return(posicion){
   this.location.back();
 }
+ 
+loadFilial(){
+	this.filialService.getAllFilial().subscribe(data => {
+   		if (data) {
+ 		this.filialList = data;
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Filials.', 'error');
+	});
+ }
+
+ setClickedRowFilial(index,filial){
+ 	  filial.checked = !filial.checked;
+ 	  if (filial.checked){
+	 	  this.filialService.setFilial(filial);
+this.posicion.filialId = filial.filialId;
+this.posicion.filialItem = filial.nombre;
+ 	  }else{
+ 	      this.filialService.clear();
+this.posicion.filialId = "";
+this.posicion.filialItem = "";
+	 	   }
+ }
+loadPuesto(){
+	this.puestoService.getAllPuesto().subscribe(data => {
+   		if (data) {
+ 		this.puestoList = data;
+ 		this.puestoList.forEach(element => {
+ 		      	if (element.puestosId == 'a'){
+ 		      	    element.puestosItem = "Promotor de cambaceo";
+ 		      	}		
+ 		      	if (element.puestosId == 'b'){
+ 		      	    element.puestosItem = "Valuador";
+ 		      	}		
+ 		      	if (element.puestosId == 'c'){
+ 		      	    element.puestosItem = "Mecanógrafo";
+ 		      	}		
+ 		      	if (element.puestosId == 'd'){
+ 		      	    element.puestosItem = "Expendedor";
+ 		      	}		
+ 		      	if (element.puestosId == 'e'){
+ 		      	    element.puestosItem = "Almacenista";
+ 		      	}		
+ 		      	if (element.puestosId == 'f'){
+ 		      	    element.puestosItem = "Mozo";
+ 		      	}		
+ 		      	if (element.puestosId == 'g'){
+ 		      	    element.puestosItem = "Cajero";
+ 		      	}		
+ 		});
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Puestos.', 'error');
+	});
+ }
+
+ setClickedRowPuesto(index,puesto){
+ 	  puesto.checked = !puesto.checked;
+ 	  if (puesto.checked){
+	 	  this.puestoService.setPuesto(puesto);
+this.posicion.puestoId = puesto.puestoId;
+this.posicion.puestoItem = puesto.puestosItem;
+ 	  }else{
+ 	      this.puestoService.clear();
+this.posicion.puestoId = "";
+this.posicion.puestoItem = "";
+	 	   }
+ }
+changeFecha(value){
+	this.changeFormatFecha = value;
+}
+loadReclutador(){
+	this.reclutadorService.getAllReclutador().subscribe(data => {
+   		if (data) {
+ 		this.reclutadorList = data;
+ 		this.reclutadorList.forEach(element => {
+ 		      	if (element.generoId == 'mas'){
+ 		      	    element.generoItem = "Masculino";
+ 		      	}		
+ 		      	if (element.generoId == 'fem'){
+ 		      	    element.generoItem = "Femenino";
+ 		      	}		
+ 		});
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Reclutadors.', 'error');
+	});
+ }
+
+ setClickedRowReclutador(index,reclutador){
+ 	  reclutador.checked = !reclutador.checked;
+ 	  if (reclutador.checked){
+	 	  this.reclutadorService.setReclutador(reclutador);
+this.posicion.reclutadorId = reclutador.reclutadorId;
+this.posicion.reclutadorItem = reclutador.nombre;
+ 	  }else{
+ 	      this.reclutadorService.clear();
+this.posicion.reclutadorId = "";
+this.posicion.reclutadorItem = "";
+	 	   }
+ }
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 

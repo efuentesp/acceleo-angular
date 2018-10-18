@@ -20,39 +20,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="clave">Clave del rol<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #clave="ngModel" name="clave" maxlength="128" type="number" [(ngModel)]="rol.clave" readonly disabled>
+							<input class="form-control col-md-12"   #clave="ngModel" id="clave" name="clave" maxlength="128" type="number" [(ngModel)]="rol.clave" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': rolForm.submitted && !clave.valid}">
 							<label class="control-label" for="clave">Clave del rol<span class="required">*</span></label>
-							<input class="form-control col-md-12" #clave="ngModel" name="clave" maxlength="128" type="number" [(ngModel)]="rol.clave" required>
+							<input class="form-control col-md-12" #clave="ngModel" id="clave" name="clave" maxlength="128" type="number" [(ngModel)]="rol.clave" required>
 							<div *ngIf="rolForm.submitted && !clave.valid" class="help-block">Clave del rol es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': rolForm.submitted && !nombre.valid}">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" required>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="rol.nombre" required>
 							<div *ngIf="rolForm.submitted && !nombre.valid" class="help-block">Nombre es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #activo="ngModel" name="activo" maxlength="128" type="number" [(ngModel)]="rol.activo" readonly disabled>
+							<input class="form-control col-md-12"   #activo="ngModel" id="activo" name="activo" maxlength="128" type="number" [(ngModel)]="rol.activo" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': rolForm.submitted && !activo.valid}">
 							<label class="control-label" for="activo">Activo<span class="required">*</span></label>
-							<input class="form-control col-md-12" #activo="ngModel" name="activo" maxlength="128" type="number" [(ngModel)]="rol.activo" required>
+							<input class="form-control col-md-12" #activo="ngModel" id="activo" name="activo" maxlength="128" type="number" [(ngModel)]="rol.activo" required>
 							<div *ngIf="rolForm.submitted && !activo.valid" class="help-block">Activo es requerido</div>
 						</div>
 					</div>	

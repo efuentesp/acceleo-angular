@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { PermisoService }                                  from '../../permiso/permiso.component.service';
 import { Permiso }                                         from '../../permiso/permiso.component.model';
@@ -28,6 +29,7 @@ export class PermisoEditComponent implements OnInit {
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public permisoList: Permiso [];
 	public permiso: Permiso;
@@ -46,6 +48,7 @@ public rolList: Rol [];
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private permisoService: PermisoService
 				,private rolService: RolService
@@ -67,18 +70,26 @@ public rolList: Rol [];
     }  
 
 save(){
-	
-
-   this.permisoService.savePermiso(this.permiso).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Permiso save successfully.', 'success');
-        this.router.navigate([ '../managepermiso' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Permiso.', 'error');
-     }else{
-       swal('Error...', 'Permiso save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.permiso.rolId === null ||
+	this.permiso.funcion ==="" || this.permiso.funcion ===null || 
+	this.permiso.ruta ==="" || this.permiso.ruta ===null || 
+	this.permiso.nivelpermiso ==="" || this.permiso.nivelpermiso ===null || 
+		this.permiso.permisoId === null 
+	){
+		return;
+	}else{
+	   this.permisoService.savePermiso(this.permiso).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Permiso save successfully.', 'success');
+	        this.router.navigate([ '../managepermiso' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Permiso.', 'error');
+	     }else{
+	       swal('Error...', 'Permiso save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -116,6 +127,47 @@ delete(){
 return(permiso){
   this.location.back();
 }
+ 
+loadRol(){
+	this.rolService.getAllRol().subscribe(data => {
+   		if (data) {
+ 		this.rolList = data;
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Rols.', 'error');
+	});
+ }
+
+ setClickedRowRol(index,rol){
+ 	  rol.checked = !rol.checked;
+ 	  if (rol.checked){
+	 	  this.rolService.setRol(rol);
+this.permiso.rolId = rol.rolId;
+this.permiso.rolItem = rol.nombre;
+ 	  }else{
+ 	      this.rolService.clear();
+this.permiso.rolId = "";
+this.permiso.rolItem = "";
+	 	   }
+ }
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 

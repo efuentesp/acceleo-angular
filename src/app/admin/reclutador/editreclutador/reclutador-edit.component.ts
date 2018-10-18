@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { ReclutadorService }                                  from '../../reclutador/reclutador.component.service';
 import { Reclutador }                                         from '../../reclutador/reclutador.component.model';
@@ -26,6 +27,7 @@ export class ReclutadorEditComponent implements OnInit {
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public reclutadorList: Reclutador [];
 	public reclutador: Reclutador;
@@ -38,6 +40,7 @@ export class ReclutadorEditComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private reclutadorService: ReclutadorService
 					
@@ -57,18 +60,26 @@ export class ReclutadorEditComponent implements OnInit {
     }  
 
 save(){
-	
-
-   this.reclutadorService.saveReclutador(this.reclutador).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Reclutador save successfully.', 'success');
-        this.router.navigate([ '../managereclutador' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Reclutador.', 'error');
-     }else{
-       swal('Error...', 'Reclutador save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.reclutador.nombre ==="" || this.reclutador.nombre ===null || 
+	this.reclutador.apellidopaterno ==="" || this.reclutador.apellidopaterno ===null || 
+	this.reclutador.apellidomaterno ==="" || this.reclutador.apellidomaterno ===null || 
+	this.reclutador.generoId ==="" || this.reclutador.generoId ===null || 
+		this.reclutador.reclutadorId === null 
+	){
+		return;
+	}else{
+	   this.reclutadorService.saveReclutador(this.reclutador).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Reclutador save successfully.', 'success');
+	        this.router.navigate([ '../managereclutador' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Reclutador.', 'error');
+	     }else{
+	       swal('Error...', 'Reclutador save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -106,6 +117,25 @@ delete(){
 return(reclutador){
   this.location.back();
 }
+ 
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 

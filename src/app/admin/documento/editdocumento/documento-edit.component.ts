@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { DocumentoService }                                  from '../../documento/documento.component.service';
 import { Documento }                                         from '../../documento/documento.component.model';
@@ -26,6 +27,7 @@ export class DocumentoEditComponent implements OnInit {
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public documentoList: Documento [];
 	public documento: Documento;
@@ -38,6 +40,7 @@ export class DocumentoEditComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private documentoService: DocumentoService
 ){
@@ -55,18 +58,24 @@ export class DocumentoEditComponent implements OnInit {
     }  
 
 save(){
-	
-
-   this.documentoService.saveDocumento(this.documento).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Documento save successfully.', 'success');
-        this.router.navigate([ '../managedocumento' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Documento.', 'error');
-     }else{
-       swal('Error...', 'Documento save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.documento.nombre ==="" || this.documento.nombre ===null || 
+	this.documento.descripcion ==="" || this.documento.descripcion ===null || 
+		this.documento.documentoId === null 
+	){
+		return;
+	}else{
+	   this.documentoService.saveDocumento(this.documento).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Documento save successfully.', 'success');
+	        this.router.navigate([ '../managedocumento' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Documento.', 'error');
+	     }else{
+	       swal('Error...', 'Documento save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -104,6 +113,25 @@ delete(){
 return(documento){
   this.location.back();
 }
+ 
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 

@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { DireccionService }                                  from '../../direccion/direccion.component.service';
 import { Direccion }                                         from '../../direccion/direccion.component.model';
@@ -28,6 +29,7 @@ export class DireccionEditComponent implements OnInit {
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public direccionList: Direccion [];
 	public direccion: Direccion;
@@ -46,6 +48,7 @@ public candidatoList: Candidato [];
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private direccionService: DireccionService
 				,private candidatoService: CandidatoService
@@ -67,18 +70,27 @@ public candidatoList: Candidato [];
     }  
 
 save(){
-	
-
-   this.direccionService.saveDireccion(this.direccion).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Direccion save successfully.', 'success');
-        this.router.navigate([ '../managedireccion' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Direccion.', 'error');
-     }else{
-       swal('Error...', 'Direccion save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.direccion.candidatoId === null ||
+	this.direccion.calle ==="" || this.direccion.calle ===null || 
+	this.direccion.cp ==="" || this.direccion.cp ===null || 
+	this.direccion.ciudad ==="" || this.direccion.ciudad ===null || 
+	this.direccion.estado ==="" || this.direccion.estado ===null || 
+		this.direccion.direccionId === null 
+	){
+		return;
+	}else{
+	   this.direccionService.saveDireccion(this.direccion).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Direccion save successfully.', 'success');
+	        this.router.navigate([ '../managedireccion' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Direccion.', 'error');
+	     }else{
+	       swal('Error...', 'Direccion save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -116,6 +128,78 @@ delete(){
 return(direccion){
   this.location.back();
 }
+ 
+loadCandidato(){
+	this.candidatoService.getAllCandidato().subscribe(data => {
+   		if (data) {
+ 		this.candidatoList = data;
+ 		this.candidatoList.forEach(element => {
+ 		      	if (element.generoId == 'mas'){
+ 		      	    element.generoItem = "Masculino";
+ 		      	}		
+ 		      	if (element.generoId == 'fem'){
+ 		      	    element.generoItem = "Femenino";
+ 		      	}		
+ 		});
+ 		this.candidatoList.forEach(element => {
+ 		      	if (element.estatuscandidatoId == 'e1'){
+ 		      	    element.estatuscandidatoItem = "Contactado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e2'){
+ 		      	    element.estatuscandidatoItem = "En proceso de evaluación";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e3'){
+ 		      	    element.estatuscandidatoItem = "Ofertado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e4'){
+ 		      	    element.estatuscandidatoItem = "En proceso de contratación";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e5'){
+ 		      	    element.estatuscandidatoItem = "Contratado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e6'){
+ 		      	    element.estatuscandidatoItem = "Rechazado";
+ 		      	}		
+ 		      	if (element.estatuscandidatoId == 'e7'){
+ 		      	    element.estatuscandidatoItem = "Declinó";
+ 		      	}		
+ 		});
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
+	});
+ }
+
+ setClickedRowCandidato(index,candidato){
+ 	  candidato.checked = !candidato.checked;
+ 	  if (candidato.checked){
+	 	  this.candidatoService.setCandidato(candidato);
+this.direccion.candidatoId = candidato.candidatoId;
+this.direccion.candidatoItem = candidato.nombre;
+ 	  }else{
+ 	      this.candidatoService.clear();
+this.direccion.candidatoId = "";
+this.direccion.candidatoItem = "";
+	 	   }
+ }
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 

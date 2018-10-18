@@ -142,4 +142,8 @@ if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
     }
     return null;
   }
+  
+  go(value, direccion){
+      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
+  }
 }

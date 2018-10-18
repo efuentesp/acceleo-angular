@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild}                                     from 
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CustomNgbDateParserFormatter } from '../../../dateformat';
@@ -35,6 +35,7 @@ public trayectoriaAux: Trayectoria;
 
 public busquedaTrayectoria='';
 filterInputTrayectoria = new FormControl();
+datePipe = new DatePipe('en-US');
 
 public candidatoList: Candidato [];
 public candidato: Candidato;
@@ -173,5 +174,23 @@ this.trayectoria.documentoId = "";
 this.trayectoria.documentoItem = "";
  	   }
  }
+
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+}
 
 }

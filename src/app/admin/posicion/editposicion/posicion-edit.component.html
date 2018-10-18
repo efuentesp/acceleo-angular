@@ -46,26 +46,26 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre de la posición<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="posicion.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="posicion.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !nombre.valid}">
 							<label class="control-label" for="nombre">Nombre de la posición<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="posicion.nombre" required>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="posicion.nombre" required>
 							<div *ngIf="posicionForm.submitted && !nombre.valid" class="help-block">Nombre de la posición es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción de la vacante<span class="required">*</span></label>
-							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="posicion.descripcion" readonly disabled>
+							<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="posicion.descripcion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !descripcion.valid}">
 							<label class="control-label" for="descripcion">Descripción de la vacante<span class="required">*</span></label>
-							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="posicion.descripcion" required>
+							<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="posicion.descripcion" required>
 							<div *ngIf="posicionForm.submitted && !descripcion.valid" class="help-block">Descripción de la vacante es requerido</div>
 						</div>
 					</div>	
@@ -73,9 +73,9 @@
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="posicion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fecha" name="fechaAux" [(ngModel)]="posicion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
 								<span class="input-group-btn">
-									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle(); changeFecha(false);" type="button">
 										<em class="fa fa-calendar"></em>
 									</button>
 								</span>
@@ -87,7 +87,7 @@
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="posicion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fecha" name="fechaAux" [(ngModel)]="posicion.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
 								<span class="input-group-btn">
 									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button" disabled>
 										<em class="fa fa-calendar"></em>
@@ -99,39 +99,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="contacto">Responsable de la posición<span class="required">*</span></label>
-							<input class="form-control col-md-12" #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="posicion.contacto" readonly disabled>
+							<input class="form-control col-md-12" #contacto="ngModel" id="contacto" name="contacto" maxlength="128" type="text" [(ngModel)]="posicion.contacto" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !contacto.valid}">
 							<label class="control-label" for="contacto">Responsable de la posición<span class="required">*</span></label>
-							<input class="form-control col-md-12" #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="posicion.contacto" required>
+							<input class="form-control col-md-12" #contacto="ngModel" id="contacto" name="contacto" maxlength="128" type="text" [(ngModel)]="posicion.contacto" required>
 							<div *ngIf="posicionForm.submitted && !contacto.valid" class="help-block">Responsable de la posición es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="salario">Presupuesto para la posición<span class="required">*</span></label>
-							<input class="form-control col-md-12" #salario="ngModel" name="salario" maxlength="128" type="number" [(ngModel)]="posicion.salario" readonly disabled>
+							<input class="form-control col-md-12" #salario="ngModel" id="salario" name="salario" maxlength="128" type="number" [(ngModel)]="posicion.salario" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !salario.valid}">
 							<label class="control-label" for="salario">Presupuesto para la posición<span class="required">*</span></label>
-							<input class="form-control col-md-12" #salario="ngModel" name="salario" maxlength="128" type="number" [(ngModel)]="posicion.salario" required>
+							<input class="form-control col-md-12" #salario="ngModel" id="salario" name="salario" maxlength="128" type="number" [(ngModel)]="posicion.salario" required>
 							<div *ngIf="posicionForm.submitted && !salario.valid" class="help-block">Presupuesto para la posición es requerido</div>
 						</div>
 					</div>		
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="vacantes">Número de vacantes<span class="required">*</span></label>
-							<input class="form-control col-md-12"   #vacantes="ngModel" name="vacantes" maxlength="128" type="number" [(ngModel)]="posicion.vacantes" readonly disabled>
+							<input class="form-control col-md-12"   #vacantes="ngModel" id="vacantes" name="vacantes" maxlength="128" type="number" [(ngModel)]="posicion.vacantes" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': posicionForm.submitted && !vacantes.valid}">
 							<label class="control-label" for="vacantes">Número de vacantes<span class="required">*</span></label>
-							<input class="form-control col-md-12" #vacantes="ngModel" name="vacantes" maxlength="128" type="number" [(ngModel)]="posicion.vacantes" required>
+							<input class="form-control col-md-12" #vacantes="ngModel" id="vacantes" name="vacantes" maxlength="128" type="number" [(ngModel)]="posicion.vacantes" required>
 							<div *ngIf="posicionForm.submitted && !vacantes.valid" class="help-block">Número de vacantes es requerido</div>
 						</div>
 					</div>	

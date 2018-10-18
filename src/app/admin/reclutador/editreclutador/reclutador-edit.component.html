@@ -20,39 +20,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Reclutador<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="reclutador.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="reclutador.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !nombre.valid}">
 							<label class="control-label" for="nombre">Reclutador<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="reclutador.nombre" required>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="reclutador.nombre" required>
 							<div *ngIf="reclutadorForm.submitted && !nombre.valid" class="help-block">Reclutador es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidopaterno" readonly disabled>
+							<input class="form-control col-md-12" #apellidopaterno="ngModel" id="apellidopaterno" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidopaterno" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !apellidopaterno.valid}">
 							<label class="control-label" for="apellidopaterno">Apellido Paterno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidopaterno="ngModel" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidopaterno" required>
+							<input class="form-control col-md-12" #apellidopaterno="ngModel" id="apellidopaterno" name="apellidopaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidopaterno" required>
 							<div *ngIf="reclutadorForm.submitted && !apellidopaterno.valid" class="help-block">Apellido Paterno es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" readonly disabled>
+							<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': reclutadorForm.submitted && !apellidomaterno.valid}">
 							<label class="control-label" for="apellidomaterno">Apellido Materno<span class="required">*</span></label>
-							<input class="form-control col-md-12" #apellidomaterno="ngModel" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" required>
+							<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="reclutador.apellidomaterno" required>
 							<div *ngIf="reclutadorForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 						</div>
 					</div>	

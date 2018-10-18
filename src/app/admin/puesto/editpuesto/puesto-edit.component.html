@@ -65,13 +65,13 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción<span class="required">*</span></label>
-							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="puesto.descripcion" readonly disabled>
+							<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="puesto.descripcion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': puestoForm.submitted && !descripcion.valid}">
 							<label class="control-label" for="descripcion">Descripción<span class="required">*</span></label>
-							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="puesto.descripcion" required>
+							<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="puesto.descripcion" required>
 							<div *ngIf="puestoForm.submitted && !descripcion.valid" class="help-block">Descripción es requerido</div>
 						</div>
 					</div>	

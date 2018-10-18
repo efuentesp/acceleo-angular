@@ -78,26 +78,26 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción de la trayectoria<span class="required">*</span></label>
-							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" readonly disabled>
+							<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': trayectoriaForm.submitted && !descripcion.valid}">
 							<label class="control-label" for="descripcion">Descripción de la trayectoria<span class="required">*</span></label>
-							<input class="form-control col-md-12" #descripcion="ngModel" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" required>
+							<input class="form-control col-md-12" #descripcion="ngModel" id="descripcion" name="descripcion" maxlength="128" type="text" [(ngModel)]="trayectoria.descripcion" required>
 							<div *ngIf="trayectoriaForm.submitted && !descripcion.valid" class="help-block">Descripción de la trayectoria es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="clave">Palabra clave<span class="required">*</span></label>
-							<input class="form-control col-md-12" #clave="ngModel" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" readonly disabled>
+							<input class="form-control col-md-12" #clave="ngModel" id="clave" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': trayectoriaForm.submitted && !clave.valid}">
 							<label class="control-label" for="clave">Palabra clave<span class="required">*</span></label>
-							<input class="form-control col-md-12" #clave="ngModel" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" required>
+							<input class="form-control col-md-12" #clave="ngModel" id="clave" name="clave" maxlength="128" type="text" [(ngModel)]="trayectoria.clave" required>
 							<div *ngIf="trayectoriaForm.submitted && !clave.valid" class="help-block">Palabra clave es requerido</div>
 						</div>
 					</div>	

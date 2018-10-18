@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild}                                     from 
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CustomNgbDateParserFormatter } from '../../../dateformat';
@@ -30,6 +30,7 @@ export class PosicionCreateComponent implements OnInit {
    public user: User;
    public valueName: string;
    public token: string;
+	   		public changeFormatFecha: boolean = false;
 
 public posicionList: Posicion [];
 public posicion: Posicion;
@@ -37,6 +38,7 @@ public posicionAux: Posicion;
 
 public busquedaPosicion='';
 filterInputPosicion = new FormControl();
+datePipe = new DatePipe('en-US');
 
 public filialList: Filial [];
 public filial: Filial;
@@ -105,7 +107,11 @@ save(){
 	){
 		return;
 	}else{
-	   this.posicion.fecha = this.parseFormat.format(this.posicion.fechaAux);
+	   if (this.changeFormatFecha){
+	   	this.posicion.fecha = this.parse((this.posicion.fechaAux)+"");
+	   }else{
+	   	this.posicion.fecha = this.parseFormat.format(this.posicion.fechaAux);
+	   }
 	   this.posicionService.savePosicion(this.posicion).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Posicion save successfully.', 'success');
@@ -186,6 +192,9 @@ this.posicion.puestoId = "";
 this.posicion.puestoItem = "";
  	   }
  }
+changeFecha(value){
+	this.changeFormatFecha = value;
+}
 loadReclutador(){
 	this.reclutadorService.getAllReclutador().subscribe(data => {
    		if (data) {
@@ -216,5 +225,23 @@ this.posicion.reclutadorId = "";
 this.posicion.reclutadorItem = "";
  	   }
  }
+
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+}
 
 }

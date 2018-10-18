@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { PuestoService }                                  from '../../puesto/puesto.component.service';
 import { Puesto }                                         from '../../puesto/puesto.component.model';
@@ -26,6 +27,7 @@ export class PuestoEditComponent implements OnInit {
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public puestoList: Puesto [];
 	public puesto: Puesto;
@@ -38,6 +40,7 @@ export class PuestoEditComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private puestoService: PuestoService
 					
@@ -57,18 +60,24 @@ export class PuestoEditComponent implements OnInit {
     }  
 
 save(){
-	
-
-   this.puestoService.savePuesto(this.puesto).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Puesto save successfully.', 'success');
-        this.router.navigate([ '../managepuesto' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Puesto.', 'error');
-     }else{
-       swal('Error...', 'Puesto save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.puesto.puestosId ==="" || this.puesto.puestosId ===null || 
+	this.puesto.descripcion ==="" || this.puesto.descripcion ===null || 
+		this.puesto.puestoId === null 
+	){
+		return;
+	}else{
+	   this.puestoService.savePuesto(this.puesto).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Puesto save successfully.', 'success');
+	        this.router.navigate([ '../managepuesto' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Puesto.', 'error');
+	     }else{
+	       swal('Error...', 'Puesto save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -106,6 +115,25 @@ delete(){
 return(puesto){
   this.location.back();
 }
+ 
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 

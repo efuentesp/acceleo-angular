@@ -77,13 +77,13 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre del evento<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="evento.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="evento.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !nombre.valid}">
 							<label class="control-label" for="nombre">Nombre del evento<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="evento.nombre" required>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="evento.nombre" required>
 							<div *ngIf="eventoForm.submitted && !nombre.valid" class="help-block">Nombre del evento es requerido</div>
 						</div>
 					</div>	
@@ -116,9 +116,9 @@
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha programada<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fecha" name="fechaAux" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
 								<span class="input-group-btn">
-									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle(); changeFecha(false);" type="button">
 										<em class="fa fa-calendar"></em>
 									</button>
 								</span>
@@ -130,7 +130,7 @@
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha programada<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fechaAux" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fecha" name="fechaAux" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" readonly disabled>
 								<span class="input-group-btn">
 									<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button" disabled>
 										<em class="fa fa-calendar"></em>
@@ -142,26 +142,26 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="responsable">Responsable del evento<span class="required">*</span></label>
-							<input class="form-control col-md-12" #responsable="ngModel" name="responsable" maxlength="128" type="text" [(ngModel)]="evento.responsable" readonly disabled>
+							<input class="form-control col-md-12" #responsable="ngModel" id="responsable" name="responsable" maxlength="128" type="text" [(ngModel)]="evento.responsable" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !responsable.valid}">
 							<label class="control-label" for="responsable">Responsable del evento<span class="required">*</span></label>
-							<input class="form-control col-md-12" #responsable="ngModel" name="responsable" maxlength="128" type="text" [(ngModel)]="evento.responsable" required>
+							<input class="form-control col-md-12" #responsable="ngModel" id="responsable" name="responsable" maxlength="128" type="text" [(ngModel)]="evento.responsable" required>
 							<div *ngIf="eventoForm.submitted && !responsable.valid" class="help-block">Responsable del evento es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="notas">Comentarios</label>
-							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas" readonly disabled>
+							<input class="form-control col-md-12" #notas="ngModel" id="notas" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="notas">Comentarios</label>
-							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas" required>
+							<input class="form-control col-md-12" #notas="ngModel" id="notas" name="notas" maxlength="128" type="text" [(ngModel)]="evento.notas" required>
 							<div *ngIf="eventoForm.submitted && !notas.valid" class="help-block">Comentarios es requerido</div>
 						</div>
 					</div>
@@ -169,9 +169,9 @@
 						<div class="form-group">
 							<label class="control-label" for="fechareal">Fecha real</label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fecharealAux" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" required>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fechareal" name="fecharealAux" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" required (change)="changeFechareal(true)">
 								<span class="input-group-btn">
-									<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle()" type="button">
+									<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle(); changeFechareal(false);" type="button">
 										<em class="fa fa-calendar"></em>
 									</button>
 								</span>
@@ -183,7 +183,7 @@
 						<div class="form-group">
 							<label class="control-label" for="fechareal">Fecha real</label>
 							<div class="input-group col-md-12">	
-								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" name="fecharealAux" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" readonly disabled>
+								<input class="form-control" placeholder="dd/MM/yyyy" maxlength="10" minlength="10" id="fechareal" name="fecharealAux" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" readonly disabled>
 								<span class="input-group-btn">
 									<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle()" type="button" disabled>
 										<em class="fa fa-calendar"></em>
@@ -195,39 +195,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="responsablereal">Responsable real</label>
-							<input class="form-control col-md-12" #responsablereal="ngModel" name="responsablereal" maxlength="128" type="text" [(ngModel)]="evento.responsablereal" readonly disabled>
+							<input class="form-control col-md-12" #responsablereal="ngModel" id="responsablereal" name="responsablereal" maxlength="128" type="text" [(ngModel)]="evento.responsablereal" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="responsablereal">Responsable real</label>
-							<input class="form-control col-md-12" #responsablereal="ngModel" name="responsablereal" maxlength="128" type="text" [(ngModel)]="evento.responsablereal" required>
+							<input class="form-control col-md-12" #responsablereal="ngModel" id="responsablereal" name="responsablereal" maxlength="128" type="text" [(ngModel)]="evento.responsablereal" required>
 							<div *ngIf="eventoForm.submitted && !responsablereal.valid" class="help-block">Responsable real es requerido</div>
 						</div>
 					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="feedback">Feedback</label>
-							<input class="form-control col-md-12" #feedback="ngModel" name="feedback" maxlength="128" type="text" [(ngModel)]="evento.feedback" readonly disabled>
+							<input class="form-control col-md-12" #feedback="ngModel" id="feedback" name="feedback" maxlength="128" type="text" [(ngModel)]="evento.feedback" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="feedback">Feedback</label>
-							<input class="form-control col-md-12" #feedback="ngModel" name="feedback" maxlength="128" type="text" [(ngModel)]="evento.feedback" required>
+							<input class="form-control col-md-12" #feedback="ngModel" id="feedback" name="feedback" maxlength="128" type="text" [(ngModel)]="evento.feedback" required>
 							<div *ngIf="eventoForm.submitted && !feedback.valid" class="help-block">Feedback es requerido</div>
 						</div>
 					</div>
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="comentarios">Comentarios del responsable</label>
-							<input class="form-control col-md-12" #comentarios="ngModel" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios" readonly disabled>
+							<input class="form-control col-md-12" #comentarios="ngModel" id="comentarios" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="comentarios">Comentarios del responsable</label>
-							<input class="form-control col-md-12" #comentarios="ngModel" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios" required>
+							<input class="form-control col-md-12" #comentarios="ngModel" id="comentarios" name="comentarios" maxlength="128" type="text" [(ngModel)]="evento.comentarios" required>
 							<div *ngIf="eventoForm.submitted && !comentarios.valid" class="help-block">Comentarios del responsable es requerido</div>
 						</div>
 					</div>

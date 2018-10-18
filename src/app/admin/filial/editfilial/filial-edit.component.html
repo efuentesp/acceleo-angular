@@ -20,104 +20,104 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="filial.nombre" readonly disabled>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="filial.nombre" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !nombre.valid}">
 							<label class="control-label" for="nombre">Nombre<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nombre="ngModel" name="nombre" maxlength="128" type="text" [(ngModel)]="filial.nombre" required>
+							<input class="form-control col-md-12" #nombre="ngModel" id="nombre" name="nombre" maxlength="128" type="text" [(ngModel)]="filial.nombre" required>
 							<div *ngIf="filialForm.submitted && !nombre.valid" class="help-block">Nombre es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ubicacion">Ubicación de la filial<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ubicacion="ngModel" name="ubicacion" maxlength="128" type="text" [(ngModel)]="filial.ubicacion" readonly disabled>
+							<input class="form-control col-md-12" #ubicacion="ngModel" id="ubicacion" name="ubicacion" maxlength="128" type="text" [(ngModel)]="filial.ubicacion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !ubicacion.valid}">
 							<label class="control-label" for="ubicacion">Ubicación de la filial<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ubicacion="ngModel" name="ubicacion" maxlength="128" type="text" [(ngModel)]="filial.ubicacion" required>
+							<input class="form-control col-md-12" #ubicacion="ngModel" id="ubicacion" name="ubicacion" maxlength="128" type="text" [(ngModel)]="filial.ubicacion" required>
 							<div *ngIf="filialForm.submitted && !ubicacion.valid" class="help-block">Ubicación de la filial es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ciudad">Ciudad<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ciudad="ngModel" name="ciudad" maxlength="128" type="text" [(ngModel)]="filial.ciudad" readonly disabled>
+							<input class="form-control col-md-12" #ciudad="ngModel" id="ciudad" name="ciudad" maxlength="128" type="text" [(ngModel)]="filial.ciudad" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !ciudad.valid}">
 							<label class="control-label" for="ciudad">Ciudad<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ciudad="ngModel" name="ciudad" maxlength="128" type="text" [(ngModel)]="filial.ciudad" required>
+							<input class="form-control col-md-12" #ciudad="ngModel" id="ciudad" name="ciudad" maxlength="128" type="text" [(ngModel)]="filial.ciudad" required>
 							<div *ngIf="filialForm.submitted && !ciudad.valid" class="help-block">Ciudad es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="estado">Estado<span class="required">*</span></label>
-							<input class="form-control col-md-12" #estado="ngModel" name="estado" maxlength="128" type="text" [(ngModel)]="filial.estado" readonly disabled>
+							<input class="form-control col-md-12" #estado="ngModel" id="estado" name="estado" maxlength="128" type="text" [(ngModel)]="filial.estado" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !estado.valid}">
 							<label class="control-label" for="estado">Estado<span class="required">*</span></label>
-							<input class="form-control col-md-12" #estado="ngModel" name="estado" maxlength="128" type="text" [(ngModel)]="filial.estado" required>
+							<input class="form-control col-md-12" #estado="ngModel" id="estado" name="estado" maxlength="128" type="text" [(ngModel)]="filial.estado" required>
 							<div *ngIf="filialForm.submitted && !estado.valid" class="help-block">Estado es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="telefono">Teléfono<span class="required">*</span></label>
-							<input class="form-control col-md-12" #telefono="ngModel" name="telefono" maxlength="128" type="text" [(ngModel)]="filial.telefono" readonly disabled>
+							<input class="form-control col-md-12" #telefono="ngModel" id="telefono" name="telefono" maxlength="128" type="text" [(ngModel)]="filial.telefono" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !telefono.valid}">
 							<label class="control-label" for="telefono">Teléfono<span class="required">*</span></label>
-							<input class="form-control col-md-12" #telefono="ngModel" name="telefono" maxlength="128" type="text" [(ngModel)]="filial.telefono" required>
+							<input class="form-control col-md-12" #telefono="ngModel" id="telefono" name="telefono" maxlength="128" type="text" [(ngModel)]="filial.telefono" required>
 							<div *ngIf="filialForm.submitted && !telefono.valid" class="help-block">Teléfono es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="sitio">Sitio Web<span class="required">*</span></label>
-							<input class="form-control col-md-12" #sitio="ngModel" name="sitio" maxlength="128" type="text" [(ngModel)]="filial.sitio" readonly disabled>
+							<input class="form-control col-md-12" #sitio="ngModel" id="sitio" name="sitio" maxlength="128" type="text" [(ngModel)]="filial.sitio" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !sitio.valid}">
 							<label class="control-label" for="sitio">Sitio Web<span class="required">*</span></label>
-							<input class="form-control col-md-12" #sitio="ngModel" name="sitio" maxlength="128" type="text" [(ngModel)]="filial.sitio" required>
+							<input class="form-control col-md-12" #sitio="ngModel" id="sitio" name="sitio" maxlength="128" type="text" [(ngModel)]="filial.sitio" required>
 							<div *ngIf="filialForm.submitted && !sitio.valid" class="help-block">Sitio Web es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="contacto">Contacto<span class="required">*</span></label>
-							<input class="form-control col-md-12" #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="filial.contacto" readonly disabled>
+							<input class="form-control col-md-12" #contacto="ngModel" id="contacto" name="contacto" maxlength="128" type="text" [(ngModel)]="filial.contacto" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': filialForm.submitted && !contacto.valid}">
 							<label class="control-label" for="contacto">Contacto<span class="required">*</span></label>
-							<input class="form-control col-md-12" #contacto="ngModel" name="contacto" maxlength="128" type="text" [(ngModel)]="filial.contacto" required>
+							<input class="form-control col-md-12" #contacto="ngModel" id="contacto" name="contacto" maxlength="128" type="text" [(ngModel)]="filial.contacto" required>
 							<div *ngIf="filialForm.submitted && !contacto.valid" class="help-block">Contacto es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="notas">Notas</label>
-							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="filial.notas" readonly disabled>
+							<input class="form-control col-md-12" #notas="ngModel" id="notas" name="notas" maxlength="128" type="text" [(ngModel)]="filial.notas" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="notas">Notas</label>
-							<input class="form-control col-md-12" #notas="ngModel" name="notas" maxlength="128" type="text" [(ngModel)]="filial.notas" required>
+							<input class="form-control col-md-12" #notas="ngModel" id="notas" name="notas" maxlength="128" type="text" [(ngModel)]="filial.notas" required>
 							<div *ngIf="filialForm.submitted && !notas.valid" class="help-block">Notas es requerido</div>
 						</div>
 					</div>

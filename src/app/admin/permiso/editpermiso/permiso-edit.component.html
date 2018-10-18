@@ -33,39 +33,39 @@
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="funcion">Funcion<span class="required">*</span></label>
-							<input class="form-control col-md-12" #funcion="ngModel" name="funcion" maxlength="128" type="text" [(ngModel)]="permiso.funcion" readonly disabled>
+							<input class="form-control col-md-12" #funcion="ngModel" id="funcion" name="funcion" maxlength="128" type="text" [(ngModel)]="permiso.funcion" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': permisoForm.submitted && !funcion.valid}">
 							<label class="control-label" for="funcion">Funcion<span class="required">*</span></label>
-							<input class="form-control col-md-12" #funcion="ngModel" name="funcion" maxlength="128" type="text" [(ngModel)]="permiso.funcion" required>
+							<input class="form-control col-md-12" #funcion="ngModel" id="funcion" name="funcion" maxlength="128" type="text" [(ngModel)]="permiso.funcion" required>
 							<div *ngIf="permisoForm.submitted && !funcion.valid" class="help-block">Funcion es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="ruta">Ruta<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ruta="ngModel" name="ruta" maxlength="128" type="text" [(ngModel)]="permiso.ruta" readonly disabled>
+							<input class="form-control col-md-12" #ruta="ngModel" id="ruta" name="ruta" maxlength="128" type="text" [(ngModel)]="permiso.ruta" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': permisoForm.submitted && !ruta.valid}">
 							<label class="control-label" for="ruta">Ruta<span class="required">*</span></label>
-							<input class="form-control col-md-12" #ruta="ngModel" name="ruta" maxlength="128" type="text" [(ngModel)]="permiso.ruta" required>
+							<input class="form-control col-md-12" #ruta="ngModel" id="ruta" name="ruta" maxlength="128" type="text" [(ngModel)]="permiso.ruta" required>
 							<div *ngIf="permisoForm.submitted && !ruta.valid" class="help-block">Ruta es requerido</div>
 						</div>
 					</div>	
 					<div *ngIf="flagDelete">
 						<div class="form-group">
 							<label class="control-label" for="nivelpermiso">Permiso<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nivelpermiso="ngModel" name="nivelpermiso" maxlength="128" type="text" [(ngModel)]="permiso.nivelpermiso" readonly disabled>
+							<input class="form-control col-md-12" #nivelpermiso="ngModel" id="nivelpermiso" name="nivelpermiso" maxlength="128" type="text" [(ngModel)]="permiso.nivelpermiso" readonly disabled>
 						</div>
 					</div>
 					<div *ngIf="!flagDelete">
 						<div class="form-group" [ngClass]="{ 'has-error': permisoForm.submitted && !nivelpermiso.valid}">
 							<label class="control-label" for="nivelpermiso">Permiso<span class="required">*</span></label>
-							<input class="form-control col-md-12" #nivelpermiso="ngModel" name="nivelpermiso" maxlength="128" type="text" [(ngModel)]="permiso.nivelpermiso" required>
+							<input class="form-control col-md-12" #nivelpermiso="ngModel" id="nivelpermiso" name="nivelpermiso" maxlength="128" type="text" [(ngModel)]="permiso.nivelpermiso" required>
 							<div *ngIf="permisoForm.submitted && !nivelpermiso.valid" class="help-block">Permiso es requerido</div>
 						</div>
 					</div>	

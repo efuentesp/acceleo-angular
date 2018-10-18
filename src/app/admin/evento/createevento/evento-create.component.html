@@ -65,9 +65,9 @@
 				<div class="form-group" id="fecha">
 					<label class="control-label" for="fecha">Fecha programada<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required>
+						<input class="form-control" placeholder="dd/MM/yyyy" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
 						<span class="input-group-btn">
-							<button class="btn btn-outline-secondary" (click)="fechaAux.toggle()" type="button">
+							<button class="btn btn-outline-secondary" (click)="fechaAux.toggle(); changeFecha(false);" type="button">
 								<em class="fa fa-calendar"></em>
 							</button>
 						</span>
@@ -86,9 +86,9 @@
 				<div class="form-group" id="fechareal">
 					<label class="control-label" for="fechareal">Fecha real</label>
 					<div class="input-group col-md-12">	
-						<input class="form-control" placeholder="dd/MM/yyyy" name="fecharealAux" maxlength="10" minlength="10" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker">
+						<input class="form-control" placeholder="dd/MM/yyyy" name="fecharealAux" maxlength="10" minlength="10" [(ngModel)]="evento.fecharealAux" ngbDatepicker #fecharealAux="ngbDatepicker" (change)="changeFechareal(true)">
 						<span class="input-group-btn">
-							<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle()" type="button">
+							<button class="btn btn-outline-secondary" (click)="fecharealAux.toggle(); changeFechareal(false);" type="button">
 								<em class="fa fa-calendar"></em>
 							</button>
 						</span>

@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Location, DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
 import { UsuarioService }                                  from '../../usuario/usuario.component.service';
 import { Usuario }                                         from '../../usuario/usuario.component.model';
@@ -28,6 +29,7 @@ export class UsuarioEditComponent implements OnInit {
 
 	public flag: boolean;
     public flagDelete: boolean;
+    datePipe = new DatePipe('en-US');
 
 	public usuarioList: Usuario [];
 	public usuario: Usuario;
@@ -46,6 +48,7 @@ public rolList: Rol [];
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parseFormat: CustomNgbDateParserFormatter,
 				private parserFormatter: NgbDateParserFormatter,
 				private usuarioService: UsuarioService
 				,private rolService: RolService
@@ -67,18 +70,26 @@ public rolList: Rol [];
     }  
 
 save(){
-	
-
-   this.usuarioService.saveUsuario(this.usuario).subscribe(res => {
-     if (res.status == 201 || res.status == 200){
-        swal('Success...', 'Usuario save successfully.', 'success');
-        this.router.navigate([ '../manageusuario' ], { relativeTo: this.route })
-     }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar Usuario.', 'error');
-     }else{
-       swal('Error...', 'Usuario save unsuccessfully.', 'error');
-     }
-   } );
+	if (
+	this.usuario.nombreclave ==="" || this.usuario.nombreclave ===null || 
+	this.usuario.password ==="" || this.usuario.password ===null || 
+	this.usuario.activo ===null || 
+	this.usuario.rolId === null ||
+		this.usuario.usuarioId === null 
+	){
+		return;
+	}else{
+	   this.usuarioService.saveUsuario(this.usuario).subscribe(res => {
+	     if (res.status == 201 || res.status == 200){
+	        swal('Success...', 'Usuario save successfully.', 'success');
+	        this.router.navigate([ '../manageusuario' ], { relativeTo: this.route })
+	     }else if (res.status == 403){
+	        swal('Error...', 'Usuario no tiene permiso para guardar Usuario.', 'error');
+	     }else{
+	       swal('Error...', 'Usuario save unsuccessfully.', 'error');
+	     }
+	   } );
+	}	
 }
 
 delete(){
@@ -116,6 +127,47 @@ delete(){
 return(usuario){
   this.location.back();
 }
+ 
+loadRol(){
+	this.rolService.getAllRol().subscribe(data => {
+   		if (data) {
+ 		this.rolList = data;
+ 		}
+	}, error => {
+		swal('Error...', 'An error occurred while calling the Rols.', 'error');
+	});
+ }
+
+ setClickedRowRol(index,rol){
+ 	  rol.checked = !rol.checked;
+ 	  if (rol.checked){
+	 	  this.rolService.setRol(rol);
+this.usuario.rolId = rol.rolId;
+this.usuario.rolItem = rol.nombre;
+ 	  }else{
+ 	      this.rolService.clear();
+this.usuario.rolId = "";
+this.usuario.rolItem = "";
+	 	   }
+ }
+ 
+isNumber(value: any): boolean {
+	return !isNaN(this.toInteger(value));
+}
+
+toInteger(value: any): number {
+	return parseInt(`${value}`, 10);
+}
+
+parse(value: string): string {
+    if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) {
+			return this.datePipe.transform(new Date(this.toInteger(dateParts[2]), this.toInteger(dateParts[1]), this.toInteger(dateParts[0])), 'yyyy-MM-dd');
+        }
+    }
+    return null;
+} 
  
 }
 
