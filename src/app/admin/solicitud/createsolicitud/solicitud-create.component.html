@@ -108,13 +108,9 @@
 													<th style="max-width:10%">Filial</th>
 													<th style="max-width:10%">Puesto</th>
 													<th style="max-width:10%">Nombre</th>
-													<th style="max-width:10%">Descripcion</th>
-													<th style="max-width:10%">Fecha</th>
-													<th style="max-width:10%">Contacto</th>
 													<th style="max-width:10%">Salario</th>
 													<th style="max-width:10%">Vacantes</th>
 													<th style="max-width:10%">Tipo</th>
-													<th style="max-width:10%">Reclutador</th>
 													<th style="max-width:10%">Estado</th>
 												</tr>
 											</thead>
@@ -128,15 +124,10 @@
 													<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
 													<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
 													<td  style="max-width: 10%">{{posicion.nombre}}</td>
-													<td  style="max-width: 10%">{{posicion.descripcion}}</td>
-													<td  style="max-width: 10%">{{posicion.fecha}}</td>
-													<td  style="max-width: 10%">{{posicion.contacto}}</td>
 													<td  style="max-width: 10%">{{posicion.salario}}</td>
 													<td  style="max-width: 10%">{{posicion.vacantes}}</td>
 													<td  style="max-width: 10%" hidden="true">{{posicion.tiponominaId}}</td>
 													<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
-													<td  style="max-width: 10%" hidden="true">{{posicion.reclutadorId}}</td>
-													<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
 													<td  style="max-width: 10%" hidden="true">{{posicion.estatusposicionId}}</td>
 													<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
 												</tr>
@@ -202,7 +193,7 @@
 													<td  style="max-width: 10%">{{candidato.nombre}}</td>
 													<td  style="max-width: 10%">{{candidato.apellidopaterno}}</td>
 													<td  style="max-width: 10%">{{candidato.apellidomaterno}}</td>
-													<td  style="max-width: 10%">{{candidato.fecha}}</td>
+													<td  style="max-width: 10%">{{candidato.fecha | date: 'dd/MM/yyyy'}}</td>
 												</tr>
 											</tbody>
 										</table>
