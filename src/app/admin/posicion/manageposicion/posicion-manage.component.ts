@@ -106,8 +106,9 @@ export class PosicionManageComponent implements OnInit {
 loadPosicion(){
     this.posicionService.getAllPosicion().subscribe(data => {
         if (data) {
-			this.posicionList = data;
-			
+            this.posicionList = data;
+            
+            // Grid Values
 this.posicionList.forEach(element => {
      this.filialService.getFilialById(element.filialId).subscribe(data => {
          if (data){
@@ -118,29 +119,34 @@ this.posicionList.forEach(element => {
 this.posicionList.forEach(element => {
      this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
          if (data){
-			 
-			if (data.puestosId == 'a'){
-				element.puestoItem = "Promotor de cambaceo";
-			}		
-			if (data.puestosId == 'b'){
-				element.puestoItem = "Valuador";
-			}		
-			if (data.puestosId== 'c'){
-				element.puestoItem = "Mecanógrafo";
-			}	
-			if (data.puestosId== 'd'){
-				element.puestoItem = "Expendedor";
-			}	
-			if (data.puestosId== 'e'){
-				element.puestoItem = "Almacenista";
-			}	
-			if (data.puestosId== 'f'){
-				element.puestoItem = "Mozo";
-			}	
-			if (data.puestosId== 'g'){
-				element.puestoItem = "Cajero";
-			}
-
+         	if (data.puestosId == 'a'){
+         	    element.puestoItem = "Promotor de cambaceo";
+         	    element.puestoId = "A";
+         	}		
+         	if (data.puestosId == 'b'){
+         	    element.puestoItem = "Valuador";
+         	    element.puestoId = "B";
+         	}		
+         	if (data.puestosId == 'c'){
+         	    element.puestoItem = "Mecanógrafo";
+         	    element.puestoId = "C";
+         	}		
+         	if (data.puestosId == 'd'){
+         	    element.puestoItem = "Expendedor";
+         	    element.puestoId = "D";
+         	}		
+         	if (data.puestosId == 'e'){
+         	    element.puestoItem = "Almacenista";
+         	    element.puestoId = "E";
+         	}		
+         	if (data.puestosId == 'f'){
+         	    element.puestoItem = "Mozo";
+         	    element.puestoId = "F";
+         	}		
+         	if (data.puestosId == 'g'){
+         	    element.puestoItem = "Cajero";
+         	    element.puestoId = "G";
+         	}		
          }
     });
 });

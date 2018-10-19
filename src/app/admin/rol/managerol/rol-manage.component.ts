@@ -71,6 +71,8 @@ loadRol(){
     this.rolService.getAllRol().subscribe(data => {
         if (data) {
             this.rolList = data;
+            
+            // Grid Values
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the rols.', 'error');

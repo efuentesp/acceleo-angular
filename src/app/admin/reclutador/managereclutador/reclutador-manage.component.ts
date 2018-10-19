@@ -71,14 +71,16 @@ loadReclutador(){
     this.reclutadorService.getAllReclutador().subscribe(data => {
         if (data) {
             this.reclutadorList = data;
-			this.reclutadorList.forEach(element => {
-			        if (element.generoId == 'mas'){
-			            element.generoItem = "Masculino";
-			        }		
-			        if (element.generoId == 'fem'){
-			            element.generoItem = "Femenino";
-			        }		
-			});
+            
+            // Grid Values
+this.reclutadorList.forEach(element => {
+      	if (element.generoId == 'mas'){
+      	    element.generoItem = "Masculino";
+      	}		
+      	if (element.generoId == 'fem'){
+      	    element.generoItem = "Femenino";
+      	}		
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the reclutadors.', 'error');

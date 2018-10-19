@@ -83,13 +83,15 @@ loadUsuario(){
     this.usuarioService.getAllUsuario().subscribe(data => {
         if (data) {
             this.usuarioList = data;
-			this.usuarioList.forEach(element => {
-			    this.rolService.getRolById(element.rolId).subscribe(data => {
-			        if (data){
-			            element.rolItem = data.nombre;
-			        }
-			    });
-			});
+            
+            // Grid Values
+this.usuarioList.forEach(element => {
+     this.rolService.getRolById(element.rolId).subscribe(data => {
+         if (data){
+         	element.rolItem = data.nombre;
+         }
+    });
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the usuarios.', 'error');

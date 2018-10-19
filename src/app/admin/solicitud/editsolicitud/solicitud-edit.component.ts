@@ -7,16 +7,32 @@ import { User } from '../../user/user.component.model';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { CustomNgbDateParserFormatter } from '../../../dateformat';
 
-import { SolicitudService }                                  from '../../solicitud/solicitud.component.service';
-import { Solicitud }                                         from '../../solicitud/solicitud.component.model';
-
-import { PosicionService }                                  from '../../posicion/posicion.component.service';
-import { Posicion }                                         from '../../posicion/posicion.component.model';
 import { CandidatoService }                                  from '../../candidato/candidato.component.service';
 import { Candidato }                                         from '../../candidato/candidato.component.model';
-import { PuestoService } from '../../puesto/puesto.component.service';
-import { ReclutadorService } from '../../reclutador/reclutador.component.service';
-import { FilialService } from '../../filial/filial.component.service';
+import { DireccionService }                                  from '../../direccion/direccion.component.service';
+import { Direccion }                                         from '../../direccion/direccion.component.model';
+import { DocumentoService }                                  from '../../documento/documento.component.service';
+import { Documento }                                         from '../../documento/documento.component.model';
+import { SolicitudService }                                  from '../../solicitud/solicitud.component.service';
+import { Solicitud }                                         from '../../solicitud/solicitud.component.model';
+import { EventoService }                                  from '../../evento/evento.component.service';
+import { Evento }                                         from '../../evento/evento.component.model';
+import { FilialService }                                  from '../../filial/filial.component.service';
+import { Filial }                                         from '../../filial/filial.component.model';
+import { PosicionService }                                  from '../../posicion/posicion.component.service';
+import { Posicion }                                         from '../../posicion/posicion.component.model';
+import { PuestoService }                                  from '../../puesto/puesto.component.service';
+import { Puesto }                                         from '../../puesto/puesto.component.model';
+import { ReclutadorService }                                  from '../../reclutador/reclutador.component.service';
+import { Reclutador }                                         from '../../reclutador/reclutador.component.model';
+import { RolService }                                  from '../../rol/rol.component.service';
+import { Rol }                                         from '../../rol/rol.component.model';
+import { TrayectoriaService }                                  from '../../trayectoria/trayectoria.component.service';
+import { Trayectoria }                                         from '../../trayectoria/trayectoria.component.model';
+import { UsuarioService }                                  from '../../usuario/usuario.component.service';
+import { Usuario }                                         from '../../usuario/usuario.component.model';
+import { PermisoService }                                  from '../../permiso/permiso.component.service';
+import { Permiso }                                         from '../../permiso/permiso.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -61,14 +77,20 @@ public candidatoList: Candidato [];
 				private route: ActivatedRoute, 
 				private location: Location,
 				private parseFormat: CustomNgbDateParserFormatter,
-				private parserFormatter: NgbDateParserFormatter,
-				private solicitudService: SolicitudService
-				,private posicionService: PosicionService
+				private parserFormatter: NgbDateParserFormatter
 				,private candidatoService: CandidatoService
+				,private direccionService: DireccionService
+				,private documentoService: DocumentoService
+				,private solicitudService: SolicitudService
+				,private eventoService: EventoService
 				,private filialService: FilialService
+				,private posicionService: PosicionService
 				,private puestoService: PuestoService
 				,private reclutadorService: ReclutadorService
-					
+				,private rolService: RolService
+				,private trayectoriaService: TrayectoriaService
+				,private usuarioService: UsuarioService
+				,private permisoService: PermisoService
 ){
 	this.filterInputSolicitud.valueChanges.subscribe(busquedaSolicitud => {
      	this.busquedaSolicitud = busquedaSolicitud;
@@ -162,74 +184,93 @@ loadPosicion(){
 	this.posicionService.getAllPosicion().subscribe(data => {
    		if (data) {
  		this.posicionList = data;
-		 this.posicionList.forEach(element => {
-			this.filialService.getFilialById(element.filialId).subscribe(data => {
-				if (data){
-					element.filialItem = data.nombre;
-				}
-		   });
-	   });
-	   this.posicionList.forEach(element => {
-			this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
-				if (data){
-					
-				   if (data.puestosId == 'a'){
-					   element.puestoItem = "Promotor de cambaceo";
-				   }		
-				   if (data.puestosId == 'b'){
-					   element.puestoItem = "Valuador";
-				   }		
-				   if (data.puestosId== 'c'){
-					   element.puestoItem = "Mecanógrafo";
-				   }	
-				   if (data.puestosId== 'd'){
-					   element.puestoItem = "Expendedor";
-				   }	
-				   if (data.puestosId== 'e'){
-					   element.puestoItem = "Almacenista";
-				   }	
-				   if (data.puestosId== 'f'){
-					   element.puestoItem = "Mozo";
-				   }	
-				   if (data.puestosId== 'g'){
-					   element.puestoItem = "Cajero";
-				   }
-	   
-				}
-		   });
-	   });
-	   this.posicionList.forEach(element => {
-				 if (element.tiponominaId == 'a'){
-					 element.tiponominaItem = "Externo";
-				 }		
-				 if (element.tiponominaId == 'b'){
-					 element.tiponominaItem = "Interno";
-				 }		
-				 if (element.tiponominaId == 'c'){
-					 element.tiponominaItem = "Sindicalizado";
-				 }		
-	   });
-	   this.posicionList.forEach(element => {
-			this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
-				if (data){
-					element.reclutadorItem = data.nombre;
-				}
-		   });
-	   });
-	   this.posicionList.forEach(element => {
-				 if (element.estatusposicionId == 'e1'){
-					 element.estatusposicionItem = "Abierta";
-				 }		
-				 if (element.estatusposicionId == 'e2'){
-					 element.estatusposicionItem = "Cerrada";
-				 }		
-				 if (element.estatusposicionId == 'e3'){
-					 element.estatusposicionItem = "Cancelada";
-				 }		
-				 if (element.estatusposicionId == 'e4'){
-					 element.estatusposicionItem = "En pausa";
-				 }		
-	   });
+ 		this.posicionList.forEach(element => {
+ 			          this.filialService.getFilialById(element.filialId).subscribe(data => {
+ 			              if (data){
+ 			              	element.filialItem = data.nombre;
+ 			              }
+ 			         });
+ 			     });
+ 		this.posicionList.forEach(element => {
+ 			          this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
+ 			              if (data){
+ 			              	if (data.puestosId == 'a'){
+ 			              	    element.puestoItem = "Promotor de cambaceo";
+ 			              	    element.puestoId = "A";
+ 			              	}		
+ 			              	if (data.puestosId == 'b'){
+ 			              	    element.puestoItem = "Valuador";
+ 			              	    element.puestoId = "B";
+ 			              	}		
+ 			              	if (data.puestosId == 'c'){
+ 			              	    element.puestoItem = "Mecanógrafo";
+ 			              	    element.puestoId = "C";
+ 			              	}		
+ 			              	if (data.puestosId == 'd'){
+ 			              	    element.puestoItem = "Expendedor";
+ 			              	    element.puestoId = "D";
+ 			              	}		
+ 			              	if (data.puestosId == 'e'){
+ 			              	    element.puestoItem = "Almacenista";
+ 			              	    element.puestoId = "E";
+ 			              	}		
+ 			              	if (data.puestosId == 'f'){
+ 			              	    element.puestoItem = "Mozo";
+ 			              	    element.puestoId = "F";
+ 			              	}		
+ 			              	if (data.puestosId == 'g'){
+ 			              	    element.puestoItem = "Cajero";
+ 			              	    element.puestoId = "G";
+ 			              	}		
+ 			              }
+ 			         });
+ 			     });
+ 		this.posicionList.forEach(element => {
+ 		      	if (element.tiponominaId == 'a'){
+ 		      	    element.tiponominaItem = "Externo";
+ 		      	}		
+ 		      	if (element.tiponominaId == 'b'){
+ 		      	    element.tiponominaItem = "Interno";
+ 		      	}		
+ 		      	if (element.tiponominaId == 'c'){
+ 		      	    element.tiponominaItem = "Sindicalizado";
+ 		      	}		
+ 		});
+ 		this.posicionList.forEach(element => {
+ 			          this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
+ 			              if (data){
+ 			              	element.reclutadorItem = data.nombre;
+ 			              }
+ 			         });
+ 			     });
+ 		this.posicionList.forEach(element => {
+ 		      	if (element.estatusposicionId == 'e1'){
+ 		      	    element.estatusposicionItem = "Abierta";
+ 		      	}		
+ 		      	if (element.estatusposicionId == 'e2'){
+ 		      	    element.estatusposicionItem = "Cerrada";
+ 		      	}		
+ 		      	if (element.estatusposicionId == 'e3'){
+ 		      	    element.estatusposicionItem = "Cancelada";
+ 		      	}		
+ 		      	if (element.estatusposicionId == 'e4'){
+ 		      	    element.estatusposicionItem = "En pausa";
+ 		      	}		
+ 		});
+ 		this.posicionList.forEach(element => {
+ 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
+ 			              if (data){
+ 			              	element.solicitudItem = data.correo;
+ 			              }
+ 			         });
+ 			     });
+ 		this.posicionList.forEach(element => {
+ 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
+ 			              if (data){
+ 			              	element.eventoItem = data.nombre;
+ 			              }
+ 			         });
+ 			     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Posicions.', 'error');
@@ -283,6 +324,20 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
+ 		this.candidatoList.forEach(element => {
+ 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
+ 			              if (data){
+ 			              	element.solicitudItem = data.correo;
+ 			              }
+ 			         });
+ 			     });
+ 		this.candidatoList.forEach(element => {
+ 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
+ 			              if (data){
+ 			              	element.eventoItem = data.nombre;
+ 			              }
+ 			         });
+ 			     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');

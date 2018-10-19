@@ -83,13 +83,15 @@ loadPermiso(){
     this.permisoService.getAllPermiso().subscribe(data => {
         if (data) {
             this.permisoList = data;
-			this.permisoList.forEach(element => {
-			    this.rolService.getRolById(element.rolId).subscribe(data => {
-			        if (data){
-			            element.rolItem = data.nombre;
-			        }
-			    });
-			});
+            
+            // Grid Values
+this.permisoList.forEach(element => {
+     this.rolService.getRolById(element.rolId).subscribe(data => {
+         if (data){
+         	element.rolItem = data.nombre;
+         }
+    });
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the permisos.', 'error');

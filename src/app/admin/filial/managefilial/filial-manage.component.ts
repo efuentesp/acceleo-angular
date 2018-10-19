@@ -71,6 +71,8 @@ loadFilial(){
     this.filialService.getAllFilial().subscribe(data => {
         if (data) {
             this.filialList = data;
+            
+            // Grid Values
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the filials.', 'error');

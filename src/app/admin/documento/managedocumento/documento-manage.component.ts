@@ -71,6 +71,8 @@ loadDocumento(){
     this.documentoService.getAllDocumento().subscribe(data => {
         if (data) {
             this.documentoList = data;
+            
+            // Grid Values
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the documentos.', 'error');

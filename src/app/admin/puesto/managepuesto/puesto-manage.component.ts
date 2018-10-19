@@ -71,29 +71,31 @@ loadPuesto(){
     this.puestoService.getAllPuesto().subscribe(data => {
         if (data) {
             this.puestoList = data;
-			this.puestoList.forEach(element => {
-			        if (element.puestosId == 'a'){
-			            element.puestosItem = "Promotor de cambaceo";
-			        }		
-			        if (element.puestosId == 'b'){
-			            element.puestosItem = "Valuador";
-			        }		
-			        if (element.puestosId == 'c'){
-			            element.puestosItem = "Mecanógrafo";
-			        }		
-			        if (element.puestosId == 'd'){
-			            element.puestosItem = "Expendedor";
-			        }		
-			        if (element.puestosId == 'e'){
-			            element.puestosItem = "Almacenista";
-			        }		
-			        if (element.puestosId == 'f'){
-			            element.puestosItem = "Mozo";
-			        }		
-			        if (element.puestosId == 'g'){
-			            element.puestosItem = "Cajero";
-			        }		
-			});
+            
+            // Grid Values
+this.puestoList.forEach(element => {
+      	if (element.puestosId == 'a'){
+      	    element.puestosItem = "Promotor de cambaceo";
+      	}		
+      	if (element.puestosId == 'b'){
+      	    element.puestosItem = "Valuador";
+      	}		
+      	if (element.puestosId == 'c'){
+      	    element.puestosItem = "Mecanógrafo";
+      	}		
+      	if (element.puestosId == 'd'){
+      	    element.puestosItem = "Expendedor";
+      	}		
+      	if (element.puestosId == 'e'){
+      	    element.puestosItem = "Almacenista";
+      	}		
+      	if (element.puestosId == 'f'){
+      	    element.puestosItem = "Mozo";
+      	}		
+      	if (element.puestosId == 'g'){
+      	    element.puestosItem = "Cajero";
+      	}		
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the puestos.', 'error');

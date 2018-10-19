@@ -95,69 +95,71 @@ loadEvento(){
     this.eventoService.getAllEvento().subscribe(data => {
         if (data) {
             this.eventoList = data;
-			this.eventoList.forEach(element => {
-			        if (element.tipoeventoId == 'a'){
-			            element.tipoeventoItem = "Llamada telefónica";
-			        }		
-			        if (element.tipoeventoId == 'b'){
-			            element.tipoeventoItem = "Contacto por eMail";
-			        }		
-			        if (element.tipoeventoId == 'c'){
-			            element.tipoeventoItem = "Entrevista";
-			        }		
-			        if (element.tipoeventoId == 'd'){
-			            element.tipoeventoItem = "Examen";
-			        }		
-			        if (element.tipoeventoId == 'e'){
-			            element.tipoeventoItem = "AutorizaciónNivel 1";
-			        }		
-			        if (element.tipoeventoId == 'f'){
-			            element.tipoeventoItem = "AutorizaciónNivel 2";
-			        }		
-			        if (element.tipoeventoId == 'g'){
-			            element.tipoeventoItem = "AutorizaciónNivel 3";
-			        }		
-			        if (element.tipoeventoId == 'h'){
-			            element.tipoeventoItem = "AutorizaciónNivel 4";
-			        }		
-			        if (element.tipoeventoId == 'i'){
-			            element.tipoeventoItem = "AutorizaciónNivel 5";
-			        }		
-			});
-			this.eventoList.forEach(element => {
-			    this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-			        if (data){
-			            element.posicionItem = data.nombre;
-			        }
-			    });
-			});
-			this.eventoList.forEach(element => {
-			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-			        if (data){
-			            element.candidatoItem = data.nombre;
-			        }
-			    });
-			});
-			this.eventoList.forEach(element => {
-			        if (element.estatuseventoId == 'e1'){
-			            element.estatuseventoItem = "Agendado";
-			        }		
-			        if (element.estatuseventoId == 'e2'){
-			            element.estatuseventoItem = "Realizado";
-			        }		
-			        if (element.estatuseventoId == 'e3'){
-			            element.estatuseventoItem = "Pedido por candidato";
-			        }		
-			        if (element.estatuseventoId == 'e4'){
-			            element.estatuseventoItem = "Perdido por NMP";
-			        }		
-			        if (element.estatuseventoId == 'e5'){
-			            element.estatuseventoItem = "Cancelado por candidato";
-			        }		
-			        if (element.estatuseventoId == 'e6'){
-			            element.estatuseventoItem = "Cancelado por NMP";
-			        }		
-			});
+            
+            // Grid Values
+this.eventoList.forEach(element => {
+      	if (element.tipoeventoId == 'a'){
+      	    element.tipoeventoItem = "Llamada telefónica";
+      	}		
+      	if (element.tipoeventoId == 'b'){
+      	    element.tipoeventoItem = "Contacto por eMail";
+      	}		
+      	if (element.tipoeventoId == 'c'){
+      	    element.tipoeventoItem = "Entrevista";
+      	}		
+      	if (element.tipoeventoId == 'd'){
+      	    element.tipoeventoItem = "Examen";
+      	}		
+      	if (element.tipoeventoId == 'e'){
+      	    element.tipoeventoItem = "AutorizaciónNivel 1";
+      	}		
+      	if (element.tipoeventoId == 'f'){
+      	    element.tipoeventoItem = "AutorizaciónNivel 2";
+      	}		
+      	if (element.tipoeventoId == 'g'){
+      	    element.tipoeventoItem = "AutorizaciónNivel 3";
+      	}		
+      	if (element.tipoeventoId == 'h'){
+      	    element.tipoeventoItem = "AutorizaciónNivel 4";
+      	}		
+      	if (element.tipoeventoId == 'i'){
+      	    element.tipoeventoItem = "AutorizaciónNivel 5";
+      	}		
+});
+this.eventoList.forEach(element => {
+     this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+         if (data){
+         	element.posicionItem = data.nombre;
+         }
+    });
+});
+this.eventoList.forEach(element => {
+     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+         if (data){
+         	element.candidatoItem = data.nombre;
+         }
+    });
+});
+this.eventoList.forEach(element => {
+      	if (element.estatuseventoId == 'e1'){
+      	    element.estatuseventoItem = "Agendado";
+      	}		
+      	if (element.estatuseventoId == 'e2'){
+      	    element.estatuseventoItem = "Realizado";
+      	}		
+      	if (element.estatuseventoId == 'e3'){
+      	    element.estatuseventoItem = "Pedido por candidato";
+      	}		
+      	if (element.estatuseventoId == 'e4'){
+      	    element.estatuseventoItem = "Perdido por NMP";
+      	}		
+      	if (element.estatuseventoId == 'e5'){
+      	    element.estatuseventoItem = "Cancelado por candidato";
+      	}		
+      	if (element.estatuseventoId == 'e6'){
+      	    element.estatuseventoItem = "Cancelado por NMP";
+      	}		
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the eventos.', 'error');

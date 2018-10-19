@@ -95,43 +95,45 @@ loadTrayectoria(){
     this.trayectoriaService.getAllTrayectoria().subscribe(data => {
         if (data) {
             this.trayectoriaList = data;
-			this.trayectoriaList.forEach(element => {
-			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-			        if (data){
-			            element.candidatoItem = data.nombre;
-			        }
-			    });
-			});
-			this.trayectoriaList.forEach(element => {
-			        if (element.tipotrayectoriaId == 'a'){
-			            element.tipotrayectoriaItem = "Estudios";
-			        }		
-			        if (element.tipotrayectoriaId == 'b'){
-			            element.tipotrayectoriaItem = "Certificación";
-			        }		
-			        if (element.tipotrayectoriaId == 'c'){
-			            element.tipotrayectoriaItem = "Experiencia Laboral";
-			        }		
-			        if (element.tipotrayectoriaId == 'd'){
-			            element.tipotrayectoriaItem = "Interés";
-			        }		
-			        if (element.tipotrayectoriaId == 'e'){
-			            element.tipotrayectoriaItem = "Habilidad";
-			        }		
-			        if (element.tipotrayectoriaId == 'f'){
-			            element.tipotrayectoriaItem = "Recomendación";
-			        }		
-			        if (element.tipotrayectoriaId == 'g'){
-			            element.tipotrayectoriaItem = "Curso";
-			        }		
-			});
-			this.trayectoriaList.forEach(element => {
-			    this.documentoService.getDocumentoById(element.documentoId).subscribe(data => {
-			        if (data){
-			            element.documentoItem = data.nombre;
-			        }
-			    });
-			});
+            
+            // Grid Values
+this.trayectoriaList.forEach(element => {
+     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+         if (data){
+         	element.candidatoItem = data.nombre;
+         }
+    });
+});
+this.trayectoriaList.forEach(element => {
+      	if (element.tipotrayectoriaId == 'a'){
+      	    element.tipotrayectoriaItem = "Estudios";
+      	}		
+      	if (element.tipotrayectoriaId == 'b'){
+      	    element.tipotrayectoriaItem = "Certificación";
+      	}		
+      	if (element.tipotrayectoriaId == 'c'){
+      	    element.tipotrayectoriaItem = "Experiencia Laboral";
+      	}		
+      	if (element.tipotrayectoriaId == 'd'){
+      	    element.tipotrayectoriaItem = "Interés";
+      	}		
+      	if (element.tipotrayectoriaId == 'e'){
+      	    element.tipotrayectoriaItem = "Habilidad";
+      	}		
+      	if (element.tipotrayectoriaId == 'f'){
+      	    element.tipotrayectoriaItem = "Recomendación";
+      	}		
+      	if (element.tipotrayectoriaId == 'g'){
+      	    element.tipotrayectoriaItem = "Curso";
+      	}		
+});
+this.trayectoriaList.forEach(element => {
+     this.documentoService.getDocumentoById(element.documentoId).subscribe(data => {
+         if (data){
+         	element.documentoItem = data.nombre;
+         }
+    });
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the trayectorias.', 'error');

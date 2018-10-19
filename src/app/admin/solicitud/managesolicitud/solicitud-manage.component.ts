@@ -94,36 +94,37 @@ export class SolicitudManageComponent implements OnInit {
 loadSolicitud(){
     this.solicitudService.getAllSolicitud().subscribe(data => {
         if (data) {
-			this.solicitudList = data;
-			
-			this.solicitudList.forEach(element => {
-			    this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-			        if (data){
-			            element.posicionItem = data.nombre;
-			        }
-			    });
-			});
-			this.solicitudList.forEach(element => {
-			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-			        if (data){
-			            element.candidatoItem = data.nombre;
-			        }
-			    });
-			});
-			this.solicitudList.forEach(element => {
-			        if (element.estatussolicitudId == 'e1'){
-			            element.estatussolicitudItem = "Registrada";
-			        }		
-			        if (element.estatussolicitudId == 'e2'){
-			            element.estatussolicitudItem = "Completada";
-			        }		
-			        if (element.estatussolicitudId == 'e3'){
-			            element.estatussolicitudItem = "Cancelada x candidato";
-			        }		
-			        if (element.estatussolicitudId == 'e4'){
-			            element.estatussolicitudItem = "Cancelada x reclutador";
-			        }		
-			});
+            this.solicitudList = data;
+            
+            // Grid Values
+this.solicitudList.forEach(element => {
+     this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+         if (data){
+         	element.posicionItem = data.nombre;
+         }
+    });
+});
+this.solicitudList.forEach(element => {
+     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+         if (data){
+         	element.candidatoItem = data.nombre;
+         }
+    });
+});
+this.solicitudList.forEach(element => {
+      	if (element.estatussolicitudId == 'e1'){
+      	    element.estatussolicitudItem = "Registrada";
+      	}		
+      	if (element.estatussolicitudId == 'e2'){
+      	    element.estatussolicitudItem = "Completada";
+      	}		
+      	if (element.estatussolicitudId == 'e3'){
+      	    element.estatussolicitudItem = "Cancelada x candidato";
+      	}		
+      	if (element.estatussolicitudId == 'e4'){
+      	    element.estatussolicitudItem = "Cancelada x reclutador";
+      	}		
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the solicituds.', 'error');

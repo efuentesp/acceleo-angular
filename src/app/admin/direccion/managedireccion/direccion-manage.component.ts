@@ -83,13 +83,15 @@ loadDireccion(){
     this.direccionService.getAllDireccion().subscribe(data => {
         if (data) {
             this.direccionList = data;
-			this.direccionList.forEach(element => {
-			    this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-			        if (data){
-			            element.candidatoItem = data.nombre;
-			        }
-			    });
-			});
+            
+            // Grid Values
+this.direccionList.forEach(element => {
+     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+         if (data){
+         	element.candidatoItem = data.nombre;
+         }
+    });
+});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the direccions.', 'error');
