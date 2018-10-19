@@ -94,7 +94,8 @@ export class SolicitudManageComponent implements OnInit {
 loadSolicitud(){
     this.solicitudService.getAllSolicitud().subscribe(data => {
         if (data) {
-            this.solicitudList = data;
+			this.solicitudList = data;
+			
 			this.solicitudList.forEach(element => {
 			    this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
 			        if (data){

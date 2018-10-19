@@ -14,6 +14,9 @@ import { PosicionService }                                  from '../../posicion
 import { Posicion }                                         from '../../posicion/posicion.component.model';
 import { CandidatoService }                                  from '../../candidato/candidato.component.service';
 import { Candidato }                                         from '../../candidato/candidato.component.model';
+import { PuestoService } from '../../puesto/puesto.component.service';
+import { ReclutadorService } from '../../reclutador/reclutador.component.service';
+import { FilialService } from '../../filial/filial.component.service';
 
 @Component ({
     selector: 'app-view',
@@ -62,6 +65,9 @@ public candidatoList: Candidato [];
 				private solicitudService: SolicitudService
 				,private posicionService: PosicionService
 				,private candidatoService: CandidatoService
+				,private filialService: FilialService
+				,private puestoService: PuestoService
+				,private reclutadorService: ReclutadorService
 					
 ){
 	this.filterInputSolicitud.valueChanges.subscribe(busquedaSolicitud => {
@@ -156,31 +162,74 @@ loadPosicion(){
 	this.posicionService.getAllPosicion().subscribe(data => {
    		if (data) {
  		this.posicionList = data;
- 		this.posicionList.forEach(element => {
- 		      	if (element.tiponominaId == 'a'){
- 		      	    element.tiponominaItem = "Externo";
- 		      	}		
- 		      	if (element.tiponominaId == 'b'){
- 		      	    element.tiponominaItem = "Interno";
- 		      	}		
- 		      	if (element.tiponominaId == 'c'){
- 		      	    element.tiponominaItem = "Sindicalizado";
- 		      	}		
- 		});
- 		this.posicionList.forEach(element => {
- 		      	if (element.estatusposicionId == 'e1'){
- 		      	    element.estatusposicionItem = "Abierta";
- 		      	}		
- 		      	if (element.estatusposicionId == 'e2'){
- 		      	    element.estatusposicionItem = "Cerrada";
- 		      	}		
- 		      	if (element.estatusposicionId == 'e3'){
- 		      	    element.estatusposicionItem = "Cancelada";
- 		      	}		
- 		      	if (element.estatusposicionId == 'e4'){
- 		      	    element.estatusposicionItem = "En pausa";
- 		      	}		
- 		});
+		 this.posicionList.forEach(element => {
+			this.filialService.getFilialById(element.filialId).subscribe(data => {
+				if (data){
+					element.filialItem = data.nombre;
+				}
+		   });
+	   });
+	   this.posicionList.forEach(element => {
+			this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
+				if (data){
+					
+				   if (data.puestosId == 'a'){
+					   element.puestoItem = "Promotor de cambaceo";
+				   }		
+				   if (data.puestosId == 'b'){
+					   element.puestoItem = "Valuador";
+				   }		
+				   if (data.puestosId== 'c'){
+					   element.puestoItem = "Mecanógrafo";
+				   }	
+				   if (data.puestosId== 'd'){
+					   element.puestoItem = "Expendedor";
+				   }	
+				   if (data.puestosId== 'e'){
+					   element.puestoItem = "Almacenista";
+				   }	
+				   if (data.puestosId== 'f'){
+					   element.puestoItem = "Mozo";
+				   }	
+				   if (data.puestosId== 'g'){
+					   element.puestoItem = "Cajero";
+				   }
+	   
+				}
+		   });
+	   });
+	   this.posicionList.forEach(element => {
+				 if (element.tiponominaId == 'a'){
+					 element.tiponominaItem = "Externo";
+				 }		
+				 if (element.tiponominaId == 'b'){
+					 element.tiponominaItem = "Interno";
+				 }		
+				 if (element.tiponominaId == 'c'){
+					 element.tiponominaItem = "Sindicalizado";
+				 }		
+	   });
+	   this.posicionList.forEach(element => {
+			this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
+				if (data){
+					element.reclutadorItem = data.nombre;
+				}
+		   });
+	   });
+	   this.posicionList.forEach(element => {
+				 if (element.estatusposicionId == 'e1'){
+					 element.estatusposicionItem = "Abierta";
+				 }		
+				 if (element.estatusposicionId == 'e2'){
+					 element.estatusposicionItem = "Cerrada";
+				 }		
+				 if (element.estatusposicionId == 'e3'){
+					 element.estatusposicionItem = "Cancelada";
+				 }		
+				 if (element.estatusposicionId == 'e4'){
+					 element.estatusposicionItem = "En pausa";
+				 }		
+	   });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Posicions.', 'error');
