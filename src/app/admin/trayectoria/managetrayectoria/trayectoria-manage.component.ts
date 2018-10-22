@@ -57,6 +57,8 @@ export class TrayectoriaManageComponent implements OnInit {
     private updateActive: boolean = false;
     private createActive: boolean = false;
     private deleteActive: boolean = false;
+    
+ // Children with one to many
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -181,11 +183,15 @@ this.createActive = true;
 if (element.authority == 'ROLE_TRAYECTORIAUPDATE'){
 	this.updateActive = true;
 }
-if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+if (element.authority == 'ROLE_TRAYECTORIASEARCH'){
 	this.searchActive = true;
 }
-    });
-  }
+
+ // Children with one to many
+	
+}); 
+
+}
 
   // Parse to NgbDateStruct
     isNumber(value: any): boolean {

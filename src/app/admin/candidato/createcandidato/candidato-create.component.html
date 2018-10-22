@@ -32,8 +32,7 @@
 					<input class="form-control col-md-12" #apellidomaterno="ngModel" id="apellidomaterno" name="apellidomaterno" maxlength="128" type="text" [(ngModel)]="candidato.apellidomaterno" required>
 					<div *ngIf="candidatoForm.submitted && !apellidomaterno.valid" class="help-block">Apellido Materno es requerido</div>
 				</div>
-				<!--<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !fechaAux.valid}">-->
-				<div class="form-group">
+				<div class="form-group" [ngClass]="{ 'has-error': candidatoForm.submitted && !fecha.valid}">
 					<label class="control-label" for="fecha">Fecha de nacimiento<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
 						<input class="form-control" placeholder="dd/MM/yyyy" id="fecha" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="candidato.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
@@ -42,8 +41,9 @@
 								<em class="fa fa-calendar"></em>
 							</button>
 						</span>
+						<input type="hidden" class="form-control input-md"  name="fecha"  [(ngModel)]="candidato.fechaAux"    #fecha="ngModel" required>
 					</div>
-					<!--<div *ngIf="candidatoForm.submitted && !fechaAux.valid" class="help-block">Fecha de nacimiento es requerido</div>-->
+					<div *ngIf="candidatoForm.submitted && !fecha.valid" class="help-block">Fecha de nacimiento es requerido</div>
 				</div>
 				<div class="form-group" id="genero" [ngClass]="{ 'has-error': candidatoForm.submitted && !generoId.valid}">
 					<label class="control-label" for="genero">Género<span class="required">*</span></label>

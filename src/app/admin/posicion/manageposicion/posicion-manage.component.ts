@@ -65,6 +65,16 @@ export class PosicionManageComponent implements OnInit {
     private updateActive: boolean = false;
     private createActive: boolean = false;
     private deleteActive: boolean = false;
+    
+ // Children with one to many
+private searchSolicitudActive: boolean = false;
+private updateSolicitudActive: boolean = false;
+private createSolicitudActive: boolean = false;
+private deleteSolicitudActive: boolean = false;
+private searchEventoActive: boolean = false;
+private updateEventoActive: boolean = false;
+private createEventoActive: boolean = false;
+private deleteEventoActive: boolean = false;
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -229,11 +239,39 @@ this.createActive = true;
 if (element.authority == 'ROLE_POSICIONUPDATE'){
 	this.updateActive = true;
 }
-if (element.authority == 'ROLE_ORDENSIMPLIFICADASEARCH'){
+if (element.authority == 'ROLE_POSICIONSEARCH'){
 	this.searchActive = true;
 }
-    });
-  }
+
+ // Children with one to many
+if (element.authority == 'ROLE_SOLICITUDDELETE'){
+    this.deleteSolicitudActive = true;
+}
+if (element.authority == 'ROLE_SOLICITUDCREATE'){
+this.createSolicitudActive = true;
+}
+if (element.authority == 'ROLE_SOLICITUDUPDATE'){
+    this.updateSolicitudActive = true;
+}
+if (element.authority == 'ROLE_SOLICITUDSEARCH'){
+    this.searchSolicitudActive = true;
+}
+if (element.authority == 'ROLE_EVENTODELETE'){
+    this.deleteEventoActive = true;
+}
+if (element.authority == 'ROLE_EVENTOCREATE'){
+this.createEventoActive = true;
+}
+if (element.authority == 'ROLE_EVENTOUPDATE'){
+    this.updateEventoActive = true;
+}
+if (element.authority == 'ROLE_EVENTOSEARCH'){
+    this.searchEventoActive = true;
+}
+	
+}); 
+
+}
 
   // Parse to NgbDateStruct
     isNumber(value: any): boolean {

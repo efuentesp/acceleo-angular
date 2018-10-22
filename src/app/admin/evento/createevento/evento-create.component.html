@@ -61,8 +61,7 @@
 						</span>
 					</div>
 				</div>		
-				<!--<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !fechaAux.valid}">-->
-				<div class="form-group">
+				<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !fecha.valid}">
 					<label class="control-label" for="fecha">Fecha programada<span class="required">*</span></label>
 					<div class="input-group col-md-12">	
 						<input class="form-control" placeholder="dd/MM/yyyy" id="fecha" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="evento.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" required (change)="changeFecha(true)">
@@ -71,8 +70,9 @@
 								<em class="fa fa-calendar"></em>
 							</button>
 						</span>
+						<input type="hidden" class="form-control input-md"  name="fecha"  [(ngModel)]="evento.fechaAux"    #fecha="ngModel" required>
 					</div>
-					<!--<div *ngIf="eventoForm.submitted && !fechaAux.valid" class="help-block">Fecha programada es requerido</div>-->
+					<div *ngIf="eventoForm.submitted && !fecha.valid" class="help-block">Fecha programada es requerido</div>
 				</div>
 				<div class="form-group" [ngClass]="{ 'has-error': eventoForm.submitted && !responsable.valid}">
 					<label class="control-label" for="responsable">Responsable del evento<span class="required">*</span></label>

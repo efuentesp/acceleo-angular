@@ -95,7 +95,7 @@
 							<div *ngIf="posicionForm.submitted && !descripcion.valid" class="help-block">Descripción de la vacante es requerido</div>
 						</div>
 					</div>	
-					<div *ngIf="!flagDelete">
+					<div *ngIf="!flagDelete" [ngClass]="{ 'has-error': posicionForm.submitted && !fecha.valid}">
 						<div class="form-group">
 							<label class="control-label" for="fecha">Fecha de alta<span class="required">*</span></label>
 							<div class="input-group col-md-12">	
@@ -105,8 +105,9 @@
 										<em class="fa fa-calendar"></em>
 									</button>
 								</span>
+								<input type="hidden" class="form-control input-md"  name="fecha"  [(ngModel)]="posicion.fechaAux" #fecha="ngModel" required>
 							</div>
-							
+							<div *ngIf="posicionForm.submitted && !fecha.valid" class="help-block">Fecha de alta es requerido</div>
 						</div>
 					</div>
 					<div *ngIf="flagDelete">
