@@ -49,7 +49,7 @@
 										<tr>
 											<th style="max-width:10%">Nombre</th>
 											<th style="max-width:10%">Descripción</th>	
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

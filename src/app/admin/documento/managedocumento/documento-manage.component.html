@@ -50,7 +50,7 @@
 											<th style="max-width:10%">Nombre del documento</th>	
 											<th style="max-width:10%">Descripción del documento</th>	
 											<th style="max-width:10%">Tamaño</th>
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

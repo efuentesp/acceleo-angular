@@ -55,7 +55,7 @@
 											<th style="max-width:10%">Sitio Web</th>	
 											<th style="max-width:10%">Contacto</th>	
 											<th style="max-width:10%">Notas</th>	
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

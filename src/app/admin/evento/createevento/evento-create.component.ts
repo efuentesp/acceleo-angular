@@ -148,39 +148,37 @@ loadPosicion(){
  		this.posicionList = data;
  		
  		this.posicionList.forEach(element => {
- 			          this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
- 			              if (data){
- 			              	if (data.puestosId == 'a'){
- 			              	    element.puestoItem = "Promotor de cambaceo";
- 			              	    element.puestoId = "A";
- 			              	}		
- 			              	if (data.puestosId == 'b'){
- 			              	    element.puestoItem = "Valuador";
- 			              	    element.puestoId = "B";
- 			              	}		
- 			              	if (data.puestosId == 'c'){
- 			              	    element.puestoItem = "Mecanógrafo";
- 			              	    element.puestoId = "C";
- 			              	}		
- 			              	if (data.puestosId == 'd'){
- 			              	    element.puestoItem = "Expendedor";
- 			              	    element.puestoId = "D";
- 			              	}		
- 			              	if (data.puestosId == 'e'){
- 			              	    element.puestoItem = "Almacenista";
- 			              	    element.puestoId = "E";
- 			              	}		
- 			              	if (data.puestosId == 'f'){
- 			              	    element.puestoItem = "Mozo";
- 			              	    element.puestoId = "F";
- 			              	}		
- 			              	if (data.puestosId == 'g'){
- 			              	    element.puestoItem = "Cajero";
- 			              	    element.puestoId = "G";
- 			              	}		
- 			              }
- 			         });
- 			     });
+					   
+			// Entidad a Enum
+			if (element.puesto.puestosId == 'a'){
+				element.puestoItem = "Promotor de cambaceo";
+				element.puestoId = "A";
+			}		
+			if (element.puesto.puestosId == 'b'){
+				element.puestoItem = "Valuador";
+				element.puestoId = "B";
+			}		
+			if (element.puesto.puestosId == 'c'){
+				element.puestoItem = "Mecanógrafo";
+				element.puestoId = "C";
+			}		
+			if (element.puesto.puestosId == 'd'){
+				element.puestoItem = "Expendedor";
+				element.puestoId = "D";
+			}		
+			if (element.puesto.puestosId == 'e'){
+				element.puestoItem = "Almacenista";
+				element.puestoId = "E";
+			}		
+			if (element.puesto.puestosId == 'f'){
+				element.puestoItem = "Mozo";
+				element.puestoId = "F";
+			}		
+			if (element.puesto.puestosId == 'g'){
+				element.puestoItem = "Cajero";
+				element.puestoId = "G";
+			}		
+ 		});
  		this.posicionList.forEach(element => {
  		      	if (element.tiponominaId == 'a'){
  		      	    element.tiponominaItem = "Externo";

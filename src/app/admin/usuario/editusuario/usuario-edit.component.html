@@ -116,7 +116,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr *ngFor="let rol of rolList | filterRol: busquedaRol | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableRol'}; let i = index" >
+													<tr *ngFor="let rol of rolList | filterRol: busquedaRol | paginate: {itemsPerPage: 10, currentPage:pageRol, id: 'paginationTableRol'}; let i = index" >
 														<td  style="max-width: 10%">
 															<input type="radio" name="rolId" [checked]="rol.checked" value="{{rol.rolId}}" (click)="setClickedRowRol(i, rol)">
 														</td>
@@ -128,8 +128,8 @@
 											</table>
 						
 												<div align="center" style="margin-top:15px;">
-													<pagination-controls (pageChange)="page = $event" id="paginationTableRol" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-														nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+													<pagination-controls (pageChange)="pageRol = $event" id="paginationTableRol" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+														nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="pageRol" screenReaderCurrentLabel="You're on pageRol">
 													</pagination-controls>
 												</div>
 						

@@ -52,7 +52,7 @@
 											<th style="max-width:10%">Código Postal</th>	
 											<th style="max-width:10%">Ciudad</th>	
 											<th style="max-width:10%">Estado</th>	
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

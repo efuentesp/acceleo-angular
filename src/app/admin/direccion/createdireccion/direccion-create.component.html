@@ -85,7 +85,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr *ngFor="let candidato of candidatoList | filterCandidato: busquedaCandidato | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableCandidato'}; let i = index" >
+												<tr *ngFor="let candidato of candidatoList | filterCandidato: busquedaCandidato | paginate: {itemsPerPage: 10, currentPage:pageCandidato, id: 'paginationTableCandidato'}; let i = index" >
 													<td  style="max-width: 10%">
 														<input type="radio" name="candidatoId" [checked]="candidato.checked" value="{{candidato.candidatoId}}" (click)="setClickedRowCandidato(i, candidato)">
 													</td>
@@ -98,8 +98,8 @@
 										</table>
 					
 											<div align="center" style="margin-top:15px;">
-												<pagination-controls (pageChange)="page = $event" id="paginationTableCandidato" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+												<pagination-controls (pageChange)="pageCandidato = $event" id="paginationTableCandidato" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="pageCandidato" screenReaderCurrentLabel="You're on page">
 												</pagination-controls>
 											</div>
 					

@@ -52,7 +52,7 @@
 											<th style="max-width:10%">Descripción de la trayectoria</th>	
 											<th style="max-width:10%">Palabra clave</th>	
 											<th style="max-width:10%">Documento Probatorio</th>
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

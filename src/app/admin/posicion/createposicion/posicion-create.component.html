@@ -148,7 +148,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr *ngFor="let filial of filialList | filterFilial: busquedaFilial | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableFilial'}; let i = index" >
+												<tr *ngFor="let filial of filialList | filterFilial: busquedaFilial | paginate: {itemsPerPage: 10, currentPage:pageFilial, id: 'paginationTableFilial'}; let i = index" >
 													<td  style="max-width: 10%">
 														<input type="radio" name="filialId" [checked]="filial.checked" value="{{filial.filialId}}" (click)="setClickedRowFilial(i, filial)">
 													</td>
@@ -163,8 +163,8 @@
 										</table>
 					
 											<div align="center" style="margin-top:15px;">
-												<pagination-controls (pageChange)="page = $event" id="paginationTableFilial" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+												<pagination-controls (pageChange)="pageFilial = $event" id="paginationTableFilial" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="pageFilial" screenReaderCurrentLabel="You're on pageFilial">
 												</pagination-controls>
 											</div>
 					
@@ -212,7 +212,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr *ngFor="let puesto of puestoList | filterPuesto: busquedaPuesto | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePuesto'}; let i = index" >
+												<tr *ngFor="let puesto of puestoList | filterPuesto: busquedaPuesto | paginate: {itemsPerPage: 10, currentPage:pagePuesto, id: 'paginationTablePuesto'}; let i = index" >
 													<td  style="max-width: 10%">
 														<input type="radio" name="puestoId" [checked]="puesto.checked" value="{{puesto.puestoId}}" (click)="setClickedRowPuesto(i, puesto)">
 													</td>
@@ -222,12 +222,12 @@
 												</tr>
 											</tbody>
 										</table>
-					
-											<div align="center" style="margin-top:15px;">
-												<pagination-controls (pageChange)="page = $event" id="paginationTablePuesto" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-												</pagination-controls>
-											</div>
+		
+										<div align="center" style="margin-top:15px;">
+											<pagination-controls (pageChange)="pagePuesto = $event" id="paginationTablePuesto" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+												nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="pagePuesto" screenReaderCurrentLabel="You're on pagePuesto">
+											</pagination-controls>
+										</div>
 					
 										<div class="row">
 											<div class="text-right" style="padding-right:40px">
@@ -274,7 +274,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr *ngFor="let reclutador of reclutadorList | filterReclutador: busquedaReclutador | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableReclutador'}; let i = index" >
+												<tr *ngFor="let reclutador of reclutadorList | filterReclutador: busquedaReclutador | paginate: {itemsPerPage: 10, currentPage:pageReclutador, id: 'paginationTableReclutador'}; let i = index" >
 													<td  style="max-width: 10%">
 														<input type="radio" name="reclutadorId" [checked]="reclutador.checked" value="{{reclutador.reclutadorId}}" (click)="setClickedRowReclutador(i, reclutador)">
 													</td>
@@ -286,8 +286,8 @@
 										</table>
 					
 											<div align="center" style="margin-top:15px;">
-												<pagination-controls (pageChange)="page = $event" id="paginationTableReclutador" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
-													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+												<pagination-controls (pageChange)="pageReclutador = $event" id="paginationTableReclutador" maxSize="10" directionLinks="true" autoHide="false" previousLabel="<"
+													nextLabel=">" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="pageReclutador" screenReaderCurrentLabel="You're on pageReclutador">
 												</pagination-controls>
 											</div>
 					

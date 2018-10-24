@@ -59,7 +59,7 @@
 											<th style="max-width:10%">Feedback</th>	
 											<th style="max-width:10%">Comentarios del responsable</th>	
 											<th style="max-width:10%">Estatus</th>
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

@@ -51,7 +51,7 @@
 											<th style="max-width:10%">Apellido Paterno</th>	
 											<th style="max-width:10%">Apellido Materno</th>	
 											<th style="max-width:10%">Género</th>
-										<th style="max-width:20%">Acciones</th>
+										<th *ngIf="updateActive || deleteActive" style="max-width:20%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>

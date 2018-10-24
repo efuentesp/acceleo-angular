@@ -14,12 +14,12 @@ export class Candidato {
 	generoItem: string = '';
 	estatuscandidatoId: string = '';
 	estatuscandidatoItem: string = '';
-	solicitud : Solicitud = null;
-	solicitudId: string = '';
-	solicitudItem: string = '';
-	evento : Evento = null;
-	eventoId: string = '';
-	eventoItem: string = '';
+	// solicitud : Solicitud = null;
+	// solicitudId: string = '';
+	// solicitudItem: string = '';
+	// evento : Evento = null;
+	// eventoId: string = '';
+	// eventoItem: string = '';
 	
 	candidatoId: string = '';
 	candidatoItem: string = '';

@@ -33,7 +33,7 @@
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
 
-                <li><a><i class="fa fa-home"></i> Candidato <span class="fa fa-chevron-down"></span></a>
+                <li *ngIf="candidato_mgmnt || candidato"><a><i class="fa fa-home"></i> Candidato <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li *ngIf="candidato_mgmnt">
                       <a routerLink="./managecandidato" >
@@ -47,7 +47,7 @@
                     </li>
                   </ul>
            </li>
-           <li><a><i class="fa fa-home"></i> Domicilio <span class="fa fa-chevron-down"></span></a>
+           <li *ngIf="direccion_mgmnt || direccion"><a><i class="fa fa-home"></i> Domicilio <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li *ngIf="direccion_mgmnt">
                     <a routerLink="./managedireccion" >
@@ -61,7 +61,7 @@
                   </li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-home"></i> Documento Probatorio <span class="fa fa-chevron-down"></span></a>
+            <li *ngIf="documento_mgmnt || documento"><a><i class="fa fa-home"></i> Documento Probatorio <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li *ngIf="documento_mgmnt">
                   <a routerLink="./managedocumento" >
@@ -75,7 +75,7 @@
                 </li>
               </ul>
           </li>
-          <li><a><i class="fa fa-home"></i> Solicitud de empleo <span class="fa fa-chevron-down"></span></a>
+          <li *ngIf="solicitud_mgmnt || solicitud"><a><i class="fa fa-home"></i> Solicitud de empleo <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li *ngIf="solicitud_mgmnt">
                 <a routerLink="./managesolicitud" >
@@ -89,7 +89,7 @@
               </li>
             </ul>
         </li>
-        <li><a><i class="fa fa-home"></i> Evento <span class="fa fa-chevron-down"></span></a>
+        <li *ngIf="evento_mgmnt || evento"><a><i class="fa fa-home"></i> Evento <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li *ngIf="evento_mgmnt">
               <a routerLink="./manageevento" >
@@ -103,7 +103,7 @@
             </li>
           </ul>
       </li>
-          <li><a><i class="fa fa-home"></i> Filial <span class="fa fa-chevron-down"></span></a>
+          <li *ngIf="filial_mgmnt || filial"><a><i class="fa fa-home"></i> Filial <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li *ngIf="filial_mgmnt">
                 <a routerLink="./managefilial" >
@@ -117,7 +117,7 @@
               </li>
             </ul>
         </li>
-        <li><a><i class="fa fa-home"></i> Posición <span class="fa fa-chevron-down"></span></a>
+        <li *ngIf="posicion_mgmnt || posicion"><a><i class="fa fa-home"></i> Posición <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li *ngIf="posicion_mgmnt">
               <a routerLink="./manageposicion" >
@@ -131,7 +131,7 @@
             </li>
           </ul>
       </li>
-      <li><a><i class="fa fa-home"></i> Puesto <span class="fa fa-chevron-down"></span></a>
+      <li *ngIf="puesto_mgmnt || puesto"><a><i class="fa fa-home"></i> Puesto <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li *ngIf="puesto_mgmnt">
             <a routerLink="./managepuesto" >
@@ -145,7 +145,7 @@
           </li>
         </ul>
     </li>
-    <li><a><i class="fa fa-home"></i> Reclutador <span class="fa fa-chevron-down"></span></a>
+    <li *ngIf="reclutador_mgmnt || reclutador"><a><i class="fa fa-home"></i> Reclutador <span class="fa fa-chevron-down"></span></a>
       <ul class="nav child_menu">
         <li *ngIf="reclutador_mgmnt">
           <a routerLink="./managereclutador" >
@@ -159,7 +159,7 @@
         </li>
       </ul>
   </li>
-  <li><a><i class="fa fa-home"></i> Rol <span class="fa fa-chevron-down"></span></a>
+  <li *ngIf="rol_mgmnt || rol"><a><i class="fa fa-home"></i> Rol <span class="fa fa-chevron-down"></span></a>
     <ul class="nav child_menu">
       <li *ngIf="rol_mgmnt">
         <a routerLink="./managerol" >
@@ -173,7 +173,7 @@
       </li>
     </ul>
 </li>
-<li><a><i class="fa fa-home"></i> Trayectoria <span class="fa fa-chevron-down"></span></a>
+<li *ngIf="trayectoria_mgmnt || trayectoria"><a><i class="fa fa-home"></i> Trayectoria <span class="fa fa-chevron-down"></span></a>
   <ul class="nav child_menu">
     <li *ngIf="trayectoria_mgmnt">
       <a routerLink="./managetrayectoria" >
@@ -187,7 +187,7 @@
     </li>
   </ul>
 </li>
-<li><a><i class="fa fa-home"></i> Usuario <span class="fa fa-chevron-down"></span></a>
+<li *ngIf="usuario_mgmnt || usuario"><a><i class="fa fa-home"></i> Usuario <span class="fa fa-chevron-down"></span></a>
   <ul class="nav child_menu">
     <li *ngIf="usuario_mgmnt">
       <a routerLink="./manageusuario" >
@@ -201,7 +201,7 @@
     </li>
   </ul>
 </li>
-<li><a><i class="fa fa-home"></i> Permiso <span class="fa fa-chevron-down"></span></a>
+<li *ngIf="permiso_mgmnt || permiso"><a><i class="fa fa-home"></i> Permiso <span class="fa fa-chevron-down"></span></a>
   <ul class="nav child_menu">
     <li *ngIf="permiso_mgmnt">
       <a routerLink="./managepermiso" >
