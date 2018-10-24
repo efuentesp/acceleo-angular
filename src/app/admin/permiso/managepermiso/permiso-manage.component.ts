@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -50,7 +50,10 @@ export class PermisoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
+public rolId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -75,9 +78,9 @@ export class PermisoManageComponent implements OnInit {
 
       this.permisoService.setEdit(false);
       this.permisoService.setDelete(false);
-
-      this.loadPermiso();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -85,15 +88,6 @@ loadPermiso(){
     this.permisoService.getAllPermiso().subscribe(data => {
         if (data) {
             this.permisoList = data;
-            
-            // Grid Values
-this.permisoList.forEach(element => {
-     this.rolService.getRolById(element.rolId).subscribe(data => {
-         if (data){
-         	element.rolItem = data.nombre;
-         }
-    });
-});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the permisos.', 'error');
@@ -173,7 +167,44 @@ if (element.authority == 'ROLE_PERMISOSEARCH'){
     return null;
   }
   
-  go(value, permiso){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.rolId = params['rolId'];
+  	
+  	        if (!this.link){
+  	            this.loadPermiso();
+  	        }else{
+  	        	
+          	if (this.rolId){
+          	    this.loadPermisoByRol(this.rolId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadPermisoByRol(rolId){
+  	    this.permisoService.getAllPermisoByRol(rolId).subscribe(data => {
+  	        if (data) {
+  	            this.permisoList = data;
+  	
+  		            // Grid Values
+  	// this.permisoList.forEach(element => {
+  	//      this.rolService.getRolById(element.rolId).subscribe(data => {
+  	//          if (data){
+  	//          	element.rolItem = data.nombre;
+  	//          }
+  	//     });
+  	// });
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the permisos.', 'error');
+  	    });    
+  	}
+  	
 }

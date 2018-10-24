@@ -139,47 +139,45 @@ loadPosicion(){
 	this.posicionService.getAllPosicion().subscribe(data => {
    		if (data) {
  		this.posicionList = data;
+ 		// this.posicionList.forEach(element => {
+ 		// 	          this.filialService.getFilialById(element.filialId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.filialItem = data.nombre;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
  		this.posicionList.forEach(element => {
- 			          this.filialService.getFilialById(element.filialId).subscribe(data => {
- 			              if (data){
- 			              	element.filialItem = data.nombre;
- 			              }
- 			         });
- 			     });
- 		this.posicionList.forEach(element => {
- 			          this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
- 			              if (data){
- 			              	if (data.puestosId == 'a'){
+
+ 			              	if (element.puesto.puestosId == 'a'){
  			              	    element.puestoItem = "Promotor de cambaceo";
  			              	    element.puestoId = "A";
  			              	}		
- 			              	if (data.puestosId == 'b'){
+ 			              	if (element.puesto.puestosId == 'b'){
  			              	    element.puestoItem = "Valuador";
  			              	    element.puestoId = "B";
  			              	}		
- 			              	if (data.puestosId == 'c'){
+ 			              	if (element.puesto.puestosId == 'c'){
  			              	    element.puestoItem = "Mecanógrafo";
  			              	    element.puestoId = "C";
  			              	}		
- 			              	if (data.puestosId == 'd'){
+ 			              	if (element.puesto.puestosId == 'd'){
  			              	    element.puestoItem = "Expendedor";
  			              	    element.puestoId = "D";
  			              	}		
- 			              	if (data.puestosId == 'e'){
+ 			              	if (element.puesto.puestosId == 'e'){
  			              	    element.puestoItem = "Almacenista";
  			              	    element.puestoId = "E";
  			              	}		
- 			              	if (data.puestosId == 'f'){
+ 			              	if (element.puesto.puestosId == 'f'){
  			              	    element.puestoItem = "Mozo";
  			              	    element.puestoId = "F";
  			              	}		
- 			              	if (data.puestosId == 'g'){
+ 			              	if (element.puesto.puestosId == 'g'){
  			              	    element.puestoItem = "Cajero";
  			              	    element.puestoId = "G";
- 			              	}		
- 			              }
- 			         });
- 			     });
+							}
+		 });
+		 
  		this.posicionList.forEach(element => {
  		      	if (element.tiponominaId == 'a'){
  		      	    element.tiponominaItem = "Externo";
@@ -191,13 +189,13 @@ loadPosicion(){
  		      	    element.tiponominaItem = "Sindicalizado";
  		      	}		
  		});
- 		this.posicionList.forEach(element => {
- 			          this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
- 			              if (data){
- 			              	element.reclutadorItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		// this.posicionList.forEach(element => {
+ 		// 	          this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.reclutadorItem = data.nombre;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
  		this.posicionList.forEach(element => {
  		      	if (element.estatusposicionId == 'e1'){
  		      	    element.estatusposicionItem = "Abierta";
@@ -212,20 +210,20 @@ loadPosicion(){
  		      	    element.estatusposicionItem = "En pausa";
  		      	}		
  		});
- 		this.posicionList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.posicionList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		// this.posicionList.forEach(element => {
+ 		// 	          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.solicitudItem = data.correo;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
+ 		// this.posicionList.forEach(element => {
+ 		// 	          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.eventoItem = data.nombre;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Posicions.', 'error');
@@ -236,10 +234,12 @@ loadPosicion(){
  	  posicion.checked = !posicion.checked;
  	  if (posicion.checked){
 	 	  this.posicionService.setPosicion(posicion);
+this.solicitud.posicion = posicion;
 this.solicitud.posicionId = posicion.posicionId;
 this.solicitud.posicionItem = posicion.nombre;
  	  }else{
- 	      this.posicionService.clear();
+		   this.posicionService.clear();
+this.solicitud.posicion = null;		   
 this.solicitud.posicionId = "";
 this.solicitud.posicionItem = "";
  	   }
@@ -279,20 +279,20 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		// this.candidatoList.forEach(element => {
+ 		// 	          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.solicitudItem = data.correo;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
+ 		// this.candidatoList.forEach(element => {
+ 		// 	          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.eventoItem = data.nombre;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -302,11 +302,13 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
+		   this.solicitud.candidato = candidato;		   
 this.solicitud.candidatoId = candidato.candidatoId;
 this.solicitud.candidatoItem = candidato.nombre;
  	  }else{
- 	      this.candidatoService.clear();
+		   this.candidatoService.clear();
+		   this.solicitud.candidato = null;
 this.solicitud.candidatoId = "";
 this.solicitud.candidatoItem = "";
  	   }

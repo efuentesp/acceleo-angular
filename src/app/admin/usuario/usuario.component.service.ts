@@ -64,6 +64,14 @@ export class UsuarioService {
         return this.http.get(this.env.api + "/idusuario/"+usuarioId, opts).pipe(map(res => res.json()));
     }
 
+  	getAllUsuarioByRol(rolId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/usuario/rol/"+rolId, opts).pipe(map(res => res.json()));
+  	    }
+
     resetUsuario(): Usuario {
         this.clear();
         return this.usuario;
@@ -74,7 +82,7 @@ export class UsuarioService {
 		nombreclave: this.usuario.nombreclave,
 		password: this.usuario.password,
 		activo: this.usuario.activo,	
-		
+		rol: this.usuario.rol,
 		rolId: this.usuario.rolId,
 		rolItem: this.usuario.rolItem,
 		usuarioId: this.usuario.usuarioId,
@@ -90,6 +98,7 @@ setUsuario(usuario: Usuario) {
 this.usuario.nombreclave = usuario.nombreclave;
 this.usuario.password = usuario.password;
 this.usuario.activo = usuario.activo;
+this.usuario.rol = usuario.rol;
 this.usuario.rolId = usuario.rolId;
 this.usuario.rolItem = usuario.rolItem;
         
@@ -112,6 +121,7 @@ this.usuario.rolItem = usuario.rolItem;
 			this.usuario.password = ''; 
 			this.usuario.activo = null; 
 			
+			this.usuario.rol = null;
 			this.usuario.rolId = null;
 			this.usuario.rolItem = null;
     		

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -50,7 +50,10 @@ export class UsuarioManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
+public rolId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -75,9 +78,9 @@ export class UsuarioManageComponent implements OnInit {
 
       this.usuarioService.setEdit(false);
       this.usuarioService.setDelete(false);
-
-      this.loadUsuario();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -85,15 +88,6 @@ loadUsuario(){
     this.usuarioService.getAllUsuario().subscribe(data => {
         if (data) {
             this.usuarioList = data;
-            
-            // Grid Values
-this.usuarioList.forEach(element => {
-     this.rolService.getRolById(element.rolId).subscribe(data => {
-         if (data){
-         	element.rolItem = data.nombre;
-         }
-    });
-});
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the usuarios.', 'error');
@@ -173,7 +167,33 @@ if (element.authority == 'ROLE_USUARIOSEARCH'){
     return null;
   }
   
-  go(value, usuario){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.rolId = params['rolId'];
+  	
+  	        if (!this.link){
+  	            this.loadUsuario();
+  	        }else{
+  	        	
+          	if (this.rolId){
+          	    this.loadUsuarioByRol(this.rolId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadUsuarioByRol(rolId){
+  	    this.usuarioService.getAllUsuarioByRol(rolId).subscribe(data => {
+  	        if (data) {
+  	            this.usuarioList = data;
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the usuarios.', 'error');
+  	    });    
+  	}
+  	
 }

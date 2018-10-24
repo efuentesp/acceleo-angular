@@ -1,5 +1,6 @@
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
+
 export class Filial {
 
 	nombre: string = '';

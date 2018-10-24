@@ -111,6 +111,10 @@ public candidatoList: Candidato [];
         
         this.flag = this.eventoService.getEdit();
         this.evento = this.eventoService.getEvento();
+    		this.evento.posicionItem = this.evento.posicion.nombre;
+    		this.evento.posicionId = this.evento.posicion.posicionId;
+    		this.evento.candidatoItem = this.evento.candidato.nombre;
+    		this.evento.candidatoId = this.evento.candidato.candidatoId;
     		this.evento.fechaAux = this.parserFormatter.parse(this.evento.fecha);
     		this.evento.fecharealAux = this.parserFormatter.parse(this.evento.fechareal);
         this.flagDelete = this.eventoService.getDelete();
@@ -193,47 +197,41 @@ loadPosicion(){
 	this.posicionService.getAllPosicion().subscribe(data => {
    		if (data) {
  		this.posicionList = data;
+ 		
  		this.posicionList.forEach(element => {
- 			          this.filialService.getFilialById(element.filialId).subscribe(data => {
- 			              if (data){
- 			              	element.filialItem = data.nombre;
- 			              }
- 			         });
- 			     });
- 		this.posicionList.forEach(element => {
- 			          this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
- 			              if (data){
- 			              	if (data.puestosId == 'a'){
- 			              	    element.puestoItem = "Promotor de cambaceo";
- 			              	    element.puestoId = "A";
- 			              	}		
- 			              	if (data.puestosId == 'b'){
- 			              	    element.puestoItem = "Valuador";
- 			              	    element.puestoId = "B";
- 			              	}		
- 			              	if (data.puestosId == 'c'){
- 			              	    element.puestoItem = "Mecanógrafo";
- 			              	    element.puestoId = "C";
- 			              	}		
- 			              	if (data.puestosId == 'd'){
- 			              	    element.puestoItem = "Expendedor";
- 			              	    element.puestoId = "D";
- 			              	}		
- 			              	if (data.puestosId == 'e'){
- 			              	    element.puestoItem = "Almacenista";
- 			              	    element.puestoId = "E";
- 			              	}		
- 			              	if (data.puestosId == 'f'){
- 			              	    element.puestoItem = "Mozo";
- 			              	    element.puestoId = "F";
- 			              	}		
- 			              	if (data.puestosId == 'g'){
- 			              	    element.puestoItem = "Cajero";
- 			              	    element.puestoId = "G";
- 			              	}		
- 			              }
- 			         });
- 			     });
+
+			console.log("El puesto es: ", element.puesto.puestosId);
+			// Entidad a Enum
+					 if (element.puesto.puestosId == 'a'){
+						 element.puestoItem = "Promotor de cambaceo";
+						 element.puestoId = "A";
+					 }		
+					 if (element.puesto.puestosId == 'b'){
+						 element.puestoItem = "Valuador";
+						 element.puestoId = "B";
+					 }		
+					 if (element.puesto.puestosId == 'c'){
+						 element.puestoItem = "Mecanógrafo";
+						 element.puestoId = "C";
+					 }		
+					 if (element.puesto.puestosId == 'd'){
+						 element.puestoItem = "Expendedor";
+						 element.puestoId = "D";
+					 }		
+					 if (element.puesto.puestosId == 'e'){
+						 element.puestoItem = "Almacenista";
+						 element.puestoId = "E";
+					 }		
+					 if (element.puesto.puestosId == 'f'){
+						 element.puestoItem = "Mozo";
+						 element.puestoId = "F";
+					 }		
+					 if (element.puesto.puestosId == 'g'){
+						 element.puestoItem = "Cajero";
+						 element.puestoId = "G";
+					 }		
+				
+		});
  		this.posicionList.forEach(element => {
  		      	if (element.tiponominaId == 'a'){
  		      	    element.tiponominaItem = "Externo";
@@ -245,13 +243,7 @@ loadPosicion(){
  		      	    element.tiponominaItem = "Sindicalizado";
  		      	}		
  		});
- 		this.posicionList.forEach(element => {
- 			          this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
- 			              if (data){
- 			              	element.reclutadorItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 	
  		this.posicionList.forEach(element => {
  		      	if (element.estatusposicionId == 'e1'){
  		      	    element.estatusposicionItem = "Abierta";
@@ -266,20 +258,7 @@ loadPosicion(){
  		      	    element.estatusposicionItem = "En pausa";
  		      	}		
  		});
- 		this.posicionList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.posicionList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Posicions.', 'error');
@@ -289,11 +268,13 @@ loadPosicion(){
  setClickedRowPosicion(index,posicion){
  	  posicion.checked = !posicion.checked;
  	  if (posicion.checked){
-	 	  this.posicionService.setPosicion(posicion);
+		   this.posicionService.setPosicion(posicion);
+this.evento.posicion = posicion;		   
 this.evento.posicionId = posicion.posicionId;
 this.evento.posicionItem = posicion.nombre;
  	  }else{
- 	      this.posicionService.clear();
+		   this.posicionService.clear();
+this.evento.posicion = null;				   
 this.evento.posicionId = "";
 this.evento.posicionItem = "";
 	 	   }
@@ -333,20 +314,7 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 	
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -356,11 +324,13 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
+this.evento.candidato = candidato;
 this.evento.candidatoId = candidato.candidatoId;
 this.evento.candidatoItem = candidato.nombre;
  	  }else{
- 	      this.candidatoService.clear();
+		   this.candidatoService.clear();
+this.evento.candidato = null;		   
 this.evento.candidatoId = "";
 this.evento.candidatoItem = "";
 	 	   }

@@ -97,7 +97,9 @@ public rolList: Rol [];
     ngOnInit() {
         
         this.flag = this.permisoService.getEdit();
-        this.permiso = this.permisoService.getPermiso();
+				this.permiso = this.permisoService.getPermiso();
+    		this.permiso.rolItem = this.permiso.rol.nombre;
+    		this.permiso.rolId = this.permiso.rol.rolId;
         this.flagDelete = this.permisoService.getDelete();
         	this.loadRol();
     }  
@@ -112,6 +114,10 @@ save(){
 	){
 		return;
 	}else{
+
+		this.permiso.rol.rolId = this.permiso.rolId;
+		this.permiso.rol.rolItem = this.permiso.rolItem;
+
 	   this.permisoService.savePermiso(this.permiso).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Permiso save successfully.', 'success');

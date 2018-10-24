@@ -64,6 +64,7 @@ export class DocumentoService {
         return this.http.get(this.env.api + "/iddocumento/"+documentoId, opts).pipe(map(res => res.json()));
     }
 
+
     resetDocumento(): Documento {
         this.clear();
         return this.documento;

@@ -59,8 +59,8 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let solicitud of solicitudList | filterSolicitud: busquedaSolicitud | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableSolicitud'}; let i = index">
-											<td  style="max-width: 10%">{{solicitud.posicionItem}}</td>
-											<td  style="max-width: 10%">{{solicitud.candidatoItem}}</td>
+											<td  style="max-width: 10%">{{solicitud.posicion.nombre}}</td>
+											<td  style="max-width: 10%">{{solicitud.candidato.nombre}}</td>
 											<td  style="max-width: 10%">{{solicitud.fecha | date: 'dd/MM/yyyy'}}</td>
 											<td  style="max-width: 10%">{{solicitud.salario}}</td>
 											<td  style="max-width: 10%">{{solicitud.correo}}</td>

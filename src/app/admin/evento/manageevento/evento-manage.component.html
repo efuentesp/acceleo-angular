@@ -66,8 +66,8 @@
 										<tr *ngFor="let evento of eventoList | filterEvento: busquedaEvento | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableEvento'}; let i = index">
 											<td  style="max-width: 10%">{{evento.tipoeventoItem}}</td>
 											<td  style="max-width: 10%">{{evento.nombre}}</td>
-											<td  style="max-width: 10%">{{evento.posicionItem}}</td>
-											<td  style="max-width: 10%">{{evento.candidatoItem}}</td>
+											<td  style="max-width: 10%">{{evento.posicion.nombre}}</td>
+											<td  style="max-width: 10%">{{evento.candidato.nombre}}</td>
 											<td  style="max-width: 10%">{{evento.fecha | date: 'dd/MM/yyyy'}}</td>
 											<td  style="max-width: 10%">{{evento.responsable}}</td>
 											<td  style="max-width: 10%">{{evento.notas}}</td>

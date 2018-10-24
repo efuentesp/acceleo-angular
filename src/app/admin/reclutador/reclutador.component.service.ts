@@ -64,6 +64,7 @@ export class ReclutadorService {
         return this.http.get(this.env.api + "/idreclutador/"+reclutadorId, opts).pipe(map(res => res.json()));
     }
 
+
     resetReclutador(): Reclutador {
         this.clear();
         return this.reclutador;
@@ -74,9 +75,8 @@ export class ReclutadorService {
 		nombre: this.reclutador.nombre,
 		apellidopaterno: this.reclutador.apellidopaterno,
 		apellidomaterno: this.reclutador.apellidomaterno,
-		
-			generoId: this.reclutador.generoId,
-			generoItem: this.reclutador.generoItem,
+		generoId: this.reclutador.generoId,
+		generoItem: this.reclutador.generoItem,
 		reclutadorId: this.reclutador.reclutadorId,
 		reclutadorItem: this.reclutador.reclutadorItem	
 		
@@ -114,7 +114,6 @@ this.reclutador.generoItem = reclutador.generoItem;
 			
 			this.reclutador.generoId = null;
 			this.reclutador.generoItem = null;
-			
     		
 			this.reclutador.reclutadorId = null;
 			this.reclutador.reclutadorItem = null;

@@ -98,6 +98,8 @@ public candidatoList: Candidato [];
         
         this.flag = this.direccionService.getEdit();
         this.direccion = this.direccionService.getDireccion();
+    		this.direccion.candidatoItem = this.direccion.candidato.nombre;
+    		this.direccion.candidatoId = this.direccion.candidato.candidatoId;
         this.flagDelete = this.direccionService.getDelete();
         	this.loadCandidato();
     }  
@@ -113,6 +115,11 @@ save(){
 	){
 		return;
 	}else{
+
+		console.log('Direccion:', this.direccion);
+		this.direccion.candidato.candidatoId = this.direccion.candidatoId;
+		this.direccion.candidato.candidatoItem = this.direccion.candidatoItem;
+		
 	   this.direccionService.saveDireccion(this.direccion).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Direccion save successfully.', 'success');
@@ -197,20 +204,20 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		// this.candidatoList.forEach(element => {
+ 		// 	          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.solicitudItem = data.correo;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
+ 		// this.candidatoList.forEach(element => {
+ 		// 	          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
+ 		// 	              if (data){
+ 		// 	              	element.eventoItem = data.nombre;
+ 		// 	              }
+ 		// 	         });
+ 		// 	     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -220,7 +227,7 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
 this.direccion.candidatoId = candidato.candidatoId;
 this.direccion.candidatoItem = candidato.nombre;
  	  }else{

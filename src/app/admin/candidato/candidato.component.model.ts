@@ -1,4 +1,7 @@
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { Solicitud } from "../solicitud/solicitud.component.model";
+import { Evento } from "../evento/evento.component.model";
+
 
 export class Candidato {
 
@@ -11,8 +14,10 @@ export class Candidato {
 	generoItem: string = '';
 	estatuscandidatoId: string = '';
 	estatuscandidatoItem: string = '';
+	solicitud : Solicitud = null;
 	solicitudId: string = '';
 	solicitudItem: string = '';
+	evento : Evento = null;
 	eventoId: string = '';
 	eventoItem: string = '';
 	

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -66,7 +66,6 @@ export class PosicionManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
 private searchSolicitudActive: boolean = false;
 private updateSolicitudActive: boolean = false;
 private createSolicitudActive: boolean = false;
@@ -75,6 +74,12 @@ private searchEventoActive: boolean = false;
 private updateEventoActive: boolean = false;
 private createEventoActive: boolean = false;
 private deleteEventoActive: boolean = false;
+
+// data  
+public link: string = '';
+public filialId: string = '';
+public puestoId: string = '';
+public reclutadorId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -107,9 +112,9 @@ private deleteEventoActive: boolean = false;
 
       this.posicionService.setEdit(false);
       this.posicionService.setDelete(false);
-
-      this.loadPosicion();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -117,48 +122,39 @@ loadPosicion(){
     this.posicionService.getAllPosicion().subscribe(data => {
         if (data) {
             this.posicionList = data;
-            
-            // Grid Values
+          
 this.posicionList.forEach(element => {
-     this.filialService.getFilialById(element.filialId).subscribe(data => {
-         if (data){
-         	element.filialItem = data.nombre;
-         }
-    });
-});
-this.posicionList.forEach(element => {
-     this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
-         if (data){
-         	if (data.puestosId == 'a'){
+	
+    // Entidad a Enum
+         	if (element.puesto.puestosId == 'a'){
          	    element.puestoItem = "Promotor de cambaceo";
          	    element.puestoId = "A";
          	}		
-         	if (data.puestosId == 'b'){
+         	if (element.puesto.puestosId == 'b'){
          	    element.puestoItem = "Valuador";
          	    element.puestoId = "B";
          	}		
-         	if (data.puestosId == 'c'){
+         	if (element.puesto.puestosId == 'c'){
          	    element.puestoItem = "Mecanógrafo";
          	    element.puestoId = "C";
          	}		
-         	if (data.puestosId == 'd'){
+         	if (element.puesto.puestosId == 'd'){
          	    element.puestoItem = "Expendedor";
          	    element.puestoId = "D";
          	}		
-         	if (data.puestosId == 'e'){
+         	if (element.puesto.puestosId == 'e'){
          	    element.puestoItem = "Almacenista";
          	    element.puestoId = "E";
          	}		
-         	if (data.puestosId == 'f'){
+         	if (element.puesto.puestosId == 'f'){
          	    element.puestoItem = "Mozo";
          	    element.puestoId = "F";
          	}		
-         	if (data.puestosId == 'g'){
+         	if (element.puesto.puestosId == 'g'){
          	    element.puestoItem = "Cajero";
          	    element.puestoId = "G";
          	}		
-         }
-    });
+        
 });
 this.posicionList.forEach(element => {
       	if (element.tiponominaId == 'a'){
@@ -171,13 +167,7 @@ this.posicionList.forEach(element => {
       	    element.tiponominaItem = "Sindicalizado";
       	}		
 });
-this.posicionList.forEach(element => {
-     this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
-         if (data){
-         	element.reclutadorItem = data.nombre;
-         }
-    });
-});
+
 this.posicionList.forEach(element => {
       	if (element.estatusposicionId == 'e1'){
       	    element.estatusposicionItem = "Abierta";
@@ -295,7 +285,254 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
     return null;
   }
   
-  go(value, posicion){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	goSolicitud(value, posicion){
+  	    this.router.navigate([ '../'+value+'', { posicionId: posicion.posicionId, link: 'solicitud'}], { relativeTo: this.route })
+  	}
+  	goEvento(value, posicion){
+  	    this.router.navigate([ '../'+value+'', { posicionId: posicion.posicionId, link: 'evento'}], { relativeTo: this.route })
+  	}
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.filialId = params['filialId'];
+          	this.puestoId = params['puestoId'];
+          	this.reclutadorId = params['reclutadorId'];
+  	
+  	        if (!this.link){
+  	            this.loadPosicion();
+  	        }else{
+  	        	
+          	if (this.filialId){
+          	    this.loadPosicionByFilial(this.filialId);
+          	}
+          	if (this.puestoId){
+          	    this.loadPosicionByPuesto(this.puestoId);
+          	}
+          	if (this.reclutadorId){
+          	    this.loadPosicionByReclutador(this.reclutadorId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadPosicionByFilial(filialId){
+  	    this.posicionService.getAllPosicionByFilial(filialId).subscribe(data => {
+  	        if (data) {
+  	            this.posicionList = data;
+  	
+  	this.posicionList.forEach(element => {
+		  
+		// Entidad a Enum
+		if (element.puesto.puestosId == 'a'){
+			element.puestoItem = "Promotor de cambaceo";
+			element.puestoId = "A";
+		}		
+		if (element.puesto.puestosId == 'b'){
+			element.puestoItem = "Valuador";
+			element.puestoId = "B";
+		}		
+		if (element.puesto.puestosId == 'c'){
+			element.puestoItem = "Mecanógrafo";
+			element.puestoId = "C";
+		}		
+		if (element.puesto.puestosId == 'd'){
+			element.puestoItem = "Expendedor";
+			element.puestoId = "D";
+		}		
+		if (element.puesto.puestosId == 'e'){
+			element.puestoItem = "Almacenista";
+			element.puestoId = "E";
+		}		
+		if (element.puesto.puestosId == 'f'){
+			element.puestoItem = "Mozo";
+			element.puestoId = "F";
+		}		
+		if (element.puesto.puestosId == 'g'){
+			element.puestoItem = "Cajero";
+			element.puestoId = "G";
+		}			
+  	         
+  	
+  	});
+  	this.posicionList.forEach(element => {
+  	      	if (element.tiponominaId == 'a'){
+  	      	    element.tiponominaItem = "Externo";
+  	      	}		
+  	      	if (element.tiponominaId == 'b'){
+  	      	    element.tiponominaItem = "Interno";
+  	      	}		
+  	      	if (element.tiponominaId == 'c'){
+  	      	    element.tiponominaItem = "Sindicalizado";
+  	      	}		
+  	});
+  	
+  	this.posicionList.forEach(element => {
+  	      	if (element.estatusposicionId == 'e1'){
+  	      	    element.estatusposicionItem = "Abierta";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e2'){
+  	      	    element.estatusposicionItem = "Cerrada";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e3'){
+  	      	    element.estatusposicionItem = "Cancelada";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e4'){
+  	      	    element.estatusposicionItem = "En pausa";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the posicions.', 'error');
+  	    });    
+  	}
+  	loadPosicionByPuesto(puestoId){
+  	    this.posicionService.getAllPosicionByPuesto(puestoId).subscribe(data => {
+  	        if (data) {
+  	            this.posicionList = data;
+  	
+  	this.posicionList.forEach(element => {
+  	     this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
+  	         if (data){
+  	         	if (data.puestosId == 'a'){
+  	         	    element.puestoItem = "Promotor de cambaceo";
+  	         	    element.puestoId = "A";
+  	         	}		
+  	         	if (data.puestosId == 'b'){
+  	         	    element.puestoItem = "Valuador";
+  	         	    element.puestoId = "B";
+  	         	}		
+  	         	if (data.puestosId == 'c'){
+  	         	    element.puestoItem = "Mecanógrafo";
+  	         	    element.puestoId = "C";
+  	         	}		
+  	         	if (data.puestosId == 'd'){
+  	         	    element.puestoItem = "Expendedor";
+  	         	    element.puestoId = "D";
+  	         	}		
+  	         	if (data.puestosId == 'e'){
+  	         	    element.puestoItem = "Almacenista";
+  	         	    element.puestoId = "E";
+  	         	}		
+  	         	if (data.puestosId == 'f'){
+  	         	    element.puestoItem = "Mozo";
+  	         	    element.puestoId = "F";
+  	         	}		
+  	         	if (data.puestosId == 'g'){
+  	         	    element.puestoItem = "Cajero";
+  	         	    element.puestoId = "G";
+  	         	}		
+  	         }
+  	    });
+  	});
+  	this.posicionList.forEach(element => {
+  	      	if (element.tiponominaId == 'a'){
+  	      	    element.tiponominaItem = "Externo";
+  	      	}		
+  	      	if (element.tiponominaId == 'b'){
+  	      	    element.tiponominaItem = "Interno";
+  	      	}		
+  	      	if (element.tiponominaId == 'c'){
+  	      	    element.tiponominaItem = "Sindicalizado";
+  	      	}		
+  	});
+  
+  	this.posicionList.forEach(element => {
+  	      	if (element.estatusposicionId == 'e1'){
+  	      	    element.estatusposicionItem = "Abierta";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e2'){
+  	      	    element.estatusposicionItem = "Cerrada";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e3'){
+  	      	    element.estatusposicionItem = "Cancelada";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e4'){
+  	      	    element.estatusposicionItem = "En pausa";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the posicions.', 'error');
+  	    });    
+  	}
+  	loadPosicionByReclutador(reclutadorId){
+  	    this.posicionService.getAllPosicionByReclutador(reclutadorId).subscribe(data => {
+  	        if (data) {
+  	            this.posicionList = data;
+  	
+  	this.posicionList.forEach(element => {
+  	     this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
+  	         if (data){
+  	         	if (data.puestosId == 'a'){
+  	         	    element.puestoItem = "Promotor de cambaceo";
+  	         	    element.puestoId = "A";
+  	         	}		
+  	         	if (data.puestosId == 'b'){
+  	         	    element.puestoItem = "Valuador";
+  	         	    element.puestoId = "B";
+  	         	}		
+  	         	if (data.puestosId == 'c'){
+  	         	    element.puestoItem = "Mecanógrafo";
+  	         	    element.puestoId = "C";
+  	         	}		
+  	         	if (data.puestosId == 'd'){
+  	         	    element.puestoItem = "Expendedor";
+  	         	    element.puestoId = "D";
+  	         	}		
+  	         	if (data.puestosId == 'e'){
+  	         	    element.puestoItem = "Almacenista";
+  	         	    element.puestoId = "E";
+  	         	}		
+  	         	if (data.puestosId == 'f'){
+  	         	    element.puestoItem = "Mozo";
+  	         	    element.puestoId = "F";
+  	         	}		
+  	         	if (data.puestosId == 'g'){
+  	         	    element.puestoItem = "Cajero";
+  	         	    element.puestoId = "G";
+  	         	}		
+  	         }
+  	    });
+  	});
+  	this.posicionList.forEach(element => {
+  	      	if (element.tiponominaId == 'a'){
+  	      	    element.tiponominaItem = "Externo";
+  	      	}		
+  	      	if (element.tiponominaId == 'b'){
+  	      	    element.tiponominaItem = "Interno";
+  	      	}		
+  	      	if (element.tiponominaId == 'c'){
+  	      	    element.tiponominaItem = "Sindicalizado";
+  	      	}		
+  	});
+  
+  	this.posicionList.forEach(element => {
+  	      	if (element.estatusposicionId == 'e1'){
+  	      	    element.estatusposicionItem = "Abierta";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e2'){
+  	      	    element.estatusposicionItem = "Cerrada";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e3'){
+  	      	    element.estatusposicionItem = "Cancelada";
+  	      	}		
+  	      	if (element.estatusposicionId == 'e4'){
+  	      	    element.estatusposicionItem = "En pausa";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the posicions.', 'error');
+  	    });    
+  	}
+  	
 }

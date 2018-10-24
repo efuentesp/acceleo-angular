@@ -105,6 +105,7 @@ save(){
 	){
 		return;
 	}else{
+	  
 	   this.permisoService.savePermiso(this.permiso).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Permiso save successfully.', 'success');
@@ -131,11 +132,13 @@ loadRol(){
  setClickedRowRol(index,rol){
  	  rol.checked = !rol.checked;
  	  if (rol.checked){
-	 	  this.rolService.setRol(rol);
+		   this.rolService.setRol(rol);
+this.permiso.rol = rol;		   
 this.permiso.rolId = rol.rolId;
 this.permiso.rolItem = rol.nombre;
  	  }else{
- 	      this.rolService.clear();
+		   this.rolService.clear();
+this.permiso.rol = null;			   
 this.permiso.rolId = "";
 this.permiso.rolItem = "";
  	   }

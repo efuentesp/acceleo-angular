@@ -57,11 +57,11 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let trayectoria of trayectoriaList | filterTrayectoria: busquedaTrayectoria | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTableTrayectoria'}; let i = index">
-											<td  style="max-width: 10%">{{trayectoria.candidatoItem}}</td>
+											<td  style="max-width: 10%">{{trayectoria.candidato.nombre}}</td>
 											<td  style="max-width: 10%">{{trayectoria.tipotrayectoriaItem}}</td>
 											<td  style="max-width: 10%">{{trayectoria.descripcion}}</td>
 											<td  style="max-width: 10%">{{trayectoria.clave}}</td>
-											<td  style="max-width: 10%">{{trayectoria.documentoItem}}</td>
+											<td  style="max-width: 10%">{{trayectoria.documento.nombre}}</td>
 											<td style="max-width: 20%">															
 												<div class="container">
 												<button *ngIf="updateActive" class="btn btn-default" (click)="editar(trayectoria)"><span class="fa fa-pencil"></span></button>

@@ -1,12 +1,17 @@
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { Posicion } from "../posicion/posicion.component.model";
+import { Candidato } from "../candidato/candidato.component.model";
+
 
 export class Evento {
 
 	tipoeventoId: string = '';
 	tipoeventoItem: string = '';
 	nombre: string = '';
+	posicion : Posicion = null;
 	posicionId: string = '';
 	posicionItem: string = '';
+	candidato : Candidato = null;
 	candidatoId: string = '';
 	candidatoItem: string = '';
 	fecha: string = '';

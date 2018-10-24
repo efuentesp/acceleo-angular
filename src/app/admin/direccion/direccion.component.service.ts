@@ -64,6 +64,14 @@ export class DireccionService {
         return this.http.get(this.env.api + "/iddireccion/"+direccionId, opts).pipe(map(res => res.json()));
     }
 
+  	getAllDireccionByCandidato(candidatoId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/direccion/candidato/"+candidatoId, opts).pipe(map(res => res.json()));
+  	    }
+
     resetDireccion(): Direccion {
         this.clear();
         return this.direccion;
@@ -71,7 +79,7 @@ export class DireccionService {
 
     getDireccion(): Direccion {
         var direccion: Direccion = {
-		
+		candidato: this.direccion.candidato,
 		candidatoId: this.direccion.candidatoId,
 		candidatoItem: this.direccion.candidatoItem,
 		calle: this.direccion.calle,
@@ -88,6 +96,7 @@ export class DireccionService {
 setDireccion(direccion: Direccion) {
        
         this.isDireccionFormValid = true;
+this.direccion.candidato = direccion.candidato;
 this.direccion.candidatoId = direccion.candidatoId;
 this.direccion.candidatoItem = direccion.candidatoItem;
 this.direccion.calle = direccion.calle;
@@ -111,6 +120,7 @@ this.direccion.estado = direccion.estado;
 
     clear() {
 			
+			this.direccion.candidato = null;
 			this.direccion.candidatoId = null;
 			this.direccion.candidatoItem = null;
 			this.direccion.calle = ''; 

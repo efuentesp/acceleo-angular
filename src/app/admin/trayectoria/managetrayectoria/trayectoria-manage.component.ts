@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -58,7 +58,11 @@ export class TrayectoriaManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
+public candidatoId: string = '';
+public documentoId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -87,9 +91,9 @@ export class TrayectoriaManageComponent implements OnInit {
 
       this.trayectoriaService.setEdit(false);
       this.trayectoriaService.setDelete(false);
-
-      this.loadTrayectoria();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -99,13 +103,6 @@ loadTrayectoria(){
             this.trayectoriaList = data;
             
             // Grid Values
-this.trayectoriaList.forEach(element => {
-     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-         if (data){
-         	element.candidatoItem = data.nombre;
-         }
-    });
-});
 this.trayectoriaList.forEach(element => {
       	if (element.tipotrayectoriaId == 'a'){
       	    element.tipotrayectoriaItem = "Estudios";
@@ -129,13 +126,7 @@ this.trayectoriaList.forEach(element => {
       	    element.tipotrayectoriaItem = "Curso";
       	}		
 });
-this.trayectoriaList.forEach(element => {
-     this.documentoService.getDocumentoById(element.documentoId).subscribe(data => {
-         if (data){
-         	element.documentoItem = data.nombre;
-         }
-    });
-});
+
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the trayectorias.', 'error');
@@ -215,7 +206,101 @@ if (element.authority == 'ROLE_TRAYECTORIASEARCH'){
     return null;
   }
   
-  go(value, trayectoria){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.candidatoId = params['candidatoId'];
+          	this.documentoId = params['documentoId'];
+  	
+  	        if (!this.link){
+  	            this.loadTrayectoria();
+  	        }else{
+  	        	
+          	if (this.candidatoId){
+          	    this.loadTrayectoriaByCandidato(this.candidatoId);
+          	}
+          	if (this.documentoId){
+          	    this.loadTrayectoriaByDocumento(this.documentoId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadTrayectoriaByCandidato(candidatoId){
+  	    this.trayectoriaService.getAllTrayectoriaByCandidato(candidatoId).subscribe(data => {
+  	        if (data) {
+  	            this.trayectoriaList = data;
+  	
+  	
+  	this.trayectoriaList.forEach(element => {
+  	      	if (element.tipotrayectoriaId == 'a'){
+  	      	    element.tipotrayectoriaItem = "Estudios";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'b'){
+  	      	    element.tipotrayectoriaItem = "Certificación";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'c'){
+  	      	    element.tipotrayectoriaItem = "Experiencia Laboral";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'd'){
+  	      	    element.tipotrayectoriaItem = "Interés";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'e'){
+  	      	    element.tipotrayectoriaItem = "Habilidad";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'f'){
+  	      	    element.tipotrayectoriaItem = "Recomendación";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'g'){
+  	      	    element.tipotrayectoriaItem = "Curso";
+  	      	}		
+  	});
+  	
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the trayectorias.', 'error');
+  	    });    
+  	}
+  	loadTrayectoriaByDocumento(documentoId){
+  	    this.trayectoriaService.getAllTrayectoriaByDocumento(documentoId).subscribe(data => {
+  	        if (data) {
+  	            this.trayectoriaList = data;
+  	
+  		            // Grid Values
+  
+  	this.trayectoriaList.forEach(element => {
+  	      	if (element.tipotrayectoriaId == 'a'){
+  	      	    element.tipotrayectoriaItem = "Estudios";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'b'){
+  	      	    element.tipotrayectoriaItem = "Certificación";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'c'){
+  	      	    element.tipotrayectoriaItem = "Experiencia Laboral";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'd'){
+  	      	    element.tipotrayectoriaItem = "Interés";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'e'){
+  	      	    element.tipotrayectoriaItem = "Habilidad";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'f'){
+  	      	    element.tipotrayectoriaItem = "Recomendación";
+  	      	}		
+  	      	if (element.tipotrayectoriaId == 'g'){
+  	      	    element.tipotrayectoriaItem = "Curso";
+  	      	}		
+  	});
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the trayectorias.', 'error');
+  	    });    
+  	}
+  	
 }

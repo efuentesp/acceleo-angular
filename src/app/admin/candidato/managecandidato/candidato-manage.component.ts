@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -42,7 +42,6 @@ export class CandidatoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
 private searchSolicitudActive: boolean = false;
 private updateSolicitudActive: boolean = false;
 private createSolicitudActive: boolean = false;
@@ -51,6 +50,9 @@ private searchEventoActive: boolean = false;
 private updateEventoActive: boolean = false;
 private createEventoActive: boolean = false;
 private deleteEventoActive: boolean = false;
+
+// data  
+public link: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -71,9 +73,9 @@ private deleteEventoActive: boolean = false;
 
       this.candidatoService.setEdit(false);
       this.candidatoService.setDelete(false);
-
-      this.loadCandidato();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -217,7 +219,26 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
     return null;
   }
   
-  go(value, candidato){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	goSolicitud(value, candidato){
+  	    this.router.navigate([ '../'+value+'', { candidatoId: candidato.candidatoId, link: 'solicitud'}], { relativeTo: this.route })
+  	}
+  	goEvento(value, candidato){
+  	    this.router.navigate([ '../'+value+'', { candidatoId: candidato.candidatoId, link: 'evento'}], { relativeTo: this.route })
+  	}
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+  	
+  	        if (!this.link){
+  	            this.loadCandidato();
+  	        }else{
+  	        	
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	
 }

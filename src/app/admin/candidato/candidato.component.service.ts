@@ -64,6 +64,7 @@ export class CandidatoService {
         return this.http.get(this.env.api + "/idcandidato/"+candidatoId, opts).pipe(map(res => res.json()));
     }
 
+
     resetCandidato(): Candidato {
         this.clear();
         return this.candidato;
@@ -76,16 +77,14 @@ export class CandidatoService {
 		apellidomaterno: this.candidato.apellidomaterno,
 		fecha: this.candidato.fecha,
 		fechaAux: this.candidato.fechaAux,
-		
-			generoId: this.candidato.generoId,
-			generoItem: this.candidato.generoItem,
-		
-			estatuscandidatoId: this.candidato.estatuscandidatoId,
-			estatuscandidatoItem: this.candidato.estatuscandidatoItem,
-		
+		generoId: this.candidato.generoId,
+		generoItem: this.candidato.generoItem,
+		estatuscandidatoId: this.candidato.estatuscandidatoId,
+		estatuscandidatoItem: this.candidato.estatuscandidatoItem,
+		solicitud: this.candidato.solicitud,
 		solicitudId: this.candidato.solicitudId,
 		solicitudItem: this.candidato.solicitudItem,
-		
+		evento: this.candidato.evento,
 		eventoId: this.candidato.eventoId,
 		eventoItem: this.candidato.eventoItem,
 		candidatoId: this.candidato.candidatoId,
@@ -107,8 +106,10 @@ this.candidato.generoId = candidato.generoId;
 this.candidato.generoItem = candidato.generoItem;
 this.candidato.estatuscandidatoId = candidato.estatuscandidatoId;
 this.candidato.estatuscandidatoItem = candidato.estatuscandidatoItem;
+this.candidato.solicitud = candidato.solicitud;
 this.candidato.solicitudId = candidato.solicitudId;
 this.candidato.solicitudItem = candidato.solicitudItem;
+this.candidato.evento = candidato.evento;
 this.candidato.eventoId = candidato.eventoId;
 this.candidato.eventoItem = candidato.eventoItem;
         
@@ -136,14 +137,14 @@ this.candidato.eventoItem = candidato.eventoItem;
 			this.candidato.generoId = null;
 			this.candidato.generoItem = null;
 			
-			
 			this.candidato.estatuscandidatoId = null;
 			this.candidato.estatuscandidatoItem = null;
 			
-			
+			this.candidato.solicitud = null;
 			this.candidato.solicitudId = null;
 			this.candidato.solicitudItem = null;
 			
+			this.candidato.evento = null;
 			this.candidato.eventoId = null;
 			this.candidato.eventoItem = null;
     		

@@ -64,6 +64,7 @@ export class FilialService {
         return this.http.get(this.env.api + "/idfilial/"+filialId, opts).pipe(map(res => res.json()));
     }
 
+
     resetFilial(): Filial {
         this.clear();
         return this.filial;

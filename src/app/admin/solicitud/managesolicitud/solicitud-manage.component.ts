@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -58,7 +58,11 @@ export class SolicitudManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
+public posicionId: string = '';
+public candidatoId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -87,9 +91,9 @@ export class SolicitudManageComponent implements OnInit {
 
       this.solicitudService.setEdit(false);
       this.solicitudService.setDelete(false);
-
-      this.loadSolicitud();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -99,20 +103,20 @@ loadSolicitud(){
             this.solicitudList = data;
             
             // Grid Values
-this.solicitudList.forEach(element => {
-     this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-         if (data){
-         	element.posicionItem = data.nombre;
-         }
-    });
-});
-this.solicitudList.forEach(element => {
-     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-         if (data){
-         	element.candidatoItem = data.nombre;
-         }
-    });
-});
+// this.solicitudList.forEach(element => {
+//      this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+//          if (data){
+//          	element.posicionItem = data.nombre;
+//          }
+//     });
+// });
+// this.solicitudList.forEach(element => {
+//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+//          if (data){
+//          	element.candidatoItem = data.nombre;
+//          }
+//     });
+// });
 this.solicitudList.forEach(element => {
       	if (element.estatussolicitudId == 'e1'){
       	    element.estatussolicitudItem = "Registrada";
@@ -206,7 +210,110 @@ if (element.authority == 'ROLE_SOLICITUDSEARCH'){
     return null;
   }
   
-  go(value, solicitud){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.posicionId = params['posicionId'];
+          	this.candidatoId = params['candidatoId'];
+  	
+  	        if (!this.link){
+  	            this.loadSolicitud();
+  	        }else{
+  	        	
+          	if (this.posicionId){
+          	    this.loadSolicitudByPosicion(this.posicionId);
+          	}
+          	if (this.candidatoId){
+          	    this.loadSolicitudByCandidato(this.candidatoId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadSolicitudByPosicion(posicionId){
+  	    this.solicitudService.getAllSolicitudByPosicion(posicionId).subscribe(data => {
+  	        if (data) {
+  	            this.solicitudList = data;
+  	
+  		            // Grid Values
+  	// this.solicitudList.forEach(element => {
+  	//      this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+  	//          if (data){
+  	//          	element.posicionItem = data.nombre;
+  	//          }
+  	//     });
+  	// });
+  	// this.solicitudList.forEach(element => {
+  	//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+  	//          if (data){
+  	//          	element.candidatoItem = data.nombre;
+  	//          }
+  	//     });
+  	// });
+  	this.solicitudList.forEach(element => {
+  	      	if (element.estatussolicitudId == 'e1'){
+  	      	    element.estatussolicitudItem = "Registrada";
+  	      	}		
+  	      	if (element.estatussolicitudId == 'e2'){
+  	      	    element.estatussolicitudItem = "Completada";
+  	      	}		
+  	      	if (element.estatussolicitudId == 'e3'){
+  	      	    element.estatussolicitudItem = "Cancelada x candidato";
+  	      	}		
+  	      	if (element.estatussolicitudId == 'e4'){
+  	      	    element.estatussolicitudItem = "Cancelada x reclutador";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the solicituds.', 'error');
+  	    });    
+  	}
+  	loadSolicitudByCandidato(candidatoId){
+  	    this.solicitudService.getAllSolicitudByCandidato(candidatoId).subscribe(data => {
+  	        if (data) {
+  	            this.solicitudList = data;
+  	
+  		            // Grid Values
+  	// this.solicitudList.forEach(element => {
+  	//      this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
+  	//          if (data){
+  	//          	element.posicionItem = data.nombre;
+  	//          }
+  	//     });
+  	// });
+  	// this.solicitudList.forEach(element => {
+  	//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+  	//          if (data){
+  	//          	element.candidatoItem = data.nombre;
+  	//          }
+  	//     });
+  	// });
+  	this.solicitudList.forEach(element => {
+  	      	if (element.estatussolicitudId == 'e1'){
+  	      	    element.estatussolicitudItem = "Registrada";
+  	      	}		
+  	      	if (element.estatussolicitudId == 'e2'){
+  	      	    element.estatussolicitudItem = "Completada";
+  	      	}		
+  	      	if (element.estatussolicitudId == 'e3'){
+  	      	    element.estatussolicitudItem = "Cancelada x candidato";
+  	      	}		
+  	      	if (element.estatussolicitudId == 'e4'){
+  	      	    element.estatussolicitudItem = "Cancelada x reclutador";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the solicituds.', 'error');
+  	    });    
+  	}
+  	
 }

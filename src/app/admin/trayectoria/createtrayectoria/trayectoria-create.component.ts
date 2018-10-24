@@ -115,6 +115,7 @@ save(){
 	){
 		return;
 	}else{
+
 	   this.trayectoriaService.saveTrayectoria(this.trayectoria).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Trayectoria save successfully.', 'success');
@@ -163,20 +164,7 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -186,11 +174,13 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
+		   this.trayectoria.candidato = candidato;
 this.trayectoria.candidatoId = candidato.candidatoId;
 this.trayectoria.candidatoItem = candidato.nombre;
  	  }else{
- 	      this.candidatoService.clear();
+		   this.candidatoService.clear();
+		   this.trayectoria.candidato = null;
 this.trayectoria.candidatoId = "";
 this.trayectoria.candidatoItem = "";
  	   }
@@ -208,11 +198,13 @@ loadDocumento(){
  setClickedRowDocumento(index,documento){
  	  documento.checked = !documento.checked;
  	  if (documento.checked){
-	 	  this.documentoService.setDocumento(documento);
+		   this.documentoService.setDocumento(documento);
+this.trayectoria.documento = documento;
 this.trayectoria.documentoId = documento.documentoId;
 this.trayectoria.documentoItem = documento.nombre;
  	  }else{
- 	      this.documentoService.clear();
+		   this.documentoService.clear();
+this.trayectoria.documento = null;
 this.trayectoria.documentoId = "";
 this.trayectoria.documentoItem = "";
  	   }

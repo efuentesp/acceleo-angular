@@ -71,8 +71,8 @@
 													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="solicitud" ngbDropdownToggle>
 													<i class="fa fa-sitemap"></i> Solicitudes <i class="fa fa-caret-down"></i></button>
 													<div ngbDropdownMenu>
-														<button *ngIf="searchSolicitudActive" class="dropdown-item" style="width: 170px" (click)="go('managesolicitud', candidato)" >Administrar Solicitudes</button>
-														<button *ngIf="createSolicitudActive" class="dropdown-item" style="width: 170px" (click)="go('createsolicitud', candidato)">Agregar Solicitudes</button>
+														<button *ngIf="searchSolicitudActive" class="dropdown-item" style="width: 170px" (click)="goSolicitud('managesolicitud', candidato)" >Administrar Solicitudes</button>
+														<button *ngIf="createSolicitudActive" class="dropdown-item" style="width: 170px" (click)="goSolicitud('createsolicitud', candidato)">Agregar Solicitudes</button>
 													</div>
 												</div>
 											</td>
@@ -81,8 +81,8 @@
 													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="evento" ngbDropdownToggle>
 													<i class="fa fa-sitemap"></i> Eventos <i class="fa fa-caret-down"></i></button>
 													<div ngbDropdownMenu>
-														<button *ngIf="searchEventoActive" class="dropdown-item" style="width: 170px" (click)="go('manageevento', candidato)" >Administrar Eventos</button>
-														<button *ngIf="createEventoActive" class="dropdown-item" style="width: 170px" (click)="go('createevento', candidato)">Agregar Eventos</button>
+														<button *ngIf="searchEventoActive" class="dropdown-item" style="width: 170px" (click)="goEvento('manageevento', candidato)" >Administrar Eventos</button>
+														<button *ngIf="createEventoActive" class="dropdown-item" style="width: 170px" (click)="goEvento('createevento', candidato)">Agregar Eventos</button>
 													</div>
 												</div>
 											</td>

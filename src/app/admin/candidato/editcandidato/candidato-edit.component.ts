@@ -93,6 +93,10 @@ public changeFormatFecha: boolean = false;
         this.flag = this.candidatoService.getEdit();
         this.candidato = this.candidatoService.getCandidato();
     		this.candidato.fechaAux = this.parserFormatter.parse(this.candidato.fecha);
+    		//this.candidato.solicitudItem = this.candidato.solicitud.correo;
+    		//this.candidato.solicitudId = this.candidato.solicitud.solicitudId;
+    		// this.candidato.eventoItem = this.candidato.evento.nombre;
+    		// this.candidato.eventoId = this.candidato.evento.eventoId;
         this.flagDelete = this.candidatoService.getDelete();
     }  
 

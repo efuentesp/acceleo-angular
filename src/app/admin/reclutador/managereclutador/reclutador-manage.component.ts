@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -42,7 +42,9 @@ export class ReclutadorManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -63,9 +65,9 @@ export class ReclutadorManageComponent implements OnInit {
 
       this.reclutadorService.setEdit(false);
       this.reclutadorService.setDelete(false);
-
-      this.loadReclutador();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -162,7 +164,20 @@ if (element.authority == 'ROLE_RECLUTADORSEARCH'){
     return null;
   }
   
-  go(value, reclutador){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+  	
+  	        if (!this.link){
+  	            this.loadReclutador();
+  	        }else{
+  	        	
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	
 }

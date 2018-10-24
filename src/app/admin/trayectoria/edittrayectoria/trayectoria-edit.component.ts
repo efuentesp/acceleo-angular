@@ -108,6 +108,10 @@ public documentoList: Documento [];
         
         this.flag = this.trayectoriaService.getEdit();
         this.trayectoria = this.trayectoriaService.getTrayectoria();
+    		this.trayectoria.candidatoItem = this.trayectoria.candidato.nombre;
+    		this.trayectoria.candidatoId = this.trayectoria.candidato.candidatoId;
+    		this.trayectoria.documentoItem = this.trayectoria.documento.nombre;
+    		this.trayectoria.documentoId = this.trayectoria.documento.documentoId;
         this.flagDelete = this.trayectoriaService.getDelete();
         	this.loadCandidato();
         	this.loadDocumento();
@@ -207,20 +211,7 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -230,11 +221,13 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
+		   this.trayectoria.candidato = candidato;
 this.trayectoria.candidatoId = candidato.candidatoId;
 this.trayectoria.candidatoItem = candidato.nombre;
  	  }else{
- 	      this.candidatoService.clear();
+		   this.candidatoService.clear();
+		   this.trayectoria.candidato = null;
 this.trayectoria.candidatoId = "";
 this.trayectoria.candidatoItem = "";
 	 	   }

@@ -64,6 +64,21 @@ export class TrayectoriaService {
         return this.http.get(this.env.api + "/idtrayectoria/"+trayectoriaId, opts).pipe(map(res => res.json()));
     }
 
+  	getAllTrayectoriaByCandidato(candidatoId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/trayectoria/candidato/"+candidatoId, opts).pipe(map(res => res.json()));
+  	    }
+  	getAllTrayectoriaByDocumento(documentoId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/trayectoria/documento/"+documentoId, opts).pipe(map(res => res.json()));
+  	    }
+
     resetTrayectoria(): Trayectoria {
         this.clear();
         return this.trayectoria;
@@ -71,15 +86,14 @@ export class TrayectoriaService {
 
     getTrayectoria(): Trayectoria {
         var trayectoria: Trayectoria = {
-		
+		candidato: this.trayectoria.candidato,
 		candidatoId: this.trayectoria.candidatoId,
 		candidatoItem: this.trayectoria.candidatoItem,
-		
-			tipotrayectoriaId: this.trayectoria.tipotrayectoriaId,
-			tipotrayectoriaItem: this.trayectoria.tipotrayectoriaItem,
+		tipotrayectoriaId: this.trayectoria.tipotrayectoriaId,
+		tipotrayectoriaItem: this.trayectoria.tipotrayectoriaItem,
 		descripcion: this.trayectoria.descripcion,
 		clave: this.trayectoria.clave,
-		
+		documento: this.trayectoria.documento,
 		documentoId: this.trayectoria.documentoId,
 		documentoItem: this.trayectoria.documentoItem,
 		trayectoriaId: this.trayectoria.trayectoriaId,
@@ -92,12 +106,14 @@ export class TrayectoriaService {
 setTrayectoria(trayectoria: Trayectoria) {
        
         this.isTrayectoriaFormValid = true;
+this.trayectoria.candidato = trayectoria.candidato;
 this.trayectoria.candidatoId = trayectoria.candidatoId;
 this.trayectoria.candidatoItem = trayectoria.candidatoItem;
 this.trayectoria.tipotrayectoriaId = trayectoria.tipotrayectoriaId;
 this.trayectoria.tipotrayectoriaItem = trayectoria.tipotrayectoriaItem;
 this.trayectoria.descripcion = trayectoria.descripcion;
 this.trayectoria.clave = trayectoria.clave;
+this.trayectoria.documento = trayectoria.documento;
 this.trayectoria.documentoId = trayectoria.documentoId;
 this.trayectoria.documentoItem = trayectoria.documentoItem;
         
@@ -117,15 +133,16 @@ this.trayectoria.documentoItem = trayectoria.documentoItem;
 
     clear() {
 			
+			this.trayectoria.candidato = null;
 			this.trayectoria.candidatoId = null;
 			this.trayectoria.candidatoItem = null;
 			
 			this.trayectoria.tipotrayectoriaId = null;
 			this.trayectoria.tipotrayectoriaItem = null;
-			
 			this.trayectoria.descripcion = ''; 
 			this.trayectoria.clave = ''; 
 			
+			this.trayectoria.documento = null;
 			this.trayectoria.documentoId = null;
 			this.trayectoria.documentoItem = null;
     		

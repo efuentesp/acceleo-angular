@@ -65,7 +65,7 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let posicion of posicionList | filterPosicion: busquedaPosicion | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePosicion'}; let i = index">
-											<td  style="max-width: 10%">{{posicion.filialItem}}</td>
+											<td  style="max-width: 10%">{{posicion.filial.nombre}}</td>
 											<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
 											<td  style="max-width: 10%">{{posicion.nombre}}</td>
 											<td  style="max-width: 10%">{{posicion.descripcion}}</td>
@@ -74,15 +74,15 @@
 											<td  style="max-width: 10%">{{posicion.salario}}</td>
 											<td  style="max-width: 10%">{{posicion.vacantes}}</td>
 											<td  style="max-width: 10%">{{posicion.tiponominaItem}}</td>
-											<td  style="max-width: 10%">{{posicion.reclutadorItem}}</td>
+											<td  style="max-width: 10%">{{posicion.reclutador.nombre}}</td>
 											<td  style="max-width: 10%">{{posicion.estatusposicionItem}}</td>
 											<td>
 												<div ngbDropdown class="d-inline-block">
 													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="solicitud" ngbDropdownToggle>
 													<i class="fa fa-sitemap"></i> Solicitud <i class="fa fa-caret-down"></i></button>
 													<div ngbDropdownMenu>
-														<button *ngIf="searchSolicitudActive" class="dropdown-item" style="width: 170px" (click)="go('managesolicitud', posicion)" >Administrar Solicitud</button>
-														<button *ngIf="createSolicitudActive" class="dropdown-item" style="width: 170px" (click)="go('createsolicitud', posicion)">Agregar Solicitud</button>
+														<button *ngIf="searchSolicitudActive" class="dropdown-item" style="width: 170px" (click)="goSolicitud('managesolicitud', posicion)" >Administrar Solicitud</button>
+														<button *ngIf="createSolicitudActive" class="dropdown-item" style="width: 170px" (click)="goSolicitud('createsolicitud', posicion)">Agregar Solicitud</button>
 													</div>
 												</div>
 											</td>
@@ -91,8 +91,8 @@
 													<button class="btn btn-outline-primary" style="width: 170px; font-size: 12px;" id="evento" ngbDropdownToggle>
 													<i class="fa fa-sitemap"></i> Evento <i class="fa fa-caret-down"></i></button>
 													<div ngbDropdownMenu>
-														<button *ngIf="searchEventoActive" class="dropdown-item" style="width: 170px" (click)="go('manageevento', posicion)" >Administrar Evento</button>
-														<button *ngIf="createEventoActive" class="dropdown-item" style="width: 170px" (click)="go('createevento', posicion)">Agregar Evento</button>
+														<button *ngIf="searchEventoActive" class="dropdown-item" style="width: 170px" (click)="goEvento('manageevento', posicion)" >Administrar Evento</button>
+														<button *ngIf="createEventoActive" class="dropdown-item" style="width: 170px" (click)="goEvento('createevento', posicion)">Agregar Evento</button>
 													</div>
 												</div>
 											</td>

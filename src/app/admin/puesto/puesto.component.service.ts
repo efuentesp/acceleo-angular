@@ -64,6 +64,7 @@ export class PuestoService {
         return this.http.get(this.env.api + "/idpuesto/"+puestoId, opts).pipe(map(res => res.json()));
     }
 
+
     resetPuesto(): Puesto {
         this.clear();
         return this.puesto;
@@ -71,9 +72,8 @@ export class PuestoService {
 
     getPuesto(): Puesto {
         var puesto: Puesto = {
-		
-			puestosId: this.puesto.puestosId,
-			puestosItem: this.puesto.puestosItem,
+		puestosId: this.puesto.puestosId,
+		puestosItem: this.puesto.puestosItem,
 		descripcion: this.puesto.descripcion,
 		puestoId: this.puesto.puestoId,
 		puestoItem: this.puesto.puestoItem	
@@ -107,7 +107,6 @@ this.puesto.descripcion = puesto.descripcion;
 			
 			this.puesto.puestosId = null;
 			this.puesto.puestosItem = null;
-			
 			this.puesto.descripcion = ''; 
     		
 			this.puesto.puestoId = null;

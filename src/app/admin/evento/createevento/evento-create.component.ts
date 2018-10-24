@@ -146,13 +146,7 @@ loadPosicion(){
 	this.posicionService.getAllPosicion().subscribe(data => {
    		if (data) {
  		this.posicionList = data;
- 		this.posicionList.forEach(element => {
- 			          this.filialService.getFilialById(element.filialId).subscribe(data => {
- 			              if (data){
- 			              	element.filialItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		
  		this.posicionList.forEach(element => {
  			          this.puestoService.getPuestoById(element.puestoId).subscribe(data => {
  			              if (data){
@@ -198,13 +192,7 @@ loadPosicion(){
  		      	    element.tiponominaItem = "Sindicalizado";
  		      	}		
  		});
- 		this.posicionList.forEach(element => {
- 			          this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
- 			              if (data){
- 			              	element.reclutadorItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 	
  		this.posicionList.forEach(element => {
  		      	if (element.estatusposicionId == 'e1'){
  		      	    element.estatusposicionItem = "Abierta";
@@ -219,20 +207,7 @@ loadPosicion(){
  		      	    element.estatusposicionItem = "En pausa";
  		      	}		
  		});
- 		this.posicionList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.posicionList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 		
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Posicions.', 'error');
@@ -242,11 +217,13 @@ loadPosicion(){
  setClickedRowPosicion(index,posicion){
  	  posicion.checked = !posicion.checked;
  	  if (posicion.checked){
-	 	  this.posicionService.setPosicion(posicion);
+		   this.posicionService.setPosicion(posicion);
+this.evento.posicion = posicion;		   
 this.evento.posicionId = posicion.posicionId;
 this.evento.posicionItem = posicion.nombre;
  	  }else{
- 	      this.posicionService.clear();
+		   this.posicionService.clear();
+		   this.evento.posicion = null;		   
 this.evento.posicionId = "";
 this.evento.posicionItem = "";
  	   }
@@ -286,20 +263,7 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
+ 	
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -309,11 +273,13 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
+this.evento.candidato = candidato;
 this.evento.candidatoId = candidato.candidatoId;
 this.evento.candidatoItem = candidato.nombre;
  	  }else{
- 	      this.candidatoService.clear();
+		   this.candidatoService.clear();
+this.evento.candidato = null;		   
 this.evento.candidatoId = "";
 this.evento.candidatoItem = "";
  	   }

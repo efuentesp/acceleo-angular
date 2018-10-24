@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -42,7 +42,9 @@ export class DocumentoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -63,9 +65,9 @@ export class DocumentoManageComponent implements OnInit {
 
       this.documentoService.setEdit(false);
       this.documentoService.setDelete(false);
-
-      this.loadDocumento();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -154,7 +156,20 @@ if (element.authority == 'ROLE_DOCUMENTOSEARCH'){
     return null;
   }
   
-  go(value, documento){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+  	
+  	        if (!this.link){
+  	            this.loadDocumento();
+  	        }else{
+  	        	
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	
 }

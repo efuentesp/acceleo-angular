@@ -56,7 +56,7 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let permiso of permisoList | filterPermiso: busquedaPermiso | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTablePermiso'}; let i = index">
-											<td  style="max-width: 10%">{{permiso.rolItem}}</td>
+											<td  style="max-width: 10%">{{permiso.rol.nombre}}</td>
 											<td  style="max-width: 10%">{{permiso.funcion}}</td>
 											<td  style="max-width: 10%">{{permiso.ruta}}</td>
 											<td  style="max-width: 10%">{{permiso.nivelpermiso}}</td>

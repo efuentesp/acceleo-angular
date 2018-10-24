@@ -64,6 +64,14 @@ export class PermisoService {
         return this.http.get(this.env.api + "/idpermiso/"+permisoId, opts).pipe(map(res => res.json()));
     }
 
+  	getAllPermisoByRol(rolId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/permiso/rol/"+rolId, opts).pipe(map(res => res.json()));
+  	    }
+
     resetPermiso(): Permiso {
         this.clear();
         return this.permiso;
@@ -71,7 +79,7 @@ export class PermisoService {
 
     getPermiso(): Permiso {
         var permiso: Permiso = {
-		
+		rol: this.permiso.rol,
 		rolId: this.permiso.rolId,
 		rolItem: this.permiso.rolItem,
 		funcion: this.permiso.funcion,
@@ -87,6 +95,7 @@ export class PermisoService {
 setPermiso(permiso: Permiso) {
        
         this.isPermisoFormValid = true;
+this.permiso.rol = permiso.rol;
 this.permiso.rolId = permiso.rolId;
 this.permiso.rolItem = permiso.rolItem;
 this.permiso.funcion = permiso.funcion;
@@ -109,6 +118,7 @@ this.permiso.nivelpermiso = permiso.nivelpermiso;
 
     clear() {
 			
+			this.permiso.rol = null;
 			this.permiso.rolId = null;
 			this.permiso.rolItem = null;
 			this.permiso.funcion = ''; 

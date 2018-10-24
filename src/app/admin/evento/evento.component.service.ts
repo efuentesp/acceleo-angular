@@ -64,6 +64,21 @@ export class EventoService {
         return this.http.get(this.env.api + "/idevento/"+eventoId, opts).pipe(map(res => res.json()));
     }
 
+  	getAllEventoByPosicion(posicionId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/evento/posicion/"+posicionId, opts).pipe(map(res => res.json()));
+  	    }
+  	getAllEventoByCandidato(candidatoId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/evento/candidato/"+candidatoId, opts).pipe(map(res => res.json()));
+  	    }
+
     resetEvento(): Evento {
         this.clear();
         return this.evento;
@@ -71,14 +86,13 @@ export class EventoService {
 
     getEvento(): Evento {
         var evento: Evento = {
-		
-			tipoeventoId: this.evento.tipoeventoId,
-			tipoeventoItem: this.evento.tipoeventoItem,
+		tipoeventoId: this.evento.tipoeventoId,
+		tipoeventoItem: this.evento.tipoeventoItem,
 		nombre: this.evento.nombre,
-		
+		posicion: this.evento.posicion,
 		posicionId: this.evento.posicionId,
 		posicionItem: this.evento.posicionItem,
-		
+		candidato: this.evento.candidato,
 		candidatoId: this.evento.candidatoId,
 		candidatoItem: this.evento.candidatoItem,
 		fecha: this.evento.fecha,
@@ -90,9 +104,8 @@ export class EventoService {
 		responsablereal: this.evento.responsablereal,
 		feedback: this.evento.feedback,
 		comentarios: this.evento.comentarios,
-		
-			estatuseventoId: this.evento.estatuseventoId,
-			estatuseventoItem: this.evento.estatuseventoItem,
+		estatuseventoId: this.evento.estatuseventoId,
+		estatuseventoItem: this.evento.estatuseventoItem,
 		eventoId: this.evento.eventoId,
 		eventoItem: this.evento.eventoItem	
 		
@@ -106,8 +119,10 @@ setEvento(evento: Evento) {
 this.evento.tipoeventoId = evento.tipoeventoId;
 this.evento.tipoeventoItem = evento.tipoeventoItem;
 this.evento.nombre = evento.nombre;
+this.evento.posicion = evento.posicion;
 this.evento.posicionId = evento.posicionId;
 this.evento.posicionItem = evento.posicionItem;
+this.evento.candidato = evento.candidato;
 this.evento.candidatoId = evento.candidatoId;
 this.evento.candidatoItem = evento.candidatoItem;
 this.evento.fecha = evento.fecha;
@@ -140,12 +155,13 @@ this.evento.estatuseventoItem = evento.estatuseventoItem;
 			
 			this.evento.tipoeventoId = null;
 			this.evento.tipoeventoItem = null;
-			
 			this.evento.nombre = ''; 
 			
+			this.evento.posicion = null;
 			this.evento.posicionId = null;
 			this.evento.posicionItem = null;
 			
+			this.evento.candidato = null;
 			this.evento.candidatoId = null;
 			this.evento.candidatoItem = null;
 			this.evento.fecha = null; 
@@ -160,7 +176,6 @@ this.evento.estatuseventoItem = evento.estatuseventoItem;
 			
 			this.evento.estatuseventoId = null;
 			this.evento.estatuseventoItem = null;
-			
     		
 			this.evento.eventoId = null;
 			this.evento.eventoItem = null;

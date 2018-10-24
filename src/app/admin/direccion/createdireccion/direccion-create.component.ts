@@ -106,6 +106,7 @@ save(){
 	){
 		return;
 	}else{
+
 	   this.direccionService.saveDireccion(this.direccion).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Direccion save successfully.', 'success');
@@ -154,20 +155,6 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		this.candidatoList.forEach(element => {
- 			          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 			              if (data){
- 			              	element.solicitudItem = data.correo;
- 			              }
- 			         });
- 			     });
- 		this.candidatoList.forEach(element => {
- 			          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 			              if (data){
- 			              	element.eventoItem = data.nombre;
- 			              }
- 			         });
- 			     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -177,11 +164,13 @@ loadCandidato(){
  setClickedRowCandidato(index,candidato){
  	  candidato.checked = !candidato.checked;
  	  if (candidato.checked){
-	 	  this.candidatoService.setCandidato(candidato);
+		   this.candidatoService.setCandidato(candidato);
+this.direccion.candidato = candidato;		   
 this.direccion.candidatoId = candidato.candidatoId;
 this.direccion.candidatoItem = candidato.nombre;
  	  }else{
- 	      this.candidatoService.clear();
+		   this.candidatoService.clear();
+this.direccion.candidato = null; 		   
 this.direccion.candidatoId = "";
 this.direccion.candidatoItem = "";
  	   }

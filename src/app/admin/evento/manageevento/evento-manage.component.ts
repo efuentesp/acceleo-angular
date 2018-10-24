@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -58,7 +58,11 @@ export class EventoManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
+public posicionId: string = '';
+public candidatoId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -87,9 +91,9 @@ export class EventoManageComponent implements OnInit {
 
       this.eventoService.setEdit(false);
       this.eventoService.setDelete(false);
-
-      this.loadEvento();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -127,20 +131,6 @@ this.eventoList.forEach(element => {
       	if (element.tipoeventoId == 'i'){
       	    element.tipoeventoItem = "AutorizaciónNivel 5";
       	}		
-});
-this.eventoList.forEach(element => {
-     this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-         if (data){
-         	element.posicionItem = data.nombre;
-         }
-    });
-});
-this.eventoList.forEach(element => {
-     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-         if (data){
-         	element.candidatoItem = data.nombre;
-         }
-    });
 });
 this.eventoList.forEach(element => {
       	if (element.estatuseventoId == 'e1'){
@@ -241,7 +231,154 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
     return null;
   }
   
-  go(value, evento){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.posicionId = params['posicionId'];
+          	this.candidatoId = params['candidatoId'];
+  	
+  	        if (!this.link){
+  	            this.loadEvento();
+  	        }else{
+  	        	
+          	if (this.posicionId){
+          	    this.loadEventoByPosicion(this.posicionId);
+          	}
+          	if (this.candidatoId){
+          	    this.loadEventoByCandidato(this.candidatoId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadEventoByPosicion(posicionId){
+  	    this.eventoService.getAllEventoByPosicion(posicionId).subscribe(data => {
+  	        if (data) {
+  	            this.eventoList = data;
+  	
+  		            // Grid Values
+  	this.eventoList.forEach(element => {
+  	      	if (element.tipoeventoId == 'a'){
+  	      	    element.tipoeventoItem = "Llamada telefónica";
+  	      	}		
+  	      	if (element.tipoeventoId == 'b'){
+  	      	    element.tipoeventoItem = "Contacto por eMail";
+  	      	}		
+  	      	if (element.tipoeventoId == 'c'){
+  	      	    element.tipoeventoItem = "Entrevista";
+  	      	}		
+  	      	if (element.tipoeventoId == 'd'){
+  	      	    element.tipoeventoItem = "Examen";
+  	      	}		
+  	      	if (element.tipoeventoId == 'e'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 1";
+  	      	}		
+  	      	if (element.tipoeventoId == 'f'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 2";
+  	      	}		
+  	      	if (element.tipoeventoId == 'g'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 3";
+  	      	}		
+  	      	if (element.tipoeventoId == 'h'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 4";
+  	      	}		
+  	      	if (element.tipoeventoId == 'i'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 5";
+  	      	}		
+  	});
+
+  	this.eventoList.forEach(element => {
+  	      	if (element.estatuseventoId == 'e1'){
+  	      	    element.estatuseventoItem = "Agendado";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e2'){
+  	      	    element.estatuseventoItem = "Realizado";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e3'){
+  	      	    element.estatuseventoItem = "Pedido por candidato";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e4'){
+  	      	    element.estatuseventoItem = "Perdido por NMP";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e5'){
+  	      	    element.estatuseventoItem = "Cancelado por candidato";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e6'){
+  	      	    element.estatuseventoItem = "Cancelado por NMP";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the eventos.', 'error');
+  	    });    
+  	}
+  	loadEventoByCandidato(candidatoId){
+  	    this.eventoService.getAllEventoByCandidato(candidatoId).subscribe(data => {
+  	        if (data) {
+  	            this.eventoList = data;
+  	
+  		            // Grid Values
+  	this.eventoList.forEach(element => {
+  	      	if (element.tipoeventoId == 'a'){
+  	      	    element.tipoeventoItem = "Llamada telefónica";
+  	      	}		
+  	      	if (element.tipoeventoId == 'b'){
+  	      	    element.tipoeventoItem = "Contacto por eMail";
+  	      	}		
+  	      	if (element.tipoeventoId == 'c'){
+  	      	    element.tipoeventoItem = "Entrevista";
+  	      	}		
+  	      	if (element.tipoeventoId == 'd'){
+  	      	    element.tipoeventoItem = "Examen";
+  	      	}		
+  	      	if (element.tipoeventoId == 'e'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 1";
+  	      	}		
+  	      	if (element.tipoeventoId == 'f'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 2";
+  	      	}		
+  	      	if (element.tipoeventoId == 'g'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 3";
+  	      	}		
+  	      	if (element.tipoeventoId == 'h'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 4";
+  	      	}		
+  	      	if (element.tipoeventoId == 'i'){
+  	      	    element.tipoeventoItem = "AutorizaciónNivel 5";
+  	      	}		
+  	});
+  	
+  	this.eventoList.forEach(element => {
+  	      	if (element.estatuseventoId == 'e1'){
+  	      	    element.estatuseventoItem = "Agendado";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e2'){
+  	      	    element.estatuseventoItem = "Realizado";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e3'){
+  	      	    element.estatuseventoItem = "Pedido por candidato";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e4'){
+  	      	    element.estatuseventoItem = "Perdido por NMP";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e5'){
+  	      	    element.estatuseventoItem = "Cancelado por candidato";
+  	      	}		
+  	      	if (element.estatuseventoId == 'e6'){
+  	      	    element.estatuseventoItem = "Cancelado por NMP";
+  	      	}		
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the eventos.', 'error');
+  	    });    
+  	}
+  	
 }

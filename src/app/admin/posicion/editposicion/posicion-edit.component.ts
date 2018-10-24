@@ -119,7 +119,24 @@ public reclutadorList: Reclutador [];
         
         this.flag = this.posicionService.getEdit();
         this.posicion = this.posicionService.getPosicion();
+    		this.posicion.filialItem = this.posicion.filial.nombre;
+			this.posicion.filialId = this.posicion.filial.filialId;
+
+			
+
+			// Es un enum
+    		// this.posicion.puestoItem = this.posicion.puesto.puestoItem;
+			// this.posicion.puestoId = this.posicion.puesto.puestoId;
+			this.posicion.puestoItem = this.posicion.puestoItem;
+			this.posicion.puestoId = this.posicion.puestoId;
+
     		this.posicion.fechaAux = this.parserFormatter.parse(this.posicion.fecha);
+    		this.posicion.reclutadorItem = this.posicion.reclutador.nombre;
+    		this.posicion.reclutadorId = this.posicion.reclutador.reclutadorId;
+    		// this.posicion.solicitudItem = this.posicion.solicitud.correo;
+    		// this.posicion.solicitudId = this.posicion.solicitud.solicitudId;
+    		// this.posicion.eventoItem = this.posicion.evento.nombre;
+    		// this.posicion.eventoId = this.posicion.evento.eventoId;
         this.flagDelete = this.posicionService.getDelete();
         	this.loadFilial();
         	this.loadPuesto();
@@ -210,11 +227,14 @@ loadFilial(){
  setClickedRowFilial(index,filial){
  	  filial.checked = !filial.checked;
  	  if (filial.checked){
-	 	  this.filialService.setFilial(filial);
+		   this.filialService.setFilial(filial);
+this.posicion.filial = filial;		   
 this.posicion.filialId = filial.filialId;
 this.posicion.filialItem = filial.nombre;
+
  	  }else{
- 	      this.filialService.clear();
+		   this.filialService.clear();
+		   this.posicion.filial = null;		   
 this.posicion.filialId = "";
 this.posicion.filialItem = "";
 	 	   }
@@ -255,11 +275,13 @@ loadPuesto(){
  setClickedRowPuesto(index,puesto){
  	  puesto.checked = !puesto.checked;
  	  if (puesto.checked){
-	 	  this.puestoService.setPuesto(puesto);
+		   this.puestoService.setPuesto(puesto);
+this.posicion.puesto = puesto;
 this.posicion.puestoId = puesto.puestoId;
 this.posicion.puestoItem = puesto.puestosItem;
  	  }else{
- 	      this.puestoService.clear();
+		   this.puestoService.clear();
+this.posicion.puesto = null;		   
 this.posicion.puestoId = "";
 this.posicion.puestoItem = "";
 	 	   }
@@ -288,11 +310,13 @@ loadReclutador(){
  setClickedRowReclutador(index,reclutador){
  	  reclutador.checked = !reclutador.checked;
  	  if (reclutador.checked){
-	 	  this.reclutadorService.setReclutador(reclutador);
+		   this.reclutadorService.setReclutador(reclutador);
+this.posicion.reclutador = reclutador;		   
 this.posicion.reclutadorId = reclutador.reclutadorId;
 this.posicion.reclutadorItem = reclutador.nombre;
  	  }else{
- 	      this.reclutadorService.clear();
+		   this.reclutadorService.clear();
+this.posicion.reclutador = null;		   
 this.posicion.reclutadorId = "";
 this.posicion.reclutadorItem = "";
 	 	   }

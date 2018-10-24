@@ -30,7 +30,7 @@
 					</div>
 					<div *ngIf="solicitudForm.submitted && !posicionId.valid" class="help-block">Posición es requerido</div>
 				</div>
-				<div class="form-group" id="candidato">
+				<div class="form-group" id="candidato" [ngClass]="{ 'has-error': solicitudForm.submitted && !candidatoId.valid}">
 					<label class="control-label" for="candidato">Candidato<span class="required">*</span></label>
 					<div class="input-group">
 						<input type="hidden" class="form-control input-md"  name="candidatoId"   [(ngModel)]="solicitud.candidatoId"    #candidatoId="ngModel" required>
@@ -41,8 +41,9 @@
 							</button>
 						</span>
 					</div>
+					<div *ngIf="solicitudForm.submitted && !candidatoId.valid" class="help-block">Candidato es requerido</div>
 				</div>		
-				<div class="form-group">
+				<div class="form-group" [ngClass]="{ 'has-error': solicitudForm.submitted && !fecha.valid}">
 					<label class="control-label" for="fecha">Fecha de alta</label>
 					<div class="input-group col-md-12">	
 						<input class="form-control" placeholder="dd/MM/yyyy" id="fecha" name="fechaAux" maxlength="10" minlength="10" [(ngModel)]="solicitud.fechaAux" ngbDatepicker #fechaAux="ngbDatepicker" (change)="changeFecha(true)">
@@ -51,7 +52,9 @@
 								<em class="fa fa-calendar"></em>
 							</button>
 						</span>
+						<input type="hidden" class="form-control input-md"  name="fecha"  [(ngModel)]="solicitud.fechaAux"    #fecha="ngModel" required>
 					</div>
+					<div *ngIf="solicitudForm.submitted && !fecha.valid" class="help-block">Fecha de alta es requerido</div>
 				</div>
 				<div class="form-group" [ngClass]="{ 'has-error': solicitudForm.submitted && !salario.valid}">
 					<label class="control-label" for="salario">Expectativa económica<span class="required">*</span></label>
@@ -119,8 +122,8 @@
 													<td  style="max-width: 10%">
 														<input type="radio" name="posicionId" [checked]="posicion.checked" value="{{posicion.posicionId}}" (click)="setClickedRowPosicion(i, posicion)">
 													</td>
-													<td  style="max-width: 10%" hidden="true">{{posicion.filialId}}</td>
-													<td  style="max-width: 10%">{{posicion.filialItem}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.filial.filialId}}</td>
+													<td  style="max-width: 10%">{{posicion.filial.nombre}}</td>
 													<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
 													<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
 													<td  style="max-width: 10%">{{posicion.nombre}}</td>

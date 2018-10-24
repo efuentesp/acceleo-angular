@@ -159,10 +159,10 @@
 													<td  style="max-width: 10%">
 														<input type="radio" name="posicionId" [checked]="posicion.checked" value="{{posicion.posicionId}}" (click)="setClickedRowPosicion(i, posicion)">
 													</td>
-													<td  style="max-width: 10%" hidden="true">{{posicion.filialId}}</td>
-													<td  style="max-width: 10%">{{posicion.filialItem}}</td>
-													<td  style="max-width: 10%" hidden="true">{{posicion.puestoId}}</td>
-													<td  style="max-width: 10%">{{posicion.puestoItem}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.filial.filialId}}</td>
+													<td  style="max-width: 10%">{{posicion.filial.nombre}}</td>
+													<td  style="max-width: 10%" hidden="true">{{posicion.puesto.puestoId}}</td>
+													<td  style="max-width: 10%">{{posicion.puesto.descripcion}}</td>
 													<td  style="max-width: 10%">{{posicion.nombre}}</td>
 													<td  style="max-width: 10%">{{posicion.salario}}</td>
 													<td  style="max-width: 10%">{{posicion.vacantes}}</td>

@@ -98,6 +98,8 @@ public rolList: Rol [];
         
         this.flag = this.usuarioService.getEdit();
         this.usuario = this.usuarioService.getUsuario();
+    		this.usuario.rolItem = this.usuario.rol.nombre;
+    		this.usuario.rolId = this.usuario.rol.rolId;
         this.flagDelete = this.usuarioService.getDelete();
         	this.loadRol();
     }  
@@ -174,11 +176,13 @@ loadRol(){
  setClickedRowRol(index,rol){
  	  rol.checked = !rol.checked;
  	  if (rol.checked){
-	 	  this.rolService.setRol(rol);
+			 this.rolService.setRol(rol);
+this.usuario.rol = rol;			 
 this.usuario.rolId = rol.rolId;
 this.usuario.rolItem = rol.nombre;
  	  }else{
- 	      this.rolService.clear();
+				 this.rolService.clear();
+				 this.usuario.rol = null;
 this.usuario.rolId = "";
 this.usuario.rolItem = "";
 	 	   }

@@ -64,6 +64,7 @@ export class RolService {
         return this.http.get(this.env.api + "/idrol/"+rolId, opts).pipe(map(res => res.json()));
     }
 
+
     resetRol(): Rol {
         this.clear();
         return this.rol;

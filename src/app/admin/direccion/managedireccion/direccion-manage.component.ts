@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router, ActivatedRoute }                          from '@angular/router';
+import { Router, ActivatedRoute, Params}                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -50,7 +50,10 @@ export class DireccionManageComponent implements OnInit {
     private createActive: boolean = false;
     private deleteActive: boolean = false;
     
- // Children with one to many
+
+// data  
+public link: string = '';
+public candidatoId: string = '';
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -75,9 +78,9 @@ export class DireccionManageComponent implements OnInit {
 
       this.direccionService.setEdit(false);
       this.direccionService.setDelete(false);
-
-      this.loadDireccion();
+    
       this.habilita();
+      this.getParams();
 
     }   
     
@@ -87,13 +90,13 @@ loadDireccion(){
             this.direccionList = data;
             
             // Grid Values
-this.direccionList.forEach(element => {
-     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-         if (data){
-         	element.candidatoItem = data.nombre;
-         }
-    });
-});
+// this.direccionList.forEach(element => {
+//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+//          if (data){
+//          	element.candidatoItem = data.nombre;
+//          }
+//     });
+// });
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the direccions.', 'error');
@@ -173,7 +176,44 @@ if (element.authority == 'ROLE_DIRECCIONSEARCH'){
     return null;
   }
   
-  go(value, direccion){
-      this.router.navigate([ '../'+value+'' ], { relativeTo: this.route })
-  }
+  	
+  	  getParams(){
+  	    this.route.params.subscribe((params: Params) => {
+  	        this.link = params['link'];
+  	        
+          	this.candidatoId = params['candidatoId'];
+  	
+  	        if (!this.link){
+  	            this.loadDireccion();
+  	        }else{
+  	        	
+          	if (this.candidatoId){
+          	    this.loadDireccionByCandidato(this.candidatoId);
+          	}
+  	        }
+  	        
+  	    });
+  	  }
+  	  
+  	loadDireccionByCandidato(candidatoId){
+  	    this.direccionService.getAllDireccionByCandidato(candidatoId).subscribe(data => {
+  	        if (data) {
+  	            this.direccionList = data;
+  	
+  		            // Grid Values
+  	this.direccionList.forEach(element => {
+  	     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
+  	         if (data){
+  	         	element.candidatoItem = data.nombre;
+  	         }
+  	    });
+  	});
+  	
+  	
+  	        }    
+  	    }, error => {
+  	    swal('Error...', 'An error occurred while calling the direccions.', 'error');
+  	    });    
+  	}
+  	
 }

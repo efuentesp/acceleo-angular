@@ -64,6 +64,21 @@ export class SolicitudService {
         return this.http.get(this.env.api + "/idsolicitud/"+solicitudId, opts).pipe(map(res => res.json()));
     }
 
+  	getAllSolicitudByPosicion(posicionId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/solicitud/posicion/"+posicionId, opts).pipe(map(res => res.json()));
+  	    }
+  	getAllSolicitudByCandidato(candidatoId){
+  	        let headers = new Headers;
+  	        headers.append('Content-Type','application/json');
+  	        headers.append('Authorization','Bearer ' + this.user.token+'');
+  	        let opts = new RequestOptions({ headers: headers });
+  	        return this.http.get(this.env.api + "/solicitud/candidato/"+candidatoId, opts).pipe(map(res => res.json()));
+  	    }
+
     resetSolicitud(): Solicitud {
         this.clear();
         return this.solicitud;
@@ -71,10 +86,10 @@ export class SolicitudService {
 
     getSolicitud(): Solicitud {
         var solicitud: Solicitud = {
-		
+		posicion: this.solicitud.posicion,
 		posicionId: this.solicitud.posicionId,
 		posicionItem: this.solicitud.posicionItem,
-		
+		candidato: this.solicitud.candidato,
 		candidatoId: this.solicitud.candidatoId,
 		candidatoItem: this.solicitud.candidatoItem,
 		fecha: this.solicitud.fecha,
@@ -82,9 +97,8 @@ export class SolicitudService {
 		salario: this.solicitud.salario,
 		correo: this.solicitud.correo,
 		telefono: this.solicitud.telefono,
-		
-			estatussolicitudId: this.solicitud.estatussolicitudId,
-			estatussolicitudItem: this.solicitud.estatussolicitudItem,
+		estatussolicitudId: this.solicitud.estatussolicitudId,
+		estatussolicitudItem: this.solicitud.estatussolicitudItem,
 		solicitudId: this.solicitud.solicitudId,
 		solicitudItem: this.solicitud.solicitudItem	
 		
@@ -95,8 +109,10 @@ export class SolicitudService {
 setSolicitud(solicitud: Solicitud) {
        
         this.isSolicitudFormValid = true;
+this.solicitud.posicion = solicitud.posicion;
 this.solicitud.posicionId = solicitud.posicionId;
 this.solicitud.posicionItem = solicitud.posicionItem;
+this.solicitud.candidato = solicitud.candidato;
 this.solicitud.candidatoId = solicitud.candidatoId;
 this.solicitud.candidatoItem = solicitud.candidatoItem;
 this.solicitud.fecha = solicitud.fecha;
@@ -123,9 +139,11 @@ this.solicitud.estatussolicitudItem = solicitud.estatussolicitudItem;
 
     clear() {
 			
+			this.solicitud.posicion = null;
 			this.solicitud.posicionId = null;
 			this.solicitud.posicionItem = null;
 			
+			this.solicitud.candidato = null;
 			this.solicitud.candidatoId = null;
 			this.solicitud.candidatoItem = null;
 			this.solicitud.fecha = null; 
@@ -136,7 +154,6 @@ this.solicitud.estatussolicitudItem = solicitud.estatussolicitudItem;
 			
 			this.solicitud.estatussolicitudId = null;
 			this.solicitud.estatussolicitudItem = null;
-			
     		
 			this.solicitud.solicitudId = null;
 			this.solicitud.solicitudItem = null;
