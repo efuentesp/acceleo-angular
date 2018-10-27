@@ -113,9 +113,57 @@ public documentoList: Documento [];
     		this.trayectoria.documentoItem = this.trayectoria.documento.nombre;
     		this.trayectoria.documentoId = this.trayectoria.documento.documentoId;
         this.flagDelete = this.trayectoriaService.getDelete();
-        	this.loadCandidato();
-        	this.loadDocumento();
-    }  
+			
+	this.user = JSON.parse(localStorage.getItem('currentUser'));
+
+		if (this.user.authorityname != 'USER'){
+			this.loadCandidato();
+			this.loadDocumento();
+		}else{
+			this.loadDataCandidato(this.user.username);
+			this.loadDocumento();
+		}	
+	}  
+
+	loadDataCandidato(username){
+		this.candidatoService.getAllCandidatoByUserNameList(username).subscribe(data => {
+			if (data) { 
+				this.candidatoList= data;
+				this.candidatoList.forEach(element => {
+					if (element.generoId == 'mas'){
+						element.generoItem = "Masculino";
+					}		
+					if (element.generoId == 'fem'){
+						element.generoItem = "Femenino";
+					}		
+					});
+					this.candidatoList.forEach(element => {
+								if (element.estatuscandidatoId == 'e1'){
+									element.estatuscandidatoItem = "Contactado";
+								}		
+								if (element.estatuscandidatoId == 'e2'){
+									element.estatuscandidatoItem = "En proceso de evaluación";
+								}		
+								if (element.estatuscandidatoId == 'e3'){
+									element.estatuscandidatoItem = "Ofertado";
+								}		
+								if (element.estatuscandidatoId == 'e4'){
+									element.estatuscandidatoItem = "En proceso de contratación";
+								}		
+								if (element.estatuscandidatoId == 'e5'){
+									element.estatuscandidatoItem = "Contratado";
+								}		
+								if (element.estatuscandidatoId == 'e6'){
+									element.estatuscandidatoItem = "Rechazado";
+								}		
+								if (element.estatuscandidatoId == 'e7'){
+									element.estatuscandidatoItem = "Declinó";
+								}		
+					});
+	
+			}	
+		});
+	}		
 
 save(){
 	if (

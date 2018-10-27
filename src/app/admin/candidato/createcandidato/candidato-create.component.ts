@@ -47,7 +47,9 @@ export class CandidatoCreateComponent implements OnInit {
    public user: User;
    public valueName: string;
    public token: string;
-	   		public changeFormatFecha: boolean = false;
+   public changeFormatFecha: boolean = false;
+   public username : string;
+   public filtro : string;
 
 public candidatoList: Candidato [];
 public candidato: Candidato;
@@ -56,6 +58,8 @@ public candidatoAux: Candidato;
 public busquedaCandidato='';
 filterInputCandidato = new FormControl();
 datePipe = new DatePipe('en-US');
+
+public candidatoFlag : boolean = false;
 
 
 constructor(private router: Router,  
@@ -83,17 +87,30 @@ constructor(private router: Router,
 
 ngOnInit() {
 	this.candidatoService.clear();
-	      this.candidato = new Candidato;
+	this.user = JSON.parse(localStorage.getItem('currentUser'));
+	this.filtro = this.user.authorityname;
+	this.username = this.user.username;
+	this.candidato = new Candidato;
+
+	if (this.filtro == 'USER'){
+		this.candidatoFlag = true;
+	}else{
+		this.candidatoFlag = false;
+	}
 } 
 
 save(){
+
+	if (this.candidatoFlag){
+		this.candidato.estatuscandidatoId = "e1";
+	}
+
 	if (
 	this.candidato.nombre ==="" || this.candidato.nombre ===null || 
 	this.candidato.apellidopaterno ==="" || this.candidato.apellidopaterno ===null || 
 	this.candidato.apellidomaterno ==="" || this.candidato.apellidomaterno ===null || 
 	this.candidato.fechaAux ===null || 
 	this.candidato.generoId ==="" || this.candidato.generoId ===null || 
-	this.candidato.estatuscandidatoId ==="" || this.candidato.estatuscandidatoId ===null || 
 		this.candidato.candidatoId === null 
 	){
 		return;
@@ -103,6 +120,9 @@ save(){
 	   }else{
 	   	this.candidato.fecha = this.parseFormat.format(this.candidato.fechaAux);
 	   }
+
+	   this.candidato.username = this.username;
+
 	   this.candidatoService.saveCandidato(this.candidato).subscribe(res => {
 	     if (res.status == 201 || res.status == 200){
 	        swal('Success...', 'Candidato save successfully.', 'success');

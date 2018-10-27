@@ -10,6 +10,7 @@ import { CandidatoService }                                  from '../../candida
 import { Candidato }                                         from '../../candidato/candidato.component.model';
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Reclutador } from '../../reclutador/reclutador.component.model';
 
 
 @Component ({
@@ -24,6 +25,8 @@ export class CandidatoManageComponent implements OnInit {
     public user: User;
     public valueName: string;
     public token: string;
+
+    public filtro = null;
 
     public title = 'Manage Candidato';
     public candidatoList: Candidato [];
@@ -71,6 +74,8 @@ public link: string = '';
       this.valueName = this.user.username;
       this.token = this.user.token;
 
+      this.filtro = this.user.authorityname;
+
       this.candidatoService.setEdit(false);
       this.candidatoService.setDelete(false);
     
@@ -83,7 +88,56 @@ loadCandidato(){
     this.candidatoService.getAllCandidato().subscribe(data => {
         if (data) {
             this.candidatoList = data;
+
+this.candidatoList.forEach(element => {
+      	if (element.generoId == 'mas'){
+      	    element.generoItem = "Masculino";
+      	}		
+      	if (element.generoId == 'fem'){
+      	    element.generoItem = "Femenino";
+      	}		
+});
+this.candidatoList.forEach(element => {
+      	if (element.estatuscandidatoId == 'e1'){
+      	    element.estatuscandidatoItem = "Contactado";
+      	}		
+      	if (element.estatuscandidatoId == 'e2'){
+      	    element.estatuscandidatoItem = "En proceso de evaluación";
+      	}		
+      	if (element.estatuscandidatoId == 'e3'){
+      	    element.estatuscandidatoItem = "Ofertado";
+      	}		
+      	if (element.estatuscandidatoId == 'e4'){
+      	    element.estatuscandidatoItem = "En proceso de contratación";
+      	}		
+      	if (element.estatuscandidatoId == 'e5'){
+      	    element.estatuscandidatoItem = "Contratado";
+      	}		
+      	if (element.estatuscandidatoId == 'e6'){
+      	    element.estatuscandidatoItem = "Rechazado";
+      	}		
+      	if (element.estatuscandidatoId == 'e7'){
+      	    element.estatuscandidatoItem = "Declinó";
+      	}		
+});
+        }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+    });
+}
+
+
+loadCandidatoByCandidato(candidatoId){
+    this.candidatoService.getAllCandidatoByCandidato(candidatoId).subscribe(data => {
+        if (data) {
             
+            if (data.length > 0) {
+                this.createActive = false;
+                this.candidatoList = data;
+            }else{
+                this.createActive = true;
+            }
+           
             // Grid Values
 this.candidatoList.forEach(element => {
       	if (element.generoId == 'mas'){
@@ -122,6 +176,14 @@ this.candidatoList.forEach(element => {
     });
 }
 
+loadDataCandidato(username){
+    this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+        if (data) {
+            this.candidato = data;
+            this.loadCandidatoByCandidato(this.candidato.candidatoId);
+        }
+    });
+}
 
 add(){
 	this.candidatoService.clear();
@@ -230,9 +292,14 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
   	    this.route.params.subscribe((params: Params) => {
   	        this.link = params['link'];
   	        
-  	
   	        if (!this.link){
-  	            this.loadCandidato();
+
+                if (this.filtro != 'USER'){
+                    this.loadCandidato();
+                }else{
+                    this.loadDataCandidato(this.user.username);
+                }
+  	            
   	        }else{
   	        	
   	        }

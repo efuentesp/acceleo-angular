@@ -17,6 +17,8 @@ import { PuestoService }                                  from '../../puesto/pue
 import { Puesto }                                         from '../../puesto/puesto.component.model';
 import { ReclutadorService }                                  from '../../reclutador/reclutador.component.service';
 import { Reclutador }                                         from '../../reclutador/reclutador.component.model';
+import { CandidatoService } from '../../candidato/candidato.component.service';
+import { Candidato } from '../../candidato/candidato.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -33,7 +35,9 @@ export class PosicionManageComponent implements OnInit {
 
     public title = 'Manage Posicion';
     public posicionList: Posicion [];
-    public posicion: Posicion;
+	public posicion: Posicion;
+	
+	public filtro = null;
 
   	public busquedaPosicion='';
     public filterInputPosicion = new FormControl();
@@ -59,6 +63,8 @@ export class PosicionManageComponent implements OnInit {
 	
 	public busquedaReclutador='';
 	filterInputReclutador = new FormControl();
+
+	public candidato: Candidato;
 
     // Buttons 
     private searchActive: boolean = false;
@@ -88,6 +94,7 @@ public reclutadorId: string = '';
 				,private filialService: FilialService
 				,private puestoService: PuestoService
 				,private reclutadorService: ReclutadorService
+				, private candidatoService: CandidatoService
 ){
 			this.filterInputPosicion.valueChanges.subscribe(busquedaPosicion => {
 		  	  	this.busquedaPosicion = busquedaPosicion;
@@ -108,8 +115,10 @@ public reclutadorId: string = '';
 	  // Get data user
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
-      this.token = this.user.token;
+	  this.token = this.user.token;
 
+	  this.filtro = this.user.authorityname;
+	  
       this.posicionService.setEdit(false);
       this.posicionService.setDelete(false);
     
@@ -301,20 +310,23 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
           	this.reclutadorId = params['reclutadorId'];
   	
   	        if (!this.link){
-  	            this.loadPosicion();
+
+                    this.loadPosicion();
+				  
   	        }else{
-  	        	
-          	if (this.filialId){
-          	    this.loadPosicionByFilial(this.filialId);
-          	}
-          	if (this.puestoId){
-          	    this.loadPosicionByPuesto(this.puestoId);
-          	}
-          	if (this.reclutadorId){
-          	    this.loadPosicionByReclutador(this.reclutadorId);
-          	}
+
+					if (this.filialId){
+						this.loadPosicionByFilial(this.filialId);
+					}
+					if (this.puestoId){
+						this.loadPosicionByPuesto(this.puestoId);
+					}
+					if (this.reclutadorId){
+						this.loadPosicionByReclutador(this.reclutadorId);
+					}
+
+			
   	        }
-  	        
   	    });
   	  }
   	  
@@ -533,6 +545,85 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
   	    }, error => {
   	    swal('Error...', 'An error occurred while calling the posicions.', 'error');
   	    });    
-  	}
+	}
+	  
+	  loadDataCandidato(username){
+		this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+			if (data) {            
+			   this.candidato = data;
+			   this.loadPosicionByCandidato(this.candidato.candidatoId);
+			}
+		});
+	}
+
+	loadPosicionByCandidato(candidatoId){
+		this.posicionService.getAllPosicionByCandidato(candidatoId).subscribe(data => {
+			if (data) {
+				this.posicionList = data;
+			  
+	this.posicionList.forEach(element => {
+		
+		// Entidad a Enum
+				 if (element.puesto.puestosId == 'a'){
+					 element.puestoItem = "Promotor de cambaceo";
+					 element.puestoId = "A";
+				 }		
+				 if (element.puesto.puestosId == 'b'){
+					 element.puestoItem = "Valuador";
+					 element.puestoId = "B";
+				 }		
+				 if (element.puesto.puestosId == 'c'){
+					 element.puestoItem = "Mecanógrafo";
+					 element.puestoId = "C";
+				 }		
+				 if (element.puesto.puestosId == 'd'){
+					 element.puestoItem = "Expendedor";
+					 element.puestoId = "D";
+				 }		
+				 if (element.puesto.puestosId == 'e'){
+					 element.puestoItem = "Almacenista";
+					 element.puestoId = "E";
+				 }		
+				 if (element.puesto.puestosId == 'f'){
+					 element.puestoItem = "Mozo";
+					 element.puestoId = "F";
+				 }		
+				 if (element.puesto.puestosId == 'g'){
+					 element.puestoItem = "Cajero";
+					 element.puestoId = "G";
+				 }		
+			
+	});
+	this.posicionList.forEach(element => {
+			  if (element.tiponominaId == 'a'){
+				  element.tiponominaItem = "Externo";
+			  }		
+			  if (element.tiponominaId == 'b'){
+				  element.tiponominaItem = "Interno";
+			  }		
+			  if (element.tiponominaId == 'c'){
+				  element.tiponominaItem = "Sindicalizado";
+			  }		
+	});
+	
+	this.posicionList.forEach(element => {
+			  if (element.estatusposicionId == 'e1'){
+				  element.estatusposicionItem = "Abierta";
+			  }		
+			  if (element.estatusposicionId == 'e2'){
+				  element.estatusposicionItem = "Cerrada";
+			  }		
+			  if (element.estatusposicionId == 'e3'){
+				  element.estatusposicionItem = "Cancelada";
+			  }		
+			  if (element.estatusposicionId == 'e4'){
+				  element.estatusposicionItem = "En pausa";
+			  }		
+	});
+			}
+		}, error => {
+		swal('Error...', 'An error occurred while calling the posicions.', 'error');
+		});
+	}
   	
 }

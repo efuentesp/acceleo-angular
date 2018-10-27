@@ -20,7 +20,7 @@ export class LoginComponent {
 
   ngOnInit() {
     this.authenticationService.logout();
-    this.version = "Versión 1.0.0.2";
+    this.version = "Versión 1.0.0.3";
   }
 
   login() {

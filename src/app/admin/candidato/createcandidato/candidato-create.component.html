@@ -52,7 +52,8 @@
 					<input type="hidden" class="form-control input-md"  name="generoId"  [(ngModel)]="candidato.generoId"    #generoId="ngModel" required>
 					<div *ngIf="candidatoForm.submitted && !generoId.valid" class="help-block">Genero es requerido</div>
 				</div>
-				<div class="form-group" id="estatuscandidato" [ngClass]="{ 'has-error': candidatoForm.submitted && !estatuscandidatoId.valid}">
+
+				<div *ngIf="!candidatoFlag" class="form-group" id="estatuscandidato" [ngClass]="{ 'has-error': candidatoForm.submitted && !estatuscandidatoId.valid}">
 					<label class="control-label" for="estatuscandidato">Estatus<span class="required">*</span></label>
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e1" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" required>Contactado</div>		
 				<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="e2" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" required>En proceso de evaluación</div>		

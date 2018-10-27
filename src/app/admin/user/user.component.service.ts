@@ -78,14 +78,14 @@ export class UserService {
             authorities: this.user.authorities,
             email: this.user.email,
             enabled: this.user.enabled, 
-            selected: this.user.selected
+            selected: this.user.selected,
+            authorityname: this.user.authorityname
         };
         return user;
     }
 
     setUser(user: User) {
 
-        console.log ("Usearioservice:", user);
         this.user.idUser = user.idUser;
         this.user.username = user.username;
         this.user.password = user.password;
@@ -95,7 +95,8 @@ export class UserService {
         this.user.authorities = user.authorities,
         this.user.email = user.email,
         this.user.enabled = user.enabled,
-        this.user.selected = user.selected
+        this.user.selected = user.selected,
+        this.user.authorityname = user.authorityname
 
     }
 
@@ -118,6 +119,7 @@ export class UserService {
         this.user.email = '';
         this.user.enabled = false;
         this.user.selected = null;
+        this.user.authorityname = '';
     }
 
     setEdit(flag){

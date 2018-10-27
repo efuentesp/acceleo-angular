@@ -60,6 +60,8 @@ public changeFormatFecha: boolean = false;
 	public busquedaCandidato='';
 	filterInputCandidato = new FormControl();
 
+	public filtro : string;
+	public candidatoFlag : boolean = false;
 
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
@@ -90,7 +92,17 @@ public changeFormatFecha: boolean = false;
 
     ngOnInit() {
         
-        this.flag = this.candidatoService.getEdit();
+				this.flag = this.candidatoService.getEdit();
+				
+				this.user = JSON.parse(localStorage.getItem('currentUser'));
+				this.filtro = this.user.authorityname;
+
+				if (this.filtro == 'USER'){
+					this.candidatoFlag = true;
+				}else{
+					this.candidatoFlag = false;
+				}
+
         this.candidato = this.candidatoService.getCandidato();
     		this.candidato.fechaAux = this.parserFormatter.parse(this.candidato.fecha);
     		//this.candidato.solicitudItem = this.candidato.solicitud.correo;

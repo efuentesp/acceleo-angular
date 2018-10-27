@@ -106,7 +106,8 @@ public candidatoList: Candidato [];
 }
 
     ngOnInit() {
-        
+		
+		this.user = JSON.parse(localStorage.getItem('currentUser'));
         this.flag = this.solicitudService.getEdit();
         this.solicitud = this.solicitudService.getSolicitud();
     		this.solicitud.posicionItem = this.solicitud.posicion.nombre;
@@ -115,9 +116,55 @@ public candidatoList: Candidato [];
     		this.solicitud.candidatoId = this.solicitud.candidato.candidatoId;
     		this.solicitud.fechaAux = this.parserFormatter.parse(this.solicitud.fecha);
         this.flagDelete = this.solicitudService.getDelete();
-        	this.loadPosicion();
+			
+		if (this.user.authorityname != 'USER'){
+			this.loadPosicion();
         	this.loadCandidato();
-    }  
+		}else{
+			this.loadPosicion();
+			this.loadDataCandidato(this.user.username);
+		}			
+	}  
+	
+	loadDataCandidato(username){
+		this.candidatoService.getAllCandidatoByUserNameList(username).subscribe(data => {
+			if (data) { 
+			   this.candidatoList= data;
+			   this.candidatoList.forEach(element => {
+				if (element.generoId == 'mas'){
+					element.generoItem = "Masculino";
+				}		
+				if (element.generoId == 'fem'){
+					element.generoItem = "Femenino";
+				}		
+	  });
+	  this.candidatoList.forEach(element => {
+				if (element.estatuscandidatoId == 'e1'){
+					element.estatuscandidatoItem = "Contactado";
+				}		
+				if (element.estatuscandidatoId == 'e2'){
+					element.estatuscandidatoItem = "En proceso de evaluación";
+				}		
+				if (element.estatuscandidatoId == 'e3'){
+					element.estatuscandidatoItem = "Ofertado";
+				}		
+				if (element.estatuscandidatoId == 'e4'){
+					element.estatuscandidatoItem = "En proceso de contratación";
+				}		
+				if (element.estatuscandidatoId == 'e5'){
+					element.estatuscandidatoItem = "Contratado";
+				}		
+				if (element.estatuscandidatoId == 'e6'){
+					element.estatuscandidatoItem = "Rechazado";
+				}		
+				if (element.estatuscandidatoId == 'e7'){
+					element.estatuscandidatoItem = "Declinó";
+				}		
+	  });
+
+			}
+		});
+	}	
 
 save(){
 	if (

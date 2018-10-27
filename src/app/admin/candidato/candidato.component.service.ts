@@ -32,13 +32,35 @@ export class CandidatoService {
       return this.http.get(this.env.api + "/candidato", opts).pipe(map(res => res.json()));
     }
 
+    getAllCandidatoByCandidato(filtro){
+		let headers = new Headers;
+         headers.append('Content-Type','application/json');
+         headers.append('Authorization','Bearer ' + this.user.token+'');
+         let opts = new RequestOptions({ headers: headers });
+      return this.http.get(this.env.api + "/candidato/"+filtro, opts).pipe(map(res => res.json()));
+    }
+
+    getAllCandidatoByUserName(username){
+        let headers = new Headers;
+        headers.append('Content-Type','application/json');
+        headers.append('Authorization','Bearer ' + this.user.token+'');
+        let opts = new RequestOptions({ headers: headers });
+        return this.http.get(this.env.api + "/candidato/username/"+username, opts).pipe(map(res => res.json()));
+    }
+
+    getAllCandidatoByUserNameList(username){
+        let headers = new Headers;
+        headers.append('Content-Type','application/json');
+        headers.append('Authorization','Bearer ' + this.user.token+'');
+        let opts = new RequestOptions({ headers: headers });
+        return this.http.get(this.env.api + "/candidato/username/list/"+username, opts).pipe(map(res => res.json()));
+    }
+
     saveCandidato(candidato){
         let headers = new Headers;
         headers.append('Content-Type','application/json');
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
-
-        console.log('Candidato', candidato);
 
 		if (!candidato.candidatoId){
             return this.http.post(this.env.api + "/candidato", candidato, opts).pipe(map(res => res));
@@ -88,7 +110,8 @@ export class CandidatoService {
 		// eventoId: this.candidato.eventoId,
 		// eventoItem: this.candidato.eventoItem,
 		candidatoId: this.candidato.candidatoId,
-		candidatoItem: this.candidato.candidatoItem	
+        candidatoItem: this.candidato.candidatoItem, 
+        username: this.candidato.username	
 		
         };
         return candidato;
@@ -114,7 +137,8 @@ this.candidato.estatuscandidatoItem = candidato.estatuscandidatoItem;
 // this.candidato.eventoItem = candidato.eventoItem;
         
 		this.candidato.candidatoId = candidato.candidatoId;
-		this.candidato.candidatoItem = candidato.candidatoItem;
+        this.candidato.candidatoItem = candidato.candidatoItem;
+        this.candidato.username = candidato.username;
 		
 		this.validateCandidato();
     }
@@ -150,7 +174,7 @@ this.candidato.estatuscandidatoItem = candidato.estatuscandidatoItem;
     		
 			this.candidato.candidatoId = null;
 			this.candidato.candidatoItem = null;
-			
+			this.candidato.username = '';
     }
 
     setEdit(flag){

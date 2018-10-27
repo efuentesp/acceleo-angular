@@ -32,6 +32,14 @@ export class PosicionService {
       return this.http.get(this.env.api + "/posicion", opts).pipe(map(res => res.json()));
     }
 
+    getAllPosicionByCandidato(candidatoId){
+        let headers = new Headers;
+        headers.append('Content-Type','application/json');
+        headers.append('Authorization','Bearer ' + this.user.token+'');
+        let opts = new RequestOptions({ headers: headers });
+        return this.http.get(this.env.api + "/posicion/candidato/"+candidatoId, opts).pipe(map(res => res.json()));
+    }
+
     savePosicion(posicion){
         let headers = new Headers;
         headers.append('Content-Type','application/json');
@@ -113,12 +121,6 @@ export class PosicionService {
 		reclutadorItem: this.posicion.reclutadorItem,
 		estatusposicionId: this.posicion.estatusposicionId,
 		estatusposicionItem: this.posicion.estatusposicionItem,
-		solicitud: this.posicion.solicitud,
-		solicitudId: this.posicion.solicitudId,
-		solicitudItem: this.posicion.solicitudItem,
-		evento: this.posicion.evento,
-		eventoId: this.posicion.eventoId,
-		eventoItem: this.posicion.eventoItem,
 		posicionId: this.posicion.posicionId,
 		posicionItem: this.posicion.posicionItem	
 		
@@ -149,12 +151,6 @@ this.posicion.reclutadorId = posicion.reclutadorId;
 this.posicion.reclutadorItem = posicion.reclutadorItem;
 this.posicion.estatusposicionId = posicion.estatusposicionId;
 this.posicion.estatusposicionItem = posicion.estatusposicionItem;
-this.posicion.solicitud = posicion.solicitud;
-this.posicion.solicitudId = posicion.solicitudId;
-this.posicion.solicitudItem = posicion.solicitudItem;
-this.posicion.evento = posicion.evento;
-this.posicion.eventoId = posicion.eventoId;
-this.posicion.eventoItem = posicion.eventoItem;
         
 		this.posicion.posicionId = posicion.posicionId;
 		this.posicion.posicionItem = posicion.posicionItem;
@@ -196,14 +192,6 @@ this.posicion.eventoItem = posicion.eventoItem;
 			
 			this.posicion.estatusposicionId = null;
 			this.posicion.estatusposicionItem = null;
-			
-			this.posicion.solicitud = null;
-			this.posicion.solicitudId = null;
-			this.posicion.solicitudItem = null;
-			
-			this.posicion.evento = null;
-			this.posicion.eventoId = null;
-			this.posicion.eventoItem = null;
     		
 			this.posicion.posicionId = null;
 			this.posicion.posicionItem = null;

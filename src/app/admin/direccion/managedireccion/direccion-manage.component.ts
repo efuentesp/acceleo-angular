@@ -27,6 +27,8 @@ export class DireccionManageComponent implements OnInit {
     public valueName: string;
     public token: string;
 
+    public filtro = null;
+
     public title = 'Manage Direccion';
     public direccionList: Direccion [];
     public direccion: Direccion;
@@ -76,6 +78,9 @@ public candidatoId: string = '';
       this.valueName = this.user.username;
       this.token = this.user.token;
 
+      this.filtro = this.user.authorityname;
+      
+      
       this.direccionService.setEdit(false);
       this.direccionService.setDelete(false);
     
@@ -175,6 +180,17 @@ if (element.authority == 'ROLE_DIRECCIONSEARCH'){
     }
     return null;
   }
+
+  loadDataCandidato(username){
+    this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+        if (data) {            
+           this.candidato = data;
+           this.loadDireccionByCandidato(this.candidato.candidatoId);
+        }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+    });
+}
   
   	
   	  getParams(){
@@ -184,12 +200,20 @@ if (element.authority == 'ROLE_DIRECCIONSEARCH'){
           	this.candidatoId = params['candidatoId'];
   	
   	        if (!this.link){
-  	            this.loadDireccion();
+
+                if (this.filtro != 'USER'){
+                    this.loadDireccion();
+                }else{
+                    this.loadDataCandidato(this.user.username);
+				} 
+  	           
   	        }else{
-  	        	
-          	if (this.candidatoId){
-          	    this.loadDireccionByCandidato(this.candidatoId);
-          	}
+
+                if (this.filtro != 'USER'){
+                    this.loadDataCandidato(this.user.username);
+                }else{
+                    this.loadDataCandidato(this.user.username);
+				} 
   	        }
   	        
   	    });
@@ -198,18 +222,12 @@ if (element.authority == 'ROLE_DIRECCIONSEARCH'){
   	loadDireccionByCandidato(candidatoId){
   	    this.direccionService.getAllDireccionByCandidato(candidatoId).subscribe(data => {
   	        if (data) {
-  	            this.direccionList = data;
-  	
-  		            // Grid Values
-  	this.direccionList.forEach(element => {
-  	     this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-  	         if (data){
-  	         	element.candidatoItem = data.nombre;
-  	         }
-  	    });
-  	});
-  	
-  	
+                if (data.length > 0) {
+                    this.createActive = false;
+                    this.direccionList = data;
+                }else{
+                    this.createActive = true;
+                }
   	        }    
   	    }, error => {
   	    swal('Error...', 'An error occurred while calling the direccions.', 'error');

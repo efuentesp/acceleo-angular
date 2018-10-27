@@ -29,6 +29,8 @@ export class PuestoManageComponent implements OnInit {
     public puestoList: Puesto [];
     public puesto: Puesto;
 
+    public filtro = null;
+
   	public busquedaPuesto='';
     public filterInputPuesto = new FormControl();
     datePipe = new DatePipe('en-US');
@@ -62,6 +64,8 @@ public link: string = '';
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
       this.token = this.user.token;
+
+      this.filtro = this.user.authorityname;
 
       this.puestoService.setEdit(false);
       this.puestoService.setDelete(false);
@@ -186,7 +190,9 @@ if (element.authority == 'ROLE_PUESTOSEARCH'){
   	        
   	
   	        if (!this.link){
-  	            this.loadPuesto();
+
+                this.loadPuesto();            
+
   	        }else{
   	        	
   	        }

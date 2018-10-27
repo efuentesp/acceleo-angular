@@ -1,7 +1,5 @@
 import { Authority } from "../../user/authorities.component.model";
-
-
-
+import { Candidato } from "../candidato/candidato.component.model";
 
 
 export class User {
@@ -13,6 +11,7 @@ export class User {
 	firstname: string;
 	lastname:string;
 	authorities: Authority[];
+	authorityname: string;
 	
 	email: string = '';
 	enabled: boolean = false;

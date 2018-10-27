@@ -16,7 +16,7 @@ export class SearchReclutadorPipe implements PipeTransform {
 			||
 			((item.apellidomaterno+"").toLowerCase().indexOf((busquedaReclutador+"").toLowerCase()) !== -1)
 			||
-			((item.generoItem+"").toString().indexOf((busquedaReclutador+"").toLowerCase()) !== -1)
+			((item.generoItem+"").toString().toLowerCase().indexOf((busquedaReclutador+"").toLowerCase()) !== -1)
         ): items;
     }
 }

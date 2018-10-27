@@ -27,7 +27,9 @@ export class EventoManageComponent implements OnInit {
     public form: any;
     public user: User;
     public valueName: string;
-    public token: string;
+	public token: string;
+	
+	public filtro = null;
 
     public title = 'Manage Evento';
     public eventoList: Evento [];
@@ -88,6 +90,8 @@ public candidatoId: string = '';
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
       this.token = this.user.token;
+
+	  this.filtro = this.user.authorityname;
 
       this.eventoService.setEdit(false);
       this.eventoService.setDelete(false);
@@ -240,20 +244,38 @@ if (element.authority == 'ROLE_EVENTOSEARCH'){
           	this.candidatoId = params['candidatoId'];
   	
   	        if (!this.link){
-  	            this.loadEvento();
+
+				if (this.filtro != 'USER'){
+                    this.loadEvento();
+                }else{
+                    this.loadDataCandidato(this.user.username);
+				} 
+  	            
   	        }else{
-  	        	
-          	if (this.posicionId){
-          	    this.loadEventoByPosicion(this.posicionId);
-          	}
-          	if (this.candidatoId){
-          	    this.loadEventoByCandidato(this.candidatoId);
-          	}
+				if (this.filtro != 'USER'){
+                    if (this.posicionId){
+						this.loadEventoByPosicion(this.posicionId);
+					}
+					if (this.candidatoId){
+						this.loadEventoByCandidato(this.candidatoId);
+					}
+                }else{
+                    this.loadDataCandidato(this.user.username);
+				} 
   	        }
   	        
   	    });
-  	  }
-  	  
+	}
+	
+	loadDataCandidato(username){
+		this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+			if (data) {            
+			   this.candidato = data;
+			   this.loadEventoByCandidato(this.candidato.candidatoId);
+			}
+		});
+	}
+	
   	loadEventoByPosicion(posicionId){
   	    this.eventoService.getAllEventoByPosicion(posicionId).subscribe(data => {
   	        if (data) {

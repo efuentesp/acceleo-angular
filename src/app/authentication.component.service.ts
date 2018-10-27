@@ -8,6 +8,8 @@ import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Authority } from './admin/authority/authority.component.model';
 import { Privilege } from './admin/authority/privilege.component.model';
+import { Candidato } from './admin/candidato/candidato.component.model';
+import { Reclutador } from './admin/reclutador/reclutador.component.model';
 
 @Injectable()
 export class AuthenticationService {
@@ -19,6 +21,8 @@ export class AuthenticationService {
     private firstname: string;
     private lastname: string;
     public privileges: Privilege[] = [];
+    private authorityname : string;
+
     loading = false;
     redirectUrl: string;
 
@@ -41,7 +45,6 @@ export class AuthenticationService {
                 let token = response.json() && response.json().token;
                 let authorities = response.json() && response.json().authorities;
                 let userName = response.json() && response.json().username;
-                
 
                 if (token) {
                     
@@ -74,11 +77,16 @@ export class AuthenticationService {
        this.firstname = response.json() && response.json().firstname;
        this.lastname = response.json() && response.json().lastname;
        this.privileges = response.json() && response.json().privileges;
+       this.authorityname = response.json() && response.json().authorityname;
 
        // Set to currentUser values
-       localStorage.setItem('currentUser', JSON.stringify({ username: this.username, token: token, authorities: this.authorities, firstname: this.firstname, lastname:this.lastname, privileges:this.privileges}));
+       localStorage.setItem('currentUser', JSON.stringify({ username: this.username, token: token, 
+        authorities: this.authorities, firstname: this.firstname, 
+        lastname:this.lastname, 
+        privileges:this.privileges,
+        authorityname: this.authorityname }));
 
-       console.log('Response User Service values:', " Token: "+token+" Username: "+this.username+" Authorities: "+this.authorities);
+       console.log('Response User Service values:', " Token: "+token+" Username: "+this.username+" Authorities: "+this.authorities+ " USER: "+this.authorityname);
        return true;
 
      }));

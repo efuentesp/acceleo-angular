@@ -95,13 +95,19 @@ public candidatoList: Candidato [];
 }
 
     ngOnInit() {
-        
+		
+		this.user = JSON.parse(localStorage.getItem('currentUser'));
         this.flag = this.direccionService.getEdit();
         this.direccion = this.direccionService.getDireccion();
     		this.direccion.candidatoItem = this.direccion.candidato.nombre;
     		this.direccion.candidatoId = this.direccion.candidato.candidatoId;
         this.flagDelete = this.direccionService.getDelete();
-        	this.loadCandidato();
+			
+		if (this.user.authorityname != 'USER'){
+			this.loadCandidato();
+		}else{
+			this.loadDataCandidato(this.user.username);
+		}
     }  
 
 save(){
@@ -204,20 +210,6 @@ loadCandidato(){
  		      	    element.estatuscandidatoItem = "Declinó";
  		      	}		
  		});
- 		// this.candidatoList.forEach(element => {
- 		// 	          this.solicitudService.getSolicitudById(element.solicitudId).subscribe(data => {
- 		// 	              if (data){
- 		// 	              	element.solicitudItem = data.correo;
- 		// 	              }
- 		// 	         });
- 		// 	     });
- 		// this.candidatoList.forEach(element => {
- 		// 	          this.eventoService.getEventoById(element.eventoId).subscribe(data => {
- 		// 	              if (data){
- 		// 	              	element.eventoItem = data.nombre;
- 		// 	              }
- 		// 	         });
- 		// 	     });
  		}
 	}, error => {
 		swal('Error...', 'An error occurred while calling the Candidatos.', 'error');
@@ -254,6 +246,16 @@ parse(value: string): string {
     }
     return null;
 } 
+
+loadDataCandidato(username){
+    this.candidatoService.getAllCandidatoByUserNameList(username).subscribe(data => {
+        if (data) { 
+		   this.candidatoList= data;
+        }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+    });
+}
  
 }
 

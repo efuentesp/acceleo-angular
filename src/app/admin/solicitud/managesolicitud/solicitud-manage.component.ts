@@ -27,7 +27,9 @@ export class SolicitudManageComponent implements OnInit {
     public form: any;
     public user: User;
     public valueName: string;
-    public token: string;
+	public token: string;
+	
+	public filtro = null;
 
     public title = 'Manage Solicitud';
     public solicitudList: Solicitud [];
@@ -89,6 +91,8 @@ public candidatoId: string = '';
       this.valueName = this.user.username;
       this.token = this.user.token;
 
+	  this.filtro = this.user.authorityname;
+
       this.solicitudService.setEdit(false);
       this.solicitudService.setDelete(false);
     
@@ -100,23 +104,8 @@ public candidatoId: string = '';
 loadSolicitud(){
     this.solicitudService.getAllSolicitud().subscribe(data => {
         if (data) {
-            this.solicitudList = data;
-            
-            // Grid Values
-// this.solicitudList.forEach(element => {
-//      this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-//          if (data){
-//          	element.posicionItem = data.nombre;
-//          }
-//     });
-// });
-// this.solicitudList.forEach(element => {
-//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-//          if (data){
-//          	element.candidatoItem = data.nombre;
-//          }
-//     });
-// });
+			this.solicitudList = data;
+			
 this.solicitudList.forEach(element => {
       	if (element.estatussolicitudId == 'e1'){
       	    element.estatussolicitudItem = "Registrada";
@@ -219,15 +208,27 @@ if (element.authority == 'ROLE_SOLICITUDSEARCH'){
           	this.candidatoId = params['candidatoId'];
   	
   	        if (!this.link){
-  	            this.loadSolicitud();
+
+				
+					if (this.filtro != 'USER'){
+						this.loadSolicitud();
+					}else{
+						this.loadDataCandidato(this.user.username);
+						//this.loadDataCandidato(this.user.username);
+					} 
+				
   	        }else{
-  	        	
-          	if (this.posicionId){
-          	    this.loadSolicitudByPosicion(this.posicionId);
-          	}
-          	if (this.candidatoId){
-          	    this.loadSolicitudByCandidato(this.candidatoId);
-          	}
+				  
+				if (this.filtro != 'USER'){
+					if (this.posicionId){
+						this.loadSolicitudByPosicion(this.posicionId);
+					}
+					if (this.candidatoId){
+						this.loadSolicitudByCandidato(this.candidatoId);
+					}
+                }else{
+					this.loadSolicitud();
+				}
   	        }
   	        
   	    });
@@ -238,21 +239,6 @@ if (element.authority == 'ROLE_SOLICITUDSEARCH'){
   	        if (data) {
   	            this.solicitudList = data;
   	
-  		            // Grid Values
-  	// this.solicitudList.forEach(element => {
-  	//      this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-  	//          if (data){
-  	//          	element.posicionItem = data.nombre;
-  	//          }
-  	//     });
-  	// });
-  	// this.solicitudList.forEach(element => {
-  	//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-  	//          if (data){
-  	//          	element.candidatoItem = data.nombre;
-  	//          }
-  	//     });
-  	// });
   	this.solicitudList.forEach(element => {
   	      	if (element.estatussolicitudId == 'e1'){
   	      	    element.estatussolicitudItem = "Registrada";
@@ -278,22 +264,7 @@ if (element.authority == 'ROLE_SOLICITUDSEARCH'){
   	    this.solicitudService.getAllSolicitudByCandidato(candidatoId).subscribe(data => {
   	        if (data) {
   	            this.solicitudList = data;
-  	
-  		            // Grid Values
-  	// this.solicitudList.forEach(element => {
-  	//      this.posicionService.getPosicionById(element.posicionId).subscribe(data => {
-  	//          if (data){
-  	//          	element.posicionItem = data.nombre;
-  	//          }
-  	//     });
-  	// });
-  	// this.solicitudList.forEach(element => {
-  	//      this.candidatoService.getCandidatoById(element.candidatoId).subscribe(data => {
-  	//          if (data){
-  	//          	element.candidatoItem = data.nombre;
-  	//          }
-  	//     });
-  	// });
+
   	this.solicitudList.forEach(element => {
   	      	if (element.estatussolicitudId == 'e1'){
   	      	    element.estatussolicitudItem = "Registrada";
@@ -314,6 +285,17 @@ if (element.authority == 'ROLE_SOLICITUDSEARCH'){
   	    }, error => {
   	    swal('Error...', 'An error occurred while calling the solicituds.', 'error');
   	    });    
-  	}
+	  }
+	  
+	  loadDataCandidato(username){
+		this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+			if (data) {            
+			   this.candidato = data;
+			   this.loadSolicitudByCandidato(this.candidato.candidatoId);
+			}
+		}, error => {
+		swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+		});
+	}
   	
 }

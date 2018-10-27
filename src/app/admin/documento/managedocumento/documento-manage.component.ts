@@ -10,6 +10,8 @@ import { DocumentoService }                                  from '../../documen
 import { Documento }                                         from '../../documento/documento.component.model';
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { CandidatoService } from '../../candidato/candidato.component.service';
+import { Candidato } from '../../candidato/candidato.component.model';
 
 
 @Component ({
@@ -25,6 +27,8 @@ export class DocumentoManageComponent implements OnInit {
     public valueName: string;
     public token: string;
 
+    public filtro = null;
+
     public title = 'Manage Documento';
     public documentoList: Documento [];
     public documento: Documento;
@@ -34,7 +38,7 @@ export class DocumentoManageComponent implements OnInit {
     datePipe = new DatePipe('en-US');
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
-
+    public candidato: Candidato;
 
     // Buttons 
     private searchActive: boolean = false;
@@ -49,7 +53,8 @@ public link: string = '';
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private documentoService:DocumentoService
+                private documentoService:DocumentoService,
+                private candidatoService: CandidatoService
 ){
 			this.filterInputDocumento.valueChanges.subscribe(busquedaDocumento => {
 		  	  	this.busquedaDocumento = busquedaDocumento;
@@ -62,6 +67,8 @@ public link: string = '';
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
       this.token = this.user.token;
+
+      this.filtro = this.user.authorityname;
 
       this.documentoService.setEdit(false);
       this.documentoService.setDelete(false);
@@ -77,6 +84,16 @@ loadDocumento(){
             this.documentoList = data;
             
             // Grid Values
+        }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the documentos.', 'error');
+    });
+}
+
+loadDocumentoByCandidato(id){
+    this.documentoService.getAllDocumentoByCandidato(id).subscribe(data => {
+        if (data) {
+            this.documentoList = data;
         }
     }, error => {
     swal('Error...', 'An error occurred while calling the documentos.', 'error');
@@ -163,13 +180,29 @@ if (element.authority == 'ROLE_DOCUMENTOSEARCH'){
   	        
   	
   	        if (!this.link){
-  	            this.loadDocumento();
+
+                if (this.filtro != 'USER'){
+                    this.loadDocumento();
+                }else{
+                    this.loadDataCandidato(this.user.username);
+                } 
+  	            
   	        }else{
   	        	
   	        }
   	        
   	    });
   	  }
-  	  
+      
+        loadDataCandidato(username){
+            this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+                if (data) {            
+                   this.candidato = data;
+                   this.loadDocumentoByCandidato(this.candidato.candidatoId);
+                }
+            }, error => {
+            swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+            });
+        }
   	
 }

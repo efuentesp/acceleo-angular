@@ -25,6 +25,8 @@ export class FilialManageComponent implements OnInit {
     public valueName: string;
     public token: string;
 
+    public filtro = null;
+
     public title = 'Manage Filial';
     public filialList: Filial [];
     public filial: Filial;
@@ -62,6 +64,8 @@ public link: string = '';
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
       this.token = this.user.token;
+
+      this.filtro = this.user.authorityname;
 
       this.filialService.setEdit(false);
       this.filialService.setDelete(false);
@@ -160,10 +164,11 @@ if (element.authority == 'ROLE_FILIALSEARCH'){
   	  getParams(){
   	    this.route.params.subscribe((params: Params) => {
   	        this.link = params['link'];
-  	        
-  	
+              
   	        if (!this.link){
-  	            this.loadFilial();
+                
+                this.loadFilial();
+                  
   	        }else{
   	        	
   	        }

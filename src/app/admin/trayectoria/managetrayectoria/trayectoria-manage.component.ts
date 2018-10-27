@@ -29,6 +29,8 @@ export class TrayectoriaManageComponent implements OnInit {
     public valueName: string;
     public token: string;
 
+	public filtro = null;
+
     public title = 'Manage Trayectoria';
     public trayectoriaList: Trayectoria [];
     public trayectoria: Trayectoria;
@@ -88,6 +90,8 @@ public documentoId: string = '';
       this.user = JSON.parse(localStorage.getItem('currentUser'));
       this.valueName = this.user.username;
       this.token = this.user.token;
+
+	  this.filtro = this.user.authorityname;
 
       this.trayectoriaService.setEdit(false);
       this.trayectoriaService.setDelete(false);
@@ -215,19 +219,40 @@ if (element.authority == 'ROLE_TRAYECTORIASEARCH'){
           	this.documentoId = params['documentoId'];
   	
   	        if (!this.link){
-  	            this.loadTrayectoria();
+
+				if (this.filtro != 'USER'){
+                    this.loadTrayectoria();
+                }else{
+                    this.loadDataCandidato(this.user.username);
+				} 
+				
   	        }else{
-  	        	
-          	if (this.candidatoId){
-          	    this.loadTrayectoriaByCandidato(this.candidatoId);
-          	}
-          	if (this.documentoId){
-          	    this.loadTrayectoriaByDocumento(this.documentoId);
-          	}
+				  
+				if (this.filtro != 'USER'){
+					if (this.candidatoId){
+						this.loadTrayectoriaByCandidato(this.candidatoId);
+					}
+					if (this.documentoId){
+						this.loadTrayectoriaByDocumento(this.documentoId);
+					}
+                }else{
+					this.loadDataCandidato(this.user.username); 
+				}
   	        }
   	        
   	    });
-  	  }
+		}
+		
+	loadDataCandidato(username){
+			this.candidatoService.getAllCandidatoByUserName(username).subscribe(data => {
+				if (data) {            
+				   this.candidato = data;
+				   this.loadTrayectoriaByCandidato(this.candidato.candidatoId);
+				}
+			}, error => {
+			swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+			});
+		}	
   	  
   	loadTrayectoriaByCandidato(candidatoId){
   	    this.trayectoriaService.getAllTrayectoriaByCandidato(candidatoId).subscribe(data => {

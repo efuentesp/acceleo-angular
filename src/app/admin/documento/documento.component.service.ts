@@ -32,6 +32,15 @@ export class DocumentoService {
       return this.http.get(this.env.api + "/documento", opts).pipe(map(res => res.json()));
     }
 
+    getAllDocumentoByCandidato(id){
+        let headers = new Headers;
+         headers.append('Content-Type','application/json');
+         headers.append('Authorization','Bearer ' + this.user.token+'');
+         let opts = new RequestOptions({ headers: headers });
+         return this.http.get(this.env.api + "/documento/candidato/"+id, opts).pipe(map(res => res.json()));
+    }
+
+
     saveDocumento(documento){
         let headers = new Headers;
         headers.append('Content-Type','application/json');

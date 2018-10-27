@@ -101,10 +101,57 @@ constructor(private router: Router,
 
 ngOnInit() {
 	this.solicitudService.clear();
-	      this.solicitud = new Solicitud;
-	this.loadPosicion();
-	this.loadCandidato();
+		this.user = JSON.parse(localStorage.getItem('currentUser'));
+		this.solicitud = new Solicitud;
+		
+	    if (this.user.authorityname != 'USER'){
+			this.loadPosicion();
+        	this.loadCandidato();
+		}else{
+			this.loadPosicion();
+			this.loadDataCandidato(this.user.username);
+		}	
 } 
+
+loadDataCandidato(username){
+	this.candidatoService.getAllCandidatoByUserNameList(username).subscribe(data => {
+		if (data) { 
+		   this.candidatoList= data;
+		   this.candidatoList.forEach(element => {
+			if (element.generoId == 'mas'){
+				element.generoItem = "Masculino";
+			}		
+			if (element.generoId == 'fem'){
+				element.generoItem = "Femenino";
+			}		
+  });
+  this.candidatoList.forEach(element => {
+			if (element.estatuscandidatoId == 'e1'){
+				element.estatuscandidatoItem = "Contactado";
+			}		
+			if (element.estatuscandidatoId == 'e2'){
+				element.estatuscandidatoItem = "En proceso de evaluación";
+			}		
+			if (element.estatuscandidatoId == 'e3'){
+				element.estatuscandidatoItem = "Ofertado";
+			}		
+			if (element.estatuscandidatoId == 'e4'){
+				element.estatuscandidatoItem = "En proceso de contratación";
+			}		
+			if (element.estatuscandidatoId == 'e5'){
+				element.estatuscandidatoItem = "Contratado";
+			}		
+			if (element.estatuscandidatoId == 'e6'){
+				element.estatuscandidatoItem = "Rechazado";
+			}		
+			if (element.estatuscandidatoId == 'e7'){
+				element.estatuscandidatoItem = "Declinó";
+			}		
+  });
+
+		}
+	});
+}	
 
 save(){
 	if (
@@ -139,13 +186,7 @@ loadPosicion(){
 	this.posicionService.getAllPosicion().subscribe(data => {
    		if (data) {
  		this.posicionList = data;
- 		// this.posicionList.forEach(element => {
- 		// 	          this.filialService.getFilialById(element.filialId).subscribe(data => {
- 		// 	              if (data){
- 		// 	              	element.filialItem = data.nombre;
- 		// 	              }
- 		// 	         });
- 		// 	     });
+ 	
  		this.posicionList.forEach(element => {
 
  			              	if (element.puesto.puestosId == 'a'){
@@ -189,13 +230,7 @@ loadPosicion(){
  		      	    element.tiponominaItem = "Sindicalizado";
  		      	}		
  		});
- 		// this.posicionList.forEach(element => {
- 		// 	          this.reclutadorService.getReclutadorById(element.reclutadorId).subscribe(data => {
- 		// 	              if (data){
- 		// 	              	element.reclutadorItem = data.nombre;
- 		// 	              }
- 		// 	         });
- 		// 	     });
+ 		
  		this.posicionList.forEach(element => {
  		      	if (element.estatusposicionId == 'e1'){
  		      	    element.estatusposicionItem = "Abierta";

@@ -3,6 +3,8 @@ import { User } from './user/user.component.model';
 import { AuthenticationService } from '../authentication.component.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { Authority } from '../user/authorities.component.model';
+import { Candidato } from './candidato/candidato.component.model';
+import { Reclutador } from './reclutador/reclutador.component.model';
 
 @Component({
   templateUrl: 'admin.components.html',
@@ -16,6 +18,11 @@ export class AdminComponent {
   public token: string;
   public authorityList: Authority [];
   public username: string;
+  public candidatoUser: Candidato;
+  public reclutadorUser: Reclutador;
+
+  public filtro : string;
+  public candidatoFlag: boolean = false;
 
 // Menu activation
 // Candidato
@@ -78,10 +85,16 @@ private permiso: boolean = false;
     // Get token from user object
     this.userAdmin = JSON.parse(localStorage.getItem('currentUser'));
     
-
     this.authService.getMenu(this.userAdmin.token).subscribe(result => {
     // Fill the user object
     this.userAdmin = JSON.parse(localStorage.getItem('currentUser'));
+    this.filtro = this.userAdmin.authorityname;
+
+    if (this.filtro == 'USER'){
+      this.candidatoFlag = true;
+    }else{
+      this.candidatoFlag = false;
+    }
     this.valueName = this.userAdmin.firstname + " " + this.userAdmin.lastname ;
     this.enabledLinks(this.userAdmin);
 
@@ -99,14 +112,24 @@ private permiso: boolean = false;
 if (element.authority == 'ROLE_CANDIDATOSEARCH'){
   this.candidato_mgmnt = true;
 }
+
 if (element.authority == 'ROLE_CANDIDATOCREATE'){
-  this.candidato = true;
+  if (this.candidatoFlag){
+    this.candidato = false;
+  }else{
+    this.candidato = true;
+  }
 }
+
 if (element.authority == 'ROLE_DIRECCIONSEARCH'){
   this.direccion_mgmnt = true;
 }
 if (element.authority == 'ROLE_DIRECCIONCREATE'){
-  this.direccion = true;
+  if (this.candidatoFlag){
+    this.direccion = false;
+  }else{
+    this.direccion = true;
+  }
 }
 if (element.authority == 'ROLE_DOCUMENTOSEARCH'){
   this.documento_mgmnt = true;
@@ -118,7 +141,11 @@ if (element.authority == 'ROLE_SOLICITUDSEARCH'){
   this.solicitud_mgmnt = true;
 }
 if (element.authority == 'ROLE_SOLICITUDCREATE'){
-  this.solicitud = true;
+  if (this.candidatoFlag){
+    this.solicitud = false;
+  }else{
+    this.solicitud = true;
+  }
 }
 if (element.authority == 'ROLE_EVENTOSEARCH'){
   this.evento_mgmnt = true;
@@ -160,7 +187,11 @@ if (element.authority == 'ROLE_TRAYECTORIASEARCH'){
   this.trayectoria_mgmnt = true;
 }
 if (element.authority == 'ROLE_TRAYECTORIACREATE'){
-  this.trayectoria = true;
+  if (this.candidatoFlag){
+    this.trayectoria = false;
+  }else{
+    this.trayectoria = true;
+  }
 }
 if (element.authority == 'ROLE_USUARIOSEARCH'){
   this.usuario_mgmnt = true;

@@ -18,9 +18,9 @@ export class SearchCandidatoPipe implements PipeTransform {
 			||
 			((item.fecha+"").toLowerCase().indexOf((busquedaCandidato+"").toLowerCase()) !== -1)
 			||
-			((item.generoItem+"").toString().indexOf((busquedaCandidato+"").toLowerCase()) !== -1)
+			((item.generoItem+"").toString().toLowerCase().indexOf((busquedaCandidato+"").toLowerCase()) !== -1)
 			||
-			((item.estatuscandidatoItem+"").toString().indexOf((busquedaCandidato+"").toLowerCase()) !== -1)
+			((item.estatuscandidatoItem+"").toString().toLowerCase().indexOf((busquedaCandidato+"").toLowerCase()) !== -1)
         ): items;
     }
 }

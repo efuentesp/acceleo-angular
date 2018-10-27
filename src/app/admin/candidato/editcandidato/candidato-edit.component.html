@@ -99,7 +99,7 @@
 					<input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="fem" name="genero" [(ngModel)]="candidato.generoId">Femenino
 					</div>
 					</div>
-					<div class="form-group" id="estatuscandidato">
+					<div *ngIf="!candidatoFlag" class="form-group" id="estatuscandidato">
 						<label class="control-label" for="estatuscandidato">Estatus<span class="required">*</span></label>
 					<div class="col-md-12" *ngIf="flagDelete">
 					<input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="e1" name="estatuscandidato" [(ngModel)]="candidato.estatuscandidatoId" disabled="true" disabled>Contactado

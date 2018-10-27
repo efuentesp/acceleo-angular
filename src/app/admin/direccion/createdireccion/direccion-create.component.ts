@@ -90,9 +90,16 @@ constructor(private router: Router,
 }
 
 ngOnInit() {
+
+	this.user = JSON.parse(localStorage.getItem('currentUser'));
 	this.direccionService.clear();
-	      this.direccion = new Direccion;
-	this.loadCandidato();
+	this.direccion = new Direccion;
+	
+	if (this.user.authorityname != 'USER'){
+		this.loadCandidato();
+	}else{
+		this.loadDataCandidato(this.user.username);
+	}
 } 
 
 save(){
@@ -193,5 +200,16 @@ parse(value: string): string {
     }
     return null;
 }
+
+loadDataCandidato(username){
+    this.candidatoService.getAllCandidatoByUserNameList(username).subscribe(data => {
+        if (data) { 
+		   this.candidatoList= data;
+        }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the candidatos.', 'error');
+    });
+}
+
 
 }
