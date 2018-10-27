@@ -28,12 +28,6 @@ export class Posicion {
 	reclutadorItem: string = '';
 	estatusposicionId: string = '';
 	estatusposicionItem: string = '';
-	solicitud : Solicitud = null;
-	solicitudId: string = '';
-	solicitudItem: string = '';
-	evento : Evento = null;
-	eventoId: string = '';
-	eventoItem: string = '';
 	
 	posicionId: string = '';
 	posicionItem: string = '';
